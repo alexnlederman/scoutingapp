@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.android\build-cache\462b7d441c6762fb6b20ed01410937e7c69ba997\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c509281d6781db0ff58cc97ef76ab522585fd7d5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.android\build-cache\8931ac6fa5207b7706736078cf24aa93223a6996\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bc4a6cef914b23001aa624694f5e27ce7235d264\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.android\build-cache\f4eee6967606f1ba6e00d9665b90670f0b53b664\output\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_89993d52e421fc3960dd1da7f96289a1326d4ca1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="05416ec4bceb0c9add90ad6eebb0bb623b5ffd21">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_cf70591f0a4cbdc6f9518c14ff508feeb0ca0e2a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_65b215c354056c474e6c1882147de3e50ef66b97\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.android\build-cache\5b92b4d782ba03d9f81821740738e731ce16ca5c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1b1704ffaf79620eef2d2f7e5545da11efc5c760\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.android\build-cache\fdcedd197fc4ee98c027117e35c37608620be90f\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1398ed0df863b3c466bed87d46345ba4ef207d06\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_65ff506a76313ada5fb744fd852ab9bd4cbae991\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_e4041fbfb592d53cef521cd64e833e3f569e586d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.android\build-cache\f4eee6967606f1ba6e00d9665b90670f0b53b664\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bd5d3359cf61bbaf9d32fa6f4f1d6a3d927659d2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.android\build-cache\dc9786c354350c032d49955707c3b29196f419c0\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_37079876a482134fdd3bde31c77155a08b488ca7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.android\build-cache\696b6b18498c80c8fd248a465b5099ffb57b93cb\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1a8f54d1c889f604c0ac1941c3a4827a6fb1d80f\classes.dex" />
+    </item>
+
+</items>

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Vanguard.iml" filepath="$PROJECT_DIR$/Vanguard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scoutingapp.iml" filepath="$PROJECT_DIR$/scoutingapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vanguard2/vanguard2.iml" filepath="$PROJECT_DIR$/vanguard2/vanguard2.iml" />
     </modules>
   </component>
 </project>
