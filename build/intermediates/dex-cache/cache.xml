@@ -57,6 +57,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\BertTurtle\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v3.0.2\5d4eb08a326bdbd7fbbddc769666898c9936b282\MPAndroidChart-v3.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5d4eb08a326bdbd7fbbddc769666898c9936b282">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\MPAndroidChart-v3.0.2_c5c0b8bbb55f7bf493797b33ec9ed3ee0dfffd79\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\BertTurtle\.android\build-cache\696b6b18498c80c8fd248a465b5099ffb57b93cb\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"

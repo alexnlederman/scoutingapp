@@ -14,10 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,6 +55,16 @@ public class MainActivity extends AppCompatActivity
 
         AsyncTesting async = new AsyncTesting();
         System.out.println(async.execute());
+
+        BarChart chart = new BarChart(this);
+        DrawerLayout layout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        layout.addView(chart);
+        List<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(0f, 20f));
+        entries.add(new BarEntry(1f, 10f));
+        entries.add(new BarEntry(2f, 40f));
+        entries.add(new BarEntry(3f, 30f));
+        chart.setData(new BarData(new BarDataSet(entries, "Testing Data")));
     }
 
     @Override
