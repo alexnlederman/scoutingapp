@@ -14,9 +14,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.CombinedData;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -56,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         AsyncTesting async = new AsyncTesting();
         System.out.println(async.execute());
 
-        BarChart chart = new BarChart(this);
+        CombinedChart chart = new CombinedChart(this);
         DrawerLayout layout = (DrawerLayout) findViewById(R.id.drawer_layout);
         layout.addView(chart);
         List<BarEntry> entries = new ArrayList<>();
@@ -64,7 +69,19 @@ public class MainActivity extends AppCompatActivity
         entries.add(new BarEntry(1f, 10f));
         entries.add(new BarEntry(2f, 40f));
         entries.add(new BarEntry(3f, 30f));
-        chart.setData(new BarData(new BarDataSet(entries, "Testing Data")));
+        List<Entry> enter = new ArrayList<>();
+        enter.add(new Entry(0f, 15f));
+        enter.add(new Entry(1f, 25f));
+        enter.add(new Entry(2f, 35f));
+        enter.add(new Entry(3f, 35f));
+
+        LineData lineData = new LineData(new LineDataSet(enter, "Line Data"));
+        BarData barData = new BarData(new BarDataSet(entries, "Testing Data"));
+
+        CombinedData data = new CombinedData();
+        data.setData(lineData);
+        data.setData(barData);
+        chart.setData(data);
     }
 
     @Override
