@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.vanguard.CustomWidgets.CustomNumberPicker;
+import com.example.vanguard.Questions.DoubleQuestion;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.data.BarData;
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity
 
         CombinedChart chart = new CombinedChart(this);
         DrawerLayout layout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        layout.addView(chart);
+//        layout.addView(chart);
         List<BarEntry> entries = new ArrayList<>();
         entries.add(new BarEntry(0f, 20f));
         entries.add(new BarEntry(1f, 10f));
@@ -82,6 +84,11 @@ public class MainActivity extends AppCompatActivity
         data.setData(lineData);
         data.setData(barData);
         chart.setData(data);
+
+
+        DoubleQuestion quest = new DoubleQuestion(this, "Question");
+
+        layout.addView(quest);
     }
 
     @Override

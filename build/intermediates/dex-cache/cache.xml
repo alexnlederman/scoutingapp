@@ -39,21 +39,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\BertTurtle\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
-        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_65ff506a76313ada5fb744fd852ab9bd4cbae991\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
         <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_e4041fbfb592d53cef521cd64e833e3f569e586d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_65ff506a76313ada5fb744fd852ab9bd4cbae991\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -88,8 +88,17 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="7150579e4e0c90a2e1d1567e2f7a5574a26cfe73">
+        sha1="fb20aca34e98a6bbe3a864d0db9bdbcc02aa7c7c">
         <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_cf70591f0a4cbdc6f9518c14ff508feeb0ca0e2a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.gradle\caches\modules-2\files-2.1\org.greenrobot\greendao-api\3.2.2\e9bbf7a184b0b4914a10d8179c993cc9aa9b1b33\greendao-api-3.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e9bbf7a184b0b4914a10d8179c993cc9aa9b1b33">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\greendao-api-3.2.2_177602acee794e14a8e0ae5243770ea9caa44136\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -99,6 +108,15 @@
         revision="25.0.2"
         sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
         <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1b1704ffaf79620eef2d2f7e5545da11efc5c760\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.gradle\caches\modules-2\files-2.1\org.greenrobot\greendao\3.2.2\f8c7ebdc29310be23d076e5512bafe6bad3ce2f0\greendao-3.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f8c7ebdc29310be23d076e5512bafe6bad3ce2f0">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\greendao-3.2.2_028b3161e74084ade16c6c24062065207000ae03\classes.dex" />
     </item>
     <item
         is-multidex="true"
