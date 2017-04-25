@@ -1,11 +1,17 @@
 package com.example.vanguard.Questions;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.vanguard.MainActivity;
 
 /**
  * Created by BertTurtle on 4/22/2017.
@@ -20,10 +26,20 @@ public abstract class GenericQuestion extends LinearLayout {
 
 		this.context = context;
 		this.setOrientation(LinearLayout.HORIZONTAL);
+//		setupLayout();
+
 		addQuestionTextView(question);
 
 		addInput();
 
+	}
+
+	private void setupLayout() {
+		ViewGroup.LayoutParams p = this.getLayoutParams();
+		p.height = 2 * (int) MainActivity.dpToPixels;
+		System.out.println("Conversion: " + MainActivity.dpToPixels);
+		this.setLayoutParams(p);
+		this.setBackgroundColor(Color.parseColor("#458423"));
 	}
 
 	private void addQuestionTextView(String question) {
@@ -31,7 +47,20 @@ public abstract class GenericQuestion extends LinearLayout {
 
 		this.questionTextView.setText(question);
 
-		this.addView(questionTextView);
+		this.questionTextView.setGravity(Gravity.CENTER);
+
+		LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		p.weight = 0.5f;
+//		p.height = 100 * (int) MainActivity.dpToPixels;
+		this.questionTextView.setLayoutParams(p);
+		this.addView(this.questionTextView);
+	}
+
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		super.onLayout(changed, l, t, r, b);
+		System.out.println("IT HAS BEEN DRAWN");
+		setupLayout();
 	}
 
 	public void setQuestionText(String text) {

@@ -7,35 +7,22 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="info" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Firebase" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a56f61f0-db3f-4be6-8d02-64220dbc025a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/greendao_3_2_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/greendao_api_3_2_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomWidgets/CustomNumberPicker.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/DoubleQuestion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/GenericQuestion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/fileContent/annotation-processors.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/fileContent/annotation-processors.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/fileContent/fileContent.lock" afterPath="$PROJECT_DIR$/.gradle/3.4/fileContent/fileContent.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/classAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/jarAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/jarAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/javaCompile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/taskHistory.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/taskJars.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/taskJars.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/jvmClassSignatures.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/jvmClassSignatures.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/build.gradle" afterPath="$PROJECT_DIR$/vanguard2/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MainActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/nav_header_main.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/nav_header_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/vanguard2.iml" afterPath="$PROJECT_DIR$/vanguard2/vanguard2.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/DoubleQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/DoubleQuestion.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/GenericQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/GenericQuestion.java" />
     </list>
     <ignored path="Vanguard.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,8 +71,8 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="88" column="65" selection-start-line="88" selection-start-column="65" selection-end-line="88" selection-end-column="65" />
+            <state relative-caret-position="1575">
+              <caret line="94" column="40" selection-start-line="94" selection-start-column="40" selection-end-line="94" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -124,27 +111,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenericQuestion.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GenericQuestion.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/GenericQuestion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="210">
+              <caret line="30" column="36" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DoubleQuestion.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/DoubleQuestion.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="511">
-              <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#459#460#0" expanded="true" />
-                <element signature="e#490#491#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -153,13 +126,9 @@
       <file leaf-file-name="CustomNumberPicker.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomWidgets/CustomNumberPicker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1111">
-              <caret line="97" column="40" selection-start-line="97" selection-start-column="40" selection-end-line="97" selection-end-column="40" />
+            <state relative-caret-position="2300">
+              <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
               <folding>
-                <element signature="e#1668#1844#0" expanded="true" />
-                <element signature="e#1843#1844#0" expanded="true" />
-                <element signature="e#1954#2129#0" expanded="true" />
-                <element signature="e#2128#2129#0" expanded="true" />
                 <element signature="e#2305#2306#0" expanded="true" />
                 <element signature="e#2360#2361#0" expanded="true" />
                 <element signature="e#2386#2387#0" expanded="true" />
@@ -1958,10 +1927,10 @@
         <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/nav_header_main.xml" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/GenericQuestion.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/DoubleQuestion.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomWidgets/CustomNumberPicker.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MainActivity.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/GenericQuestion.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/DoubleQuestion.java" />
       </list>
     </option>
   </component>
@@ -1997,6 +1966,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2005,105 +1975,8 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scoutingapp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard2" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scoutingapp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard2" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scoutingapp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard2" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scoutingapp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard2" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scoutingapp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard2" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CustomWidgets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scoutingapp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard2" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane" />
     </panes>
@@ -2502,15 +2375,14 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3499622" sideWeight="0.5016064" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3499622" sideWeight="0.49839357" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6313253" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3575208" sideWeight="0.49839357" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879817" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879817" sideWeight="0.49668875" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951945" sideWeight="0.5033113" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17831326" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17991967" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2523,6 +2395,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6313253" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -2746,7 +2619,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2796,7 +2668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2804,7 +2675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -2833,14 +2703,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
@@ -2856,7 +2718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="875">
           <caret line="93" column="13" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2864,7 +2725,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
           <caret line="6803" column="19" selection-start-line="6803" selection-start-column="19" selection-end-line="6803" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2872,9 +2732,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
           <caret line="77" column="31" selection-start-line="77" selection-start-column="31" selection-end-line="77" selection-end-column="31" />
-          <folding>
-            <element signature="e#2476#2477#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2882,7 +2739,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
           <caret line="5125" column="16" selection-start-line="5125" selection-start-column="16" selection-end-line="5125" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/DoubleQuestion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2897,31 +2779,19 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="88" column="65" selection-start-line="88" selection-start-column="65" selection-end-line="88" selection-end-column="65" />
+        <state relative-caret-position="1575">
+          <caret line="94" column="40" selection-start-line="94" selection-start-column="40" selection-end-line="94" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomWidgets/CustomNumberPicker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1111">
-          <caret line="97" column="40" selection-start-line="97" selection-start-column="40" selection-end-line="97" selection-end-column="40" />
+        <state relative-caret-position="2300">
+          <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
           <folding>
-            <element signature="e#1668#1844#0" expanded="true" />
-            <element signature="e#1843#1844#0" expanded="true" />
-            <element signature="e#1954#2129#0" expanded="true" />
-            <element signature="e#2128#2129#0" expanded="true" />
             <element signature="e#2305#2306#0" expanded="true" />
             <element signature="e#2360#2361#0" expanded="true" />
             <element signature="e#2386#2387#0" expanded="true" />
@@ -2932,22 +2802,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/GenericQuestion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="210">
+          <caret line="30" column="36" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/DoubleQuestion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#459#460#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
           </folding>
         </state>
       </provider>

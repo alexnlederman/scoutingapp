@@ -31,8 +31,13 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.security.AccessController.getContext;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+	public static float dpToPixels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+		MainActivity.dpToPixels = this.getResources().getDisplayMetrics().density;
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

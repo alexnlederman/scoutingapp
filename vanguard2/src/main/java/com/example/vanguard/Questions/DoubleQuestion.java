@@ -25,10 +25,10 @@ public class DoubleQuestion extends GenericQuestion {
 		CustomNumberPicker numberPicker = new CustomNumberPicker(context);
 		this.addView(numberPicker);
 //		this.setBackgroundColor(Color.parseColor("#ff3422"));
-		numberPicker.setGravity(Gravity.RIGHT);
 		ViewGroup.LayoutParams p = numberPicker.getLayoutParams();
 		System.out.println(p.width);
 		p.width = 400;
 		numberPicker.setLayoutParams(p);
+
 	}
 }
