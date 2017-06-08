@@ -1,9 +1,6 @@
 package com.example.vanguard;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,32 +9,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
-import com.example.vanguard.CustomWidgets.CustomNumberPicker;
-import com.example.vanguard.Questions.DoubleQuestion;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.CombinedChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.CombinedData;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.security.AccessController.getContext;
+import com.example.vanguard.Questions.QuestionList;
+import com.example.vanguard.Questions.QuestionTypes.DoubleQuestion;
+import com.example.vanguard.Questions.QuestionTypes.StringQuestion;
+import com.example.vanguard.Questions.QuestionViewers.QuestionListViewers.QuestionListEditViewer;
+import com.example.vanguard.Questions.QuestionViewers.QuestionListViewers.QuestionListFormViewer;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
 	public static float dpToPixels;
+	LinearLayout mainLayout;
+	QuestionList<Object> questions;
+	QuestionListEditViewer questionEditor;
+	QuestionListFormViewer questionViewer;
+	boolean isEditingQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +36,6 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 		MainActivity.dpToPixels = this.getResources().getDisplayMetrics().density;
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -64,37 +45,21 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        System.out.println("FDLKDJ SFLK :DL F:SDLK JFLDK FDS JFLKSFJD F");
 
-        AsyncTesting async = new AsyncTesting();
-        System.out.println(async.execute());
+		questions = new QuestionList<>();
+		questions.add(new DoubleQuestion(this, "How many auto points?"));
+		questions.add(new DoubleQuestion(this, "How many opcon points?"));
+		questions.add(new DoubleQuestion(this, "How many gears scored?"));
+		questions.add(new StringQuestion(this, "Comments?"));
+		isEditingQuestions = true;
 
-        CombinedChart chart = new CombinedChart(this);
-        DrawerLayout layout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        layout.addView(chart);
-        List<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0f, 20f));
-        entries.add(new BarEntry(1f, 10f));
-        entries.add(new BarEntry(2f, 40f));
-        entries.add(new BarEntry(3f, 30f));
-        List<Entry> enter = new ArrayList<>();
-        enter.add(new Entry(0f, 15f));
-        enter.add(new Entry(1f, 25f));
-        enter.add(new Entry(2f, 35f));
-        enter.add(new Entry(3f, 35f));
-
-        LineData lineData = new LineData(new LineDataSet(enter, "Line Data"));
-        BarData barData = new BarData(new BarDataSet(entries, "Testing Data"));
-
-        CombinedData data = new CombinedData();
-        data.setData(lineData);
-        data.setData(barData);
-        chart.setData(data);
-
-
-        DoubleQuestion quest = new DoubleQuestion(this, "Question");
-
-        layout.addView(quest);
+		questionViewer = new QuestionListFormViewer(this, questions);
+//        System.out.println("FDLKDJ SFLK :DL F:SDLK JFLDK FDS JFLKSFJD F");
+//
+//        AsyncTesting async = new AsyncTesting();
+//        System.out.println(async.execute());
+//
+//        CombinedChart chart = new CombinedChart(this);
     }
 
     @Override
@@ -111,6 +76,31 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        mainLayout = (LinearLayout) findViewById(R.id.true_main_layout);
+//        layout.addView(chart);
+//        List<BarEntry> entries = new ArrayList<>();
+//        entries.add(new BarEntry(0f, 20f));
+//        entries.add(new BarEntry(1f, 10f));
+//        entries.add(new BarEntry(2f, 40f));
+//        entries.add(new BarEntry(3f, 30f));
+//        List<Entry> enter = new ArrayList<>();
+//        enter.add(new Entry(0f, 15f));
+//        enter.add(new Entry(1f, 25f));
+//        enter.add(new Entry(2f, 35f));
+//        enter.add(new Entry(3f, 35f));
+//
+//        LineData lineData = new LineData(new LineDataSet(enter, "Line Data"));
+//        BarData barData = new BarData(new BarDataSet(entries, "Testing Data"));
+//
+//        CombinedData data = new CombinedData();
+//        data.setData(lineData);
+//        data.setData(barData);
+//        chart.setData(data);
+
+        questionEditor = new QuestionListEditViewer(this, questions, menu);
+
+        mainLayout.addView(questionEditor);
         return true;
     }
 
@@ -123,29 +113,40 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+			if (isEditingQuestions) {
+				item.setTitle("Edit");
+				this.questions = this.questionEditor.getQuestions();
+				this.mainLayout.removeView(this.questionEditor);
+				this.questionViewer.setQuestions(this.questions);
+				this.mainLayout.addView(this.questionViewer);
+				isEditingQuestions = false;
+			}
+			else {
+				item.setTitle("Save");
+				this.mainLayout.removeView(questionViewer);
+				this.mainLayout.addView(questionEditor);
+				isEditingQuestions = true;
+			}
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_data) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_schedule) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_scout) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_settings) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_sync) {
 
         }
 

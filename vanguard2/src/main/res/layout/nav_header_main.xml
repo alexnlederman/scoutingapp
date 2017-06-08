@@ -15,6 +15,7 @@
         android:text="5940"
         android:gravity="center"
         android:textSize="20dp"
-        android:paddingTop="@dimen/nav_header_vertical_spacing" android:background="@drawable/team_number_circle" />
+        android:paddingTop="@dimen/nav_header_vertical_spacing" android:background="@drawable/team_number_circle"
+        />
 
 </LinearLayout>
