@@ -4,11 +4,12 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import com.example.vanguard.Questions.Question;
-import com.example.vanguard.Questions.Response;
-import com.example.vanguard.Questions.Responses.SimpleResponse;
+import com.example.vanguard.Questions.QuestionList;
+
+import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  * Created by BertTurtle on 6/5/2017.
@@ -18,17 +19,18 @@ public class StringQuestion extends Question<String> {
 
 	private EditText answerUI;
 
-	public StringQuestion(Context context, String label) {
-		super(label);
+	public StringQuestion(HashMap<String, Object> hashMap, Context context) {
+		super(hashMap);
 
 		this.answerUI = new EditText(context);
 		ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 		this.answerUI.setLayoutParams(params);
 	}
 
+
 	@Override
-	public Response<String> getResponse() {
-		return new SimpleResponse<>(this.answerUI.getText().toString());
+	public String getValue() {
+		return this.answerUI.getText().toString();
 	}
 
 	@Override
@@ -39,5 +41,15 @@ public class StringQuestion extends Question<String> {
 	@Override
 	public ViewStyle getViewStyle() {
 		return ViewStyle.TWO_LINE;
+	}
+
+	@Override
+	public QuestionList.QuestionTypes getQuestionType() {
+		return QuestionList.QuestionTypes.STRING;
+	}
+
+	@Override
+	public Boolean isEditable() {
+		return true;
 	}
 }

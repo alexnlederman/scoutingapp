@@ -3,6 +3,51 @@
 
     <item
         is-multidex="true"
+        jar="C:\Users\BertTurtle\.android\build-cache\f4eee6967606f1ba6e00d9665b90670f0b53b664\output\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_89993d52e421fc3960dd1da7f96289a1326d4ca1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_65b215c354056c474e6c1882147de3e50ef66b97\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_e4041fbfb592d53cef521cd64e833e3f569e586d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.8.0_49bffd0fc938b015c5b59818661fec34d99e967e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.gradle\caches\modules-2\files-2.1\com.github.oxo42\stateless4j\2.4.0\128aca4ace585f0b42faa739d0b968a154debb7a\stateless4j-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="128aca4ace585f0b42faa739d0b968a154debb7a">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\stateless4j-2.4.0_7e369a8290aac4593fb1cd742fdee29854b44d94\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\BertTurtle\.android\build-cache\462b7d441c6762fb6b20ed01410937e7c69ba997\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -21,12 +66,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\BertTurtle\.android\build-cache\f4eee6967606f1ba6e00d9665b90670f0b53b664\output\jars\libs\internal_impl-23.4.0.jar"
+        jar="C:\Users\BertTurtle\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.5.0\b2ece1bd57ac7b4c315b7505b65ac79cb1da4270\jackson-core-2.5.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_89993d52e421fc3960dd1da7f96289a1326d4ca1\classes.dex" />
+        sha1="b2ece1bd57ac7b4c315b7505b65ac79cb1da4270">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-core-2.5.0_28e688d11633d4c0449696405f61cb672f2c53ab\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -34,17 +79,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="44d536a348f5efb3787c4a42735c09027d049079">
+        sha1="0673212d907508b0494ea3b068c94a4650eccf01">
         <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_cf70591f0a4cbdc6f9518c14ff508feeb0ca0e2a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\BertTurtle\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_65b215c354056c474e6c1882147de3e50ef66b97\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -57,21 +93,39 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\BertTurtle\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.5.0\489b7552dd3322b63f694122d16ce62c21c303b5\jackson-databind-2.5.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
-        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_e4041fbfb592d53cef521cd64e833e3f569e586d\classes.dex" />
+        sha1="489b7552dd3322b63f694122d16ce62c21c303b5">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-databind-2.5.0_bb118fb4139e308186694e95ddb9494419c7ccd5\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\BertTurtle\.gradle\caches\modules-2\files-2.1\org.greenrobot\greendao\3.2.2\f8c7ebdc29310be23d076e5512bafe6bad3ce2f0\greendao-3.2.2.jar"
+        jar="C:\Users\BertTurtle\.gradle\caches\modules-2\files-2.1\com.couchbase.lite\couchbase-lite-java-core\1.4.0\a882f9d3f84074599d1f951d3f390893b7863599\couchbase-lite-java-core-1.4.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="f8c7ebdc29310be23d076e5512bafe6bad3ce2f0">
-        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\greendao-3.2.2_028b3161e74084ade16c6c24062065207000ae03\classes.dex" />
+        sha1="a882f9d3f84074599d1f951d3f390893b7863599">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\couchbase-lite-java-core-1.4.0_04c7af3db2bb4f0ae476b90253480515cd2d0f2f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.1\19047bdb6a4fc00a44124f64ca98e88fc204e7e3\okhttp-3.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="19047bdb6a4fc00a44124f64ca98e88fc204e7e3">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.3.1_fe3a3d7bd2e993cf82a77ec95edf3822ae2fb69d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.android\build-cache\0d3f4073d2719b81fa18dbaeb42acfeecad2b91a\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6a96bb86cc46935b2ca9afc83b230db00e857c5d">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bb1d0503095205ca428db32259846a67f3947015\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -81,6 +135,24 @@
         revision="25.0.2"
         sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
         <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bd5d3359cf61bbaf9d32fa6f4f1d6a3d927659d2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.5.0\a2a55a3375bc1cef830ca426d68d2ea22961190e\jackson-annotations-2.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a2a55a3375bc1cef830ca426d68d2ea22961190e">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-annotations-2.5.0_e6c815ca75c87f3be4624666aad2e3c11b93b3df\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\BertTurtle\.android\build-cache\80d750be0112296e9dafd2f4e1ba6b21d24b8665\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="69e99eb9b7097cde10fdeba2ac14cf9f19af3010">
+        <dex dex="C:\Users\BertTurtle\StudioProjects\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_cc18eec7803d729c8a62b95f4492e75344c13ca1\classes.dex" />
     </item>
 
 </items>

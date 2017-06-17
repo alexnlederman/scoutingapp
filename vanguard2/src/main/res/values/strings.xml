@@ -11,4 +11,7 @@
     <string name="schedule_title">Schedule</string>
     <string name="settings_title">Settings</string>
     <string name="sync_title">Sync</string>
+    <string name="preferences">Shared_Preferences</string>
+    <string name="question_count">question_count</string>
+    <string name="doc_id">doc_id</string>
 </resources>

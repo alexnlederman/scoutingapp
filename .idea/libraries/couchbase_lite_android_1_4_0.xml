@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="couchbase-lite-android-1.4.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/0d3f4073d2719b81fa18dbaeb42acfeecad2b91a/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/0d3f4073d2719b81fa18dbaeb42acfeecad2b91a/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

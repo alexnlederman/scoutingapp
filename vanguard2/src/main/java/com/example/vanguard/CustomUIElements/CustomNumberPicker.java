@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 
 import com.example.vanguard.MainActivity;
 
+import java.io.Serializable;
+
 /**
  * Created by BertTurtle on 4/23/2017.
  */
