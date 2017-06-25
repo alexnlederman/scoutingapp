@@ -5,7 +5,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.vanguard.Questions.MatchScoutQuestionList;
+import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.Questions.AnswerList;
+import com.example.vanguard.Questions.QuestionViewers.MatchScoutQuestionList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Questions.QuestionViewers.FormQuestionViewers.SingleLineFormQuestionViewer;
 import com.example.vanguard.Questions.QuestionViewers.FormQuestionViewers.TwoLineFormQuestionViewer;
@@ -17,13 +19,14 @@ import com.example.vanguard.Questions.QuestionViewers.SimpleFormQuestionViewer;
 
 public class QuestionListFormViewer extends LinearLayout {
 
-	private MatchScoutQuestionList questions;
 	private Context context;
 	private Button submitButton;
+	private DatabaseManager databaseManager;
+	private AnswerList<Question> questions;
 
-	public QuestionListFormViewer(Context context, MatchScoutQuestionList questions) {
+	public QuestionListFormViewer(Context context, DatabaseManager databaseManager) {
 		super(context);
-		this.questions = questions;
+		this.databaseManager = databaseManager;
 		this.context = context;
 
 		this.setOrientation(LinearLayout.VERTICAL);
@@ -33,7 +36,8 @@ public class QuestionListFormViewer extends LinearLayout {
 
 	private void setupQuestions() {
 		this.removeAllViews();
-		for (Question<?> question : this.questions) {
+		this.questions = this.databaseManager.getMatchQuestions();
+		for (Question<?> question : questions) {
 			this.addQuestion(question);
 		}
 		this.submitButton = new Button(context);
@@ -43,11 +47,12 @@ public class QuestionListFormViewer extends LinearLayout {
 			@Override
 			public void onClick(View v) {
 				for (Question question : questions) {
-					question.setMatchNumber(questions.getMatchNumberQuestion().getValue());
-					System.out.println(questions.getMatchNumberQuestion().getValue());
+					// TODO make these numbers be better than hard coded.
+					question.setMatchNumber((int) questions.get(0).getValue());
+					question.setTeamNumber((int) questions.get(1).getValue());
 					question.saveResponse();
-					questions.saveQuestions();
 				}
+				databaseManager.saveResponses(questions);
 			}
 		});
 	}
@@ -63,8 +68,7 @@ public class QuestionListFormViewer extends LinearLayout {
 		this.addView(questionViewer);
 	}
 
-	public void setQuestions(MatchScoutQuestionList questions) {
-		this.questions = questions;
+	public void prepareQuestions() {
 		setupQuestions();
 	}
 }

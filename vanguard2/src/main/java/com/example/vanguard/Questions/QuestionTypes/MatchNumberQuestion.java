@@ -2,7 +2,8 @@ package com.example.vanguard.Questions.QuestionTypes;
 
 import android.content.Context;
 
-import com.example.vanguard.Responses.SimpleMatchResponse;
+import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.ResponseList;
 
 import java.util.HashMap;
 
@@ -11,24 +12,31 @@ import java.util.HashMap;
  */
 
 public class MatchNumberQuestion extends IntegerQuestion {
-	public MatchNumberQuestion(HashMap<String, Object> hashMap, Context context) {
-		super(hashMap, context);
-		this.setLabel("Match Number?");
+	public MatchNumberQuestion(Context context, String id) {
+		super(context, "Match Number?", id);
 	}
 
-	public MatchNumberQuestion(HashMap<String, Object> hashMap, Context context, int startingValue) {
-		this(hashMap, context);
+	public MatchNumberQuestion(Context context, int startingValue, String id) {
+		this(context, id);
 		this.answerUI.setValue(startingValue);
 	}
 
-	@Override
-	public void saveResponse() {
-		this.setMatchNumber(this.getValue());
-		super.saveResponse();
+	public MatchNumberQuestion(Context context, ResponseList responses, String id) {
+		super(context, "Match Number?", responses, id);
+	}
+
+	public MatchNumberQuestion(Context context, int startingValue, ResponseList responses, String id) {
+		this(context, responses, id);
+		this.answerUI.setValue(startingValue);
 	}
 
 	@Override
 	public Boolean isEditable() {
 		return false;
+	}
+
+	@Override
+	public DatabaseManager.QuestionTypes getQuestionType() {
+		return DatabaseManager.QuestionTypes.MATCH_NUMBER;
 	}
 }

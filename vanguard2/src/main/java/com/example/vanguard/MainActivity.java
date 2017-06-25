@@ -16,16 +16,24 @@ import android.widget.LinearLayout;
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.Database;
 import com.couchbase.lite.Document;
+import com.couchbase.lite.Emitter;
 import com.couchbase.lite.Manager;
+import com.couchbase.lite.Mapper;
+import com.couchbase.lite.Query;
+import com.couchbase.lite.QueryEnumerator;
+import com.couchbase.lite.QueryRow;
+import com.couchbase.lite.UnsavedRevision;
+import com.couchbase.lite.View;
 import com.couchbase.lite.android.AndroidContext;
-import com.couchbase.lite.support.JsonDocument;
-import com.example.vanguard.Questions.MatchScoutQuestionList;
+import com.example.vanguard.Questions.QuestionViewers.MatchScoutQuestionList;
 import com.example.vanguard.Questions.QuestionViewers.QuestionListViewers.QuestionListEditViewer;
 import com.example.vanguard.Questions.QuestionViewers.QuestionListViewers.QuestionListFormViewer;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,10 +43,10 @@ public class MainActivity extends AppCompatActivity
 	public static float dpToPixels;
 	LinearLayout mainLayout;
 	MatchScoutQuestionList questions;
-	QuestionListEditViewer<MatchScoutQuestionList> questionEditor;
+	QuestionListEditViewer questionEditor;
 	QuestionListFormViewer questionViewer;
 	boolean isEditingQuestions;
-	Document document;
+	DatabaseManager databaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +56,6 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 //		SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
-//		// TODO save the value when a new question is added. And increment it.
 //		questionCount = sharedPreferences.getInt(getString(R.string.question_count), 0);
 
 		MainActivity.dpToPixels = this.getResources().getDisplayMetrics().density;
@@ -65,82 +72,179 @@ public class MainActivity extends AppCompatActivity
 
 
 
-		Manager manager = null;
-		try {
-			manager = new Manager(new AndroidContext(getApplicationContext()), Manager.DEFAULT_OPTIONS);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		Database database = null;
-		try {
-			database = manager.getDatabase("app");
-		} catch (CouchbaseLiteException e) {
-			e.printStackTrace();
-		}
-
-		SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
-		String docId = sharedPreferences.getString(getString(R.string.doc_id), null);
-		docId = null;
-		System.out.println("Doc Id: " + docId);
-		if (docId == null) {
-
-			this.document = database.createDocument();
-			try {
-				this.document.putProperties(new HashMap<String, Object>());
-			} catch (CouchbaseLiteException e) {
-				e.printStackTrace();
-			}
-			docId = this.document.getId();
-			SharedPreferences.Editor editor = sharedPreferences.edit();
-			editor.putString(getString(R.string.doc_id), docId);
-			editor.commit();
-		}
-		else {
-			this.document = database.getDocument(docId);
-		}
-
-		questions = new MatchScoutQuestionList(this, this.document, "key");
-//		questions.add(new IntegerQuestion(this, "How many auto points?"));
-//		questions.add(new IntegerQuestion(this, "How many opcon points?"));
-//		questions.add(new IntegerQuestion(this, "How many gears scored?"));
-//		questions.add(new StringQuestion(this, "Comments?"));
-		isEditingQuestions = true;
-
-//        System.out.println("FDLKDJ SFLK :DL F:SDLK JFLDK FDS JFLKSFJD F");
-//
-//        AsyncTesting async = new AsyncTesting();
-//        System.out.println(async.execute());
-//
-//        CombinedChart chart = new CombinedChart(this);
-
-		questionViewer = new QuestionListFormViewer(this, questions);
-
-//		Map<String, Object> properties = new HashMap<>();
-//		Document response1 = database.createDocument();
-//		Document response2 = database.createDocument();
-//		Document[] array = {response1, response2};
-//		String[] array2 = {"Bye", "Goodbye", "Adios"};
-//		properties.put("Introduction", array);
-//		Map<String, Object> prop2 = new HashMap<>();
-//		prop2.put("Leaving", array2);
-//
-//		Document document = database.createDocument();
-//		database.getDocument();
-//
-//
+//		Manager manager = null;
 //		try {
-//			response1.putProperties(prop2);
-//			document.putProperties(properties);
+//			manager = new Manager(new AndroidContext(getApplicationContext()), Manager.DEFAULT_OPTIONS);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//
+//		Database database = null;
+//		try {
+//			database = manager.getDatabase("app");
 //		} catch (CouchbaseLiteException e) {
 //			e.printStackTrace();
 //		}
 //
-//		System.out.println(document.getProperty("Introduction"));
-//		System.out.println(document.getProperty("Leaving"));
-//		System.out.println();
-//		Document[] documents = (Document[]) document.getProperty("Introduction");
-//		System.out.println(documents[0].getProperty("Leaving"));
+//		SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preferences), Context.MODE_PRIVATE);
+//		String docId = sharedPreferences.getString(getString(R.string.doc_id), null);
+//		docId = null;
+//		System.out.println("Doc Id: " + docId);
+//		if (docId == null) {
+//
+//			this.document = database.createDocument();
+//			try {
+//				this.document.putProperties(new HashMap<String, Object>());
+//			} catch (CouchbaseLiteException e) {
+//				e.printStackTrace();
+//			}
+//			docId = this.document.getId();
+//			SharedPreferences.Editor editor = sharedPreferences.edit();
+//			editor.putString(getString(R.string.doc_id), docId);
+//			editor.commit();
+//		}
+//		else {
+//			this.document = database.getDocument(docId);
+//		}
+
+//		questions = new MatchScoutQuestionList(this, this.document, "key");
+////		questions.add(new IntegerQuestion(this, "How many auto points?"));
+////		questions.add(new IntegerQuestion(this, "How many opcon points?"));
+////		questions.add(new IntegerQuestion(this, "How many gears scored?"));
+////		questions.add(new StringQuestion(this, "Comments?"));
+//		isEditingQuestions = true;
+//
+////        System.out.println("FDLKDJ SFLK :DL F:SDLK JFLDK FDS JFLKSFJD F");
+////
+////        AsyncTesting async = new AsyncTesting();
+////        System.out.println(async.execute());
+////
+////        CombinedChart chart = new CombinedChart(this);
+//
+//		questionViewer = new QuestionListFormViewer(this, questions);
+//
+////		Map<String, Object> properties = new HashMap<>();
+////		Document response1 = database.createDocument();
+////		Document response2 = database.createDocument();
+////		Document[] array = {response1, response2};
+////		String[] array2 = {"Bye", "Goodbye", "Adios"};
+////		properties.put("Introduction", array);
+////		Map<String, Object> prop2 = new HashMap<>();
+////		prop2.put("Leaving", array2);
+////
+////		Document document = database.createDocument();
+////		database.getDocument();
+////
+////
+////		try {
+////			response1.putProperties(prop2);
+////			document.putProperties(properties);
+////		} catch (CouchbaseLiteException e) {
+////			e.printStackTrace();
+////		}
+////
+////		System.out.println(document.getProperty("Introduction"));
+////		System.out.println(document.getProperty("Leaving"));
+////		System.out.println();
+////		Document[] documents = (Document[]) document.getProperty("Introduction");
+////		System.out.println(documents[0].getProperty("Leaving"));
+//
+//		Document pit_quest1 = database.getDocument("pit_quest1");
+//		Document pit_quest2 = database.getDocument("pit_quest2");
+//		Document match_quest1 = database.getDocument("match_quest1");
+//		Document match_quest2 = database.getDocument("match_quest2");
+//		Document match_quest3 = database.getDocument("match_quest3");
+//
+//		try {
+//			pit_quest1.update(new PitInitUpdate());
+//			pit_quest2.update(new PitInitUpdate());
+//			match_quest1.update(new MatchInitUpdate());
+//			match_quest2.update(new MatchInitUpdate());
+//			match_quest3.update(new MatchInitUpdate());
+//		} catch (CouchbaseLiteException e) {
+//			e.printStackTrace();
+//		}
+//
+//
+//		View match_view = database.getView("match_view");
+//		match_view.setMap(new Mapper() {
+//			@Override
+//			public void map(Map<String, Object> map, Emitter emitter) {
+//				System.out.println(map.get("type"));
+//				System.out.println(map.values());
+//				for (String string : map.keySet()) {
+//					System.out.println(string);
+//				}
+//				for (Object string : map.values()) {
+//					System.out.println(string);
+//				}
+//				if (map.containsKey("type")) {
+//					if (map.get("type").equals("match_quest")) {
+//						emitter.emit(map.get("index"), map);
+//					}
+//				}
+//			}
+//		}, "1");
+//
+////		QueryOptions opt = new QueryOptions();
+//		Query query = null;
+////		Map<String, Object> map = null;
+////		try {
+////			map = database.getAllDocs(opt);
+////		} catch (CouchbaseLiteException e) {
+////			e.printStackTrace();
+////		}
+////		for (Object string : map.values()) {
+////			System.out.println(string);
+////		}
+////		for (Object string : map.keySet()) {
+////			System.out.println(string);
+////		}
+//
+//		try {
+//			query = match_view.createQuery();
+//			QueryEnumerator result = query.run();
+//			for (Iterator<QueryRow> it = result; it.hasNext();) {
+//				QueryRow row = it.next();
+//				System.out.println(row.getKey());
+//				System.out.println(row.getValue());
+//			}
+//
+//		} catch (CouchbaseLiteException e) {
+//			e.printStackTrace();
+//		}
+
+		this.databaseManager = new DatabaseManager(this);
+
+		questions = new MatchScoutQuestionList(this.databaseManager, this);
+		isEditingQuestions = true;
+		questionViewer = new QuestionListFormViewer(this, this.databaseManager);
+	}
+
+	public class PitInitUpdate implements Document.DocumentUpdater {
+
+		@Override
+		public boolean update(UnsavedRevision unsavedRevision) {
+			Map<String, Object> prop = unsavedRevision.getUserProperties();
+			prop.put("title", "Hello");
+			prop.put("value", (new Random()).nextInt());
+			prop.put("type", "pit_quest");
+			unsavedRevision.setUserProperties(prop);
+			return true;
+		}
+	}
+
+	public class MatchInitUpdate implements Document.DocumentUpdater {
+
+		@Override
+		public boolean update(UnsavedRevision unsavedRevision) {
+			Map<String, Object> prop = unsavedRevision.getUserProperties();
+			prop.put("title", "Hello2");
+			prop.put("value", (new Random()).nextInt());
+			prop.put("type", "match_quest");
+			unsavedRevision.setUserProperties(prop);
+			return true;
+		}
 	}
 
     @Override
@@ -179,7 +283,7 @@ public class MainActivity extends AppCompatActivity
 //        data.setData(barData);
 //        chart.setData(data);
 
-        questionEditor = new QuestionListEditViewer(this, questions, menu);
+        questionEditor = new QuestionListEditViewer(this, menu, this.databaseManager, true);
 
         mainLayout.addView(questionEditor);
         return true;
@@ -196,9 +300,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
 			if (isEditingQuestions) {
 				item.setTitle("Edit");
-				this.questions = this.questionEditor.getQuestions();
 				this.mainLayout.removeView(this.questionEditor);
-				this.questionViewer.setQuestions(this.questions);
+				this.questionViewer.prepareQuestions();
 				this.mainLayout.addView(this.questionViewer);
 				isEditingQuestions = false;
 			}

@@ -2,8 +2,10 @@ package com.example.vanguard.Questions;
 
 import android.view.View;
 
+import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.ResponseList;
 import com.example.vanguard.Responses.Response;
-import com.example.vanguard.Responses.SimpleMatchResponse;
+import com.example.vanguard.Responses.SimpleResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,16 +14,14 @@ import java.util.HashMap;
  * Created by BertTurtle on 6/1/2017.
  */
 
-public abstract class Question<T> implements Label, Answer<T> {
+public abstract class Question<T extends Object> implements Label, Answer<T> {
 
-	protected HashMap<String, Object> values;
 	protected int matchNumber;
+	protected int teamNumber;
+	protected String label;
+	protected ResponseList<T> responses;
+	protected String id;
 
-	public static final String hashmap_label = "label";
-	public static final String hashmap_type = "type";
-	public static final String hashmap_responses = "responses";
-	public static final String hashmap_response_value = "value";
-	public static final String hashmap_response_match_number = "value";
 
 
 	public enum ViewStyle {
@@ -29,51 +29,50 @@ public abstract class Question<T> implements Label, Answer<T> {
 		TWO_LINE
 	}
 
-	public Question(HashMap<String, Object> values) {
+	public Question(String label, ResponseList responses, String id) {
 		this.matchNumber = 0;
-		this.values = values;
-		if (this.values.equals(new HashMap<String, Object>())) {
-			this.values.put(hashmap_label, "Insert Title Here");
-			this.values.put(hashmap_type, this.getQuestionType().toString());
-			this.values.put(hashmap_responses, new ArrayList<HashMap<String, Object>>());
-		}
+		this.label = label;
+		this.id = id;
+		this.responses = responses;
+	}
+
+	public Question(String label, String id) {
+		this(label, new ResponseList(), id);
 	}
 
 	public void setMatchNumber(int matchNumber) {
 		this.matchNumber = matchNumber;
 	}
 
+	public void setTeamNumber(int teamNumber) { this.teamNumber = teamNumber; }
+
+	public String getID() { return this.id; }
+
 	@Override
 	public String getLabel() {
-		return (String) this.values.get(hashmap_label);
+		return this.label;
 	}
 
 	@Override
 	public void setLabel(String label) {
-		this.values.put(hashmap_label, label);
+		this.label = label;
 	}
 
 
 	public void saveResponse() {
-		HashMap<String, Object> response = new HashMap<>();
-		response.put(hashmap_response_match_number, matchNumber);
-		response.put(hashmap_response_value, this.getValue());
-		((ArrayList<HashMap<String, Object>>) this.values.get(hashmap_responses)).add(response);
+		SimpleResponse<T> response = new SimpleResponse<T>(this.getValue(), this.matchNumber, this.teamNumber);
+		responses.add(response);
 	}
 
-	public ArrayList<HashMap<String,Object>> getResponses() {
-		return (ArrayList<HashMap<String, Object>>) this.values.get(hashmap_responses);
-	}
-
-	public HashMap<String, Object> getHashMap() {
-		return this.values;
+	public ResponseList<T> getResponses() {
+		return responses;
 	}
 
 	public abstract View getAnswerUI();
 
 	public abstract ViewStyle getViewStyle();
 
-	public abstract QuestionList.QuestionTypes getQuestionType();
+	public abstract DatabaseManager.QuestionTypes getQuestionType();
 
 	public abstract Boolean isEditable();
 }

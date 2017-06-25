@@ -2,8 +2,9 @@ package com.example.vanguard.Questions.QuestionViewers;
 
 import android.content.Context;
 
-import com.example.vanguard.Questions.QuestionList;
-import com.example.vanguard.Questions.QuestionTypes.MatchNumberQuestion;
+import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.Questions.AnswerList;
+import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Questions.QuestionTypes.TeamNumberQuestion;
 
 import java.util.HashMap;
@@ -12,17 +13,18 @@ import java.util.HashMap;
  * Created by BertTurtle on 6/15/2017.
  */
 
-public class PitScoutQuestionList extends QuestionList {
+public class PitScoutQuestionList extends AnswerList<Question> {
 
 	// Team number question needs to always be first.
-	public PitScoutQuestionList(Context context, HashMap<String, Object>[] hashMap) {
-		this(context, hashMap, 0);
+	public PitScoutQuestionList(DatabaseManager database, Context context) {
+		this(database, 0, context);
 	}
 
-	public PitScoutQuestionList(Context context, HashMap<String, Object>[] hashMap, int teamNumberStartingValue) {
-		super(context, hashMap);
+	public PitScoutQuestionList(DatabaseManager database, int teamNumberStartingValue, Context context) {
+		super();
+		this.addAll(database.getPitQuestions());
 		if (this.size() == 0) {
-			this.add(new TeamNumberQuestion(new HashMap<String, Object>(), context, teamNumberStartingValue));
+			this.add(new TeamNumberQuestion(context, "DFLSFJSKLF"));
 		}
 	}
 

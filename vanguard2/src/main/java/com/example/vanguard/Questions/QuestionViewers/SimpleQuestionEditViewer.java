@@ -56,7 +56,6 @@ public abstract class SimpleQuestionEditViewer extends LinearLayoutQuestionViewe
 
 		this.commentLinearLayout.addView(this.labelEditText);
 
-		this.labelEditText.addTextChangedListener(new QuestionTextWatcher());
 		this.addView(this.commentLinearLayout);
 
 		setupLabelLayoutParams();
@@ -67,25 +66,9 @@ public abstract class SimpleQuestionEditViewer extends LinearLayoutQuestionViewe
 		return this.deleteButton;
 	}
 
-	protected abstract void setupLabelLayoutParams();
-
-
-	private class QuestionTextWatcher implements TextWatcher {
-
-		@Override
-		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-		}
-
-		@Override
-		public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-		}
-
-		@Override
-		public void afterTextChanged(Editable s) {
-			question.setLabel(s.toString());
-			System.out.println("New Label: " + question.getLabel());
-		}
+	public void setEditTextWatcher(TextWatcher watcher) {
+		this.labelEditText.addTextChangedListener(watcher);
 	}
+
+	protected abstract void setupLabelLayoutParams();
 }

@@ -5,11 +5,9 @@ import android.content.Context;
 import android.view.View;
 
 import com.example.vanguard.CustomUIElements.CustomNumberPicker;
+import com.example.vanguard.DatabaseManager;
 import com.example.vanguard.Questions.Question;
-import com.example.vanguard.Questions.QuestionList;
-
-import java.io.Serializable;
-import java.util.HashMap;
+import com.example.vanguard.ResponseList;
 
 /**
  * Created by BertTurtle on 6/5/2017.
@@ -20,8 +18,17 @@ public class IntegerQuestion extends Question<Integer> {
 
 	protected CustomNumberPicker answerUI;
 
-	public IntegerQuestion(HashMap<String, Object> hashMap, Context context) {
-		super(hashMap);
+	public IntegerQuestion(Context context, String label, ResponseList responses, String id) {
+		super(label, responses, id);
+		setup(context);
+	}
+
+	public IntegerQuestion(Context context, String label, String id) {
+		super(label, id);
+		setup(context);
+	}
+
+	private void setup(Context context) {
 		this.answerUI = new CustomNumberPicker(context);
 	}
 
@@ -41,8 +48,8 @@ public class IntegerQuestion extends Question<Integer> {
 	}
 
 	@Override
-	public QuestionList.QuestionTypes getQuestionType() {
-		return QuestionList.QuestionTypes.INTEGER;
+	public DatabaseManager.QuestionTypes getQuestionType() {
+		return DatabaseManager.QuestionTypes.INTEGER;
 	}
 
 	@Override
