@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.vanguard.CustomUIElements.AnswerUIEditText;
 import com.example.vanguard.DatabaseManager;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.ResponseList;
@@ -15,20 +16,20 @@ import com.example.vanguard.ResponseList;
 
 public class StringQuestion extends Question<String> {
 
-	private EditText answerUI;
+	private AnswerUIEditText answerUI;
 
-	public StringQuestion(Context context, String label, ResponseList responseList, String id) {
-		super(label, responseList, id);
+	public StringQuestion(Context context, String label, ResponseList responseList, String id, boolean isMatchQuestion) {
+		super(label, responseList, id, isMatchQuestion);
 		setup(context);
 	}
 
-	public StringQuestion(Context context, String label, String id) {
-		super(label, id);
+	public StringQuestion(Context context, String label, String id, boolean isMatchQuestion) {
+		super(label, id, isMatchQuestion);
 		setup(context);
 	}
 
 	private void setup(Context context) {
-		this.answerUI = new EditText(context);
+		this.answerUI = new AnswerUIEditText(context);
 		ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 		this.answerUI.setLayoutParams(params);
 	}

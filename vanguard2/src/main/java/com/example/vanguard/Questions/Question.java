@@ -2,6 +2,7 @@ package com.example.vanguard.Questions;
 
 import android.view.View;
 
+import com.example.vanguard.AnswerUI;
 import com.example.vanguard.DatabaseManager;
 import com.example.vanguard.ResponseList;
 import com.example.vanguard.Responses.Response;
@@ -16,28 +17,28 @@ import java.util.HashMap;
 
 public abstract class Question<T extends Object> implements Label, Answer<T> {
 
+	private final boolean isMatchQuestion;
 	protected int matchNumber;
 	protected int teamNumber;
 	protected String label;
-	protected ResponseList<T> responses;
+	protected ResponseList responses;
 	protected String id;
-
-
 
 	public enum ViewStyle {
 		SINGLE_LINE,
 		TWO_LINE
 	}
 
-	public Question(String label, ResponseList responses, String id) {
+	public Question(String label, ResponseList responses, String id, boolean isMatchQuestion) {
 		this.matchNumber = 0;
 		this.label = label;
 		this.id = id;
 		this.responses = responses;
+		this.isMatchQuestion = isMatchQuestion;
 	}
 
-	public Question(String label, String id) {
-		this(label, new ResponseList(), id);
+	public Question(String label, String id, boolean isMatchQuestion) {
+		this(label, new ResponseList(), id, isMatchQuestion);
 	}
 
 	public void setMatchNumber(int matchNumber) {
@@ -61,10 +62,11 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 
 	public void saveResponse() {
 		SimpleResponse<T> response = new SimpleResponse<T>(this.getValue(), this.matchNumber, this.teamNumber);
+		responses = new ResponseList();
 		responses.add(response);
 	}
 
-	public ResponseList<T> getResponses() {
+	public ResponseList getResponses() {
 		return responses;
 	}
 

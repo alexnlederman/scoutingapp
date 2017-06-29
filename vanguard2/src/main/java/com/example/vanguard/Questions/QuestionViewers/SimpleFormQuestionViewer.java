@@ -5,7 +5,8 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.vanguard.MainActivity;
+import com.example.vanguard.AnswerUI;
+import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.Questions.Question;
 
 /**
@@ -16,8 +17,12 @@ public abstract class SimpleFormQuestionViewer extends LinearLayoutQuestionViewe
 
 	protected TextView labelTextView;
 
-	public SimpleFormQuestionViewer(Context context, Question<?> question) {
+	public SimpleFormQuestionViewer(Context context, Question question) {
 		super(context, question);
+	}
+
+	public SimpleFormQuestionViewer(Context context, Question question, Object initialValue) {
+		super(context, question, initialValue);
 	}
 
 	@Override
@@ -41,4 +46,8 @@ public abstract class SimpleFormQuestionViewer extends LinearLayoutQuestionViewe
 	}
 
 	protected abstract void setupLabelLayoutParams();
+
+	public void setValue(Object value) {
+		((AnswerUI) this.answerUI).setValue(value);
+	}
 }

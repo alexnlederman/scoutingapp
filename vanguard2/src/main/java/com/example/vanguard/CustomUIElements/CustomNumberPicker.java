@@ -7,15 +7,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.example.vanguard.MainActivity;
-
-import java.io.Serializable;
+import com.example.vanguard.AnswerUI;
+import com.example.vanguard.Pages.Activities.MainActivity;
 
 /**
+ * A integer number text box with plus and minus buttons.
  * Created by BertTurtle on 4/23/2017.
  */
-
-public class CustomNumberPicker extends LinearLayout {
+public class CustomNumberPicker extends LinearLayout implements AnswerUI<Integer>{
 
 	private final EditText numberPicker;
 
@@ -25,6 +24,11 @@ public class CustomNumberPicker extends LinearLayout {
 
 	private final Button minusButton;
 
+	/**
+	 * Creates a new CustomNumberPicker
+	 * @param context Application context
+	 * {@inheritDoc}
+	 */
 	public CustomNumberPicker(Context context) {
 		super(context);
 
@@ -99,11 +103,17 @@ public class CustomNumberPicker extends LinearLayout {
 		this.addView(this.buttonLayout);
 	}
 
-	public void setValue(int value) {
+	@Override
+	public void setValue(Integer value) {
 		this.numberPicker.setText(String.valueOf(value));
 	}
 
-	public int getValue() {
+	/**
+	 * Get value of number picker.
+	 * @return The value of the number picker.
+	 */
+	@Override
+	public Integer getValue() {
 		return Integer.parseInt(this.numberPicker.getText().toString());
 	}
 

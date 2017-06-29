@@ -14,21 +14,21 @@ import java.util.HashMap;
 
 public class TeamNumberQuestion extends IntegerQuestion {
 
-	public TeamNumberQuestion(Context context, String id) {
-		super(context, "Team Number?", id);
+	public TeamNumberQuestion(Context context, String id, boolean isMatchQuestion) {
+		super(context, "Team Number?", id, isMatchQuestion);
 	}
 
-	public TeamNumberQuestion(Context context, int startingValue, String id) {
-		this(context, id);
+	public TeamNumberQuestion(Context context, int startingValue, String id, boolean isMatchQuestion) {
+		this(context, id, isMatchQuestion);
 		this.answerUI.setValue(startingValue);
 	}
 
-	public TeamNumberQuestion(Context context, ResponseList responses, String id) {
-		super(context, "Team Number?", responses, id);
+	public TeamNumberQuestion(Context context, ResponseList responses, String id, boolean isMatchQuestion) {
+		super(context, "Team Number?", responses, id, isMatchQuestion);
 	}
 
-	public TeamNumberQuestion(Context context, int startingValue, ResponseList responses, String id) {
-		this(context, responses, id);
+	public TeamNumberQuestion(Context context, int startingValue, ResponseList responses, String id, boolean isMatchQuestion) {
+		this(context, responses, id, isMatchQuestion);
 		this.answerUI.setValue(startingValue);
 	}
 

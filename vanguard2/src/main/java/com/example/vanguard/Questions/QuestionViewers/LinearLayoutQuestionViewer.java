@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.vanguard.AnswerUI;
 import com.example.vanguard.CustomUIElements.MaterialLinearLayout;
 import com.example.vanguard.Questions.Question;
 
@@ -15,8 +16,14 @@ public abstract class LinearLayoutQuestionViewer extends MaterialLinearLayout {
 
 	protected final Question<?> question;
 	protected final Context context;
+	View answerUI;
 
-	public LinearLayoutQuestionViewer(Context context, Question<?> question) {
+	public LinearLayoutQuestionViewer(Context context, Question question, Object initialValue) {
+		this(context, question);
+		((AnswerUI) answerUI).setValue(initialValue);
+	}
+
+	public LinearLayoutQuestionViewer(Context context, Question question) {
 		super(context);
 		this.question = question;
 		this.context = context;
@@ -33,7 +40,7 @@ public abstract class LinearLayoutQuestionViewer extends MaterialLinearLayout {
 	}
 
 	private void setupInput() {
-		View answerUI = this.question.getAnswerUI();
+		answerUI = this.question.getAnswerUI();
 		if (answerUI.getParent() != null) {
 			System.out.println("Removed!");
 			((ViewGroup) answerUI.getParent()).removeView(answerUI);

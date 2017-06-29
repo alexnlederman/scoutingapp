@@ -11,20 +11,20 @@ import com.example.vanguard.ResponseList;
 
 /**
  * Created by BertTurtle on 6/5/2017.
+ * A question that uses the {@link CustomNumberPicker} for its answer.
  */
-
 public class IntegerQuestion extends Question<Integer> {
 
 
 	protected CustomNumberPicker answerUI;
 
-	public IntegerQuestion(Context context, String label, ResponseList responses, String id) {
-		super(label, responses, id);
+	public IntegerQuestion(Context context, String label, ResponseList responses, String id, boolean isMatchQuestion) {
+		super(label, responses, id, isMatchQuestion);
 		setup(context);
 	}
 
-	public IntegerQuestion(Context context, String label, String id) {
-		super(label, id);
+	public IntegerQuestion(Context context, String label, String id, boolean isMatchQuestion) {
+		super(label, id, isMatchQuestion);
 		setup(context);
 	}
 

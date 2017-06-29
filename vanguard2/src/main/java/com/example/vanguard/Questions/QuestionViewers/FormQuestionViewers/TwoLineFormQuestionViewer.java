@@ -15,8 +15,13 @@ import com.example.vanguard.Questions.QuestionViewers.SimpleFormQuestionViewer;
 public class TwoLineFormQuestionViewer extends SimpleFormQuestionViewer {
 
 
-	public TwoLineFormQuestionViewer(Context context, Question<?> question) {
+	public TwoLineFormQuestionViewer(Context context, Question question) {
 		super(context, question);
+		this.setOrientation(LinearLayout.VERTICAL);
+	}
+
+	public TwoLineFormQuestionViewer(Context context, Question question, Object initialValue) {
+		super(context, question, initialValue);
 		this.setOrientation(LinearLayout.VERTICAL);
 	}
 

@@ -29,6 +29,8 @@ public class QuestionListEditViewer extends DragLinearLayout {
 	protected Menu menu;
 	protected DatabaseManager databaseManager;
 	protected boolean isMatchForm;
+	MenuItem addStringQuestion;
+	MenuItem addIntegerQuestion;
 
 	public QuestionListEditViewer(Context context, Menu menu, DatabaseManager databaseManager, boolean isMatchForm) {
 		super(context);
@@ -48,7 +50,7 @@ public class QuestionListEditViewer extends DragLinearLayout {
 	}
 
 	private void setupMenu() {
-		final MenuItem addStringQuestion = this.menu.add("Add String Question");
+		addStringQuestion = this.menu.add("Add String Question");
 		addStringQuestion.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 		addStringQuestion.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 			@Override
@@ -59,7 +61,7 @@ public class QuestionListEditViewer extends DragLinearLayout {
 			}
 		});
 
-		final MenuItem addIntegerQuestion = this.menu.add("Add Integer Question");
+		addIntegerQuestion = this.menu.add("Add Integer Question");
 		addIntegerQuestion.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 		addIntegerQuestion.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 			@Override
@@ -73,8 +75,11 @@ public class QuestionListEditViewer extends DragLinearLayout {
 
 	private void setupQuestions() {
 		this.removeAllViews();
-		int index = 0;
-		final AnswerList<Question> questions = databaseManager.getMatchQuestions();
+		final AnswerList<Question> questions;
+		if (isMatchForm)
+			questions = databaseManager.getMatchQuestions();
+		else
+			questions = databaseManager.getPitQuestions();
 		for (final Question<?> question : questions) {
 			if (question.isEditable()) {
 				SimpleQuestionEditViewer questionViewer = null;
@@ -83,8 +88,7 @@ public class QuestionListEditViewer extends DragLinearLayout {
 				} else if (question.getViewStyle().equals(Question.ViewStyle.TWO_LINE)) {
 					questionViewer = new TwoLineEditQuestionViewer(this.context, question);
 				}
-				questionViewer.getDeleteButton().setOnClickListener(new OnDeleteClickListener(index));
-				final int finalIndex = index;
+				questionViewer.getDeleteButton().setOnClickListener(new OnDeleteClickListener(question));
 				questionViewer.setEditTextWatcher(new TextWatcher() {
 					@Override
 					public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -112,21 +116,21 @@ public class QuestionListEditViewer extends DragLinearLayout {
 				}
 				this.addView(questionViewer);
 			}
-			index++;
 		}
 	}
 
 	private class OnDeleteClickListener implements OnClickListener {
 
-		int index;
+		Question question;
 
-		public OnDeleteClickListener(int index) {
-			this.index = index;
+		public OnDeleteClickListener(Question question) {
+			this.question = question;
 		}
 
 		@Override
 		public void onClick(View v) {
-			databaseManager.deleteQuestion(index, isMatchForm);
+//			System.out.println("Index: " + index);
+			databaseManager.deleteQuestion(question);
 			setupQuestions();
 		}
 	}
@@ -135,8 +139,6 @@ public class QuestionListEditViewer extends DragLinearLayout {
 
 		@Override
 		public void onSwap(View firstView, int firstPosition, View secondView, int secondPosition) {
-			System.out.println("First: " + firstPosition);
-			System.out.println("Second: " + secondPosition);
 			// TODO make this lag less.
 			databaseManager.swapQuestionIndexes(firstPosition, secondPosition, isMatchForm);
 		}
@@ -146,5 +148,12 @@ public class QuestionListEditViewer extends DragLinearLayout {
 	protected void onAttachedToWindow() {
 		setupQuestions();
 		super.onAttachedToWindow();
+	}
+
+	@Override
+	protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+		this.menu.removeItem(addIntegerQuestion.getItemId());
+		this.menu.removeItem(addStringQuestion.getItemId());
 	}
 }

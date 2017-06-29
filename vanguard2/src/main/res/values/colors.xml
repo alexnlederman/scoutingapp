@@ -2,6 +2,9 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="text_color_secondary">#F43512</color>
+    <color name="colorAccent">#303F9F</color>
+	<color name="textColor">#041727</color>
+    <color name="redTeam">#FFCDD2</color>
+	<color name="blueTeam">#BBDEFA</color>
+	<color name="white">#FFFFFF</color>
 </resources>

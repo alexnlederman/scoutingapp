@@ -7,5 +7,5 @@ import com.example.vanguard.Responses.Response;
  * Created by mbent on 6/20/2017.
  */
 
-public class ResponseList<T extends Object> extends AnswerList<Response<T>>{
+public class ResponseList extends AnswerList<Response>{
 }

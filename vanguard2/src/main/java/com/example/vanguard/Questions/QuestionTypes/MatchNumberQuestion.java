@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class MatchNumberQuestion extends IntegerQuestion {
 	public MatchNumberQuestion(Context context, String id) {
-		super(context, "Match Number?", id);
+		super(context, "Match Number?", id, true);
 	}
 
 	public MatchNumberQuestion(Context context, int startingValue, String id) {
@@ -22,7 +22,7 @@ public class MatchNumberQuestion extends IntegerQuestion {
 	}
 
 	public MatchNumberQuestion(Context context, ResponseList responses, String id) {
-		super(context, "Match Number?", responses, id);
+		super(context, "Match Number?", responses, id, true);
 	}
 
 	public MatchNumberQuestion(Context context, int startingValue, ResponseList responses, String id) {

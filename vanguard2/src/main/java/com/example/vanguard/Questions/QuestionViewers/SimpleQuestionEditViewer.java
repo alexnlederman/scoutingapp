@@ -1,16 +1,14 @@
 package com.example.vanguard.Questions.QuestionViewers;
 
 import android.content.Context;
-import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.example.vanguard.MainActivity;
+import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.Questions.Question;
 
 /**
