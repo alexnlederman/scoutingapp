@@ -1,6 +1,9 @@
 package com.example.vanguard.Pages.Activities;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.design.widget.NavigationView;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -13,24 +16,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.vanguard.DatabaseManager;
 import com.example.vanguard.Pages.Fragments.ScoutingFragment;
 import com.example.vanguard.Questions.QuestionViewers.QuestionListViewers.QuestionListEditViewer;
 import com.example.vanguard.Questions.QuestionViewers.QuestionListViewers.QuestionListFormViewer;
 import com.example.vanguard.R;
+import com.example.vanguard.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
 	public static float dpToPixels;
-	QuestionListEditViewer questionEditor;
-	QuestionListFormViewer questionViewer;
 	public static DatabaseManager databaseManager;
-	LinearLayout mainView;
 	Menu menu;
-	boolean isMatchForm = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity
 
 		this.databaseManager = new DatabaseManager(getApplicationContext());
 		System.out.println("Started");
-		this.databaseManager.addEvent("2016nytr");
+//		this.databaseManager.addEvent("2016nytr");
 	}
 
     @Override
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.empty_menu, menu);
 		this.menu = menu;
 		setView(new ScoutingFragment());
-
+		getSupportActionBar().setTitle("Scouting");
 		return true;
     }
 
@@ -100,6 +102,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_scout) {
 			setView(new ScoutingFragment());
         } else if (id == R.id.nav_settings) {
+			Intent intent = new Intent(this, SettingsActivity.class);
+			startActivity(intent);
 
         } else if (id == R.id.nav_sync) {
 
@@ -113,5 +117,11 @@ public class MainActivity extends AppCompatActivity
 
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawer.closeDrawer(GravityCompat.START);
+	}
+
+	@Override
+	public void setTitle(CharSequence title) {
+		TextView titleTextView = (TextView) findViewById(R.id.title);
+		titleTextView.setText(title);
 	}
 }

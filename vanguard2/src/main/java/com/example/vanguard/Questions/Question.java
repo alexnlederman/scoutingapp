@@ -2,14 +2,9 @@ package com.example.vanguard.Questions;
 
 import android.view.View;
 
-import com.example.vanguard.AnswerUI;
 import com.example.vanguard.DatabaseManager;
-import com.example.vanguard.ResponseList;
-import com.example.vanguard.Responses.Response;
+import com.example.vanguard.Responses.ResponseList;
 import com.example.vanguard.Responses.SimpleResponse;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by BertTurtle on 6/1/2017.

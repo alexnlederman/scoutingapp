@@ -24,7 +24,9 @@ public class PitScoutSelector extends ListView {
 
 	public PitScoutSelector(Activity context) {
 		super(context);
-		List<Integer> teams = MainActivity.databaseManager.getEventTeams("2016nytr");
+		List<String> eventInfo = MainActivity.databaseManager.getCurrentEventInfo();
+
+		List<Integer> teams = MainActivity.databaseManager.getEventTeams(eventInfo.get(0));
 
 
 		this.setDividerHeight(0);

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	app:layout_behavior="@string/appbar_scrolling_view_behavior"
+	tools:context="com.example.vanguard.SettingsActivity"
+	tools:showIn="@layout/activity_settings">
+
+	<com.example.vanguard.CustomUIElements.SettingsView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/add_event"
+		app:title="Add Event"
+		app:description="Add events that your team is attending in order to be able to scout them. This requires an internet connection, so do this before arriving at the event. "></com.example.vanguard.CustomUIElements.SettingsView>
+
+	<com.example.vanguard.CustomUIElements.SettingsView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/set_event"
+		app:title="Set Current Event"
+		app:description="Set the event you team is attending in order to be able to scout them. This requires you to have added the event first. "></com.example.vanguard.CustomUIElements.SettingsView>
+
+</LinearLayout>

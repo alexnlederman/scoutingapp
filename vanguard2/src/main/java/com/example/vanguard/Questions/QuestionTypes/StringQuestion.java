@@ -3,12 +3,11 @@ package com.example.vanguard.Questions.QuestionTypes;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.example.vanguard.CustomUIElements.AnswerUIEditText;
 import com.example.vanguard.DatabaseManager;
 import com.example.vanguard.Questions.Question;
-import com.example.vanguard.ResponseList;
+import com.example.vanguard.Responses.ResponseList;
 
 /**
  * Created by BertTurtle on 6/5/2017.

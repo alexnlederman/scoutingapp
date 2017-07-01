@@ -7,4 +7,9 @@
     <color name="redTeam">#FFCDD2</color>
 	<color name="blueTeam">#BBDEFA</color>
 	<color name="white">#FFFFFF</color>
+	<color name="black">#000000</color>
+	<color name="navMenuButtons">#090909</color>
+	<color name="transparent">#00000000</color>
+	<color name="lightGrey">#999999</color>
+
 </resources>

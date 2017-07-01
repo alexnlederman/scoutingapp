@@ -1,7 +1,9 @@
 package com.example.vanguard;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.Database;
@@ -24,6 +26,7 @@ import com.example.vanguard.Questions.QuestionTypes.MatchNumberQuestion;
 import com.example.vanguard.Questions.QuestionTypes.StringQuestion;
 import com.example.vanguard.Questions.QuestionTypes.TeamNumberQuestion;
 import com.example.vanguard.Responses.Response;
+import com.example.vanguard.Responses.ResponseList;
 import com.example.vanguard.Responses.SimpleResponse;
 
 import org.json.JSONArray;
@@ -63,7 +66,7 @@ public class DatabaseManager {
 	private final String response_match_number_key = "match_number";
 	private final String response_team_number_key = "team_number";
 
-	private final String event_name_key = "event_name";
+	public static final String event_key_key = "event_name";
 	public static final String event_match_number_key = "event_match_number";
 	public static final String event_match_blue_team = "event_match_blue_team";
 	public static final String event_match_red_team = "event_match_red_team";
@@ -71,6 +74,11 @@ public class DatabaseManager {
 
 	private final String event_teams_key = "event_teams";
 	private final String event_teams_document_type = "event_teams_document";
+	public static final String event_name_key = "event_name_key";
+
+	private final String event_information_document_type = "event_info_document";
+	private final String is_current_event_key = "is_current_event_key";
+
 
 	private final String document_type_key = "document_type";
 
@@ -80,6 +88,7 @@ public class DatabaseManager {
 	private final String match_response_view = "match_responses";
 	private final String event_view = "event_view";
 	private final String event_teams_view = "event_teams_view";
+	private final String event_info_view = "event_info_view";
 
 	// Views to help find specific documents.
 
@@ -96,6 +105,8 @@ public class DatabaseManager {
 	View eventMatchesView;
 
 	View eventTeamsView;
+
+	View eventInfoView;
 
 	Database database;
 
@@ -136,7 +147,7 @@ public class DatabaseManager {
 			// Finds the database.
 			manager = new Manager(new AndroidContext(this.context.getApplicationContext()), Manager.DEFAULT_OPTIONS);
 			// Can change string below to reset the database.
-			this.database = manager.getDatabase("app22");
+			this.database = manager.getDatabase("app24");
 
 			// Creates database views.
 			matchQuestionView = this.database.getView(match_questions_view);
@@ -148,7 +159,10 @@ public class DatabaseManager {
 			eventMatchesView = this.database.getView(event_view);
 			eventMatchesView.setMap(new EventMatchesMapper(), "2");
 			eventTeamsView = this.database.getView(event_teams_view);
-			eventTeamsView.setMap(new EventTeamsMapper(), "4");
+			eventTeamsView.setMap(new EventTeamsMapper(), "5");
+			eventInfoView = this.database.getView(event_info_view);
+			eventInfoView.setMap(new EventInformationMapper(), "1");
+
 
 		} catch (CouchbaseLiteException | IOException e) {
 			e.printStackTrace();
@@ -510,24 +524,128 @@ public class DatabaseManager {
 		}
 	}
 
-	public void addEvent(String eventName) {
-		if (getEventTeams(eventName).size() != 0) {
-			System.out.println("Already Added: " + getEventMatches(eventName).size());
-			return;
+	/**
+	 * Gets the current event's key and name in that order.
+	 * @return An array of the events key then name.
+	 */
+	public List getCurrentEventInfo() {
+		Query query = eventInfoView.createQuery();
+
+		query.setStartKey(true);
+		query.setEndKey(true);
+
+		QueryEnumerator result = null;
+		try {
+			result = query.run();
+		} catch (CouchbaseLiteException e) {
+			e.printStackTrace();
 		}
-		System.out.println("Event Match Count: " + getEventMatches(eventName).size());
-		GetEventMatches asyncTask = new GetEventMatches();
-		asyncTask.execute(eventName);
+
+		QueryRow row = result.next();
+		return (row == null) ? null : (List) row.getValue();
 	}
 
-	private class GetEventMatches extends AsyncTask<String, Boolean, Boolean> {
+	public void setCurrentEvent(String eventName) {
+		List currentInfo = getCurrentEventInfo();
+		if (currentInfo != null) {
+			String id = (String) currentInfo.get(2);
+			Document document = this.database.getDocument(id);
+			try {
+				document.update(new Document.DocumentUpdater() {
+					@Override
+					public boolean update(UnsavedRevision newRevision) {
+						Map<String, Object> prop = newRevision.getProperties();
+						prop.put(is_current_event_key, false);
+						newRevision.setProperties(prop);
+						return true;
+					}
+				});
+			} catch (CouchbaseLiteException e) {
+				e.printStackTrace();
+			}
+		}
+		Document newDocument = this.database.getDocument(getEventInfoDocId(eventName));
+		try {
+			newDocument.update(new Document.DocumentUpdater() {
+				@Override
+				public boolean update(UnsavedRevision newRevision) {
+					Map<String, Object> prop = newRevision.getProperties();
+					prop.put(is_current_event_key, true);
+					newRevision.setProperties(prop);
+					return true;
+				}
+			});
+		} catch (CouchbaseLiteException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<String> getEventNames() {
+		Query query = eventInfoView.createQuery();
+
+		QueryEnumerator result = null;
+		try {
+			result = query.run();
+		} catch (CouchbaseLiteException e) {
+			e.printStackTrace();
+		}
+		List<String> names = new ArrayList<>();
+		for (Iterator<QueryRow> it = result; it.hasNext();) {
+			QueryRow row = it.next();
+			names.add((String) ((List) row.getValue()).get(1));
+		}
+		return names;
+	}
+
+	private String getEventInfoDocId(String eventName) {
+		Query query = eventInfoView.createQuery();
+
+		QueryEnumerator result = null;
+		try {
+			result = query.run();
+		} catch (CouchbaseLiteException e) {
+			e.printStackTrace();
+		}
+
+		for (Iterator<QueryRow> it = result; it.hasNext();) {
+			QueryRow row = it.next();
+			if (((List) row.getValue()).get(1).equals(eventName)) {
+				return (String) ((List) row.getValue()).get(2);
+			}
+		}
+		return null;
+	}
+
+	public void addEvent(String eventKey, String eventName, Context context) {
+		if (getEventTeams(eventKey).size() != 0) {
+			System.out.println("Already Added: " + getEventMatches(eventKey).size());
+			return;
+		}
+		AddEventDocuments asyncTask = new AddEventDocuments(context);
+		asyncTask.execute(eventKey, eventName);
+	}
+
+	private class AddEventDocuments extends AsyncTask<String, Boolean, Boolean> {
+
+		ProgressDialog progressDialog;
+		Context context;
+
+		public AddEventDocuments(Context context) {
+			this.context = context;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog = new ProgressDialog(context);
+			progressDialog.setMessage("Loading");
+			progressDialog.show();
+		}
 
 		@Override
 		protected Boolean doInBackground(String... params) {
 			try {
-
 				String matchScheduleJson = getUrlValue(new URL("https://www.thebluealliance.com/api/v3/event/" + params[0] + "/matches/simple?X-TBA-Auth-Key=vVc9R5KHLDG2zkDgqFzRQRAFWBIPSSdyesezDG0m44p5yAiUBAz7qMasclG4Ua7a"));
-
 
 				JSONArray eventJSONArray = new JSONArray(matchScheduleJson);
 				for (int i = 0; i < eventJSONArray.length(); i++) {
@@ -538,11 +656,7 @@ public class DatabaseManager {
 						String[] blueTeams = getAllianceTeams(matchTeamsJson.getJSONObject("blue"));
 						String[] redTeams = getAllianceTeams(matchTeamsJson.getJSONObject("red"));
 						Document matchDocument = database.createDocument();
-						matchDocument.update(new EventMatchDocumentUpdater(qualNumber, params[0], redTeams, blueTeams));
-						System.out.println("Saved Document: " + i);
-					}
-					else {
-						System.out.println("No Good: " + matchJson.getString("comp_level"));
+						matchDocument.update(new EventMatchDocumentUpdater(qualNumber, params[0], redTeams, blueTeams, params[1]));
 					}
 				}
 				String eventTeamsJson = getUrlValue(new URL("https://www.thebluealliance.com/api/v3/event/" + params[0] + "/teams/keys?X-TBA-Auth-Key=vVc9R5KHLDG2zkDgqFzRQRAFWBIPSSdyesezDG0m44p5yAiUBAz7qMasclG4Ua7a"));
@@ -553,33 +667,80 @@ public class DatabaseManager {
 					eventTeams.add(Integer.valueOf(array.getString(i).substring(3)));
 				}
 				Document documument = database.createDocument();
-				documument.update(new EventTeamsDocumentUpdater(params[0], eventTeams));
+				documument.update(new EventTeamsDocumentUpdater(params[0], params[1], eventTeams));
+
+				Document document = database.createDocument();
+				document.update(new EventInformationDocumentUpdater(params[0], params[1]));
 			}
 			catch (Exception e) {
 				e.printStackTrace();
+				return  false;
 			}
 
 			return true;
 		}
 
-		private String getUrlValue(URL url) {
-			String input = "";
-			try {
-				HttpURLConnection blueAllianceConnection = (HttpURLConnection) url.openConnection();
-
-				BufferedReader in = new BufferedReader(new InputStreamReader(blueAllianceConnection.getInputStream()));
-				String currentLine = in.readLine();
-				while (currentLine != null) {
-					input += currentLine + "\n";
-					currentLine = in.readLine();
-				}
-				in.close();
+		@Override
+		protected void onPostExecute(Boolean aBoolean) {
+			super.onPostExecute(aBoolean);
+			progressDialog.dismiss();
+			if (aBoolean) {
+				Toast.makeText(context, "Successfully Added", Toast.LENGTH_LONG).show();
 			}
-			catch (Exception e) {
-				e.printStackTrace();
+			else {
+				Toast.makeText(context, "Make Sure You Have a Wireless Connections", Toast.LENGTH_LONG).show();
 			}
-			return input;
 		}
+	}
+
+	public class EventInformationDocumentUpdater implements Document.DocumentUpdater {
+
+		String eventKey;
+		String eventName;
+
+		public EventInformationDocumentUpdater(String eventKey, String eventName) {
+			this.eventKey = eventKey;
+			this.eventName = eventName;
+		}
+
+		@Override
+		public boolean update(UnsavedRevision newRevision) {
+			Map<String, Object> prop = newRevision.getProperties();
+			prop.put(event_name_key, eventName);
+			prop.put(event_key_key, eventKey);
+			prop.put(document_type_key, event_information_document_type);
+			prop.put(is_current_event_key, false);
+			newRevision.setProperties(prop);
+			return true;
+		}
+	}
+
+	public class EventInformationMapper implements Mapper {
+
+		@Override
+		public void map(Map<String, Object> document, Emitter emitter) {
+			if (document.containsKey(document_type_key) && document.get(document_type_key).equals(event_information_document_type)) {
+				emitter.emit(document.get(is_current_event_key), new Object[]{document.get(event_key_key), document.get(event_name_key), document.get("_id")});
+			}
+		}
+	}
+
+	public static String getUrlValue(URL url) throws IOException {
+		String input = "";
+		HttpURLConnection blueAllianceConnection = (HttpURLConnection) url.openConnection();
+
+
+		blueAllianceConnection.setConnectTimeout(5000);
+
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(blueAllianceConnection.getInputStream()));
+		String currentLine = in.readLine();
+		while (currentLine != null) {
+			input += currentLine + "\n";
+			currentLine = in.readLine();
+		}
+		in.close();
+		return input;
 	}
 
 	private String[] getAllianceTeams(JSONObject allianceJson) throws JSONException {
@@ -618,20 +779,23 @@ public class DatabaseManager {
 	public class EventMatchDocumentUpdater implements Document.DocumentUpdater {
 
 		int matchNumber;
+		String eventKey;
 		String eventName;
 		String[] redTeam;
 		String[] blueTeam;
 
-		public EventMatchDocumentUpdater(int matchNumber, String eventName, String[] redTeam, String[] blueTeam) {
+		public EventMatchDocumentUpdater(int matchNumber, String eventKey, String[] redTeam, String[] blueTeam, String eventName) {
 			this.matchNumber = matchNumber;
-			this.eventName = eventName;
+			this.eventKey = eventKey;
 			this.redTeam = redTeam;
 			this.blueTeam = blueTeam;
+			this.eventName = eventName;
 		}
 
 		@Override
 		public boolean update(UnsavedRevision newRevision) {
 			Map<String, Object> properties = newRevision.getProperties();
+			properties.put(event_key_key, this.eventKey);
 			properties.put(event_name_key, this.eventName);
 			properties.put(event_match_number_key, this.matchNumber);
 			properties.put(event_match_blue_team, this.blueTeam);
@@ -644,17 +808,20 @@ public class DatabaseManager {
 
 	public class EventTeamsDocumentUpdater implements Document.DocumentUpdater {
 
+		String eventKey;
 		String eventName;
 		List<Integer> teams;
 
-		public EventTeamsDocumentUpdater(String eventName, List<Integer> teams) {
-			this.eventName = eventName;
+		public EventTeamsDocumentUpdater(String eventKey, String eventName, List<Integer> teams) {
+			this.eventKey = eventKey;
 			this.teams = teams;
+			this.eventName = eventName;
 		}
 
 		@Override
 		public boolean update(UnsavedRevision newRevision) {
 			Map<String, Object> properties = newRevision.getProperties();
+			properties.put(event_key_key, this.eventKey);
 			properties.put(event_name_key, this.eventName);
 			properties.put(event_teams_key, this.teams);
 			properties.put(document_type_key, event_teams_document_type);
@@ -678,7 +845,7 @@ public class DatabaseManager {
 		if (result.hasNext()) {
 			QueryRow row = result.next();
 
-			List<Integer> teamNumbers = new ArrayList<>((LazyJsonArray<Integer>) row.getValue());
+			List<Integer> teamNumbers = (ArrayList<Integer>) ((LazyJsonArray) row.getValue()).get(0);
 
 			System.out.println("Class: " + teamNumbers.getClass());
 
@@ -693,7 +860,7 @@ public class DatabaseManager {
 		@Override
 		public void map(Map<String, Object> document, Emitter emitter) {
 			if (document.containsKey(document_type_key) && document.get(document_type_key).equals(event_teams_document_type)) {
-				emitter.emit(document.get(event_name_key), document.get(event_teams_key));
+				emitter.emit(document.get(event_key_key), new Object[] {document.get(event_teams_key), document.get(event_name_key)});
 			}
 		}
 	}
@@ -704,7 +871,7 @@ public class DatabaseManager {
 		public void map(Map<String, Object> document, Emitter emitter) {
 			System.out.println(document.get(document_type_key));
 			if (document.containsKey(document_type_key) && document.get(document_type_key).equals(event_match_document_type)) {
-				emitter.emit(document.get(event_match_number_key), new Object[]{document.get(event_match_red_team), document.get(event_match_blue_team), document.get(event_name_key)});
+				emitter.emit(document.get(event_match_number_key), new Object[]{document.get(event_match_red_team), document.get(event_match_blue_team), document.get(event_key_key), document.get(event_name_key)});
 			}
 		}
 	}

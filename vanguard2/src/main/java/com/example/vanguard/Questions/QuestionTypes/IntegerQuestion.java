@@ -7,7 +7,7 @@ import android.view.View;
 import com.example.vanguard.CustomUIElements.CustomNumberPicker;
 import com.example.vanguard.DatabaseManager;
 import com.example.vanguard.Questions.Question;
-import com.example.vanguard.ResponseList;
+import com.example.vanguard.Responses.ResponseList;
 
 /**
  * Created by BertTurtle on 6/5/2017.

@@ -1,20 +1,18 @@
 package com.example.vanguard.Questions.QuestionViewers.QuestionListViewers;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.vanguard.CustomUIElements.CustomNumberPicker;
 import com.example.vanguard.Pages.Activities.MainActivity;
-import com.example.vanguard.Questions.Answer;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Questions.QuestionViewers.FormQuestionViewers.SingleLineFormQuestionViewer;
 import com.example.vanguard.Questions.QuestionViewers.FormQuestionViewers.TwoLineFormQuestionViewer;
 import com.example.vanguard.Questions.QuestionViewers.SimpleFormQuestionViewer;
-import com.example.vanguard.ResponseList;
+import com.example.vanguard.Responses.ResponseList;
 import com.example.vanguard.Responses.Response;
 
 /**

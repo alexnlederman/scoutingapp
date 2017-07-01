@@ -4,6 +4,7 @@ package com.example.vanguard.Pages.Fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class MatchScoutSelectorFragment extends Fragment {
 		super.onViewCreated(view, savedInstanceState);
 
 		LinearLayout layout = (LinearLayout) getView().findViewById(R.id.linear_layout);
-		MatchScoutSelector selector = new MatchScoutSelector(getActivity());
+		MatchScoutSelector selector = new MatchScoutSelector((AppCompatActivity) getActivity());
 		layout.addView(selector);
 //		layout.addView(new QuestionListFormViewer(getContext(), MainActivity.databaseManager, true));
 	}

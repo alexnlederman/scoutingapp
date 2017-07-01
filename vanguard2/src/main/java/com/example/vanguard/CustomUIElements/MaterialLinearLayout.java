@@ -21,8 +21,6 @@ public class MaterialLinearLayout extends LinearLayout{
 		LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 		int margin = Math.round(8 * MainActivity.dpToPixels);
 		params.setMargins(margin, margin / 2, margin, margin / 2);
-		int padding = Math.round(16 * MainActivity.dpToPixels);
-		this.setPadding(padding, padding, padding, padding);
 		this.setLayoutParams(params);
 	}
 

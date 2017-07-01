@@ -1,7 +1,10 @@
 package com.example.vanguard.CustomUIElements;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.example.vanguard.AnswerUI;
 import com.example.vanguard.Pages.Activities.MainActivity;
+import com.example.vanguard.R;
 
 /**
  * A integer number text box with plus and minus buttons.
@@ -58,13 +62,22 @@ public class CustomNumberPicker extends LinearLayout implements AnswerUI<Integer
 	private void setupNumberPicker() {
 		this.numberPicker.setInputType(InputType.TYPE_CLASS_NUMBER);
 		this.numberPicker.setText("0");
+		this.numberPicker.setTextColor(ContextCompat.getColor(getContext(), R.color.textColor));
+		this.numberPicker.setGravity(Gravity.CENTER);
+		this.numberPicker.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.transparent));
 		this.addView(this.numberPicker);
 	}
 
 	private void setupGenericButton(Button button) {
-		LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+		LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		p.weight = 0.5f;
 		button.setLayoutParams(p);
+		button.setTextColor(ContextCompat.getColor(getContext(), R.color.textColor));
+		button.setTextSize(20);
+		Typeface typeface = Typeface.defaultFromStyle(Typeface.NORMAL);
+		button.setTypeface(typeface);
+
+		button.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.transparent));
 		this.buttonLayout.addView(button);
 	}
 
@@ -118,7 +131,8 @@ public class CustomNumberPicker extends LinearLayout implements AnswerUI<Integer
 	}
 
 	private void setupLayout() {
-		LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(95 * (int) MainActivity.dpToPixels, LayoutParams.MATCH_PARENT);
+//		this.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blueTeam));
+		LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(125 * (int) MainActivity.dpToPixels, LayoutParams.WRAP_CONTENT);
 		this.setLayoutParams(p);
 	}
 }

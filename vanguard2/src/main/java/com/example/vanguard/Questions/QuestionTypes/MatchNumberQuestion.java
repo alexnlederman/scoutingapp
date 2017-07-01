@@ -3,9 +3,7 @@ package com.example.vanguard.Questions.QuestionTypes;
 import android.content.Context;
 
 import com.example.vanguard.DatabaseManager;
-import com.example.vanguard.ResponseList;
-
-import java.util.HashMap;
+import com.example.vanguard.Responses.ResponseList;
 
 /**
  * Created by BertTurtle on 6/11/2017.
