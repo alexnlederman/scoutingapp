@@ -1,9 +1,7 @@
 package com.example.vanguard.Pages.Activities;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.design.widget.NavigationView;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -14,16 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.vanguard.DatabaseManager;
 import com.example.vanguard.Pages.Fragments.ScoutingFragment;
-import com.example.vanguard.Questions.QuestionViewers.QuestionListViewers.QuestionListEditViewer;
-import com.example.vanguard.Questions.QuestionViewers.QuestionListViewers.QuestionListFormViewer;
 import com.example.vanguard.R;
-import com.example.vanguard.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

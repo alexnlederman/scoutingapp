@@ -26,16 +26,14 @@ import com.jmedeisis.draglinearlayout.DragLinearLayout;
 public class QuestionListEditViewer extends DragLinearLayout {
 
 	protected Context context;
-	protected Menu menu;
 	protected DatabaseManager databaseManager;
 	protected boolean isMatchForm;
 	MenuItem addStringQuestion;
 	MenuItem addIntegerQuestion;
 
-	public QuestionListEditViewer(Context context, Menu menu, DatabaseManager databaseManager, boolean isMatchForm) {
+	public QuestionListEditViewer(Context context, DatabaseManager databaseManager, boolean isMatchForm) {
 		super(context);
 		this.context = context;
-		this.menu = menu;
 		this.databaseManager = databaseManager;
 
 		this.isMatchForm = isMatchForm;
@@ -45,32 +43,16 @@ public class QuestionListEditViewer extends DragLinearLayout {
 		this.setOnViewSwapListener(new OnSwapListener());
 
 		setupQuestions();
-
-		setupMenu();
 	}
 
-	private void setupMenu() {
-		addStringQuestion = this.menu.add("Add String Question");
-		addStringQuestion.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-		addStringQuestion.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-			@Override
-			public boolean onMenuItemClick(MenuItem item) {
-				databaseManager.createQuestion("Enter Title Here", DatabaseManager.QuestionTypes.STRING.toString(), isMatchForm);
-				setupQuestions();
-				return false;
-			}
-		});
+	public void addStringQuestion() {
+		databaseManager.createQuestion("Enter Title Here", DatabaseManager.QuestionTypes.STRING.toString(), isMatchForm);
+		setupQuestions();
+	}
 
-		addIntegerQuestion = this.menu.add("Add Integer Question");
-		addIntegerQuestion.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-		addIntegerQuestion.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-			@Override
-			public boolean onMenuItemClick(MenuItem item) {
-				databaseManager.createQuestion("Enter Title Here", DatabaseManager.QuestionTypes.INTEGER.toString(), isMatchForm);
-				setupQuestions();
-				return false;
-			}
-		});
+	public void addIntegerQuestion() {
+		databaseManager.createQuestion("Enter Title Here", DatabaseManager.QuestionTypes.INTEGER.toString(), isMatchForm);
+		setupQuestions();
 	}
 
 	private void setupQuestions() {
@@ -148,12 +130,5 @@ public class QuestionListEditViewer extends DragLinearLayout {
 	protected void onAttachedToWindow() {
 		setupQuestions();
 		super.onAttachedToWindow();
-	}
-
-	@Override
-	protected void onDetachedFromWindow() {
-		super.onDetachedFromWindow();
-		this.menu.removeItem(addIntegerQuestion.getItemId());
-		this.menu.removeItem(addStringQuestion.getItemId());
 	}
 }

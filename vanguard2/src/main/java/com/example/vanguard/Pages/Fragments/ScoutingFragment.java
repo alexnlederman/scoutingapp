@@ -35,14 +35,14 @@ public class ScoutingFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_scouting, container, false);
+		return inflater.inflate(R.layout.fragment_view_pager, container, false);
 	}
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		ViewPager viewPager = (ViewPager) getView().findViewById(R.id.view_pager);
-		viewPager.setAdapter(new TestPagerAdapter(getActivity().getFragmentManager()));
+		viewPager.setAdapter(new ScoutPagerAdapter(getFragmentManager()));
 		TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
 		System.out.println(tabLayout.getClass());
 		tabLayout.setupWithViewPager(viewPager);
@@ -60,9 +60,9 @@ public class ScoutingFragment extends Fragment {
 		System.out.println("Detached");
 	}
 
-	private class TestPagerAdapter extends FragmentStatePagerAdapter {
+	private class ScoutPagerAdapter extends FragmentStatePagerAdapter {
 
-		public TestPagerAdapter(FragmentManager fm) {
+		public ScoutPagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
 

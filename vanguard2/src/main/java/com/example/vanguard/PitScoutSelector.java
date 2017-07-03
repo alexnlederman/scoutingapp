@@ -25,14 +25,15 @@ public class PitScoutSelector extends ListView {
 	public PitScoutSelector(Activity context) {
 		super(context);
 		List<String> eventInfo = MainActivity.databaseManager.getCurrentEventInfo();
+		if (eventInfo != null) {
+			List<Integer> teams = MainActivity.databaseManager.getEventTeams(eventInfo.get(0));
 
-		List<Integer> teams = MainActivity.databaseManager.getEventTeams(eventInfo.get(0));
 
-
-		this.setDividerHeight(0);
-		this.context = context;
-		ListAdapter listAdapter = new ListAdapter(teams);
-		this.setAdapter(listAdapter);
+			this.setDividerHeight(0);
+			this.context = context;
+			ListAdapter listAdapter = new ListAdapter(teams);
+			this.setAdapter(listAdapter);
+		}
 	}
 
 	private class ListAdapter extends ArrayAdapter<Integer> {

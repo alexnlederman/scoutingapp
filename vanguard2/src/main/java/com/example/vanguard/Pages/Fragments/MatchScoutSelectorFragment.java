@@ -18,12 +18,6 @@ import com.example.vanguard.R;
  */
 public class MatchScoutSelectorFragment extends Fragment {
 
-
-	public MatchScoutSelectorFragment() {
-		// Required empty public constructor
-	}
-
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {

@@ -34,8 +34,13 @@
 			android:theme="@style/AppTheme.NoActionBar">
 		</activity>
 		<activity
-			android:name=".SettingsActivity"
+			android:name=".Pages.Activities.SettingsActivity"
 			android:label="@string/title_activity_settings"
+			android:theme="@style/AppTheme.NoActionBar">
+		</activity>
+		<activity
+			android:name=".Pages.Activities.ScoutSettingsActivity"
+			android:label="QuestionSettingsActivity"
 			android:theme="@style/AppTheme.NoActionBar">
 		</activity>
 	</application>
