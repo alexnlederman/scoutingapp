@@ -19,6 +19,11 @@ import com.couchbase.lite.UnsavedRevision;
 import com.couchbase.lite.View;
 import com.couchbase.lite.android.AndroidContext;
 import com.couchbase.lite.support.LazyJsonArray;
+import com.example.vanguard.Graphs.BarGraph;
+import com.example.vanguard.Graphs.Graph;
+import com.example.vanguard.Graphs.GraphDescriber;
+import com.example.vanguard.Graphs.LineGraph;
+import com.example.vanguard.Questions.Answer;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Questions.QuestionTypes.IntegerQuestion;
@@ -26,7 +31,6 @@ import com.example.vanguard.Questions.QuestionTypes.MatchNumberQuestion;
 import com.example.vanguard.Questions.QuestionTypes.StringQuestion;
 import com.example.vanguard.Questions.QuestionTypes.TeamNumberQuestion;
 import com.example.vanguard.Responses.Response;
-import com.example.vanguard.Responses.ResponseList;
 import com.example.vanguard.Responses.SimpleResponse;
 
 import org.json.JSONArray;
@@ -79,6 +83,11 @@ public class DatabaseManager {
 	private final String event_information_document_type = "event_info_document";
 	private final String is_current_event_key = "is_current_event_key";
 
+	private final String graph_question_id_key = "graph_question_id_key";
+	private final String is_all_team_graph_key = "is_all_team_graph_key";
+	private final String graph_type_key = "graph_type_key";
+	private final String graph_document_type = "graph_key";
+
 
 	private final String document_type_key = "document_type";
 
@@ -89,6 +98,7 @@ public class DatabaseManager {
 	private final String event_view = "event_view";
 	private final String event_teams_view = "event_teams_view";
 	private final String event_info_view = "event_info_view";
+	private final String graph_view = "graph_view";
 
 	// Views to help find specific documents.
 
@@ -108,33 +118,11 @@ public class DatabaseManager {
 
 	View eventInfoView;
 
+	View graphView;
+
 	Database database;
 
 	Context context;
-
-
-	/**
-	 * Possible types of questions.
-	 * TODO add more question types.
-	 */
-	public enum QuestionTypes {
-		INTEGER("INTEGER"),
-		STRING("STRING"),
-		MATCH_NUMBER("MATCH_NUMBER"),
-		TEAM_NUMBER("TEAM_NUMBER");
-
-		private final String text;
-
-		QuestionTypes(final String text) {
-			this.text = text;
-		}
-
-		@Override
-		public String toString() {
-			return this.text;
-		}
-	}
-
 
 	/**
 	 * Creates a new DatabaseManager. This sets up the whole database.
@@ -147,7 +135,7 @@ public class DatabaseManager {
 			// Finds the database.
 			manager = new Manager(new AndroidContext(this.context.getApplicationContext()), Manager.DEFAULT_OPTIONS);
 			// Can change string below to reset the database.
-			this.database = manager.getDatabase("app24");
+			this.database = manager.getDatabase("app26");
 
 			// Creates database views.
 			matchQuestionView = this.database.getView(match_questions_view);
@@ -155,15 +143,15 @@ public class DatabaseManager {
 			pitQuestionView = this.database.getView(pit_questions_view);
 			pitQuestionView.setMap(new PitQuestionMap(), "1");
 			matchResponseView = this.database.getView(match_response_view);
-			matchResponseView.setMapReduce(new MatchResponsesMap(), new MatchResponsesMap(), "2");
+			matchResponseView.setMapReduce(new MatchResponsesMap(), new MatchResponsesMap(), "4");
 			eventMatchesView = this.database.getView(event_view);
 			eventMatchesView.setMap(new EventMatchesMapper(), "2");
 			eventTeamsView = this.database.getView(event_teams_view);
 			eventTeamsView.setMap(new EventTeamsMapper(), "5");
 			eventInfoView = this.database.getView(event_info_view);
 			eventInfoView.setMap(new EventInformationMapper(), "1");
-
-
+			graphView = this.database.getView(graph_view);
+			graphView.setMap(new GraphMapper(), "4");
 		} catch (CouchbaseLiteException | IOException e) {
 			e.printStackTrace();
 		}
@@ -172,7 +160,7 @@ public class DatabaseManager {
 	/**
 	 * Creates a new question in the database.
 	 * @param label The text for the question.
-	 * @param questionType The type of question. Should be a {@link QuestionTypes} enum.
+	 * @param questionType The type of question. Should be a {@link com.example.vanguard.Questions.Question.QuestionTypes} enum.
 	 * @param isMatchQuestion Whether the question is used for match or pit scouting.
 	 * @return The {@link Question} object that was created.
 	 */
@@ -269,6 +257,7 @@ public class DatabaseManager {
 	 */
 	public void saveResponses(AnswerList<Question> questions) {
 		// Loops through each question.
+		System.out.println("SAVING RESPONSES");
 		for (final Question question : questions) {
 
 			// Gets the current question document.
@@ -280,6 +269,7 @@ public class DatabaseManager {
 					public boolean update(UnsavedRevision newRevision) {
 						Map<String, Object> properties = newRevision.getProperties();
 						properties.put(question_responses_key, getQuestionResponseHashmaps(question));
+						System.out.println("Save Size: " + getQuestionResponseHashmaps(question));
 						newRevision.setProperties(properties);
 						return true;
 					}
@@ -297,12 +287,12 @@ public class DatabaseManager {
 	 */
 	private List<HashMap<String, Object>> getQuestionResponseHashmaps(Question question) {
 		// Gets question responses.
-		ResponseList responses = question.getResponses();
+		AnswerList<Response> responses = question.getResponses();
 
 		List<HashMap<String, Object>> responseHashMaps = new ArrayList<>();
 
 		// Loops through the current responses and adds the proper values to them.
-		for (Response<Object> response : responses) {
+		for (Response response : responses) {
 			HashMap<String, Object> responseHashMap = new HashMap<>();
 			responseHashMap.put(response_value_key, response.getValue());
 			responseHashMap.put(response_match_number_key, response.getMatchNumber());
@@ -317,6 +307,7 @@ public class DatabaseManager {
 	 * @param question the question to delete.
 	 */
 	public void deleteQuestion(Question question) {
+		// TODO have this set the questions index to -1 and then ignore it. This will make graphing work with deleted questions.
 		Document document = database.getDocument(question.getID());
 		Map<String, Object> prop = document.getProperties();
 		boolean isMatchQuestion = prop.get(document_type_key).equals(match_question_type);
@@ -362,7 +353,7 @@ public class DatabaseManager {
 	public AnswerList<Question> getPitQuestions() {
 		AnswerList<Question> questions = createQuestionListFromQuery(this.pitQuestionView.createQuery());
 		if (questions.size() == 0) {
-			questions.add(createQuestion("Team Number", QuestionTypes.TEAM_NUMBER.toString(), false));
+			questions.add(createQuestion("Team Number", Question.QuestionTypes.TEAM_NUMBER.toString(), false));
 		}
 		return questions;
 	}
@@ -373,8 +364,8 @@ public class DatabaseManager {
 	public AnswerList<Question> getMatchQuestions() {
 		AnswerList<Question> questions = createQuestionListFromQuery(this.matchQuestionView.createQuery());
 		if (questions.size() == 0) {
-			questions.add(createQuestion("Match Number", QuestionTypes.MATCH_NUMBER.toString(), true));
-			questions.add(createQuestion("Team Number", QuestionTypes.TEAM_NUMBER.toString(), true));
+			questions.add(createQuestion("Match Number", Question.QuestionTypes.MATCH_NUMBER.toString(), true));
+			questions.add(createQuestion("Team Number", Question.QuestionTypes.TEAM_NUMBER.toString(), true));
 		}
 		return questions;
 	}
@@ -412,7 +403,7 @@ public class DatabaseManager {
 		Question question = null;
 		// Checks which question type it correspondse to and creates a Question from that.
 		boolean isMatchQuestion = map.get(question_type_key).equals(match_question_type);
-		switch (QuestionTypes.valueOf((String) map.get(question_type_key))) {
+		switch (Question.QuestionTypes.valueOf((String) map.get(question_type_key))) {
 			case INTEGER:
 				question = new IntegerQuestion(this.context, (String) map.get(question_label_key), getQuestionMapResponses(map), (String) map.get("_id"), isMatchQuestion);
 				break;
@@ -434,10 +425,10 @@ public class DatabaseManager {
 	 * @param questionMap The question Map.
 	 * @return The responses for the question.
 	 */
-	private ResponseList getQuestionMapResponses(Map<String, Object> questionMap) {
+	private AnswerList<Response> getQuestionMapResponses(Map<String, Object> questionMap) {
 		// Gets list of questions Maps.
 		ArrayList<Map<String, Object>> responseMaps = (ArrayList<Map<String, Object>>) questionMap.get(question_responses_key);
-		ResponseList responses = new ResponseList();
+		AnswerList<Response> responses = new AnswerList<>();
 		// Converts list of question Maps to a list of responses.
 		for (Map<String, Object> map : responseMaps) {
 			SimpleResponse response = getResponseFromMap(map);
@@ -693,12 +684,12 @@ public class DatabaseManager {
 		}
 	}
 
-	public class EventInformationDocumentUpdater implements Document.DocumentUpdater {
+	private class EventInformationDocumentUpdater implements Document.DocumentUpdater {
 
 		String eventKey;
 		String eventName;
 
-		public EventInformationDocumentUpdater(String eventKey, String eventName) {
+		private EventInformationDocumentUpdater(String eventKey, String eventName) {
 			this.eventKey = eventKey;
 			this.eventName = eventName;
 		}
@@ -715,7 +706,7 @@ public class DatabaseManager {
 		}
 	}
 
-	public class EventInformationMapper implements Mapper {
+	private class EventInformationMapper implements Mapper {
 
 		@Override
 		public void map(Map<String, Object> document, Emitter emitter) {
@@ -724,6 +715,141 @@ public class DatabaseManager {
 			}
 		}
 	}
+
+	private class GraphMapper implements Mapper {
+
+		@Override
+		public void map(Map<String, Object> document, Emitter emitter) {
+			System.out.println(document.get(document_type_key));
+			if (document.containsKey(document_type_key) && document.get(document_type_key).equals(graph_document_type)) {
+				System.out.println("Emit");
+				emitter.emit(document.get(is_all_team_graph_key), new Object[] {document.get(graph_type_key), document.get(graph_question_id_key), document.get("_id")});
+			}
+		}
+	}
+
+	public void addGraph(Graph.GraphTypes type, AnswerList<Question> questions) {
+		Document document = this.database.createDocument();
+		System.out.println("Q Size: " + questions.size());
+		try {
+			document.update(new GraphDocumentUpdater(type, questions));
+		} catch (CouchbaseLiteException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<Graph> getTeamGraphs(int teamNumber) {
+		Query query = graphView.createQuery();
+		query.setStartKey(false);
+		query.setEndKey(false);
+		return getGraphs(query, teamNumber);
+		// TODO finish this method. Also find out how the graphs will be displayed to the user and create methods accordingly. Right now each graph will have a header with the question. Might not work because some have multiple questions.
+	}
+
+	public List<Graph> getAllTeamGraphs() {
+		Query query = graphView.createQuery();
+		query.setStartKey(true);
+		query.setEndKey(true);
+		return getGraphs(query, -1);
+	}
+
+	private List<Graph> getGraphs(Query query, int teamNumber) {
+		QueryEnumerator result = null;
+		try {
+			result = query.run();
+		} catch (CouchbaseLiteException e) {
+			e.printStackTrace();
+		}
+		List<Graph> graphs = new ArrayList<>();
+		for (Iterator<QueryRow> it = result; it.hasNext();) {
+			QueryRow row = it.next();
+			Graph.GraphTypes graphType = Graph.GraphTypes.valueOf((String) ((List) row.getValue()).get(0));
+			List<String> graphQuestionIds = (List<String>) ((List) row.getValue()).get(1);
+			graphs.add(createGraph(graphType, getQuestionFromIds(graphQuestionIds), teamNumber));
+		}
+		return graphs;
+	}
+
+	public List<GraphDescriber> getGraphDescribers() {
+		Query query = graphView.createQuery();
+		QueryEnumerator result = null;
+		try {
+			result = query.run();
+		} catch (CouchbaseLiteException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Size: " + result.getCount());
+		List<GraphDescriber> graphDescribers = new ArrayList<>();
+		for (Iterator<QueryRow> it = result; it.hasNext();) {
+			QueryRow row = it.next();
+			System.out.println("New Graph");
+			Graph.GraphTypes graphType = Graph.GraphTypes.valueOf((String) ((List) row.getValue()).get(0));
+			List<String> graphQuestionIds = (List<String>) ((List) row.getValue()).get(1);
+			System.out.println("Id Size: " + graphQuestionIds.size());
+			String id = (String) ((List) row.getValue()).get(2);
+			graphDescribers.add(new GraphDescriber(context, getQuestionFromIds(graphQuestionIds), graphType, id));
+		}
+		return graphDescribers;
+	}
+
+	public void deleteGraph(String id) {
+		Document document = this.database.getDocument(id);
+		try {
+			document.delete();
+		} catch (CouchbaseLiteException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private AnswerList<Question> getQuestionFromIds(List<String> ids) {
+		AnswerList<Question> questions = new AnswerList<>();
+		for (String id : ids) {
+			questions.add(getQuestionVariable(this.database.getDocument(id).getProperties()));
+		}
+		return questions;
+	}
+
+	private Graph createGraph(Graph.GraphTypes type, AnswerList<Question> questions, int teamNumber) {
+		switch (type) {
+			case LINE_GRAPH:
+				return new LineGraph(context, questions, teamNumber);
+			case BAR_GRAPH:
+				return new BarGraph(context, questions);
+		}
+		return null;
+	}
+
+	private class GraphDocumentUpdater implements Document.DocumentUpdater {
+
+		Graph.GraphTypes type;
+		AnswerList<Question> questions;
+
+		public GraphDocumentUpdater(Graph.GraphTypes type, AnswerList<Question> questions) {
+			this.type = type;
+			this.questions = questions;
+			System.out.println("Question Size: " + questions.size());
+		}
+
+		@Override
+		public boolean update(UnsavedRevision newRevision) {
+			Map<String, Object> prop = newRevision.getProperties();
+			prop.put(graph_type_key, this.type);
+			prop.put(graph_question_id_key, getQuestionIds(this.questions));
+			prop.put(document_type_key, graph_document_type);
+			prop.put(is_all_team_graph_key, this.type.isAllTeamGraph());
+			newRevision.setProperties(prop);
+			return true;
+		}
+	}
+
+	public List<String> getQuestionIds(List<Question> questions) {
+		List<String> ids = new ArrayList<>();
+		for (Question question : questions) {
+			ids.add(question.getID());
+		}
+		return ids;
+	}
+
 
 	public static String getUrlValue(URL url) throws IOException {
 		String input = "";
@@ -776,7 +902,7 @@ public class DatabaseManager {
 		return out;
 	}
 
-	public class EventMatchDocumentUpdater implements Document.DocumentUpdater {
+	private class EventMatchDocumentUpdater implements Document.DocumentUpdater {
 
 		int matchNumber;
 		String eventKey;
@@ -784,7 +910,7 @@ public class DatabaseManager {
 		String[] redTeam;
 		String[] blueTeam;
 
-		public EventMatchDocumentUpdater(int matchNumber, String eventKey, String[] redTeam, String[] blueTeam, String eventName) {
+		private EventMatchDocumentUpdater(int matchNumber, String eventKey, String[] redTeam, String[] blueTeam, String eventName) {
 			this.matchNumber = matchNumber;
 			this.eventKey = eventKey;
 			this.redTeam = redTeam;
@@ -806,7 +932,7 @@ public class DatabaseManager {
 		}
 	}
 
-	public class EventTeamsDocumentUpdater implements Document.DocumentUpdater {
+	private class EventTeamsDocumentUpdater implements Document.DocumentUpdater {
 
 		String eventKey;
 		String eventName;
@@ -855,7 +981,7 @@ public class DatabaseManager {
 		return new ArrayList<>();
 	}
 
-	public class EventTeamsMapper implements Mapper {
+	private class EventTeamsMapper implements Mapper {
 
 		@Override
 		public void map(Map<String, Object> document, Emitter emitter) {
@@ -865,7 +991,7 @@ public class DatabaseManager {
 		}
 	}
 
-	public class EventMatchesMapper implements Mapper {
+	private class EventMatchesMapper implements Mapper {
 
 		@Override
 		public void map(Map<String, Object> document, Emitter emitter) {
@@ -881,7 +1007,7 @@ public class DatabaseManager {
 	 * Emits the index as the key and Map as the value.
 	 * {@inheritDoc}
 	 */
-	public class MatchQuestionMap implements Mapper {
+	private class MatchQuestionMap implements Mapper {
 
 		@Override
 		public void map(Map<String, Object> document, Emitter emitter) {
@@ -896,7 +1022,7 @@ public class DatabaseManager {
 	 * Emits the index as the key and Map as the value.
 	 * {@inheritDoc}
 	 */
-	public class PitQuestionMap implements Mapper {
+	private class PitQuestionMap implements Mapper {
 
 		@Override
 		public void map(Map<String, Object> document, Emitter emitter) {
@@ -915,7 +1041,7 @@ public class DatabaseManager {
 	 * Sorted by Hashmap of team numbers which go to a hashmap of their responses sorted by qual number, with the key being the response's question's id.
 	 * {@inheritDoc}
 	 */
-	public class MatchResponsesMap implements Mapper, Reducer {
+	private class MatchResponsesMap implements Mapper, Reducer {
 
 		@Override
 		public void map(Map<String, Object> document, Emitter emitter) {
@@ -923,15 +1049,18 @@ public class DatabaseManager {
 			if (document.containsKey(document_type_key) && document.get(document_type_key).equals(match_question_type)) {
 				// Gets the responses.
 				ArrayList<Map<String, Object>> responses = (ArrayList<Map<String, Object>>) document.get(question_responses_key);
-				for (Map<String, Object> response : responses) {
+				System.out.println("Response Size: " + responses.size());
+				for (int i = 0; i < responses.size(); i++) {
 					// Emits the responses by team number.
-					emitter.emit(response.get(response_team_number_key), new Object[]{document.get("_id"), response});
+					System.out.println("Loop: " + i + " : " + responses.get(i).get(response_team_number_key));
+					emitter.emit(responses.get(i).get(response_team_number_key), new Object[]{document.get("_id"), responses.get(i)});
 				}
 			}
 		}
 
 		@Override
 		public Object reduce(List<Object> keys, List<Object> values, boolean rereduce) {
+			System.out.println("Re: " + rereduce);
 			int currentTeamNumber = (int) keys.get(0);
 
 			Map<Integer, Map<String, List<Map<String, Object>>>> result = new HashMap<>();
@@ -939,29 +1068,42 @@ public class DatabaseManager {
 			Map<String, List<Map<String, Object>>> teamResponses = new HashMap<>();
 
 			// Goes through the team numbers and the responses.
-			for (int i = 0; i < keys.size(); i++) {
+			System.out.println("Key Size: " + keys.size());
+			System.out.println("Value Size: " + values.size());
+
+			for (int i = 0; i < keys.size();) {
+				// Gets the responses for current response question.
+				List<Map<String, Object>> responses = teamResponses.get(((List) values.get(i)).get(0));
+				if (responses == null) responses = new ArrayList<>();
+
+				// Adds the current responses to the other question responses.
+				responses.add(((Map<String, Object>)((List) values.get(i)).get(1)));
+				// Sorts the responses by qual number.
+				Collections.sort(responses, new ResponseComparator());
+				// Adds the responses to the the team's responses.
+				teamResponses.put(((String) ((List) values.get(i)).get(0)), responses);
+				System.out.println("VALUE ADDED: " + ((List) values.get(i)).get(1));
+
+				i++;
+
 				// Checks if the team number changed.
-				if (currentTeamNumber != (int) keys.get(i)) {
+				System.out.println("Bool: " + (keys.size() > i));
+				System.out.println("i: " + i);
+				System.out.println("Size: " + keys.size());
+
+				if (keys.size() == i || currentTeamNumber != (int) keys.get(i)) {
 					// TODO sort team responses by qual.
 					// Adds the responses to the team number.
 					result.put(currentTeamNumber, teamResponses);
 					// Updates the team number.
-					currentTeamNumber = (int) keys.get(i);
+					currentTeamNumber = (int) keys.get(i - 1);
 					// Resets the responses.
 					teamResponses = new HashMap<>();
+					System.out.println("Saved");
 				}
-
-				// Gets the responses for current response question.
-				List<Map<String, Object>> responses = teamResponses.get(((Object[]) values.get(i))[0]);
-				if (responses == null) responses = new ArrayList<>();
-
-				// Adds the current responses to the other question responses.
-				responses.add(((Map<String, Object>)((Object[]) values.get(i))[1]));
-				// Sorts the responses by qual number.
-				Collections.sort(responses, new ResponseComparator());
-				// Adds the responses to the the team's responses.
-				teamResponses.put(((String) ((Object[]) values.get(i))[0]), responses);
 			}
+
+			System.out.println("Result Size: " + result.size());
 
 			return result;
 		}
@@ -990,10 +1132,10 @@ public class DatabaseManager {
 	 * @param id The id of the question.
 	 * @param teamNumber The team number.
 	 */
-	public ResponseList getTeamMatchQuestionResponses(String id, int teamNumber) {
+	public AnswerList<Response> getTeamMatchQuestionResponses(String id, int teamNumber) {
 		// TODO
 		Query matchResponseQuery = this.matchResponseView.createQuery();
-		ResponseList responses = new ResponseList();
+		AnswerList<Response> responses = new AnswerList<>();
 		List<Object> keys = new ArrayList<>();
 		keys.add(teamNumber);
 		matchResponseQuery.setKeys(keys);
@@ -1004,15 +1146,17 @@ public class DatabaseManager {
 			e.printStackTrace();
 		}
 		QueryRow aggregate = result.next();
-		Map<Integer, Map<String, List<Map<String, Object>>>> value = (Map<Integer, Map<String, List<Map<String, Object>>>>) aggregate.getValue();
-		if (!value.containsKey(teamNumber))
-			return new ResponseList();
-		Map<String, List<Map<String, Object>>> teamResponses = value.get(teamNumber);
-		if (!teamResponses.containsKey(id))
-			return new ResponseList();
-		List<Map<String, Object>> questionResponses = teamResponses.get(id);
-		for (Map<String, Object> responseMap : questionResponses) {
-			responses.add(getResponseFromMap(responseMap));
+		if (aggregate != null) {
+			Map<Integer, Map<String, List<Map<String, Object>>>> value = (Map<Integer, Map<String, List<Map<String, Object>>>>) aggregate.getValue();
+			if (!value.containsKey(teamNumber))
+				return new AnswerList<>();
+			Map<String, List<Map<String, Object>>> teamResponses = value.get(teamNumber);
+			if (!teamResponses.containsKey(id))
+				return new AnswerList<>();
+			List<Map<String, Object>> questionResponses = teamResponses.get(id);
+			for (Map<String, Object> responseMap : questionResponses) {
+				responses.add(getResponseFromMap(responseMap));
+			}
 		}
 		return responses;
 	}

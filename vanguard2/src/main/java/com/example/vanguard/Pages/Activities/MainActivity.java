@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.Pages.Fragments.GraphingFragment;
 import com.example.vanguard.Pages.Fragments.ScoutingFragment;
 import com.example.vanguard.R;
 
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity
 		Fragment fragment = null;
 
         if (id == R.id.nav_data) {
-            // Handle the camera action
+            setView(new GraphingFragment());
         } else if (id == R.id.nav_schedule) {
         } else if (id == R.id.nav_scout) {
 			setView(new ScoutingFragment());

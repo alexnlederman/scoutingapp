@@ -24,12 +24,18 @@
 		app:title="Set Current Event"
 		app:description="Set the event you team is attending in order to be able to scout them. This requires you to have added the event first. "/>
 
-
 	<com.example.vanguard.CustomUIElements.SettingsView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/scout_settings"
 		app:title="Setup Scouting Questions"
+		app:description="Set the current stuff. Yada yada yada. "/>
+
+	<com.example.vanguard.CustomUIElements.SettingsView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/graph_settings"
+		app:title="Setup Question Graphs"
 		app:description="Set the current stuff. Yada yada yada. "/>
 
 </LinearLayout>

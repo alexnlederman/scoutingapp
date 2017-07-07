@@ -46,12 +46,12 @@ public class QuestionListEditViewer extends DragLinearLayout {
 	}
 
 	public void addStringQuestion() {
-		databaseManager.createQuestion("Enter Title Here", DatabaseManager.QuestionTypes.STRING.toString(), isMatchForm);
+		databaseManager.createQuestion("Enter Title Here", Question.QuestionTypes.STRING.toString(), isMatchForm);
 		setupQuestions();
 	}
 
 	public void addIntegerQuestion() {
-		databaseManager.createQuestion("Enter Title Here", DatabaseManager.QuestionTypes.INTEGER.toString(), isMatchForm);
+		databaseManager.createQuestion("Enter Title Here", Question.QuestionTypes.INTEGER.toString(), isMatchForm);
 		setupQuestions();
 	}
 

@@ -64,7 +64,6 @@ public class MatchScoutSelector extends ListView {
 		@NonNull
 		@Override
 		public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-			System.out.println("Pos: " + position);
 			int qualNumber = (int) this.values.get(position).get(DatabaseManager.event_match_number_key);
 			List<String> blueTeamsList = (List<String>) this.values.get(position).get(DatabaseManager.event_match_blue_team);
 			List<String> redTeamsList = (List<String>) this.values.get(position).get(DatabaseManager.event_match_red_team);

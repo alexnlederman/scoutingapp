@@ -17,9 +17,15 @@
 	<string name="title_activity_test">TestActivity</string>
 	<string name="title_activity_test_nav">TestNavActivity</string>
 
-	<!-- TODO: Remove or change this placeholder text -->
 	<string name="hello_blank_fragment">Hello blank fragment</string>
 	<string name="title_activity_match_form">MatchFormActivity</string>
 	<string name="title_activity_pit_form">PitFormActivity</string>
 	<string name="title_activity_settings">SettingsActivity</string>
+
+
+	<string-array name="GraphTypes">
+		<item>Line Graph</item>
+		<item>Bar Graph</item>
+		<item>Pie Chart</item>
+	</string-array>
 </resources>

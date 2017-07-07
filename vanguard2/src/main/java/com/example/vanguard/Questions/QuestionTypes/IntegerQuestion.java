@@ -6,8 +6,9 @@ import android.view.View;
 
 import com.example.vanguard.CustomUIElements.CustomNumberPicker;
 import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
-import com.example.vanguard.Responses.ResponseList;
+import com.example.vanguard.Responses.Response;
 
 /**
  * Created by BertTurtle on 6/5/2017.
@@ -18,7 +19,7 @@ public class IntegerQuestion extends Question<Integer> {
 
 	protected CustomNumberPicker answerUI;
 
-	public IntegerQuestion(Context context, String label, ResponseList responses, String id, boolean isMatchQuestion) {
+	public IntegerQuestion(Context context, String label, AnswerList<Response> responses, String id, boolean isMatchQuestion) {
 		super(label, responses, id, isMatchQuestion);
 		setup(context);
 	}
@@ -43,13 +44,18 @@ public class IntegerQuestion extends Question<Integer> {
 	}
 
 	@Override
+	public float convertResponseToNumber(Response<Integer> response) {
+		return response.getValue().floatValue();
+	}
+
+	@Override
 	public ViewStyle getViewStyle() {
 		return ViewStyle.SINGLE_LINE;
 	}
 
 	@Override
-	public DatabaseManager.QuestionTypes getQuestionType() {
-		return DatabaseManager.QuestionTypes.INTEGER;
+	public Question.QuestionTypes getQuestionType() {
+		return Question.QuestionTypes.INTEGER;
 	}
 
 	@Override

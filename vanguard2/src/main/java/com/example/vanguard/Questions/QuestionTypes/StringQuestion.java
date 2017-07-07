@@ -5,9 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.vanguard.CustomUIElements.AnswerUIEditText;
-import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
-import com.example.vanguard.Responses.ResponseList;
+import com.example.vanguard.Responses.Response;
 
 /**
  * Created by BertTurtle on 6/5/2017.
@@ -17,7 +17,7 @@ public class StringQuestion extends Question<String> {
 
 	private AnswerUIEditText answerUI;
 
-	public StringQuestion(Context context, String label, ResponseList responseList, String id, boolean isMatchQuestion) {
+	public StringQuestion(Context context, String label, AnswerList<Response> responseList, String id, boolean isMatchQuestion) {
 		super(label, responseList, id, isMatchQuestion);
 		setup(context);
 	}
@@ -44,13 +44,18 @@ public class StringQuestion extends Question<String> {
 	}
 
 	@Override
+	public float convertResponseToNumber(Response<String> response) {
+		return 1;
+	}
+
+	@Override
 	public ViewStyle getViewStyle() {
 		return ViewStyle.TWO_LINE;
 	}
 
 	@Override
-	public DatabaseManager.QuestionTypes getQuestionType() {
-		return DatabaseManager.QuestionTypes.STRING;
+	public Question.QuestionTypes getQuestionType() {
+		return Question.QuestionTypes.STRING;
 	}
 
 	@Override

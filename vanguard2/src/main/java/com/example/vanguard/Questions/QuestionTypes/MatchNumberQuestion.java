@@ -2,8 +2,9 @@ package com.example.vanguard.Questions.QuestionTypes;
 
 import android.content.Context;
 
-import com.example.vanguard.DatabaseManager;
-import com.example.vanguard.Responses.ResponseList;
+import com.example.vanguard.Questions.AnswerList;
+import com.example.vanguard.Questions.Question;
+import com.example.vanguard.Responses.Response;
 
 /**
  * Created by BertTurtle on 6/11/2017.
@@ -19,11 +20,11 @@ public class MatchNumberQuestion extends IntegerQuestion {
 		this.answerUI.setValue(startingValue);
 	}
 
-	public MatchNumberQuestion(Context context, ResponseList responses, String id) {
+	public MatchNumberQuestion(Context context, AnswerList<Response> responses, String id) {
 		super(context, "Match Number?", responses, id, true);
 	}
 
-	public MatchNumberQuestion(Context context, int startingValue, ResponseList responses, String id) {
+	public MatchNumberQuestion(Context context, int startingValue, AnswerList<Response> responses, String id) {
 		this(context, responses, id);
 		this.answerUI.setValue(startingValue);
 	}
@@ -34,7 +35,7 @@ public class MatchNumberQuestion extends IntegerQuestion {
 	}
 
 	@Override
-	public DatabaseManager.QuestionTypes getQuestionType() {
-		return DatabaseManager.QuestionTypes.MATCH_NUMBER;
+	public Question.QuestionTypes getQuestionType() {
+		return Question.QuestionTypes.MATCH_NUMBER;
 	}
 }

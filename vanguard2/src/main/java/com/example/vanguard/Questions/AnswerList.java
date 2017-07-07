@@ -25,4 +25,23 @@ public class AnswerList<T extends Answer> extends ArrayList<T> {
 		}
 		return answers;
 	}
+
+	public AnswerList<T> getAllNotOfType(Class type) {
+		AnswerList<T> answers = new AnswerList<T>();
+		for (T answer : this) {
+			if (!type.isAssignableFrom(answer.getValue().getClass())) {
+				answers.add(answer);
+			}
+		}
+		return answers;
+	}
+
+	public boolean hasOfType(Class type) {
+		for (T answer : this) {
+			if (type.isAssignableFrom(type)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

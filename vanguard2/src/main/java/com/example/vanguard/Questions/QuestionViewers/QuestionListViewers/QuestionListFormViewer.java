@@ -12,7 +12,6 @@ import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Questions.QuestionViewers.FormQuestionViewers.SingleLineFormQuestionViewer;
 import com.example.vanguard.Questions.QuestionViewers.FormQuestionViewers.TwoLineFormQuestionViewer;
 import com.example.vanguard.Questions.QuestionViewers.SimpleFormQuestionViewer;
-import com.example.vanguard.Responses.ResponseList;
 import com.example.vanguard.Responses.Response;
 
 /**
@@ -72,6 +71,7 @@ public class QuestionListFormViewer extends LinearLayout {
 		this.submitButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				v.setClickable(false);
 				for (Question question : questions) {
 					// TODO make these numbers be better than hard coded.
 					if (isMatchForm) {
@@ -97,7 +97,7 @@ public class QuestionListFormViewer extends LinearLayout {
 			questionViewer = new TwoLineFormQuestionViewer(this.context, question);
 		}
 		if (!isMatchForm) {
-			ResponseList currentResponses = question.getResponses();
+			AnswerList<Response> currentResponses = question.getResponses();
 			for (Response response : currentResponses) {
 				if (response.getTeamNumber() == teamNumber) {
 					questionViewer.setValue(response.getValue());

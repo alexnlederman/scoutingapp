@@ -48,18 +48,6 @@ public class ScoutingFragment extends Fragment {
 		tabLayout.setupWithViewPager(viewPager);
 	}
 
-	@Override
-	public void onAttach(Context context) {
-		super.onAttach(context);
-		System.out.println("Attached");
-	}
-
-	@Override
-	public void onDetach() {
-		super.onDetach();
-		System.out.println("Detached");
-	}
-
 	private class ScoutPagerAdapter extends FragmentStatePagerAdapter {
 
 		public ScoutPagerAdapter(FragmentManager fm) {

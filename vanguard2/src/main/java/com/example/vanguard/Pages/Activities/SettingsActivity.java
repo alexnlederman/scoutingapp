@@ -82,6 +82,15 @@ public class SettingsActivity extends AppCompatActivity {
 				startActivity(intent);
 			}
 		});
+
+		SettingsView graphSettings = (SettingsView) findViewById(R.id.graph_settings);
+		graphSettings.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(that, GraphSettingsActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override
