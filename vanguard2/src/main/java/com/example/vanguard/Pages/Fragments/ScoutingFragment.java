@@ -41,12 +41,23 @@ public class ScoutingFragment extends Fragment {
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+		System.out.println("Scouting View Created");
 		ViewPager viewPager = (ViewPager) getView().findViewById(R.id.view_pager);
-		viewPager.setAdapter(new ScoutPagerAdapter(getFragmentManager()));
+		viewPager.setAdapter(new ScoutPagerAdapter(getChildFragmentManager()));
 		TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
-		System.out.println(tabLayout.getClass());
 		tabLayout.setupWithViewPager(viewPager);
 	}
+
+
+//	@Override
+//	public void onResume() {
+//		System.out.println("Scouting Resumed");
+//		ViewPager viewPager = (ViewPager) getView().findViewById(R.id.view_pager);
+//		viewPager.setAdapter(new ScoutPagerAdapter(getChildFragmentManager()));
+//		TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
+//		tabLayout.setupWithViewPager(viewPager);
+//		super.onResume();
+//	}
 
 	private class ScoutPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -56,6 +67,7 @@ public class ScoutingFragment extends Fragment {
 
 		@Override
 		public Fragment getItem(int position) {
+			System.out.println("Position : " + position);
 			switch (position) {
 				case 0:
 					return new MatchScoutSelectorFragment();

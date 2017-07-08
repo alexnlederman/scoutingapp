@@ -28,10 +28,19 @@ public class GraphingFragment extends Fragment {
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		ViewPager viewPager = (ViewPager) getView().findViewById(R.id.view_pager);
-		viewPager.setAdapter(new GraphPagerAdapter(getFragmentManager()));
+		viewPager.setAdapter(new GraphPagerAdapter(getChildFragmentManager()));
 		TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
 		tabLayout.setupWithViewPager(viewPager);
 	}
+
+//	@Override
+//	public void onResume() {
+//		super.onResume();
+//		ViewPager viewPager = (ViewPager) getView().findViewById(R.id.view_pager);
+//		viewPager.setAdapter(new GraphPagerAdapter(getFragmentManager()));
+//		TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
+//		tabLayout.setupWithViewPager(viewPager);
+//	}
 
 	private class GraphPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -41,11 +50,12 @@ public class GraphingFragment extends Fragment {
 
 		@Override
 		public Fragment getItem(int position) {
+			System.out.println("Postition : " + position);
 			switch (position) {
 				case 0:
 					return new AllTeamGraphFragment();
 				case 1:
-					return new PitScoutFragment();
+					return new TeamGraphFragment();
 			}
 			return null;
 		}

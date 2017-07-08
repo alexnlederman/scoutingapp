@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.vanguard.Graphs.Graph;
+import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.R;
 
 /**
@@ -47,13 +48,8 @@ public class AddGraphFragment extends Fragment {
 			public void onClick(View v) {
 				System.out.println("Class: " + spinner.getSelectedItem().getClass());
 				Fragment fragment = SetGraphQuestionsFragment.newInstance((Graph.GraphTypes) spinner.getSelectedItem());
-				setView(fragment);
+				MainActivity.setFragment(fragment, R.id.fragment_holder_layout, getActivity());
 			}
 		});
-	}
-
-	private void setView(Fragment fragment) {
-		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.fragment_holder_layout, fragment).commit();
 	}
 }

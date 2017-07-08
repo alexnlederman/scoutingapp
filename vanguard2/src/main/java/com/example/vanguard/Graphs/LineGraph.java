@@ -40,13 +40,21 @@ public class LineGraph extends LineChart implements Graph {
 //				entries.add(new Entry(response.getMatchNumber(), response.getValue().floatValue()));
 //			}
 			List<Entry> entries = question.getTeamEntryResponseValues(teamNumber);
-			LineDataSet dataSet = new LineDataSet(entries, question.getLabel());
-			dataSet.setLineWidth(4);
-			lineGraphData.add(dataSet);
+			if (entries.size() > 0) {
+				LineDataSet dataSet = new LineDataSet(entries, question.getLabel());
+				dataSet.setLineWidth(4);
+				lineGraphData.add(dataSet);
+			}
 		}
-		LineData data = new LineData(lineGraphData);
+		System.out.println("Data Size: " + lineGraphData.size());
+		if (lineGraphData.size() > 0) {
+			LineData data = new LineData(lineGraphData);
+			this.setData(data);
+		}
+		else {
+			this.setData(null);
+		}
 		this.getAxisRight().setEnabled(false);
-		this.setData(data);
 		this.setContentDescription("Test 123");
 	}
 

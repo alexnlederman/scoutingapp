@@ -96,7 +96,7 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 			}
 		}
 		return teamResponses;
-		// TODO sort the responses. 
+		// TODO sort the responses.
 	}
 
 	public AnswerList<Response> getResponses() {

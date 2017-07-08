@@ -25,11 +25,6 @@ public class AddGraphActivity extends AppCompatActivity {
 
 		setContentView(R.layout.activity_fragment_holder);
 
-		setView(new AddGraphFragment());
-	}
-
-	private void setView(Fragment fragment) {
-		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.fragment_holder_layout, fragment).commit();
+		MainActivity.setFragment(new AddGraphFragment(), R.id.fragment_holder_layout, this);
 	}
 }

@@ -1,5 +1,7 @@
 package com.example.vanguard.Pages.Fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
@@ -8,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.example.vanguard.PitScoutSelector;
-import com.example.vanguard.Questions.QuestionViewers.QuestionListViewers.QuestionListFormViewer;
+import com.example.vanguard.Pages.Activities.PitFormActivity;
+import com.example.vanguard.EventTeamListView;
+import com.example.vanguard.TeamListElement;
 import com.example.vanguard.R;
+
+import static com.example.vanguard.Pages.Activities.MatchFormActivity.TEAM_NUMBER;
 
 
 /**
@@ -36,7 +41,14 @@ public class PitScoutFragment extends Fragment {
 
 		LinearLayout layout = (LinearLayout) getView().findViewById(R.id.linear_layout);
 
-		PitScoutSelector selector = new PitScoutSelector(getActivity());
+		EventTeamListView selector = new EventTeamListView(getActivity(), new TeamListElement.TeamSelectedListener() {
+			@Override
+			public void teamSelected(Context context, int team) {
+				Intent intent = new Intent(context, PitFormActivity.class);
+				intent.putExtra(TEAM_NUMBER, Integer.valueOf(team));
+				context.startActivity(intent);
+			}
+		});
 		layout.addView(selector);
 	}
 }

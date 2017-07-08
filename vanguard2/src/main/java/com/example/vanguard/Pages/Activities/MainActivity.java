@@ -1,10 +1,12 @@
 package com.example.vanguard.Pages.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.vanguard.DatabaseManager;
@@ -49,7 +52,6 @@ public class MainActivity extends AppCompatActivity
 
 		this.databaseManager = new DatabaseManager(getApplicationContext());
 		System.out.println("Started");
-//		this.databaseManager.addEvent("2016nytr");
 	}
 
     @Override
@@ -57,7 +59,9 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        } else if (getFragmentManager().getBackStackEntryCount() > 0) {
+			getFragmentManager().popBackStack();
+		} else {
             super.onBackPressed();
         }
     }
@@ -106,8 +110,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setView(Fragment fragment) {
-		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.fragment_holder, fragment).commit();
+		setFragment(fragment, R.id.fragment_holder, this);
 
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawer.closeDrawer(GravityCompat.START);
@@ -117,5 +120,18 @@ public class MainActivity extends AppCompatActivity
 	public void setTitle(CharSequence title) {
 		TextView titleTextView = (TextView) findViewById(R.id.title);
 		titleTextView.setText(title);
+	}
+
+	public static void setFragment(Fragment fragment, int fragmentHolder, Activity activity) {
+		MainActivity.setFragmentSave(fragment, fragmentHolder, activity, true);
+
+	}
+
+	public static void setFragmentSave(Fragment fragment, int fragmentHolder, Activity activity, boolean saveFragment) {
+		FragmentManager fragmentManager = activity.getFragmentManager();
+		if (saveFragment)
+			fragmentManager.beginTransaction().replace(fragmentHolder, fragment).addToBackStack("fragment" + fragment.toString()).commit();
+		else
+			fragmentManager.beginTransaction().replace(fragmentHolder, fragment).commit();
 	}
 }

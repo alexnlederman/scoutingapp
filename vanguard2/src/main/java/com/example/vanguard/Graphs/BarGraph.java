@@ -54,13 +54,18 @@ public class BarGraph extends BarChart implements Graph{
 				System.out.println("Y: " + entry.getY());
 				barEntries.add(new BarEntry(entry.getX(), entry.getY(), entry.getData()));
 			}
-
-			BarDataSet dataSet = new BarDataSet(barEntries, question.getLabel());
-			barGraphData.add(dataSet);
+			if (barEntries.size() > 0) {
+				BarDataSet dataSet = new BarDataSet(barEntries, question.getLabel());
+				barGraphData.add(dataSet);
+			}
 		}
-		BarData data = new BarData(barGraphData);
-		data.setBarWidth(0.45f);
-		this.setData(data);
+		if (barGraphData.size() > 0) {
+			BarData data = new BarData(barGraphData);
+			data.setBarWidth(0.45f);
+			this.setData(data);
+		}
+		else
+			this.setData(null);
 		this.getXAxis().setDrawGridLines(false);
 		this.getXAxis().setDrawLabels(false);
 
