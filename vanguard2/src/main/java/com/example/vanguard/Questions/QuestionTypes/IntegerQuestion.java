@@ -52,7 +52,13 @@ public class IntegerQuestion extends Question<Integer> {
 
 	@Override
 	public Integer getValue() {
-		return (this.answerUI == null) ? 0 : this.answerUI.getValue();
+		System.out.println("ANSWER UI VALUE: " + this.answerUI.getValue());
+		Integer value = 0;
+		if (this.answerUI != null)
+			value = this.answerUI.getValue();
+		System.out.println("THE VALUE: " + value);
+
+		return value;
 	}
 
 	@Override

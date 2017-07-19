@@ -364,7 +364,9 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 	}
 
 	public boolean hasValue() {
-		return this.getValue() != defaultValue && !this.getValue().equals(defaultValue);
+		T value = this.getValue();
+		System.out.println("Current Value: " + value);
+		return value != defaultValue && !value.equals(defaultValue);
 	}
 
 	public boolean isPracticeMatchQuestion() {
