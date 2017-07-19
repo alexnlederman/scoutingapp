@@ -11,120 +11,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a56f61f0-db3f-4be6-8d02-64220dbc025a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/libs/MPAndroidChart-v3.0.2-sources.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/MPAndroidChart_v3_0_2_sources.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUITextView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/ErrorTextView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/PracticeMatchScoutButton.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/TeamListProgressElement.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/EnumName.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AbstractActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AddQuestionActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/NavDrawerFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/DialogFragments/ConfirmationDialogFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/PitTeamListView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Properties/QuestionProperty.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Properties/SimpleQuestionProperty.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleIntegerQuestion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/MatchTeamNumberQuestion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/PitTeamNumberQuestion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/drawable/team_progress_bar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_add_question.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/dialog_confirm_delete_question.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/dialog_confirm_delete_response.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/marker_single_response.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/tabbed_toolbar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/toolbar.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/TeamNumberQuestion.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/app_bar_main.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/AddEventDialogFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/DialogFragments/AddEventDialogFragment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/CustomNumberPicker.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUICustomNumberPicker.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/SetEventDialogFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/DialogFragments/SetEventDialogFragment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/TeamListElement.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/TeamListElement.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/event_picker_dialog.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/dialog_event_picker.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/marker_basic_layout.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/marker_all_team_graph.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/number_picker_dialog.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/dialog_number_picker.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/set_event_dialog.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/dialog_set_event.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/fileContent/annotation-processors.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/fileContent/annotation-processors.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/fileContent/fileContent.lock" afterPath="$PROJECT_DIR$/.gradle/3.4/fileContent/fileContent.lock" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_team_graph_viewer.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/classAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/jarAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/jarAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/javaCompile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/taskHistory.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/taskJars.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/taskJars.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/jvmClassSignatures.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/jvmClassSignatures.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/MPAndroidChart_v3_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/MPAndroidChart_v3_0_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/couchbase_lite_android_1_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/couchbase_lite_android_1_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/couchbase_lite_android_sqlite_custom_1_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/couchbase_lite_android_sqlite_custom_1_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/draglinearlayout_1_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/draglinearlayout_1_1_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/build.gradle" afterPath="$PROJECT_DIR$/vanguard2/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/DatabaseManager.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/DatabaseManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/EventTeamListView.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/EventTeamListView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/BarGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/BarGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/Graph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/Graph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphDescriber.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphDescriber.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphEditor.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphEditor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/LineGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/LineGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MatchScoutQualUI.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MatchScoutQualUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MatchScoutSelector.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MatchScoutSelector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AddGraphActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AddGraphActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/GraphSettingsActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/GraphSettingsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/MainActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/MatchFormActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/MatchFormActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/PitFormActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/PitFormActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/ScoutSettingsActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/ScoutSettingsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/SettingsActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/SettingsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/AddGraphFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/AddGraphFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/AllTeamGraphFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/AllTeamGraphFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphTeamSelectorFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphTeamSelectorFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphingFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphingFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/MatchScoutSelectorFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/MatchScoutSelectorFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/PitScoutFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/PitScoutFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/ScoutSettingsFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/ScoutSettingsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/ScoutingFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/ScoutingFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/SetGraphQuestionsFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/SetGraphQuestionsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/TeamGraphFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/TeamGraphFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/TeamGraphViewerFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/TeamGraphViewerFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Answer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Answer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/AnswerList.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/AnswerList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Label.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Label.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Question.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Question.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/IntegerQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/IntegerQuestion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/MatchNumberQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/MatchNumberQuestion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/StringQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/StringQuestion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/CheckBoxQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/CheckBoxQuestionViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/FormQuestionViewers/SingleLineFormQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/FormQuestionViewers/SingleLineFormQuestionViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionEditorViewers/TwoLineEditQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionEditorViewers/TwoLineEditQuestionViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListEditViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListEditViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListFormViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListFormViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/SimpleFormQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/SimpleFormQuestionViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Responses/Response.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Responses/Response.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Responses/SimpleResponse.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Responses/SimpleResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_fragment_holder.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_fragment_holder.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_match_form.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_match_form.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_pit_form.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_pit_form.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_scout_settings.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_scout_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_settings.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/blank_fragment.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/blank_fragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/content_settings.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/content_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_add_graph.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_add_graph.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/menu/activity_main_drawer.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/menu/activity_main_drawer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/values/styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/vanguard2.iml" afterPath="$PROJECT_DIR$/vanguard2/vanguard2.iml" />
     </list>
     <ignored path="Vanguard.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -189,11 +85,67 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuestionListEditViewer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="QuestionListEditViewer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListEditViewer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="98" column="39" selection-start-line="98" selection-start-column="39" selection-end-line="98" selection-end-column="39" />
+            <state relative-caret-position="328">
+              <caret line="92" column="9" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphingFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphingFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="64" column="37" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
+              <folding>
+                <element signature="e#1346#1347#0" expanded="true" />
+                <element signature="e#1373#1374#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TeamGraphFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/TeamGraphFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphTeamSelectorFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphTeamSelectorFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="500">
+              <caret line="36" column="55" selection-start-line="36" selection-start-column="55" selection-end-line="36" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TeamGraphViewerFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/TeamGraphViewerFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="569">
+              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_team_graph_viewer.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_team_graph_viewer.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="5" column="42" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -208,8 +160,8 @@
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
         <option value="Interface" />
-        <option value="layoutResourceFile_vertical" />
         <option value="Class" />
+        <option value="layoutResourceFile_vertical" />
       </list>
     </option>
   </component>
@@ -1994,8 +1946,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/set_event_dialog.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/nav_header_main.xml" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AbstractBackActivity.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AbstractActivity.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AddGraphActivity.java" />
@@ -2045,6 +1995,8 @@
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphManager.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListEditViewer.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_team_graph_viewer.xml" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/TeamGraphViewerFragment.java" />
       </list>
     </option>
   </component>
@@ -2118,6 +2070,38 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="scoutingapp" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scoutingapp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vanguard2" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scoutingapp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vanguard2" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2267,6 +2251,54 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="QuestionEditorViewers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scoutingapp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vanguard2" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vanguard" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fragments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scoutingapp" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vanguard2" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vanguard" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pages" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2777,48 +2809,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/menu/activity_main_drawer.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphingFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="39" column="28" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MatchScoutQualUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="749">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="56" column="61" selection-start-line="56" selection-start-column="61" selection-end-line="56" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/ScoutSettingsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="52" column="60" selection-start-line="52" selection-start-column="60" selection-end-line="52" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/SetGraphQuestionsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
@@ -3171,8 +3161,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListEditViewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="98" column="39" selection-start-line="98" selection-start-column="39" selection-end-line="98" selection-end-column="39" />
+        <state relative-caret-position="328">
+          <caret line="92" column="9" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphingFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="64" column="37" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
+          <folding>
+            <element signature="e#1346#1347#0" expanded="true" />
+            <element signature="e#1373#1374#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/TeamGraphFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphTeamSelectorFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="36" column="55" selection-start-line="36" selection-start-column="55" selection-end-line="36" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_team_graph_viewer.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="42" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/TeamGraphViewerFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
           <folding />
         </state>
       </provider>

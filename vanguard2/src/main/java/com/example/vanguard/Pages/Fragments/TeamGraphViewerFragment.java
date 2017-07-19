@@ -29,12 +29,12 @@ public class TeamGraphViewerFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.marker_all_team_graph, container, false);
+		return inflater.inflate(R.layout.fragment_team_graph_viewer, container, false);
 	}
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-		LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.layout);
+		LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.fragment_graph_layout);
 		GraphViewer graphViewer = new GraphViewer(getActivity(), getArguments().getInt("team_number"));
 		if (graphViewer.getGraphCount() == 0)
 			layout.addView(new ErrorTextView(getActivity(), R.string.add_graph_error));
