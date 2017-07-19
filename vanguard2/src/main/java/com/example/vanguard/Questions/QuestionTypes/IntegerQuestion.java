@@ -47,6 +47,7 @@ public class IntegerQuestion extends Question<Integer> {
 
 	private void setup(Context context) {
 		this.context = context;
+		this.answerUI = new AnswerUICustomNumberPicker(this.context, getMinValue(), getMaxValue(), getIncrementation());
 	}
 
 	@Override
@@ -61,7 +62,10 @@ public class IntegerQuestion extends Question<Integer> {
 
 	@Override
 	public View getAnswerUI() {
-		return new AnswerUICustomNumberPicker(this.context, getMinValue(), getMaxValue(), getIncrementation());
+		this.answerUI.setMinValue(getMinValue());
+		this.answerUI.setMaxValue(getMaxValue());
+		this.answerUI.setIncremenation(getIncrementation());
+		return this.answerUI;
 	}
 
 	private Integer getMinValue() {

@@ -28,9 +28,9 @@ public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI
 
 	private final Button minusButton;
 
-	private final int minValue;
-	private final int maxValue;
-	private final int incremenation;
+	private int minValue;
+	private int maxValue;
+	private int incremenation;
 
 	/**
 	 * Creates a new CustomNumberPicker
@@ -162,5 +162,19 @@ public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI
 	private void setupLayout() {
 		LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(125 * (int) MainActivity.dpToPixels, LayoutParams.WRAP_CONTENT);
 		this.setLayoutParams(p);
+	}
+
+	public void setMinValue(int minValue) {
+		this.minValue = minValue;
+		this.setValue(getValue());
+	}
+
+	public void setMaxValue(int maxValue) {
+		this.maxValue = maxValue;
+		this.setValue(getValue());
+	}
+
+	public void setIncremenation(int incremenation) {
+		this.incremenation = incremenation;
 	}
 }
