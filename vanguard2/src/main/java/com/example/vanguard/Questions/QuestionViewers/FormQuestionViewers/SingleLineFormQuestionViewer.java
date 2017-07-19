@@ -31,7 +31,6 @@ public class SingleLineFormQuestionViewer extends SimpleFormQuestionViewer {
 	protected void setupLabelLayoutParams() {
 		LinearLayout.LayoutParams p = (LinearLayout.LayoutParams) this.labelTextView.getLayoutParams();
 		p.weight = 0.8f;
-		
 		this.labelTextView.setLayoutParams(p);
 	}
 

@@ -18,7 +18,7 @@ import com.example.vanguard.R;
  * A integer number text box with plus and minus buttons.
  * Created by BertTurtle on 4/23/2017.
  */
-public class CustomNumberPicker extends LinearLayout implements AnswerUI<Integer>{
+public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI<Integer>{
 
 	private final EditText numberPicker;
 
@@ -28,15 +28,23 @@ public class CustomNumberPicker extends LinearLayout implements AnswerUI<Integer
 
 	private final Button minusButton;
 
+	private final int minValue;
+	private final int maxValue;
+	private final int incremenation;
+
 	/**
 	 * Creates a new CustomNumberPicker
 	 * @param context Application context
 	 * {@inheritDoc}
 	 */
-	public CustomNumberPicker(Context context) {
+	public AnswerUICustomNumberPicker(Context context, int minValue, int maxValue, int incrementation) {
 		super(context);
 
 		this.setOrientation(LinearLayout.VERTICAL);
+
+		this.minValue = minValue;
+		this.maxValue = maxValue;
+		this.incremenation = incrementation;
 
 		this.numberPicker = new EditText(context);
 
@@ -61,7 +69,8 @@ public class CustomNumberPicker extends LinearLayout implements AnswerUI<Integer
 
 	private void setupNumberPicker() {
 		this.numberPicker.setInputType(InputType.TYPE_CLASS_NUMBER);
-		this.numberPicker.setText("0");
+
+		this.setValue(0);
 		this.numberPicker.setTextColor(ContextCompat.getColor(getContext(), R.color.textColor));
 		this.numberPicker.setGravity(Gravity.CENTER);
 		this.numberPicker.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.transparent));
@@ -86,14 +95,15 @@ public class CustomNumberPicker extends LinearLayout implements AnswerUI<Integer
 		this.minusButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				try {
-					setValue(getValue() - 1);
-				}
-				catch (Exception e) {
-					setValue(-1);
-				}
+				Integer value = getValue();
+				value = (value == null) ? getDefaultValue() : value;
+				setValue(value - incremenation);
 			}
 		});
+	}
+
+	private int getDefaultValue() {
+		return (this.minValue > 0) ? this.minValue : 0;
 	}
 
 	private void setupPlusButton() {
@@ -101,12 +111,9 @@ public class CustomNumberPicker extends LinearLayout implements AnswerUI<Integer
 		this.plusButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				try {
-					setValue(getValue() + 1);
-				}
-				catch (Exception e) {
-					setValue(1);
-				}
+				Integer value = getValue();
+				value = (value == null) ? getDefaultValue() : value;
+				setValue(value + incremenation);
 			}
 		});
 	}
@@ -118,7 +125,24 @@ public class CustomNumberPicker extends LinearLayout implements AnswerUI<Integer
 
 	@Override
 	public void setValue(Integer value) {
-		this.numberPicker.setText(String.valueOf(value));
+		System.out.println("Set Value: " + value);
+		System.out.println("Min: " + minValue);
+		System.out.println("Max: " + maxValue);
+		if (value == null) {
+			this.numberPicker.setText("");
+		}
+		else {
+			if (value > this.maxValue)
+				this.numberPicker.setText(String.valueOf(maxValue));
+			else if (value < this.minValue)
+				this.numberPicker.setText(String.valueOf(minValue));
+			else {
+				System.out.println("Set Value2: " + String.valueOf(value));
+				this.numberPicker.setText(String.valueOf(value));
+				System.out.println("New Value: " + this.numberPicker.getText());
+
+			}
+		}
 	}
 
 	/**
@@ -127,11 +151,15 @@ public class CustomNumberPicker extends LinearLayout implements AnswerUI<Integer
 	 */
 	@Override
 	public Integer getValue() {
-		return Integer.parseInt(this.numberPicker.getText().toString());
+		if (!this.numberPicker.getText().toString().equals("")) {
+			return Integer.parseInt(this.numberPicker.getText().toString());
+		}
+		else {
+			return null;
+		}
 	}
 
 	private void setupLayout() {
-//		this.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blueTeam));
 		LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(125 * (int) MainActivity.dpToPixels, LayoutParams.WRAP_CONTENT);
 		this.setLayoutParams(p);
 	}

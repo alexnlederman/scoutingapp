@@ -1,6 +1,7 @@
 package com.example.vanguard.Questions.QuestionViewers.QuestionEditorViewers;
 
 import android.content.Context;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.vanguard.Questions.Question;
@@ -19,6 +20,7 @@ public class TwoLineEditQuestionViewer extends SimpleQuestionEditViewer {
 
 	@Override
 	protected void setupLabelLayoutParams() {
-
+		LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		this.commentLinearLayout.setLayoutParams(p);
 	}
 }

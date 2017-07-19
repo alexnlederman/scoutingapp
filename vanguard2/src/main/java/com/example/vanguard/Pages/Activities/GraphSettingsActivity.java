@@ -1,49 +1,39 @@
 package com.example.vanguard.Pages.Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
-import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.CustomUIElements.ErrorTextView;
 import com.example.vanguard.Graphs.GraphEditor;
-import com.example.vanguard.Graphs.LineGraph;
-import com.example.vanguard.Questions.AnswerList;
-import com.example.vanguard.Questions.Question;
-import com.example.vanguard.Questions.QuestionViewers.QuestionListViewers.QuestionListFormViewer;
 import com.example.vanguard.R;
 
 /**
  * Created by mbent on 7/6/2017.
  */
 
-public class GraphSettingsActivity extends AppCompatActivity {
+public class GraphSettingsActivity extends AbstractActivity {
 
 	private final int ADD_GRAPH_MENU_ITEM = 1;
-	private final Context context = this;
+
+	public GraphSettingsActivity() {
+		super(R.layout.activity_match_form, R.string.graph_settings_page_title);
+	}
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_match_form);
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
-
-
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 		LinearLayout mainLayout = (LinearLayout) findViewById(R.id.linear_layout);
 
-		mainLayout.addView(new GraphEditor(this));
+		GraphEditor editor = new GraphEditor(this);
 
+		mainLayout.addView(editor);
 
+		mainLayout.addView(new ErrorTextView(this, R.string.add_graph_page_error));
 	}
 
 	@Override
@@ -61,12 +51,5 @@ public class GraphSettingsActivity extends AppCompatActivity {
 				startActivity(intent);
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public boolean onSupportNavigateUp() {
-		System.out.println("Back");
-		onBackPressed();
-		return true;
 	}
 }

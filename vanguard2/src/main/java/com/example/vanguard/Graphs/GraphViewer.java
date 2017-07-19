@@ -47,6 +47,10 @@ public class GraphViewer extends ListView {
 		this.setAdapter(new GraphAdapter(graphs));
 	}
 
+	public int getGraphCount() {
+		return this.graphs.size();
+	}
+
 	public class GraphAdapter extends ArrayAdapter<Graph> {
 
 		List<Graph> graphs;

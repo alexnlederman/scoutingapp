@@ -38,4 +38,11 @@
 		app:title="Setup Question Graphs"
 		app:description="Set the current stuff. Yada yada yada. "/>
 
+	<com.example.vanguard.CustomUIElements.SettingsView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/export_responses"
+		app:title="Save Data To CSV"
+		app:description="Set the current stuff. Yada yada yada. "/>
+
 </LinearLayout>

@@ -53,4 +53,14 @@
 		<item name="android:background">@color/blueTeam</item>
 	</style>
 
+	<style name="customProgressBar" parent="@android:style/Widget.SeekBar">
+		<item name="android:indeterminateOnly">false</item>
+		<item name="android:progressDrawable">@android:drawable/progress_horizontal</item>
+		<item name="android:indeterminateDrawable">@android:drawable/progress_horizontal</item>
+		<item name="android:minHeight">25dip</item>
+		<item name="android:maxHeight">25dip</item>
+		<item name="android:progressTint">@color/progressBar</item>
+		<item name="android:progressBackgroundTint">@color/transparent</item>
+	</style>
+
 </resources>

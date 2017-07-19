@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.example.vanguard.CustomUIElements.ErrorTextView;
 import com.example.vanguard.Graphs.BarGraph;
 import com.example.vanguard.Graphs.GraphViewer;
 import com.example.vanguard.Graphs.LineGraph;
@@ -36,11 +37,15 @@ public class AllTeamGraphFragment extends Fragment {
 //		AnswerList<Question> questions = new AnswerList<>();
 //		questions.add(MainActivity.databaseManager.getMatchQuestions().get(0));
 //		questions.add(MainActivity.databaseManager.getMatchQuestions().get(1));
-//		LineGraph graph = new LineGraph(getActivity(), questions, 5940);
+//		LineGraph graphView = new LineGraph(getActivity(), questions, 5940);
 //		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//		graph.setLayoutParams(params);
+//		graphView.setLayoutParams(params);
+
 
 		GraphViewer viewer = new GraphViewer(getActivity());
-		layout.addView(viewer);
+		if (viewer.getGraphCount() == 0)
+			layout.addView(new ErrorTextView(getActivity(), R.string.add_graph_error));
+		else
+			layout.addView(viewer);
 	}
 }

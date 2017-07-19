@@ -1,4 +1,4 @@
-package com.example.vanguard;
+package com.example.vanguard.Pages.Fragments.DialogFragments;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -6,20 +6,16 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.vanguard.Pages.Activities.MainActivity;
+import com.example.vanguard.R;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -44,7 +40,7 @@ public class SetEventDialogFragment extends DialogFragment {
 		LayoutInflater inflater = getActivity().getLayoutInflater();
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-		View v = inflater.inflate(R.layout.set_event_dialog, null);
+		View v = inflater.inflate(R.layout.dialog_set_event, null);
 		final RadioGroup radioGroup = (RadioGroup) v.findViewById(R.id.radio_group);
 		final List<RadioButton> buttons = new ArrayList<>();
 

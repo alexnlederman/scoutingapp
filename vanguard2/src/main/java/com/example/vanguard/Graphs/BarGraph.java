@@ -38,79 +38,14 @@ import java.util.List;
 
 public class BarGraph extends BarChart implements Graph{
 
-	AnswerList<Question> questions;
+	AnswerList<? extends Question> questions;
 
-	public BarGraph(Context context, AnswerList<Question> questions) {
+	public BarGraph(Context context, AnswerList<? extends Question> questions) {
 		super(context);
 
 		this.questions = questions;
 
-		List<IBarDataSet> barGraphData = new ArrayList<>();
-		for (Question question : this.questions) {
-			List<Entry> entries = question.getAllTeamEntryResponseValues();
-			List<BarEntry> barEntries = new ArrayList<>();
-			for (Entry entry : entries) {
-				System.out.println("X: " + entry.getX());
-				System.out.println("Y: " + entry.getY());
-				barEntries.add(new BarEntry(entry.getX(), entry.getY(), entry.getData()));
-			}
-			if (barEntries.size() > 0) {
-				BarDataSet dataSet = new BarDataSet(barEntries, question.getLabel());
-				barGraphData.add(dataSet);
-			}
-		}
-		if (barGraphData.size() > 0) {
-			BarData data = new BarData(barGraphData);
-			data.setBarWidth(0.45f);
-			this.setData(data);
-		}
-		else
-			this.setData(null);
-		this.getXAxis().setDrawGridLines(false);
-		this.getXAxis().setDrawLabels(false);
-
-//		this.getXAxis().setValueFormatter(new LabelValueFormatter());
-		if (questions.size() > 1)
-			this.groupBars(0, 0.06f, 0.02f);
-//		this.setFitBars(true);
-		this.invalidate();
-		this.setMarker(new Marker(context, R.layout.marker_basic_layout));
-
-		ListView.LayoutParams layoutParams = new ListView.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		this.setLayoutParams(layoutParams);
-	}
-
-	public class Marker extends MarkerView {
-
-		TextView textView;
-
-		public Marker(Context context, int layoutResource) {
-			super(context, layoutResource);
-			LinearLayout layout = (LinearLayout) this.findViewById(R.id.layout);
-			this.textView = new TextView(context);
-			this.textView.setTextColor(ContextCompat.getColor(context, R.color.textColor));
-			layout.addView(this.textView);
-		}
-
-		@Override
-		public void refreshContent(Entry e, Highlight highlight) {
-			this.textView.setText("Team: " + e.getData());
-
-			super.refreshContent(e, highlight);
-		}
-
-		private MPPointF mOffset;
-
-		@Override
-		public MPPointF getOffset() {
-
-			if(mOffset == null) {
-				// center the marker horizontally and vertically
-				mOffset = new MPPointF(-(getWidth() / 2), -getHeight());
-			}
-
-			return mOffset;
-		}
+		GraphManager.setupBarGraph(this, questions, context);
 	}
 
 	@Override
@@ -124,7 +59,11 @@ public class BarGraph extends BarChart implements Graph{
 	}
 
 	@Override
-	public AnswerList<Question> getGraphQuestions() {
+	public AnswerList<? extends Question> getGraphQuestions() {
 		return this.questions;
+	}
+
+	public boolean isShowingMarker() {
+		return mMarker != null && isDrawMarkersEnabled() && valuesToHighlight();
 	}
 }

@@ -1,5 +1,12 @@
 package com.example.vanguard.Questions;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+
+import com.example.vanguard.Responses.Response;
+
 import java.util.ArrayList;
 
 /**
@@ -43,5 +50,27 @@ public class AnswerList<T extends Answer> extends ArrayList<T> {
 			}
 		}
 		return false;
+	}
+
+	public AnswerList<T> getMatchAnswers(int matchNumber) {
+		AnswerList<T> matchAnswers = new AnswerList<>();
+		for (T answer : this) {
+			if (answer.getMatchNumber() == matchNumber) {
+				matchAnswers.add(answer);
+
+			}
+		}
+
+		return matchAnswers;
+	}
+
+	public AnswerList<T> getTeamAnswers(int teamNumber) {
+		AnswerList<T> teamAnswers = new AnswerList<>();
+		for (T answer : this) {
+			if (answer.getTeamNumber() == teamNumber) {
+				teamAnswers.add(answer);
+			}
+		}
+		return teamAnswers;
 	}
 }

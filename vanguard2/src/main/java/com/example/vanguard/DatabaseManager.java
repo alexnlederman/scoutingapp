@@ -1,8 +1,10 @@
 package com.example.vanguard;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.couchbase.lite.CouchbaseLiteException;
@@ -23,13 +25,15 @@ import com.example.vanguard.Graphs.BarGraph;
 import com.example.vanguard.Graphs.Graph;
 import com.example.vanguard.Graphs.GraphDescriber;
 import com.example.vanguard.Graphs.LineGraph;
-import com.example.vanguard.Questions.Answer;
 import com.example.vanguard.Questions.AnswerList;
+import com.example.vanguard.Questions.Properties.QuestionProperty;
+import com.example.vanguard.Questions.Properties.SimpleQuestionProperty;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Questions.QuestionTypes.IntegerQuestion;
 import com.example.vanguard.Questions.QuestionTypes.MatchNumberQuestion;
+import com.example.vanguard.Questions.QuestionTypes.PitTeamNumberQuestion;
 import com.example.vanguard.Questions.QuestionTypes.StringQuestion;
-import com.example.vanguard.Questions.QuestionTypes.TeamNumberQuestion;
+import com.example.vanguard.Questions.QuestionTypes.MatchTeamNumberQuestion;
 import com.example.vanguard.Responses.Response;
 import com.example.vanguard.Responses.SimpleResponse;
 
@@ -65,10 +69,16 @@ public class DatabaseManager {
 	private final String question_type_key = "question_type";
 	private final String question_responses_key = "responses";
 	private final String question_index_key = "index";
+	private final String question_properties_key = "question_properties_key";
+
+	private final String question_property_name_key = "question_property_name_key";
+	private final String question_property_value_key = "question_property_value_key";
 
 	private final String response_value_key = "response_value";
 	private final String response_match_number_key = "match_number";
 	private final String response_team_number_key = "team_number";
+	private final String response_is_practice_match_key = "response_is_practice_match_key";
+	private final String response_event_key = "response_event_key";
 
 	public static final String event_key_key = "event_name";
 	public static final String event_match_number_key = "event_match_number";
@@ -108,7 +118,6 @@ public class DatabaseManager {
 	View pitQuestionView;
 	// Finds all of the responses for the pit questions and compiles them into a more accesible state.
 	// Hashmap of team numbers which go to a hashmap of their responses sorted by qual number, with the key being the response's question's id.
-	// TODO make this compile it to a more accesible state.
 	View matchResponseView;
 
 	// Finds the events the person is scouting.
@@ -122,20 +131,20 @@ public class DatabaseManager {
 
 	Database database;
 
-	Context context;
+	Activity context;
 
 	/**
 	 * Creates a new DatabaseManager. This sets up the whole database.
 	 * @param context the application context.
 	 */
-	public DatabaseManager(Context context) {
+	public DatabaseManager(Activity context) {
 		this.context = context;
 		Manager manager;
 		try {
 			// Finds the database.
 			manager = new Manager(new AndroidContext(this.context.getApplicationContext()), Manager.DEFAULT_OPTIONS);
 			// Can change string below to reset the database.
-			this.database = manager.getDatabase("app26");
+			this.database = manager.getDatabase("app31");
 
 			// Creates database views.
 			matchQuestionView = this.database.getView(match_questions_view);
@@ -160,11 +169,11 @@ public class DatabaseManager {
 	/**
 	 * Creates a new question in the database.
 	 * @param label The text for the question.
-	 * @param questionType The type of question. Should be a {@link com.example.vanguard.Questions.Question.QuestionTypes} enum.
+	 * @param questionType The type of question. Should be a {@link Question.QuestionType} enum.
 	 * @param isMatchQuestion Whether the question is used for match or pit scouting.
 	 * @return The {@link Question} object that was created.
 	 */
-	public Question createQuestion(String label, String questionType, boolean isMatchQuestion) {
+	public Question createQuestion(String label, String questionType, boolean isMatchQuestion, List<QuestionProperty> questionProperties) {
 
 		// Finds the index of the question.
 		int index;
@@ -175,12 +184,20 @@ public class DatabaseManager {
 			index = this.pitQuestionView.getTotalRows();
 		}
 
+		List<Map<String, Object>> propertyMapList = new ArrayList<>();
+		for (QuestionProperty property : questionProperties) {
+			Map<String, Object> map = new HashMap<>();
+			map.put(question_property_name_key, property.getName());
+			map.put(question_property_value_key, property.getValue());
+			propertyMapList.add(map);
+		}
+
 		// Creates a new document for question.
 		Document document = this.database.createDocument();
 
 		// Adds values to document.
 		try {
-			document.update(new QuestionCreator(label, index, questionType, isMatchQuestion));
+			document.update(new QuestionCreator(label, index, questionType, isMatchQuestion, propertyMapList));
 		} catch (CouchbaseLiteException e) {
 			e.printStackTrace();
 		}
@@ -257,25 +274,26 @@ public class DatabaseManager {
 	 */
 	public void saveResponses(AnswerList<Question> questions) {
 		// Loops through each question.
-		System.out.println("SAVING RESPONSES");
 		for (final Question question : questions) {
 
 			// Gets the current question document.
 			Document document = this.database.getDocument(question.getID());
-			// Saves the response of the question.
-			try {
-				document.update(new Document.DocumentUpdater() {
-					@Override
-					public boolean update(UnsavedRevision newRevision) {
-						Map<String, Object> properties = newRevision.getProperties();
-						properties.put(question_responses_key, getQuestionResponseHashmaps(question));
-						System.out.println("Save Size: " + getQuestionResponseHashmaps(question));
-						newRevision.setProperties(properties);
-						return true;
-					}
-				});
-			} catch (CouchbaseLiteException e) {
-				e.printStackTrace();
+
+			if (document != null) {
+				// Saves the response of the question.
+				try {
+					document.update(new Document.DocumentUpdater() {
+						@Override
+						public boolean update(UnsavedRevision newRevision) {
+							Map<String, Object> properties = newRevision.getProperties();
+							properties.put(question_responses_key, getQuestionResponseHashmaps(question));
+							newRevision.setProperties(properties);
+							return true;
+						}
+					});
+				} catch (CouchbaseLiteException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -297,6 +315,8 @@ public class DatabaseManager {
 			responseHashMap.put(response_value_key, response.getValue());
 			responseHashMap.put(response_match_number_key, response.getMatchNumber());
 			responseHashMap.put(response_team_number_key, response.getTeamNumber());
+			responseHashMap.put(response_is_practice_match_key, response.isPracticeMatchResponse());
+			responseHashMap.put(response_event_key, response.getEventKey());
 			responseHashMaps.add(responseHashMap);
 		}
 		return responseHashMaps;
@@ -333,7 +353,6 @@ public class DatabaseManager {
 				questionDocument.update(new Document.DocumentUpdater() {
 					@Override
 					public boolean update(UnsavedRevision newRevision) {
-						// TODO fix bug with this deleting incorrect question after being swapped.
 						Map<String, Object> prop = newRevision.getProperties();
 						prop.put(question_index_key, currentQuestionIndex - 1);
 						newRevision.setProperties(prop);
@@ -353,7 +372,7 @@ public class DatabaseManager {
 	public AnswerList<Question> getPitQuestions() {
 		AnswerList<Question> questions = createQuestionListFromQuery(this.pitQuestionView.createQuery());
 		if (questions.size() == 0) {
-			questions.add(createQuestion("Team Number", Question.QuestionTypes.TEAM_NUMBER.toString(), false));
+			questions.add(createQuestion("Team Number", Question.QuestionType.PIT_TEAM_NUMBER.toString(), false, new ArrayList<QuestionProperty>()));
 		}
 		return questions;
 	}
@@ -364,8 +383,8 @@ public class DatabaseManager {
 	public AnswerList<Question> getMatchQuestions() {
 		AnswerList<Question> questions = createQuestionListFromQuery(this.matchQuestionView.createQuery());
 		if (questions.size() == 0) {
-			questions.add(createQuestion("Match Number", Question.QuestionTypes.MATCH_NUMBER.toString(), true));
-			questions.add(createQuestion("Team Number", Question.QuestionTypes.TEAM_NUMBER.toString(), true));
+			questions.add(createQuestion("Match Number", Question.QuestionType.MATCH_NUMBER.toString(), true, new ArrayList<QuestionProperty>()));
+			questions.add(createQuestion("Team Number", Question.QuestionType.MATCH_TEAM_NUMBER.toString(), true, new ArrayList<QuestionProperty>()));
 		}
 		return questions;
 	}
@@ -400,24 +419,40 @@ public class DatabaseManager {
 	 * @return The {@link Question} object generated.
 	 */
 	private Question getQuestionVariable(Map<String, Object> map) {
-		Question question = null;
+//		Question question = null;
 		// Checks which question type it correspondse to and creates a Question from that.
-		boolean isMatchQuestion = map.get(question_type_key).equals(match_question_type);
-		switch (Question.QuestionTypes.valueOf((String) map.get(question_type_key))) {
-			case INTEGER:
-				question = new IntegerQuestion(this.context, (String) map.get(question_label_key), getQuestionMapResponses(map), (String) map.get("_id"), isMatchQuestion);
-				break;
-			case STRING:
-				question = new StringQuestion(this.context, (String) map.get(question_label_key), getQuestionMapResponses(map), (String) map.get("_id"), isMatchQuestion);
-				break;
-			case MATCH_NUMBER:
-				question = new MatchNumberQuestion(this.context, getQuestionMapResponses(map), (String) map.get("_id"));
-				break;
-			case TEAM_NUMBER:
-				question = new TeamNumberQuestion(this.context, getQuestionMapResponses(map), (String) map.get("_id"), isMatchQuestion);
-				break;
+		boolean isMatchQuestion = map.get(document_type_key).equals(match_question_type);
+//		switch (Question.QuestionType.valueOf((String) map.get(question_type_key))) {
+//			case INTEGER:
+//				question = new IntegerQuestion(this.context, (String) map.get(question_label_key), getQuestionMapResponses(map), (String) map.get("_id"), isMatchQuestion);
+//				break;
+//			case STRING:
+//				question = new StringQuestion(this.context, (String) map.get(question_label_key), getQuestionMapResponses(map), (String) map.get("_id"), isMatchQuestion);
+//				break;
+//			case MATCH_NUMBER:
+//				question = new MatchNumberQuestion(this.context, getQuestionMapResponses(map), (String) map.get("_id"));
+//				break;
+//			case MATCH_TEAM_NUMBER:
+//				question = new MatchTeamNumberQuestion(this.context, getQuestionMapResponses(map), (String) map.get("_id"));
+//				break;
+//			case PIT_TEAM_NUMBER:
+//				question = new PitTeamNumberQuestion(this.context, getQuestionMapResponses(map), (String) map.get("_id"));
+//				break;
+//		}
+
+		List<QuestionProperty> properties = getQuestionPropertiesFromMap((List<Map<String, Object>>) map.get(question_properties_key));
+
+		return Question.createQuestionByType(Question.QuestionType.valueOf((String) map.get(question_type_key)), (String) map.get(question_label_key), getQuestionMapResponses(map), isMatchQuestion, (String) map.get("_id"), this.context, properties);
+//		return question;
+	}
+
+	private List<QuestionProperty> getQuestionPropertiesFromMap(List<Map<String, Object>> propertyMaps) {
+		List<QuestionProperty> properties = new ArrayList<>();
+		for (Map<String, Object> map : propertyMaps) {
+			QuestionProperty property = new SimpleQuestionProperty(map.get(question_property_value_key), (String) map.get(question_property_name_key));
+			properties.add(property);
 		}
-		return question;
+		return properties;
 	}
 
 	/**
@@ -483,12 +518,14 @@ public class DatabaseManager {
 		int index;
 		String questionType;
 		boolean isMatchQuestion;
+		List<Map<String, Object>> propertyMaps;
 
-		public QuestionCreator(String label, int index, String questionType, boolean isMatchQuestion) {
+		public QuestionCreator(String label, int index, String questionType, boolean isMatchQuestion, List<Map<String, Object>> propertyMaps) {
 			this.label = label;
 			this.index = index;
 			this.questionType = questionType;
 			this.isMatchQuestion = isMatchQuestion;
+			this.propertyMaps = propertyMaps;
 		}
 
 		/**
@@ -510,6 +547,7 @@ public class DatabaseManager {
 			}
 			map.put(document_type_key, doc_type_key);
 			map.put(question_responses_key, new ArrayList<Map<String, Object>>());
+			map.put(question_properties_key, this.propertyMaps);
 			newRevision.setProperties(map);
 			return true;
 		}
@@ -519,7 +557,7 @@ public class DatabaseManager {
 	 * Gets the current event's key and name in that order.
 	 * @return An array of the events key then name.
 	 */
-	public List getCurrentEventInfo() {
+	private List getCurrentEventInfo() {
 		Query query = eventInfoView.createQuery();
 
 		query.setStartKey(true);
@@ -534,6 +572,32 @@ public class DatabaseManager {
 
 		QueryRow row = result.next();
 		return (row == null) ? null : (List) row.getValue();
+	}
+
+	public boolean isCurrentEventSet() {
+		return !getCurrentEventName().equals("");
+	}
+
+	public String getCurrentEventName() {
+		List info = getCurrentEventInfo();
+		if (info == null)
+			return "";
+		return (String) info.get(1);
+	}
+
+	public String getCurrentEventKey() {
+		List info = getCurrentEventInfo();
+		if (info == null)
+			return "";
+		return (String) info.get(0);
+	}
+
+	public List<Integer> getCurrentEventTeams() {
+		return getEventTeams(getCurrentEventKey());
+	}
+
+	public List<Map<String, Object>> getCurrentEventMatches() {
+		return getEventMatches(getCurrentEventKey());
 	}
 
 	public void setCurrentEvent(String eventName) {
@@ -743,7 +807,6 @@ public class DatabaseManager {
 		query.setStartKey(false);
 		query.setEndKey(false);
 		return getGraphs(query, teamNumber);
-		// TODO finish this method. Also find out how the graphs will be displayed to the user and create methods accordingly. Right now each graph will have a header with the question. Might not work because some have multiple questions.
 	}
 
 	public List<Graph> getAllTeamGraphs() {
@@ -778,14 +841,11 @@ public class DatabaseManager {
 		} catch (CouchbaseLiteException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Size: " + result.getCount());
 		List<GraphDescriber> graphDescribers = new ArrayList<>();
 		for (Iterator<QueryRow> it = result; it.hasNext();) {
 			QueryRow row = it.next();
-			System.out.println("New Graph");
 			Graph.GraphTypes graphType = Graph.GraphTypes.valueOf((String) ((List) row.getValue()).get(0));
 			List<String> graphQuestionIds = (List<String>) ((List) row.getValue()).get(1);
-			System.out.println("Id Size: " + graphQuestionIds.size());
 			String id = (String) ((List) row.getValue()).get(2);
 			graphDescribers.add(new GraphDescriber(context, getQuestionFromIds(graphQuestionIds), graphType, id));
 		}
@@ -878,7 +938,6 @@ public class DatabaseManager {
 		return teamKeys;
 	}
 
-	// TODO
 	public List<Map<String, Object>> getEventMatches(String event) {
 		Query query = eventMatchesView.createQuery();
 		List<Map<String, Object>> out = new ArrayList<>();
@@ -1033,7 +1092,7 @@ public class DatabaseManager {
 	}
 
 	private SimpleResponse getResponseFromMap(Map<String, Object> map) {
-		return new SimpleResponse(map.get(response_value_key), (int) map.get(response_match_number_key), (int) map.get(response_team_number_key));
+		return new SimpleResponse(map.get(response_value_key), (int) map.get(response_match_number_key), (int) map.get(response_team_number_key), (Boolean) map.get(response_is_practice_match_key), (String) map.get(response_event_key));
 	}
 
 	/**
@@ -1049,10 +1108,8 @@ public class DatabaseManager {
 			if (document.containsKey(document_type_key) && document.get(document_type_key).equals(match_question_type)) {
 				// Gets the responses.
 				ArrayList<Map<String, Object>> responses = (ArrayList<Map<String, Object>>) document.get(question_responses_key);
-				System.out.println("Response Size: " + responses.size());
 				for (int i = 0; i < responses.size(); i++) {
 					// Emits the responses by team number.
-					System.out.println("Loop: " + i + " : " + responses.get(i).get(response_team_number_key));
 					emitter.emit(responses.get(i).get(response_team_number_key), new Object[]{document.get("_id"), responses.get(i)});
 				}
 			}
@@ -1068,9 +1125,6 @@ public class DatabaseManager {
 			Map<String, List<Map<String, Object>>> teamResponses = new HashMap<>();
 
 			// Goes through the team numbers and the responses.
-			System.out.println("Key Size: " + keys.size());
-			System.out.println("Value Size: " + values.size());
-
 			for (int i = 0; i < keys.size();) {
 				// Gets the responses for current response question.
 				List<Map<String, Object>> responses = teamResponses.get(((List) values.get(i)).get(0));
@@ -1092,7 +1146,6 @@ public class DatabaseManager {
 				System.out.println("Size: " + keys.size());
 
 				if (keys.size() == i || currentTeamNumber != (int) keys.get(i)) {
-					// TODO sort team responses by qual.
 					// Adds the responses to the team number.
 					result.put(currentTeamNumber, teamResponses);
 					// Updates the team number.
@@ -1133,7 +1186,6 @@ public class DatabaseManager {
 	 * @param teamNumber The team number.
 	 */
 	public AnswerList<Response> getTeamMatchQuestionResponses(String id, int teamNumber) {
-		// TODO
 		Query matchResponseQuery = this.matchResponseView.createQuery();
 		AnswerList<Response> responses = new AnswerList<>();
 		List<Object> keys = new ArrayList<>();

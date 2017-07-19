@@ -11,5 +11,6 @@
 	<color name="navMenuButtons">#090909</color>
 	<color name="transparent">#00000000</color>
 	<color name="lightGrey">#999999</color>
+	<color name="progressBar">#30646464</color>
 
 </resources>

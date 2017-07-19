@@ -61,8 +61,6 @@ public class MatchScoutQualUI extends LinearLayout {
 		this.addView(mainView);
 	}
 
-	// TODO override back button so it leaves the form and goes back to the qual selector.
-
 	private TableRow setupTableRow(List<String> values) {
 		TableRow row = new TableRow(context);
 		for (String team : values) {

@@ -18,12 +18,12 @@ public class StringQuestion extends Question<String> {
 	private AnswerUIEditText answerUI;
 
 	public StringQuestion(Context context, String label, AnswerList<Response> responseList, String id, boolean isMatchQuestion) {
-		super(label, responseList, id, isMatchQuestion);
+		super(label, responseList, id, isMatchQuestion, ViewStyle.TWO_LINE, QuestionType.STRING, true, "");
 		setup(context);
 	}
 
 	public StringQuestion(Context context, String label, String id, boolean isMatchQuestion) {
-		super(label, id, isMatchQuestion);
+		super(label, id, isMatchQuestion, ViewStyle.TWO_LINE, QuestionType.STRING, true, "");
 		setup(context);
 	}
 
@@ -39,6 +39,11 @@ public class StringQuestion extends Question<String> {
 	}
 
 	@Override
+	public void setValue(String newValue) {
+		this.answerUI.setValue(newValue);
+	}
+
+	@Override
 	public View getAnswerUI() {
 		return this.answerUI;
 	}
@@ -46,20 +51,5 @@ public class StringQuestion extends Question<String> {
 	@Override
 	public float convertResponseToNumber(Response<String> response) {
 		return 1;
-	}
-
-	@Override
-	public ViewStyle getViewStyle() {
-		return ViewStyle.TWO_LINE;
-	}
-
-	@Override
-	public Question.QuestionTypes getQuestionType() {
-		return Question.QuestionTypes.STRING;
-	}
-
-	@Override
-	public Boolean isEditable() {
-		return true;
 	}
 }

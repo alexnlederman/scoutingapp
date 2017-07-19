@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.vanguard.CustomUIElements.PracticeMatchScoutButton;
 import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.Pages.Activities.MatchFormActivity;
 
@@ -43,13 +44,9 @@ public class MatchScoutSelector extends ListView {
 //		}
 		this.setDividerHeight(0);
 		this.context = context;
-		List<String> eventInfo = MainActivity.databaseManager.getCurrentEventInfo();
-		if (eventInfo != null) {
-			context.setTitle(eventInfo.get(1));
-			List<Map<String, Object>> eventMatches = MainActivity.databaseManager.getEventMatches(eventInfo.get(0));
-			ListAdapter listAdapter = new ListAdapter(eventMatches);
-			this.setAdapter(listAdapter);
-		}
+		List<Map<String, Object>> eventMatches = MainActivity.databaseManager.getCurrentEventMatches();
+		ListAdapter listAdapter = new ListAdapter(eventMatches);
+		this.setAdapter(listAdapter);
 	}
 
 	private class ListAdapter extends ArrayAdapter<Map<String, Object>> {
@@ -64,6 +61,10 @@ public class MatchScoutSelector extends ListView {
 		@NonNull
 		@Override
 		public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+			if (position == 0) {
+				return new PracticeMatchScoutButton(context);
+			}
+			position -= 1;
 			int qualNumber = (int) this.values.get(position).get(DatabaseManager.event_match_number_key);
 			List<String> blueTeamsList = (List<String>) this.values.get(position).get(DatabaseManager.event_match_blue_team);
 			List<String> redTeamsList = (List<String>) this.values.get(position).get(DatabaseManager.event_match_red_team);

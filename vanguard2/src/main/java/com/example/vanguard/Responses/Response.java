@@ -11,8 +11,8 @@ import java.io.Serializable;
 
 public interface Response<T> extends Answer<T> {
 
-	int getMatchNumber();
+	boolean isPracticeMatchResponse();
 
-	int getTeamNumber();
+	String getEventKey();
 
 }

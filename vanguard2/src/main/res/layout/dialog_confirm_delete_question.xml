@@ -16,11 +16,9 @@
 		android:contentDescription="@string/app_name"
 		android:id="@+id/title"/>
 
-	<NumberPicker
+	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:id="@+id/number_picker"
-		android:background="@color/transparent"></NumberPicker>
+		android:text="Are you sure you would like to delete this question. All of its responses will be lost. This cannot be undone. "/>
 
 </LinearLayout>

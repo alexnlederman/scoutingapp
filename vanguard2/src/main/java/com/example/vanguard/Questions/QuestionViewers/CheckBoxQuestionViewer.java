@@ -29,7 +29,7 @@ public class CheckBoxQuestionViewer extends MaterialLinearLayout {
 		this.addView(checkBox);
 
 		TextView label = new TextView(context);
-		label.setText(question.getLabel());
+		label.setText(question.getQualifiedLabel());
 		label.setTextColor(ContextCompat.getColor(context, R.color.textColor));
 		this.addView(label);
 	}

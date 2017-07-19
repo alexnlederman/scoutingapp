@@ -7,14 +7,14 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical">
+		android:orientation="vertical"
+		android:id="@+id/graph_layout">
 
 
 		<Spinner
 			android:id="@+id/spinner"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:entries="@array/GraphTypes"/>
+			android:layout_height="wrap_content"/>
 
 		<Button
 			android:layout_width="match_parent"

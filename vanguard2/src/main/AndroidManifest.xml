@@ -6,6 +6,8 @@
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
 	<application
 		android:allowBackup="true"
@@ -26,11 +28,13 @@
 		<activity
 			android:name=".Pages.Activities.MatchFormActivity"
 			android:label="@string/title_activity_match_form"
+			android:windowSoftInputMode="stateHidden"
 			android:theme="@style/AppTheme.NoActionBar">
 		</activity>
 		<activity
 			android:name=".Pages.Activities.PitFormActivity"
 			android:label="@string/title_activity_pit_form"
+			android:windowSoftInputMode="stateHidden"
 			android:theme="@style/AppTheme.NoActionBar">
 		</activity>
 		<activity
@@ -41,6 +45,7 @@
 		<activity
 			android:name=".Pages.Activities.ScoutSettingsActivity"
 			android:label="QuestionSettingsActivity"
+			android:windowSoftInputMode="stateHidden"
 			android:theme="@style/AppTheme.NoActionBar">
 		</activity>
 		<activity
@@ -51,6 +56,11 @@
 		<activity
 			android:name=".Pages.Activities.AddGraphActivity"
 			android:label="AddGraphActivity"
+			android:theme="@style/AppTheme.NoActionBar">
+		</activity>
+		<activity
+			android:name=".Pages.Activities.AddQuestionActivity"
+			android:label="AddQuestionActivity"
 			android:theme="@style/AppTheme.NoActionBar">
 		</activity>
 	</application>

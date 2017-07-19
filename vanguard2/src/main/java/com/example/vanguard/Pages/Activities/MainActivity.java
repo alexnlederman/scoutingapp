@@ -1,6 +1,7 @@
 package com.example.vanguard.Pages.Activities;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,93 +25,107 @@ import com.example.vanguard.Pages.Fragments.ScoutingFragment;
 import com.example.vanguard.R;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+		implements NavigationView.OnNavigationItemSelectedListener {
 
 
 	public static float dpToPixels;
 	public static DatabaseManager databaseManager;
 	Menu menu;
+	DrawerLayout drawer;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
 
 		MainActivity.dpToPixels = this.getResources().getDisplayMetrics().density;
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+		this.drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+				this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+		drawer.setDrawerListener(toggle);
+		toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+		final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+		navigationView.setNavigationItemSelectedListener(this);
 
 
-		this.databaseManager = new DatabaseManager(getApplicationContext());
-		System.out.println("Started");
+		this.databaseManager = new DatabaseManager(this);
+
+		getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+			@Override
+			public void onBackStackChanged() {
+				updateCheckItem(navigationView);
+			}
+		});
+
+		navigationView.getMenu().getItem(0).setChecked(true);
 	}
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (getFragmentManager().getBackStackEntryCount() > 0) {
-			getFragmentManager().popBackStack();
-		} else {
-            super.onBackPressed();
-        }
-    }
+	private void updateCheckItem(NavigationView navigationView) {
+		Fragment f = getFragmentManager().findFragmentById(R.id.fragment_holder);
+		if (f instanceof NavDrawerFragment) {
+			navigationView.setCheckedItem(((NavDrawerFragment) f).getNavDrawerPosition());
+		}
+	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.empty_menu, menu);
+	@Override
+	public void onBackPressed() {
+		if (this.drawer.isDrawerOpen(GravityCompat.START)) {
+			this.drawer.closeDrawer(GravityCompat.START);
+		} else {
+			super.onBackPressed();
+		}
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.empty_menu, menu);
 		this.menu = menu;
-		setView(new ScoutingFragment());
+		setFragmentSave(new ScoutingFragment(), R.id.fragment_holder, this, false);
 		getSupportActionBar().setTitle("Scouting");
 		return true;
-    }
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
 
-        return super.onOptionsItemSelected(item);
-    }
+		return super.onOptionsItemSelected(item);
+	}
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+	@Override
+	public boolean onNavigationItemSelected(MenuItem item) {
+		// Handle navigation view item clicks here.
 
-        int id = item.getItemId();
+		int id = item.getItemId();
 
 		Fragment fragment = null;
 
-        if (id == R.id.nav_data) {
-            setView(new GraphingFragment());
-        } else if (id == R.id.nav_schedule) {
-        } else if (id == R.id.nav_scout) {
+		if (id == R.id.nav_data) {
+			setView(new GraphingFragment());
+		} else if (id == R.id.nav_schedule) {
+		} else if (id == R.id.nav_scout) {
 			setView(new ScoutingFragment());
-        } else if (id == R.id.nav_settings) {
+		} else if (id == R.id.nav_settings) {
 			Intent intent = new Intent(this, SettingsActivity.class);
 			startActivity(intent);
 
-        } else if (id == R.id.nav_sync) {
+		} else if (id == R.id.nav_sync) {
 
-        }
-        return true;
-    }
+		}
+		return true;
+	}
 
-    private void setView(Fragment fragment) {
+	private void setView(Fragment fragment) {
 		setFragment(fragment, R.id.fragment_holder, this);
 
 		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

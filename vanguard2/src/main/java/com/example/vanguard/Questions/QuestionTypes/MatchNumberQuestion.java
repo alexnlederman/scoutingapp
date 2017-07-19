@@ -1,9 +1,9 @@
 package com.example.vanguard.Questions.QuestionTypes;
 
 import android.content.Context;
+import android.view.View;
 
 import com.example.vanguard.Questions.AnswerList;
-import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Responses.Response;
 
 /**
@@ -12,7 +12,7 @@ import com.example.vanguard.Responses.Response;
 
 public class MatchNumberQuestion extends IntegerQuestion {
 	public MatchNumberQuestion(Context context, String id) {
-		super(context, "Match Number?", id, true);
+		this(context, new AnswerList<Response>(), id);
 	}
 
 	public MatchNumberQuestion(Context context, int startingValue, String id) {
@@ -21,7 +21,9 @@ public class MatchNumberQuestion extends IntegerQuestion {
 	}
 
 	public MatchNumberQuestion(Context context, AnswerList<Response> responses, String id) {
-		super(context, "Match Number?", responses, id, true);
+		super(context, "Match Number", responses, id, null, true);
+		setMinValue(0);
+		setMaxValue(200);
 	}
 
 	public MatchNumberQuestion(Context context, int startingValue, AnswerList<Response> responses, String id) {
@@ -35,7 +37,13 @@ public class MatchNumberQuestion extends IntegerQuestion {
 	}
 
 	@Override
-	public Question.QuestionTypes getQuestionType() {
-		return Question.QuestionTypes.MATCH_NUMBER;
+	public QuestionType getQuestionType() {
+		return QuestionType.MATCH_NUMBER;
+	}
+
+	@Override
+	public View getAnswerUI() {
+		System.out.println("Answer UI Gotten: " + this.getLabel());
+		return super.getAnswerUI();
 	}
 }

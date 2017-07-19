@@ -1,6 +1,8 @@
 package com.example.vanguard.Pages.Activities;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -8,11 +10,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Adapter;
 
 import com.example.vanguard.Pages.Fragments.ScoutSettingsFragment;
 import com.example.vanguard.R;
@@ -21,21 +20,20 @@ import com.example.vanguard.R;
  * Created by mbent on 7/3/2017.
  */
 
-public class ScoutSettingsActivity extends AppCompatActivity {
+public class ScoutSettingsActivity extends AbstractActivity {
 
 	FragmentStatePagerAdapter adapter;
 	ViewPager viewPager;
+	Activity context;
+
+	public ScoutSettingsActivity() {
+		super(R.layout.activity_scout_settings, R.string.scout_setting_page_title);
+		this.context = this;
+	}
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		System.out.println("Set Content View");
-		setContentView(R.layout.activity_scout_settings);
-
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 		viewPager = (ViewPager) findViewById(R.id.view_pager);
 		adapter = new ScoutSettingsPageAdapter(getFragmentManager());
@@ -45,25 +43,27 @@ public class ScoutSettingsActivity extends AppCompatActivity {
 	}
 
 	private void setupMenu(Menu menu) {
-		MenuItem addStringQuestion = menu.add("Add String Question");
+		MenuItem addStringQuestion = menu.add("Add Question");
 		addStringQuestion.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 		addStringQuestion.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
-				getCurrentFragment().addStringQuestion();
+				Intent intent = new Intent(context, AddQuestionActivity.class);
+				intent.putExtra(AddQuestionActivity.is_match_question, getCurrentFragment().isMatchForm());
+				context.startActivity(intent);
 				return false;
 			}
 		});
 
-		MenuItem addIntegerQuestion = menu.add("Add Integer Question");
-		addIntegerQuestion.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-		addIntegerQuestion.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-			@Override
-			public boolean onMenuItemClick(MenuItem item) {
-				getCurrentFragment().addIntegerQuestion();
-				return false;
-			}
-		});
+//		MenuItem addIntegerQuestion = menu.add("Add Integer Question");
+//		addIntegerQuestion.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+//		addIntegerQuestion.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//			@Override
+//			public boolean onMenuItemClick(MenuItem item) {
+//				getCurrentFragment().addIntegerQuestion();
+//				return false;
+//			}
+//		});
 	}
 
 	@Override
@@ -103,12 +103,5 @@ public class ScoutSettingsActivity extends AppCompatActivity {
 
 	private ScoutSettingsFragment getCurrentFragment() {
 		return ((ScoutSettingsFragment) (adapter.instantiateItem(viewPager, viewPager.getCurrentItem())));
-	}
-
-	@Override
-	public boolean onSupportNavigateUp() {
-		System.out.println("Back");
-		onBackPressed();
-		return true;
 	}
 }

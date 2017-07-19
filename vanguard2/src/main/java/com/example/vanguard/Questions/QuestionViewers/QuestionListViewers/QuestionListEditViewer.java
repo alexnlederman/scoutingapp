@@ -1,14 +1,19 @@
 package com.example.vanguard.Questions.QuestionViewers.QuestionListViewers;
 
+import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Context;
+import android.os.Parcel;
+import android.support.annotation.IntDef;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.Pages.Activities.MainActivity;
+import com.example.vanguard.Pages.Fragments.DialogFragments.ConfirmationDialogFragment;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Questions.QuestionViewers.FormQuestionViewers.SingleLineFormQuestionViewer;
@@ -17,7 +22,12 @@ import com.example.vanguard.Questions.QuestionViewers.QuestionEditorViewers.Sing
 import com.example.vanguard.Questions.QuestionViewers.QuestionEditorViewers.TwoLineEditQuestionViewer;
 import com.example.vanguard.Questions.QuestionViewers.SimpleFormQuestionViewer;
 import com.example.vanguard.Questions.QuestionViewers.SimpleQuestionEditViewer;
+import com.example.vanguard.R;
+import com.example.vanguard.Responses.Response;
+import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
+
+import java.util.List;
 
 /**
  * Created by BertTurtle on 6/6/2017.
@@ -25,51 +35,30 @@ import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
 public class QuestionListEditViewer extends DragLinearLayout {
 
-	protected Context context;
-	protected DatabaseManager databaseManager;
+	protected Activity context;
 	protected boolean isMatchForm;
-	MenuItem addStringQuestion;
-	MenuItem addIntegerQuestion;
 
-	public QuestionListEditViewer(Context context, DatabaseManager databaseManager, boolean isMatchForm) {
+	public QuestionListEditViewer(Activity context, boolean isMatchForm) {
 		super(context);
 		this.context = context;
-		this.databaseManager = databaseManager;
 
 		this.isMatchForm = isMatchForm;
 
 		this.setOrientation(LinearLayout.VERTICAL);
 
 		this.setOnViewSwapListener(new OnSwapListener());
-
-		setupQuestions();
-	}
-
-	public void addStringQuestion() {
-		databaseManager.createQuestion("Enter Title Here", Question.QuestionTypes.STRING.toString(), isMatchForm);
-		setupQuestions();
-	}
-
-	public void addIntegerQuestion() {
-		databaseManager.createQuestion("Enter Title Here", Question.QuestionTypes.INTEGER.toString(), isMatchForm);
-		setupQuestions();
 	}
 
 	private void setupQuestions() {
 		this.removeAllViews();
 		final AnswerList<Question> questions;
 		if (isMatchForm)
-			questions = databaseManager.getMatchQuestions();
+			questions = MainActivity.databaseManager.getMatchQuestions();
 		else
-			questions = databaseManager.getPitQuestions();
+			questions = MainActivity.databaseManager.getPitQuestions();
 		for (final Question<?> question : questions) {
 			if (question.isEditable()) {
-				SimpleQuestionEditViewer questionViewer = null;
-				if (question.getViewStyle().equals(Question.ViewStyle.SINGLE_LINE)) {
-					questionViewer = new SingleLineEditQuestionViewer(this.context, question);
-				} else if (question.getViewStyle().equals(Question.ViewStyle.TWO_LINE)) {
-					questionViewer = new TwoLineEditQuestionViewer(this.context, question);
-				}
+				SimpleQuestionEditViewer questionViewer = question.getQuestionEditViewer(this.context);
 				questionViewer.getDeleteButton().setOnClickListener(new OnDeleteClickListener(question));
 				questionViewer.setEditTextWatcher(new TextWatcher() {
 					@Override
@@ -84,19 +73,13 @@ public class QuestionListEditViewer extends DragLinearLayout {
 
 					@Override
 					public void afterTextChanged(Editable s) {
-						databaseManager.setQuestionLabel(question, s.toString());
+						MainActivity.databaseManager.setQuestionLabel(question, s.toString());
 					}
 				});
 				this.addDragView(questionViewer, questionViewer);
 			}
 			else {
-				SimpleFormQuestionViewer questionViewer = null;
-				if (question.getViewStyle().equals(Question.ViewStyle.SINGLE_LINE)) {
-					questionViewer = new SingleLineFormQuestionViewer(this.context, question);
-				} else if (question.getViewStyle().equals(Question.ViewStyle.TWO_LINE)) {
-					questionViewer = new TwoLineFormQuestionViewer(this.context, question);
-				}
-				this.addView(questionViewer);
+				this.addView(question.getQuestionViewer(this.context));
 			}
 		}
 	}
@@ -111,9 +94,24 @@ public class QuestionListEditViewer extends DragLinearLayout {
 
 		@Override
 		public void onClick(View v) {
-//			System.out.println("Index: " + index);
-			databaseManager.deleteQuestion(question);
-			setupQuestions();
+			DialogFragment fragment = ConfirmationDialogFragment.newInstance(R.layout.dialog_confirm_delete_question, new ConfirmationDialogFragment.ConfirmDialogListener() {
+				@Override
+				public void confirm() {
+					MainActivity.databaseManager.deleteQuestion(question);
+					setupQuestions();
+				}
+
+				@Override
+				public int describeContents() {
+					return 0;
+				}
+
+				@Override
+				public void writeToParcel(Parcel dest, int flags) {
+
+				}
+			});
+			fragment.show(context.getFragmentManager(), "Event Selector");
 		}
 	}
 
@@ -121,8 +119,7 @@ public class QuestionListEditViewer extends DragLinearLayout {
 
 		@Override
 		public void onSwap(View firstView, int firstPosition, View secondView, int secondPosition) {
-			// TODO make this lag less.
-			databaseManager.swapQuestionIndexes(firstPosition, secondPosition, isMatchForm);
+			MainActivity.databaseManager.swapQuestionIndexes(firstPosition, secondPosition, isMatchForm);
 		}
 	}
 
@@ -130,5 +127,13 @@ public class QuestionListEditViewer extends DragLinearLayout {
 	protected void onAttachedToWindow() {
 		setupQuestions();
 		super.onAttachedToWindow();
+	}
+
+	@Override
+	protected void onWindowVisibilityChanged(int visibility) {
+		super.onWindowVisibilityChanged(visibility);
+		if (visibility == View.VISIBLE) {
+			setupQuestions();
+		}
 	}
 }

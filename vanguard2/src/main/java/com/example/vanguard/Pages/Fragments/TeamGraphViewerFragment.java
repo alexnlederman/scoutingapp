@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.example.vanguard.CustomUIElements.ErrorTextView;
 import com.example.vanguard.Graphs.GraphViewer;
 import com.example.vanguard.R;
 
@@ -28,12 +29,16 @@ public class TeamGraphViewerFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.marker_basic_layout, container, false);
+		return inflater.inflate(R.layout.marker_all_team_graph, container, false);
 	}
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.layout);
-		layout.addView(new GraphViewer(getActivity(), getArguments().getInt("team_number")));
+		GraphViewer graphViewer = new GraphViewer(getActivity(), getArguments().getInt("team_number"));
+		if (graphViewer.getGraphCount() == 0)
+			layout.addView(new ErrorTextView(getActivity(), R.string.add_graph_error));
+		else
+			layout.addView(graphViewer);
 	}
 }

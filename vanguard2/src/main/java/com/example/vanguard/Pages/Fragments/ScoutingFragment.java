@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.vanguard.Pages.Activities.MainActivity;
+import com.example.vanguard.Pages.Activities.NavDrawerFragment;
 import com.example.vanguard.R;
 
 
@@ -19,7 +21,7 @@ import com.example.vanguard.R;
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  */
-public class ScoutingFragment extends Fragment {
+public class ScoutingFragment extends Fragment implements NavDrawerFragment {
 
 
 	public ScoutingFragment() {
@@ -46,6 +48,15 @@ public class ScoutingFragment extends Fragment {
 		viewPager.setAdapter(new ScoutPagerAdapter(getChildFragmentManager()));
 		TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
 		tabLayout.setupWithViewPager(viewPager);
+
+		String eventName = MainActivity.databaseManager.getCurrentEventName();
+		if (!eventName.equals(""))
+			getActivity().setTitle(MainActivity.databaseManager.getCurrentEventName());
+	}
+
+	@Override
+	public int getNavDrawerPosition() {
+		return R.id.nav_scout;
 	}
 
 

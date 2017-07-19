@@ -29,7 +29,6 @@ import java.util.Set;
 public class SetGraphQuestionsFragment extends Fragment{
 
 	public static SetGraphQuestionsFragment newInstance(Graph.GraphTypes graphType) {
-
 		Bundle args = new Bundle();
 		args.putSerializable("type", graphType);
 		SetGraphQuestionsFragment fragment = new SetGraphQuestionsFragment();
@@ -52,6 +51,7 @@ public class SetGraphQuestionsFragment extends Fragment{
 		LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.linear_layout);
 
 		AnswerList<Question> questions = MainActivity.databaseManager.getMatchQuestions();
+//		AnswerList<Question> pitQuestions = MainActivity.databaseManager.getPitQuestions();
 
 
 		List<Class> compatibleClasses = new ArrayList<>();
@@ -59,6 +59,7 @@ public class SetGraphQuestionsFragment extends Fragment{
 
 		int min = 1;
 		int max = -1;
+		boolean includesPitQuestions = false;
 		switch (graphType) {
 			case LINE_GRAPH:
 				System.out.println("Line Graph");
@@ -67,15 +68,19 @@ public class SetGraphQuestionsFragment extends Fragment{
 			case BAR_GRAPH:
 				compatibleClasses.add(Object.class);
 				incompatibleClasses.add(String.class);
+				includesPitQuestions = true;
 				break;
 			case PIE_GRAPH:
 				max = 1;
+				// TODO this could be for both one team match questions and all team questions.
+				// TODO should be divided into all team pie graphView which would include numbers and pit questions. Also should have one just like this.
 				compatibleClasses.add(String.class);
 				break;
 			case SCATTER_GRAPH:
 				min = 2;
 				max = 2;
 				compatibleClasses.add(Number.class);
+				includesPitQuestions = true;
 				break;
 			case CANDLE_STICK_GRAPH:
 				max = 1;
@@ -85,9 +90,14 @@ public class SetGraphQuestionsFragment extends Fragment{
 				min = 3;
 				compatibleClasses.add(Object.class);
 				compatibleClasses.add(String.class);
+				includesPitQuestions = true;
 				break;
 		}
 //		questions.getAllOfType();
+
+		if (includesPitQuestions) {
+			questions.addAll(MainActivity.databaseManager.getPitQuestions());
+		}
 
 		for (Class type : compatibleClasses) {
 			questions = questions.getAllOfType(type);
@@ -107,7 +117,6 @@ public class SetGraphQuestionsFragment extends Fragment{
 			public void onClick(View v) {
 				int selectedAmount = selectorViewer.getAmountSelected();
 				if ((selectedAmount <= finalMax || finalMax == -1) && selectedAmount >= finalMin) {
-					System.out.println("Created Graph");
 					MainActivity.databaseManager.addGraph(graphType, selectorViewer.getSelectedQuestions());
 					getActivity().finish();
 				}
@@ -120,7 +129,6 @@ public class SetGraphQuestionsFragment extends Fragment{
 					}
 					Toast.makeText(getActivity(), text, Toast.LENGTH_LONG).show();
 				}
-
 			}
 		});
 		layout.addView(submitButton);

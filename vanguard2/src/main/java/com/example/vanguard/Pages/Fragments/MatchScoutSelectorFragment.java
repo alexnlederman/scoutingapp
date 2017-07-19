@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.example.vanguard.CustomUIElements.ErrorTextView;
 import com.example.vanguard.MatchScoutSelector;
+import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.R;
 
 /**
@@ -30,8 +32,11 @@ public class MatchScoutSelectorFragment extends Fragment {
 		super.onViewCreated(view, savedInstanceState);
 
 		LinearLayout layout = (LinearLayout) getView().findViewById(R.id.linear_layout);
-		MatchScoutSelector selector = new MatchScoutSelector((AppCompatActivity) getActivity());
-		layout.addView(selector);
-//		layout.addView(new QuestionListFormViewer(getContext(), MainActivity.databaseManager, true));
+		if (MainActivity.databaseManager.isCurrentEventSet()) {
+			MatchScoutSelector selector = new MatchScoutSelector((AppCompatActivity) getActivity());
+			layout.addView(selector);
+		}
+		else
+			layout.addView(new ErrorTextView(getActivity(), R.string.set_event_error));
 	}
 }

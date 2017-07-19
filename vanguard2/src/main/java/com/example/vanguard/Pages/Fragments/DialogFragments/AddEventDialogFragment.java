@@ -1,30 +1,24 @@
-package com.example.vanguard;
+package com.example.vanguard.Pages.Fragments.DialogFragments;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import com.example.vanguard.DatabaseManager;
 import com.example.vanguard.Pages.Activities.MainActivity;
+import com.example.vanguard.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,10 +29,8 @@ import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -63,7 +55,7 @@ public class AddEventDialogFragment extends DialogFragment {
 		LayoutInflater inflater = getActivity().getLayoutInflater();
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-		View v = inflater.inflate(R.layout.number_picker_dialog, null);
+		View v = inflater.inflate(R.layout.dialog_number_picker, null);
 		final NumberPicker numberPicker = (NumberPicker) v.findViewById(R.id.number_picker);
 
 		builder.setView(v).setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
@@ -113,12 +105,10 @@ public class AddEventDialogFragment extends DialogFragment {
 				return DatabaseManager.getUrlValue(params[0]);
 			} catch (SocketTimeoutException | UnknownHostException e) {
 				e.printStackTrace();
-				System.out.println("Socket Time Out");
 				return "NO_INTERNET";
 			}
 			catch (IOException e) {
 				e.printStackTrace();
-				System.out.println("Invalid Year");
 				return "INVALID_YEAR";
 			}
 		}
@@ -153,7 +143,6 @@ public class AddEventDialogFragment extends DialogFragment {
 		}
 	}
 
-	@SuppressLint("ValidFragment")
 	public class ChooseEventDialogFragment extends DialogFragment {
 
 		@Override
@@ -161,7 +150,7 @@ public class AddEventDialogFragment extends DialogFragment {
 			LayoutInflater inflater = getActivity().getLayoutInflater();
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-			View v = inflater.inflate(R.layout.event_picker_dialog, null);
+			View v = inflater.inflate(R.layout.dialog_event_picker, null);
 			final AutoCompleteTextView textView = (AutoCompleteTextView) v.findViewById(R.id.event_name);
 
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, 	eventMaps.keySet().toArray(new String[eventMaps.keySet().size()]));
@@ -181,8 +170,6 @@ public class AddEventDialogFragment extends DialogFragment {
 
 			return builder.create();
 		}
-
-		// TODO have this confirm a proper year. And have it add the event. And that they have internet.
 	}
 
 	public interface DialogOpener extends Parcelable {

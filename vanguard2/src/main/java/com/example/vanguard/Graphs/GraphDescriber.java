@@ -3,6 +3,7 @@ package com.example.vanguard.Graphs;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,5 +55,9 @@ public class GraphDescriber extends MaterialLinearLayout {
 		}
 
 		this.addView(layout);
+
+
+		LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		this.setLayoutParams(layoutParams);
 	}
 }

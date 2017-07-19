@@ -6,8 +6,8 @@ package com.example.vanguard.Questions;
 
 public interface Label {
 
-	public String getLabel();
+	String getLabel();
 
-	public void setLabel(String label);
+	void setLabel(String label);
 
 }

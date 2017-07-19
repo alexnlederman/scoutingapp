@@ -1,20 +1,8 @@
 package com.example.vanguard.Graphs;
 
-import com.example.vanguard.Pages.Fragments.SetGraphQuestionsFragment;
+import com.example.vanguard.EnumName;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
-import com.example.vanguard.Responses.Response;
-import com.github.mikephil.charting.data.ChartData;
-import com.github.mikephil.charting.data.DataSet;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by mbent on 7/3/2017.
@@ -22,7 +10,7 @@ import java.util.List;
 
 public interface Graph {
 
-	enum GraphTypes {
+	enum GraphTypes implements EnumName {
 		LINE_GRAPH("Line Graph", false),
 		BAR_GRAPH("Bar Graph", true),
 		GROUPED_BAR_GRAPH("Grouped Bar Graph", true),
@@ -46,11 +34,20 @@ public interface Graph {
 		public String getName() {
 			return this.text;
 		}
+
+		public static GraphTypes valueOfName(String graphName) {
+			for (GraphTypes type : GraphTypes.values())
+				if (type.getName().equals(graphName))
+					return type;
+			return null;
+		}
 	}
 
 	GraphTypes getGraphType();
 
 	boolean isAllTeamGraph();
 
-	AnswerList<Question> getGraphQuestions();
+	AnswerList<? extends Question> getGraphQuestions();
+
+	boolean isShowingMarker();
 }

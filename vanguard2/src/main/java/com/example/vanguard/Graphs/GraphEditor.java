@@ -3,6 +3,7 @@ package com.example.vanguard.Graphs;
 import android.content.Context;
 import android.support.annotation.IntDef;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.vanguard.Pages.Activities.MainActivity;
@@ -14,10 +15,14 @@ import java.util.List;
  */
 
 public class GraphEditor extends LinearLayout {
+
 	public GraphEditor(Context context) {
 		super(context);
 
 		setOrientation(VERTICAL);
+
+		LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+		this.setLayoutParams(params);
 
 	}
 
@@ -38,6 +43,4 @@ public class GraphEditor extends LinearLayout {
 		if (visibility == View.VISIBLE)
 			this.updateGraphs();
 	}
-
-
 }

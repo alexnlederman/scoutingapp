@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.example.vanguard.CustomUIElements.ErrorTextView;
+import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.Pages.Activities.PitFormActivity;
 import com.example.vanguard.EventTeamListView;
-import com.example.vanguard.TeamListElement;
+import com.example.vanguard.CustomUIElements.TeamListElement;
+import com.example.vanguard.PitTeamListView;
 import com.example.vanguard.R;
 
 import static com.example.vanguard.Pages.Activities.MatchFormActivity.TEAM_NUMBER;
@@ -41,14 +44,18 @@ public class PitScoutFragment extends Fragment {
 
 		LinearLayout layout = (LinearLayout) getView().findViewById(R.id.linear_layout);
 
-		EventTeamListView selector = new EventTeamListView(getActivity(), new TeamListElement.TeamSelectedListener() {
-			@Override
-			public void teamSelected(Context context, int team) {
-				Intent intent = new Intent(context, PitFormActivity.class);
-				intent.putExtra(TEAM_NUMBER, Integer.valueOf(team));
-				context.startActivity(intent);
-			}
-		});
-		layout.addView(selector);
+		if (MainActivity.databaseManager.isCurrentEventSet()) {
+			PitTeamListView selector = new PitTeamListView(getActivity(), new TeamListElement.TeamSelectedListener() {
+				@Override
+				public void teamSelected(Context context, int team) {
+					Intent intent = new Intent(context, PitFormActivity.class);
+					intent.putExtra(TEAM_NUMBER, Integer.valueOf(team));
+					context.startActivity(intent);
+				}
+			});
+			layout.addView(selector);
+		}
+		else
+			layout.addView(new ErrorTextView(getActivity(), R.string.set_event_error));
 	}
 }

@@ -5,14 +5,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.vanguard.CustomUIElements.CustomNumberPicker;
+import com.example.vanguard.CustomUIElements.AnswerUICustomNumberPicker;
 import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
+import com.example.vanguard.Questions.QuestionTypes.PitTeamNumberQuestion;
 import com.example.vanguard.Questions.QuestionViewers.FormQuestionViewers.SingleLineFormQuestionViewer;
 import com.example.vanguard.Questions.QuestionViewers.FormQuestionViewers.TwoLineFormQuestionViewer;
 import com.example.vanguard.Questions.QuestionViewers.SimpleFormQuestionViewer;
-import com.example.vanguard.Responses.Response;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by BertTurtle on 6/5/2017.
@@ -23,23 +26,31 @@ public class QuestionListFormViewer extends LinearLayout {
 	private Activity context;
 	private Button submitButton;
 	private AnswerList<Question> questions;
+	private List<SimpleFormQuestionViewer> viewers;
 	private boolean isMatchForm;
-	private int teamNumber;
+	private boolean isPracticeMatch;
 
 	public QuestionListFormViewer(Activity context, int teamNumber) {
 		this(context, teamNumber, 0);
 		this.context = context;
 		this.isMatchForm = false;
-		this.teamNumber = teamNumber;
 		setupUI(teamNumber, 0);
 	}
 
-	public QuestionListFormViewer(Activity context, int teamNumber, int qualNumber) {
+	public QuestionListFormViewer(Activity context, int teamNumber, int matchNumber) {
 		super(context);
 		this.context = context;
 		this.isMatchForm = true;
 
-		setupUI(teamNumber, qualNumber);
+		setupUI(teamNumber, matchNumber);
+	}
+
+	public QuestionListFormViewer(Activity context) {
+		super(context);
+		this.isPracticeMatch = true;
+		this.context = context;
+		this.isMatchForm = true;
+		setupUI(0, 0);
 	}
 
 	private void setupUI(int teamNumber, int qualNumber) {
@@ -47,18 +58,24 @@ public class QuestionListFormViewer extends LinearLayout {
 
 		setupQuestions();
 
-		// TODO this code is nasty. Make there be a better way to get the match/team number questions and to set the value of an answer.
 		if (isMatchForm) {
-			((CustomNumberPicker) questions.get(0).getAnswerUI()).setValue(qualNumber);
-			((CustomNumberPicker) questions.get(1).getAnswerUI()).setValue(teamNumber);
+			setMatchScoutMatchNumberQuestionValue(qualNumber);
+			setMatchScoutTeamNumberQuestionValue(teamNumber);
 		}
-		else
-			((CustomNumberPicker) questions.get(0).getAnswerUI()).setValue(teamNumber);
+		else if (!isPracticeMatch)
+			((PitTeamNumberQuestion) questions.get(0)).setTeam(teamNumber);
+
+		if (!isMatchForm) {
+			for (Question question : this.questions) {
+				question.setTeamNumber(teamNumber);
+			}
+		}
 	}
 
 	private void setupQuestions() {
 		this.removeAllViews();
-		if (isMatchForm)
+		this.viewers = new ArrayList<>();
+		if (isMatchForm || isPracticeMatch)
 			this.questions = MainActivity.databaseManager.getMatchQuestions();
 		else
 			this.questions = MainActivity.databaseManager.getPitQuestions();
@@ -73,13 +90,11 @@ public class QuestionListFormViewer extends LinearLayout {
 			public void onClick(View v) {
 				v.setClickable(false);
 				for (Question question : questions) {
-					// TODO make these numbers be better than hard coded.
 					if (isMatchForm) {
-						question.setMatchNumber((int) questions.get(0).getValue());
-						question.setTeamNumber((int) questions.get(1).getValue());
+						question.setMatchNumber(getMatchScoutMatchNumberQuestionValue());
+						question.setTeamNumber(getMatchScoutTeamNumberQuestionValue());
+						question.setIsPracticeMatchQuestion(isPracticeMatch);
 					}
-					else
-						question.setTeamNumber((int) questions.get(0).getValue());
 					question.saveResponse();
 				}
 				MainActivity.databaseManager.saveResponses(questions);
@@ -89,21 +104,24 @@ public class QuestionListFormViewer extends LinearLayout {
 	}
 
 	private void addQuestion(Question question) {
-		SimpleFormQuestionViewer questionViewer = null;
-		if (question.getViewStyle().equals(Question.ViewStyle.SINGLE_LINE)) {
-			questionViewer = new SingleLineFormQuestionViewer(this.context, question);
-		}
-		else if (question.getViewStyle().equals(Question.ViewStyle.TWO_LINE)) {
-			questionViewer = new TwoLineFormQuestionViewer(this.context, question);
-		}
-		if (!isMatchForm) {
-			AnswerList<Response> currentResponses = question.getResponses();
-			for (Response response : currentResponses) {
-				if (response.getTeamNumber() == teamNumber) {
-					questionViewer.setValue(response.getValue());
-				}
-			}
-		}
-		this.addView(questionViewer);
+		SimpleFormQuestionViewer viewer = question.getQuestionViewer(this.context);
+		this.viewers.add(viewer);
+		this.addView(viewer);
+	}
+
+	private int getMatchScoutTeamNumberQuestionValue() {
+		return (int) this.viewers.get(1).getValue();
+	}
+
+	private int getMatchScoutMatchNumberQuestionValue() {
+		return (int) this.viewers.get(0).getValue();
+	}
+
+	private void setMatchScoutTeamNumberQuestionValue(int value) {
+		this.viewers.get(1).setValue(value);
+	}
+
+	private void setMatchScoutMatchNumberQuestionValue(int value) {
+		this.viewers.get(0).setValue(value);
 	}
 }

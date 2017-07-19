@@ -1,4 +1,4 @@
-package com.example.vanguard;
+package com.example.vanguard.CustomUIElements;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,20 +18,12 @@ import static com.example.vanguard.Pages.Activities.MatchFormActivity.TEAM_NUMBE
 
 public class TeamListElement extends RelativeLayout {
 
-	public TeamListElement(final Activity context, final Integer team, final TeamSelectedListener listener) {
+	public TeamListElement(final Activity context, final Integer team) {
 		super(context);
 		TextView textView = new TextView(context);
 		textView.setText(String.valueOf(team));
-		this.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				listener.teamSelected(context, Integer.valueOf(team));
-
-			}
-		});
 		textView.setTextSize(30);
 		this.addView(textView);
-		System.out.println("Created");
 	}
 
 	public interface TeamSelectedListener {

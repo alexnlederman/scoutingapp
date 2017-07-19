@@ -25,11 +25,5 @@ public class TeamGraphFragment extends Fragment {
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		MainActivity.setFragmentSave(new GraphTeamSelectorFragment(), R.id.fragment_fragment_holders, getActivity(), false);
-//		setView(new GraphTeamSelectorFragment());
-	}
-
-	private void setView(Fragment fragment) {
-		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.fragment_fragment_holders, fragment).commit();
 	}
 }
