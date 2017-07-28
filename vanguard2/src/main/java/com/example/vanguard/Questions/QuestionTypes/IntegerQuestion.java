@@ -52,11 +52,9 @@ public class IntegerQuestion extends Question<Integer> {
 
 	@Override
 	public Integer getValue() {
-		System.out.println("ANSWER UI VALUE: " + this.answerUI.getValue());
 		Integer value = 0;
 		if (this.answerUI != null)
 			value = this.answerUI.getValue();
-		System.out.println("THE VALUE: " + value);
 
 		return value;
 	}
@@ -94,7 +92,7 @@ public class IntegerQuestion extends Question<Integer> {
 		this.getQuestionProperties().get(max_value_index).setValue(newValue);
 	}
 
-	protected void getIncrementation(int newValue) {
+	protected void setIncrementation(int newValue) {
 		this.getQuestionProperties().get(incrementation_index).setValue(newValue);
 	}
 

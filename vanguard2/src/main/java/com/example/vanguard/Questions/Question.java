@@ -89,7 +89,7 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 			return this.label;
 		}
 
-//		public List<Map<String, String>> getOptions() {
+//		public List<Map<String, String>> getOptionTitles() {
 //			List<Map<String, String>> options = new ArrayList<>();
 //			options.add(createOptionsMap("Name", string_type));
 //			switch (this) {
@@ -137,11 +137,8 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 		String questionTitlePropertyName = "Question Title";
 
 		if (this.questionProperties.size() == 0 || !this.questionProperties.get(0).getName().equals(questionTitlePropertyName)) {
-			System.out.println("Added");
 			this.questionProperties.add(0, new SimpleQuestionProperty<>(label, questionTitlePropertyName));
 		}
-		if (this.questionProperties.size() != 0)
-			System.out.println("Title Property Name: " + this.questionProperties.get(0).getName());
 	}
 
 	public Question(String label, String id, boolean isMatchQuestion, ViewStyle viewStyle, QuestionType questionType, boolean isEditable, T defaultValue, QuestionProperty... properties) {
@@ -189,13 +186,15 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 		this.responses.remove(response);
 	}
 
+	public void resetResponses() {
+		this.responses = new AnswerList<>();
+	}
 
 	public void saveResponse() {
 		if (this.isMatchQuestion) {
 			saveValue();
 		} else if (this.hasValue()) {
 			AnswerList<Response<T>> teamResponse = this.getTeamResponses(this.teamNumber, false);
-			System.out.println("SIZE: " + teamResponse.size());
 			if (teamResponse.size() == 0) {
 				this.saveValue();
 			} else {
@@ -205,8 +204,7 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 					}
 				}
 			}
-		}
-		else {
+		} else {
 			AnswerList<Response<T>> teamResponse = this.getTeamResponses(this.teamNumber, false);
 			if (teamResponse.size() != 0) {
 				for (Response response : this.getResponses()) {
@@ -266,7 +264,7 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 	public abstract View getAnswerUI();
 
 	// Includes practice matches by default.
-	public List<Entry> getTeamEntryResponseValues(int teamNumber) {
+	public List<Entry> getTeamEntryResponseEntries(int teamNumber) {
 		List<Entry> entries = new ArrayList<>();
 		AnswerList<Response<T>> responses = this.getTeamResponses(teamNumber, true);
 		int practiceMatchOffset = -getGreatestPracticeMatchNumber(responses);
@@ -282,6 +280,24 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 		return entries;
 	}
 
+	public List<Float> getTeamResponseFloatValues(int teamNumber, boolean includePracticeMatches) {
+		List<Float> responseValues = new ArrayList<>();
+		AnswerList<Response<T>> responses = this.getTeamResponses(teamNumber, includePracticeMatches);
+		for (Response<T> response : responses) {
+			responseValues.add(this.convertResponseToNumber(response));
+		}
+		return responseValues;
+	}
+
+	public List<T> getTeamResponseValues(int teamNumber, boolean includePracticeMatches) {
+		List<T> responseValues = new ArrayList<>();
+		AnswerList<Response<T>> responses = this.getTeamResponses(teamNumber, includePracticeMatches);
+		for (Response<T> response : responses) {
+			responseValues.add(response.getValue());
+		}
+		return responseValues;
+	}
+
 	public int getGreatestPracticeMatchNumber(AnswerList<Response<T>> responses) {
 		int matchNumber = 0;
 		for (Response<T> response : responses) {
@@ -293,13 +309,13 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 	}
 
 	// Does not include practice matches by default.
-	public List<Entry> getAllTeamEntryResponseValues() {
+	public List<Entry> getAllTeamEntryResponseEntries(boolean includePracticeMatches) {
 		List<Entry> entries = new ArrayList<>();
-		List<AnswerList<Response<T>>> allResponses = getAllTeamResponses(false);
-		int i = 1;
+		List<Integer> teams = getEventTeams();
+		List<AnswerList<Response<T>>> allResponses = getAllTeamResponses(includePracticeMatches);
+		int i = 0;
 		for (AnswerList<Response<T>> teamResponses : allResponses) {
-			System.out.println("NOT NULL: " + teamResponses);
-			entries.add(new Entry(i, convertResponsesToNumber(teamResponses), teamResponses));
+			entries.add(new Entry(i, convertResponsesToNumber(teamResponses), teams.get(i)));
 			i++;
 		}
 		return entries;
@@ -325,7 +341,15 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 		return responses;
 	}
 
-	protected List<Integer> getEventTeams() {
+	public List<T> getAllTeamResponseValues(boolean includePracticeMatches) {
+		List<T> values = new ArrayList<>();
+		for (Response<T> response : this.getResponses()) {
+			values.add(response.getValue());
+		}
+		return values;
+	}
+
+	public List<Integer> getEventTeams() {
 		return MainActivity.databaseManager.getCurrentEventTeams();
 	}
 
@@ -365,7 +389,6 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 
 	public boolean hasValue() {
 		T value = this.getValue();
-		System.out.println("Current Value: " + value);
 		return value != defaultValue && !value.equals(defaultValue);
 	}
 

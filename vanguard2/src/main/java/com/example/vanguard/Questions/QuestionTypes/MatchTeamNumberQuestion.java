@@ -23,7 +23,7 @@ public class MatchTeamNumberQuestion extends IntegerQuestion {
 	public MatchTeamNumberQuestion(Context context, AnswerList<Response> responses, String id) {
 		super(context, "Team Number", responses, id, null, true);
 		setMinValue(0);
-		setMaxValue(90000);
+		setMaxValue(100000);
 	}
 
 	public MatchTeamNumberQuestion(Context context, int startingValue, AnswerList<Response> responses, String id) {

@@ -47,10 +47,8 @@ public class SetEventDialogFragment extends DialogFragment {
 		List<String> eventNames = MainActivity.databaseManager.getEventNames();
 		for (String eventName : eventNames) {
 			RadioButton button = createRadioButton(eventName);
-			System.out.println("Button Id1: " + button.getId());
 			radioGroup.addView(button);
 			buttons.add(button);
-			System.out.println("Button Id2: " + button.getId());
 		}
 
 		builder.setView(v).setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
@@ -70,7 +68,6 @@ public class SetEventDialogFragment extends DialogFragment {
 	}
 
 	private RadioButton createRadioButton(String text) {
-		System.out.println(context);
 		RadioButton button = new RadioButton(context);
 		button.setText(text);
 		int padding = Math.round(MainActivity.dpToPixels * 16);

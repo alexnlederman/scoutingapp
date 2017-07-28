@@ -43,7 +43,6 @@ public class GraphViewer extends ListView {
 	private void setupLayout() {
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 		this.setLayoutParams(params);
-		System.out.println("Graph Array Size: " + graphs.size());
 		this.setAdapter(new GraphAdapter(graphs));
 	}
 
@@ -63,8 +62,9 @@ public class GraphViewer extends ListView {
 		@NonNull
 		@Override
 		public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+			System.out.println("Position: " + graphs.get(position));
 			View graph = (View) graphs.get(position);
-			graph.setMinimumHeight(Math.round(MainActivity.dpToPixels * 200));
+//			graph.setMinimumHeight(Math.round(MainActivity.dpToPixels * 200));
 			return graph;
 		}
 	}

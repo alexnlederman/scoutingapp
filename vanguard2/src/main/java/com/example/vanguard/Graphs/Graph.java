@@ -1,34 +1,32 @@
 package com.example.vanguard.Graphs;
 
+import com.example.vanguard.CustomUIElements.SwitchOption;
 import com.example.vanguard.EnumName;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mbent on 7/3/2017.
  */
 
-public interface Graph {
+public interface Graph extends Serializable {
 
 	enum GraphTypes implements EnumName {
-		LINE_GRAPH("Line Graph", false),
-		BAR_GRAPH("Bar Graph", true),
-		GROUPED_BAR_GRAPH("Grouped Bar Graph", true),
-		PIE_GRAPH("Pie Chart", false),
-		SCATTER_GRAPH("Scatter Graph", true),
-		CANDLE_STICK_GRAPH("Candle Stick Graph", true),
-		RADAR_GRAPH("Radar Chart", false);
+		LINE_GRAPH("Line Graph"),
+		BAR_GRAPH("Bar Graph"),
+		PIE_GRAPH("Pie Chart"),
+		SCATTER_GRAPH("Scatter Graph"),
+		CANDLE_STICK_GRAPH("Candle Stick Graph"),
+		RADAR_GRAPH("Radar Chart");
 
 		private final String text;
-		private final boolean isAllTeamGraph;
 
-		GraphTypes(final String text, final boolean isAllTeamGraph) {
+		GraphTypes(final String text) {
 			this.text = text;
-			this.isAllTeamGraph = isAllTeamGraph;
-		}
-
-		public boolean isAllTeamGraph() {
-			return isAllTeamGraph;
 		}
 
 		public String getName() {
@@ -43,11 +41,7 @@ public interface Graph {
 		}
 	}
 
-	GraphTypes getGraphType();
+	String PRACTICE_MATCH_OPTION = "Include Practice Matches";
 
-	boolean isAllTeamGraph();
-
-	AnswerList<? extends Question> getGraphQuestions();
-
-	boolean isShowingMarker();
+	GraphDetails getGraphDetails();
 }

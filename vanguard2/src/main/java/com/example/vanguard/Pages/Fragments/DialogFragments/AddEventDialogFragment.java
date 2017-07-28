@@ -38,7 +38,7 @@ import java.util.Map;
  */
 public class AddEventDialogFragment extends DialogFragment {
 
-	Map<String, String> eventMaps;
+	HashMap<String, String> eventMaps;
 	Activity context;
 
 	public static AddEventDialogFragment newInstance(DialogOpener dialogOpener) {
@@ -61,9 +61,7 @@ public class AddEventDialogFragment extends DialogFragment {
 		builder.setView(v).setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				System.out.println("CONFIRMED");
 				int year = numberPicker.getValue();
-				System.out.println("Year: " + year);
 				try {
 					URL url = new URL("https://www.thebluealliance.com/api/v3/events/" + year + "/simple?X-TBA-Auth-Key=vVc9R5KHLDG2zkDgqFzRQRAFWBIPSSdyesezDG0m44p5yAiUBAz7qMasclG4Ua7a");
 					GetEventsAsync async = new GetEventsAsync();
@@ -93,7 +91,7 @@ public class AddEventDialogFragment extends DialogFragment {
 
 		@Override
 		protected void onPreExecute() {
-			progressDialog = new ProgressDialog(getContext());
+			progressDialog = new ProgressDialog(getActivity());
 			progressDialog.setMessage("Loading");
 			progressDialog.show();
 			super.onPreExecute();
@@ -124,8 +122,7 @@ public class AddEventDialogFragment extends DialogFragment {
 				Toast.makeText(context, "Please Connect To The Internet", Toast.LENGTH_LONG).show();
 				return;
 			}
-			System.out.println(s);
-			Map<String, String> eventMapList = new HashMap<>();
+			HashMap<String, String> eventMapList = new HashMap<>();
 			try {
 				JSONArray events = new JSONArray(s);
 				for (int i = 0; i < events.length(); i++) {
@@ -135,7 +132,7 @@ public class AddEventDialogFragment extends DialogFragment {
 				eventMaps = eventMapList;
 
 				DialogOpener opener = getArguments().getParcelable("dialog");
-				opener.openDialog(new ChooseEventDialogFragment());
+				opener.openDialog(ChooseEventDialogFragment.newInstance(eventMaps));
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -143,12 +140,24 @@ public class AddEventDialogFragment extends DialogFragment {
 		}
 	}
 
-	public class ChooseEventDialogFragment extends DialogFragment {
+	public static class ChooseEventDialogFragment extends DialogFragment {
+
+		public static ChooseEventDialogFragment newInstance(HashMap<String, String> eventMaps) {
+
+			Bundle args = new Bundle();
+			args.putSerializable("event", eventMaps);
+
+			ChooseEventDialogFragment fragment = new ChooseEventDialogFragment();
+			fragment.setArguments(args);
+			return fragment;
+		}
 
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 			LayoutInflater inflater = getActivity().getLayoutInflater();
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+			final HashMap<String, String> eventMaps = (HashMap<String, String>) getArguments().getSerializable("event");
 
 			View v = inflater.inflate(R.layout.dialog_event_picker, null);
 			final AutoCompleteTextView textView = (AutoCompleteTextView) v.findViewById(R.id.event_name);
@@ -160,10 +169,9 @@ public class AddEventDialogFragment extends DialogFragment {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					if (eventMaps.containsKey(textView.getText().toString())) {
-						System.out.println("Success");
-						MainActivity.databaseManager.addEvent(eventMaps.get(textView.getText().toString()), textView.getText().toString(), context);
+						MainActivity.databaseManager.addEvent(eventMaps.get(textView.getText().toString()), textView.getText().toString(), getActivity());
 					}
-					else Toast.makeText(context, "Please Select An Event From The Dropdown", Toast.LENGTH_LONG).show();
+					else Toast.makeText(getActivity(), "Please Select An Event From The Dropdown", Toast.LENGTH_LONG).show();
 				}
 			});
 

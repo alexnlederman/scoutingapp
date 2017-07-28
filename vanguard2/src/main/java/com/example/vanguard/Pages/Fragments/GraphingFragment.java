@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.Pages.Activities.NavDrawerFragment;
 import com.example.vanguard.R;
 
@@ -28,6 +29,7 @@ public class GraphingFragment extends Fragment implements NavDrawerFragment{
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+		((MainActivity) getActivity()).setupToolbar(MainActivity.ToolbarStyles.TABBED);
 		ViewPager viewPager = (ViewPager) getView().findViewById(R.id.view_pager);
 		viewPager.setAdapter(new GraphPagerAdapter(getChildFragmentManager()));
 		TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
@@ -57,7 +59,6 @@ public class GraphingFragment extends Fragment implements NavDrawerFragment{
 
 		@Override
 		public Fragment getItem(int position) {
-			System.out.println("Postition : " + position);
 			switch (position) {
 				case 0:
 					return new AllTeamGraphFragment();

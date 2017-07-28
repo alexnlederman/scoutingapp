@@ -43,12 +43,10 @@ public class AddQuestionActivity extends AbstractActivity {
 
 	public AddQuestionActivity() {
 		super(R.layout.activity_add_question, R.string.add_question_page_title);
-		System.out.println("Set content view: " + R.layout.activity_add_question);
 	}
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		System.out.println("On Create: " + this.contentView);
 		super.onCreate(savedInstanceState);
 
 		this.isMatchQuestion = getIntent().getExtras().getBoolean(is_match_question);
@@ -65,7 +63,7 @@ public class AddQuestionActivity extends AbstractActivity {
 				Question.QuestionType question = Question.QuestionType.valueOfName(text);
 
 
-//				List<Map<String, String>> questionOptions = question.getOptions();
+//				List<Map<String, String>> questionOptions = question.getOptionTitles();
 
 //				addOptions(questionOptions);
 
@@ -125,11 +123,7 @@ public class AddQuestionActivity extends AbstractActivity {
 				public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 					property.setValue(convertValueToType(s, property));
-					System.out.println("New Value: " + property.getValue());
 					List<QuestionProperty> properties = question.getQuestionProperties();
-					for (QuestionProperty prop : properties) {
-						System.out.println("Prop Values: " + prop.getValue());
-					}
 					questionPreview.refreshView();
 				}
 

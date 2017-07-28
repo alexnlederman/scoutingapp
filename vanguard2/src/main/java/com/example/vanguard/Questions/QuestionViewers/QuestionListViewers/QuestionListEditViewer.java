@@ -2,32 +2,19 @@ package com.example.vanguard.Questions.QuestionViewers.QuestionListViewers;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.os.Parcel;
-import android.support.annotation.IntDef;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.example.vanguard.DatabaseManager;
 import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.Pages.Fragments.DialogFragments.ConfirmationDialogFragment;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
-import com.example.vanguard.Questions.QuestionViewers.FormQuestionViewers.SingleLineFormQuestionViewer;
-import com.example.vanguard.Questions.QuestionViewers.FormQuestionViewers.TwoLineFormQuestionViewer;
-import com.example.vanguard.Questions.QuestionViewers.QuestionEditorViewers.SingleLineEditQuestionViewer;
-import com.example.vanguard.Questions.QuestionViewers.QuestionEditorViewers.TwoLineEditQuestionViewer;
-import com.example.vanguard.Questions.QuestionViewers.SimpleFormQuestionViewer;
 import com.example.vanguard.Questions.QuestionViewers.SimpleQuestionEditViewer;
 import com.example.vanguard.R;
-import com.example.vanguard.Responses.Response;
-import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
-
-import java.util.List;
 
 /**
  * Created by BertTurtle on 6/6/2017.
@@ -94,7 +81,7 @@ public class QuestionListEditViewer extends DragLinearLayout {
 
 		@Override
 		public void onClick(View v) {
-			DialogFragment fragment = ConfirmationDialogFragment.newInstance(R.layout.dialog_confirm_delete_question, new ConfirmationDialogFragment.ConfirmDialogListener() {
+			DialogFragment fragment = ConfirmationDialogFragment.newInstance(R.string.confirm_delete_question_title, R.string.confirm_delete_question_text, new ConfirmationDialogFragment.ConfirmDialogListener() {
 				@Override
 				public void confirm() {
 					MainActivity.databaseManager.deleteQuestion(question);

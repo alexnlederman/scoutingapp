@@ -42,11 +42,9 @@ public abstract class LinearLayoutQuestionViewer extends MaterialLinearLayout {
 	private void setupInput() {
 		answerUI = this.question.getAnswerUI();
 		if (answerUI.getParent() != null) {
-			System.out.println("Removed!");
 			((ViewGroup) answerUI.getParent()).removeView(answerUI);
 		}
 		this.addView(answerUI);
-		System.out.println("RUN");
 	}
 
 	protected abstract void setupLabelView();

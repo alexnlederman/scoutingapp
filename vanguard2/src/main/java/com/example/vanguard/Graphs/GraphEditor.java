@@ -32,6 +32,11 @@ public class GraphEditor extends LinearLayout {
 
 		List<GraphDescriber> graphDescriberList = MainActivity.databaseManager.getGraphDescribers();
 
+		if (graphDescriberList.size() == 0)
+			this.setVisibility(GONE);
+		else
+			this.setVisibility(VISIBLE);
+
 		for (GraphDescriber describer : graphDescriberList) {
 			this.addView(describer);
 		}

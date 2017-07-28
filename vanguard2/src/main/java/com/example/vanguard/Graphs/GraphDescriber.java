@@ -23,8 +23,6 @@ public class GraphDescriber extends MaterialLinearLayout {
 	public GraphDescriber(Context context, AnswerList<Question> questions, Graph.GraphTypes graphType, final String id) {
 		super(context);
 
-		System.out.println("Graph Type: " + graphType);
-		System.out.println("Question Label: " + questions.get(0).getLabel());
 		this.setOrientation(HORIZONTAL);
 
 		Button deleteButton = new Button(context);
@@ -49,7 +47,7 @@ public class GraphDescriber extends MaterialLinearLayout {
 
 		for (Question question : questions) {
 			TextView questionLabelTextView = new TextView(context);
-			questionLabelTextView.setText(question.getLabel());
+			questionLabelTextView.setText(question.getQualifiedLabel());
 			questionLabelTextView.setTextColor(ContextCompat.getColor(context, R.color.textColor));
 			layout.addView(questionLabelTextView);
 		}

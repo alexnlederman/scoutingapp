@@ -30,10 +30,7 @@ public abstract class SimpleFormQuestionViewer extends LinearLayoutQuestionViewe
 	@Override
 	protected void setupLabelView() {
 		this.labelTextView = new TextView(this.context);
-		System.out.println("Question Viewer Label: " + this.question.getLabel());
 		this.labelTextView.setText(this.question.getLabel());
-
-		System.out.println(this.labelTextView.getText());
 
 		this.labelTextView.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
 

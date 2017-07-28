@@ -20,7 +20,7 @@ public class QuestionSelectorViewer extends LinearLayout {
 
 	List<CheckBoxQuestionViewer> questionViewers;
 
-	public QuestionSelectorViewer(Context context, AnswerList<Question> questions) {
+	public QuestionSelectorViewer(Context context, AnswerList<? extends Question> questions) {
 		super(context);
 
 		this.setOrientation(VERTICAL);
@@ -43,7 +43,7 @@ public class QuestionSelectorViewer extends LinearLayout {
 		return amount;
 	}
 
-	public AnswerList<Question> getSelectedQuestions() {
+	public AnswerList<? extends Question> getSelectedQuestions() {
 		AnswerList<Question> questions = new AnswerList<>();
 		for (CheckBoxQuestionViewer questionViewer : questionViewers) {
 			if (questionViewer.isChecked())

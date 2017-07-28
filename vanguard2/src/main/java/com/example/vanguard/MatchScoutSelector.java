@@ -37,11 +37,6 @@ public class MatchScoutSelector extends ListView {
 
 	public MatchScoutSelector(AppCompatActivity context) {
 		super(context);
-//		for (String[] array : MainActivity.databaseManager.getEvents()) {
-//			System.out.println("Event");
-//			System.out.println(array[0]);
-//			System.out.println(array[1]);
-//		}
 		this.setDividerHeight(0);
 		this.context = context;
 		List<Map<String, Object>> eventMatches = MainActivity.databaseManager.getCurrentEventMatches();

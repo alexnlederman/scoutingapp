@@ -30,7 +30,9 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.MPPointF;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mbent on 7/7/2017.
@@ -38,32 +40,18 @@ import java.util.List;
 
 public class BarGraph extends BarChart implements Graph{
 
-	AnswerList<? extends Question> questions;
+	GraphDetails details;
 
-	public BarGraph(Context context, AnswerList<? extends Question> questions) {
+	public BarGraph(Context context, AnswerList<? extends Question> questions, Map<String, Boolean> options) {
 		super(context);
 
-		this.questions = questions;
+		this.details = new GraphDetails(this, GraphTypes.BAR_GRAPH, questions, new String[]{PRACTICE_MATCH_OPTION}, options, true);
 
-		GraphManager.setupBarGraph(this, questions, context);
+		GraphManager.setupBarGraph(this, context);
 	}
 
 	@Override
-	public GraphTypes getGraphType() {
-		return GraphTypes.BAR_GRAPH;
-	}
-
-	@Override
-	public boolean isAllTeamGraph() {
-		return true;
-	}
-
-	@Override
-	public AnswerList<? extends Question> getGraphQuestions() {
-		return this.questions;
-	}
-
-	public boolean isShowingMarker() {
-		return mMarker != null && isDrawMarkersEnabled() && valuesToHighlight();
+	public GraphDetails getGraphDetails() {
+		return this.details;
 	}
 }

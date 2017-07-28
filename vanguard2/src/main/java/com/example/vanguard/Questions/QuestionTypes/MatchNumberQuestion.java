@@ -24,6 +24,7 @@ public class MatchNumberQuestion extends IntegerQuestion {
 		super(context, "Match Number", responses, id, null, true);
 		setMinValue(0);
 		setMaxValue(200);
+		setIncrementation(1);
 	}
 
 	public MatchNumberQuestion(Context context, int startingValue, AnswerList<Response> responses, String id) {
@@ -43,7 +44,6 @@ public class MatchNumberQuestion extends IntegerQuestion {
 
 	@Override
 	public View getAnswerUI() {
-		System.out.println("Answer UI Gotten: " + this.getLabel());
 		return super.getAnswerUI();
 	}
 }

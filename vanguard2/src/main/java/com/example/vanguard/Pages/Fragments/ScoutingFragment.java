@@ -43,7 +43,8 @@ public class ScoutingFragment extends Fragment implements NavDrawerFragment {
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		System.out.println("Scouting View Created");
+		((MainActivity) getActivity()).setupToolbar(MainActivity.ToolbarStyles.TABBED);
+
 		ViewPager viewPager = (ViewPager) getView().findViewById(R.id.view_pager);
 		viewPager.setAdapter(new ScoutPagerAdapter(getChildFragmentManager()));
 		TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
@@ -59,17 +60,6 @@ public class ScoutingFragment extends Fragment implements NavDrawerFragment {
 		return R.id.nav_scout;
 	}
 
-
-//	@Override
-//	public void onResume() {
-//		System.out.println("Scouting Resumed");
-//		ViewPager viewPager = (ViewPager) getView().findViewById(R.id.view_pager);
-//		viewPager.setAdapter(new ScoutPagerAdapter(getChildFragmentManager()));
-//		TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
-//		tabLayout.setupWithViewPager(viewPager);
-//		super.onResume();
-//	}
-
 	private class ScoutPagerAdapter extends FragmentStatePagerAdapter {
 
 		public ScoutPagerAdapter(FragmentManager fm) {
@@ -78,7 +68,6 @@ public class ScoutingFragment extends Fragment implements NavDrawerFragment {
 
 		@Override
 		public Fragment getItem(int position) {
-			System.out.println("Position : " + position);
 			switch (position) {
 				case 0:
 					return new MatchScoutSelectorFragment();

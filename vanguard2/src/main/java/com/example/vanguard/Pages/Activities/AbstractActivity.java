@@ -38,7 +38,6 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
 	@Override
 	public boolean onSupportNavigateUp() {
-		System.out.println("Back");
 		this.onBackPressed();
 		return true;
 	}

@@ -8,6 +8,7 @@ import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.vanguard.R;
 
@@ -17,11 +18,12 @@ import com.example.vanguard.R;
 
 public class ConfirmationDialogFragment extends DialogFragment {
 
-	public static ConfirmationDialogFragment newInstance(int layout, ConfirmDialogListener confirmListener) {
+	public static ConfirmationDialogFragment newInstance(int title, int text, ConfirmDialogListener confirmListener) {
 
 		Bundle args = new Bundle();
 
-		args.putInt("layout", layout);
+		args.putInt("title", title);
+		args.putInt("text", text);
 		args.putParcelable("listener", confirmListener);
 
 		ConfirmationDialogFragment fragment = new ConfirmationDialogFragment();
@@ -34,8 +36,10 @@ public class ConfirmationDialogFragment extends DialogFragment {
 		LayoutInflater inflater = getActivity().getLayoutInflater();
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-		View v = inflater.inflate(getArguments().getInt("layout"), null);
+		View v = inflater.inflate(R.layout.dialog_confirmation, null);
 
+		((TextView)v.findViewById(R.id.dialog_text)).setText(getArguments().getInt("text"));
+		((TextView)v.findViewById(R.id.dialog_title)).setText(getArguments().getInt("title"));
 
 		builder.setView(v).setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 			@Override

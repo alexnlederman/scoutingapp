@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.vanguard.Pages.Fragments.DialogFragments.AddEventDialogFragment;
 import com.example.vanguard.CustomUIElements.SettingsView;
 import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.Pages.Fragments.DialogFragments.ConfirmationDialogFragment;
+import com.example.vanguard.Pages.Fragments.DialogFragments.SetTeamNumberDialogFragment;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.R;
@@ -45,7 +47,6 @@ public class SettingsActivity extends AbstractActivity {
 		addEvent.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				System.out.println("Clicked");
 
 				DialogFragment fragment = AddEventDialogFragment.newInstance(new AddEventDialogFragment.DialogOpener() {
 					@Override
@@ -101,6 +102,45 @@ public class SettingsActivity extends AbstractActivity {
 			}
 		});
 
+		SettingsView deleteResponsesSettings = (SettingsView) findViewById(R.id.delete_responses);
+		deleteResponsesSettings.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				DialogFragment fragment = ConfirmationDialogFragment.newInstance(R.string.confirm_delete_responses_dialog_title, R.string.confirm_delete_responses_dialog_text, new ConfirmationDialogFragment.ConfirmDialogListener() {
+					@Override
+					public void confirm() {
+						AnswerList<Question> questions = MainActivity.databaseManager.getPitQuestions();
+						questions.addAll(MainActivity.databaseManager.getMatchQuestions());
+						for (Question question : questions) {
+							question.resetResponses();
+						}
+						MainActivity.databaseManager.saveResponses(questions);
+						Toast.makeText(that, "Responses Successfully Deleted", Toast.LENGTH_LONG).show();
+					}
+
+					@Override
+					public int describeContents() {
+						return 0;
+					}
+
+					@Override
+					public void writeToParcel(Parcel dest, int flags) {
+
+					}
+				});
+				fragment.show(getFragmentManager(), "Question Responses Delete");
+			}
+		});
+
+		SettingsView setTeamNumber = (SettingsView) findViewById(R.id.set_team_number);
+		setTeamNumber.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				SetTeamNumberDialogFragment teamNumberDialogFragment = new SetTeamNumberDialogFragment();
+				teamNumberDialogFragment.show(getFragmentManager(), "Set Team Number");
+			}
+		});
+
 
 		SettingsView saveDataSetting = (SettingsView) findViewById(R.id.export_responses);
 		saveDataSetting.setOnClickListener(new View.OnClickListener() {
@@ -114,10 +154,7 @@ public class SettingsActivity extends AbstractActivity {
 	private void exportResponses() {
 		String fileName = "responses.csv";
 
-		verifyStoragePermissions(this);
-
 		String csv = generateMatchResponsesCSV();
-		System.out.println("Has Perms");
 		File file = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS), fileName);
 		try {
 			FileOutputStream outputStream = new FileOutputStream(file);
@@ -164,28 +201,5 @@ public class SettingsActivity extends AbstractActivity {
 			}
 		}
 		return csv;
-	}
-
-	// Storage Permissions
-	private static final int REQUEST_EXTERNAL_STORAGE = 1;
-	private static String[] PERMISSIONS_STORAGE = {
-			Manifest.permission.WRITE_EXTERNAL_STORAGE
-	};
-
-	/**
-	 * Checks if the app has permission to write to device storage
-	 *
-	 * If the app does not has permission then the user will be prompted to grant permissions
-	 *
-	 * @param activity
-	 */
-	public static void verifyStoragePermissions(Activity activity) {
-		// Check if we have write permission
-		int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-		if (permission != PackageManager.PERMISSION_GRANTED) {
-			// We don't have permission so prompt the user
-			ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
-		}
 	}
 }

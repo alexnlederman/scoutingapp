@@ -34,14 +34,6 @@ public class AllTeamGraphFragment extends Fragment {
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		LinearLayout layout = (LinearLayout) getView().findViewById(R.id.linear_layout);
 
-//		AnswerList<Question> questions = new AnswerList<>();
-//		questions.add(MainActivity.databaseManager.getMatchQuestions().get(0));
-//		questions.add(MainActivity.databaseManager.getMatchQuestions().get(1));
-//		LineGraph graphView = new LineGraph(getActivity(), questions, 5940);
-//		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//		graphView.setLayoutParams(params);
-
-
 		GraphViewer viewer = new GraphViewer(getActivity());
 		if (viewer.getGraphCount() == 0)
 			layout.addView(new ErrorTextView(getActivity(), R.string.add_graph_error));

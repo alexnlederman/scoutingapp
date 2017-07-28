@@ -125,9 +125,6 @@ public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI
 
 	@Override
 	public void setValue(Integer value) {
-		System.out.println("Set Value: " + value);
-		System.out.println("Min: " + minValue);
-		System.out.println("Max: " + maxValue);
 		if (value == null) {
 			this.numberPicker.setText("");
 		}
@@ -137,10 +134,7 @@ public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI
 			else if (value < this.minValue)
 				this.numberPicker.setText(String.valueOf(minValue));
 			else {
-				System.out.println("Set Value2: " + String.valueOf(value));
 				this.numberPicker.setText(String.valueOf(value));
-				System.out.println("New Value: " + this.numberPicker.getText());
-
 			}
 		}
 	}

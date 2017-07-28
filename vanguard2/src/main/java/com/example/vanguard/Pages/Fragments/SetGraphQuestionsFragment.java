@@ -26,11 +26,11 @@ import java.util.Set;
  * Created by mbent on 7/6/2017.
  */
 
-public class SetGraphQuestionsFragment extends Fragment{
+public class SetGraphQuestionsFragment extends Fragment {
 
-	public static SetGraphQuestionsFragment newInstance(Graph.GraphTypes graphType) {
+	public static SetGraphQuestionsFragment newInstance(Graph graph) {
 		Bundle args = new Bundle();
-		args.putSerializable("type", graphType);
+		args.putSerializable("graph", graph);
 		SetGraphQuestionsFragment fragment = new SetGraphQuestionsFragment();
 		fragment.setArguments(args);
 		return fragment;
@@ -46,23 +46,23 @@ public class SetGraphQuestionsFragment extends Fragment{
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		final Graph.GraphTypes graphType = (Graph.GraphTypes) getArguments().getSerializable("type");
+		final Graph graph = (Graph) getArguments().getSerializable("graph");
+		Graph.GraphTypes graphType = graph.getGraphDetails().getGraphType();
 
 		LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.linear_layout);
 
 		AnswerList<Question> questions = MainActivity.databaseManager.getMatchQuestions();
-//		AnswerList<Question> pitQuestions = MainActivity.databaseManager.getPitQuestions();
 
 
 		List<Class> compatibleClasses = new ArrayList<>();
 		List<Class> incompatibleClasses = new ArrayList<>();
+
 
 		int min = 1;
 		int max = -1;
 		boolean includesPitQuestions = false;
 		switch (graphType) {
 			case LINE_GRAPH:
-				System.out.println("Line Graph");
 				compatibleClasses.add(Number.class);
 				break;
 			case BAR_GRAPH:
@@ -72,9 +72,10 @@ public class SetGraphQuestionsFragment extends Fragment{
 				break;
 			case PIE_GRAPH:
 				max = 1;
-				// TODO this could be for both one team match questions and all team questions.
-				// TODO should be divided into all team pie graphView which would include numbers and pit questions. Also should have one just like this.
+				// TODO this could be for both one team match detailedIntegerQuestions and all team detailedIntegerQuestions.
+				// TODO should be divided into all team pie graphView which would include numbers and pit detailedIntegerQuestions. Also should have one just like this.
 				compatibleClasses.add(String.class);
+				includesPitQuestions = graph.getGraphDetails().isAllTeamGraph();
 				break;
 			case SCATTER_GRAPH:
 				min = 2;
@@ -93,7 +94,7 @@ public class SetGraphQuestionsFragment extends Fragment{
 				includesPitQuestions = true;
 				break;
 		}
-//		questions.getAllOfType();
+//		detailedIntegerQuestions.getAllOfType();
 
 		if (includesPitQuestions) {
 			questions.addAll(MainActivity.databaseManager.getPitQuestions());
@@ -117,10 +118,10 @@ public class SetGraphQuestionsFragment extends Fragment{
 			public void onClick(View v) {
 				int selectedAmount = selectorViewer.getAmountSelected();
 				if ((selectedAmount <= finalMax || finalMax == -1) && selectedAmount >= finalMin) {
-					MainActivity.databaseManager.addGraph(graphType, selectorViewer.getSelectedQuestions());
+					graph.getGraphDetails().setQuestions(selectorViewer.getSelectedQuestions());
+					MainActivity.databaseManager.addGraph(graph);
 					getActivity().finish();
-				}
-				else {
+				} else {
 					String text = "";
 					if (selectedAmount > finalMax && finalMax != -1) {
 						text = "Too many questions selected";

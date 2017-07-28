@@ -1,12 +1,17 @@
 package com.example.vanguard.Pages.Activities;
 
+import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,15 +19,20 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStub;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.Pages.Fragments.BluetoothDataTransferFragment;
 import com.example.vanguard.Pages.Fragments.GraphingFragment;
 import com.example.vanguard.Pages.Fragments.ScoutingFragment;
 import com.example.vanguard.R;
+import com.example.vanguard.TeamNumberManager;
 
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,18 +40,26 @@ public class MainActivity extends AppCompatActivity
 
 	public static float dpToPixels;
 	public static DatabaseManager databaseManager;
+	public static String SHARED_PREF_NAME = "SHARED_PREFS";
 	Menu menu;
 	DrawerLayout drawer;
+	View headerView;
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+
+		System.out.println("CREATE");
 
 		MainActivity.dpToPixels = this.getResources().getDisplayMetrics().density;
+
+
+		this.databaseManager = new DatabaseManager(this);
+
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
 
 		this.drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -52,8 +70,7 @@ public class MainActivity extends AppCompatActivity
 		final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
 
-
-		this.databaseManager = new DatabaseManager(this);
+		this.headerView = navigationView.getHeaderView(0);
 
 		getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
 			@Override
@@ -63,6 +80,8 @@ public class MainActivity extends AppCompatActivity
 		});
 
 		navigationView.getMenu().getItem(0).setChecked(true);
+
+		setupPermissions();
 	}
 
 	private void updateCheckItem(NavigationView navigationView) {
@@ -120,7 +139,7 @@ public class MainActivity extends AppCompatActivity
 			startActivity(intent);
 
 		} else if (id == R.id.nav_sync) {
-
+			setView(new BluetoothDataTransferFragment());
 		}
 		return true;
 	}
@@ -149,5 +168,48 @@ public class MainActivity extends AppCompatActivity
 			fragmentManager.beginTransaction().replace(fragmentHolder, fragment).addToBackStack("fragment" + fragment.toString()).commit();
 		else
 			fragmentManager.beginTransaction().replace(fragmentHolder, fragment).commit();
+	}
+
+	public enum ToolbarStyles {
+		TABBED,
+		STANDARD
+	}
+
+	public void setupToolbar(ToolbarStyles style) {
+		TabLayout tabs = (TabLayout) findViewById(R.id.tab_layout);
+
+		switch (style) {
+			case TABBED:
+				tabs.setVisibility(View.VISIBLE);
+				break;
+			case STANDARD:
+				tabs.setVisibility(View.GONE);
+				break;
+		}
+	}
+
+	// Storage Permissions
+	private static final int REQUEST_PERMISSIONS = 3;
+	private final String[] PERMISSIONS = {
+			Manifest.permission.WRITE_EXTERNAL_STORAGE,
+			Manifest.permission.ACCESS_COARSE_LOCATION
+	};
+
+	private void setupPermissions() {
+
+		int locationPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+		int storagePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+		if (locationPermission != PackageManager.PERMISSION_GRANTED || storagePermission != PackageManager.PERMISSION_GRANTED) {
+			ActivityCompat.requestPermissions(this, this.PERMISSIONS, REQUEST_PERMISSIONS);
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		System.out.println("RESUMED");
+		TextView teamNumber = (TextView) this.headerView.findViewById(R.id.team_number_nav_header_text_view);
+		teamNumber.setText(String.valueOf(TeamNumberManager.getTeamNumber(this)));
 	}
 }

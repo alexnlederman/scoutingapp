@@ -6,8 +6,10 @@
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<uses-permission android:name="android.permission.BLUETOOTH" />
-	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+	<uses-permission android:name="android.permission.BLUETOOTH"/>
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 
 	<application
 		android:allowBackup="true"
@@ -28,14 +30,14 @@
 		<activity
 			android:name=".Pages.Activities.MatchFormActivity"
 			android:label="@string/title_activity_match_form"
-			android:windowSoftInputMode="stateHidden"
-			android:theme="@style/AppTheme.NoActionBar">
+			android:theme="@style/AppTheme.NoActionBar"
+			android:windowSoftInputMode="stateHidden">
 		</activity>
 		<activity
 			android:name=".Pages.Activities.PitFormActivity"
 			android:label="@string/title_activity_pit_form"
-			android:windowSoftInputMode="stateHidden"
-			android:theme="@style/AppTheme.NoActionBar">
+			android:theme="@style/AppTheme.NoActionBar"
+			android:windowSoftInputMode="stateHidden">
 		</activity>
 		<activity
 			android:name=".Pages.Activities.SettingsActivity"
@@ -45,8 +47,8 @@
 		<activity
 			android:name=".Pages.Activities.ScoutSettingsActivity"
 			android:label="QuestionSettingsActivity"
-			android:windowSoftInputMode="stateHidden"
-			android:theme="@style/AppTheme.NoActionBar">
+			android:theme="@style/AppTheme.NoActionBar"
+			android:windowSoftInputMode="stateHidden">
 		</activity>
 		<activity
 			android:name=".Pages.Activities.GraphSettingsActivity"

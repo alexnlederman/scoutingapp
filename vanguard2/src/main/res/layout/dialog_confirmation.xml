@@ -6,7 +6,6 @@
 	<TextView
 		android:layout_width="match_parent"
 		android:layout_height="65dp"
-		android:text="SELECT EVENT YEAR"
 		android:textColor="@color/white"
 		android:gravity="center"
 		android:textSize="20sp"
@@ -14,11 +13,11 @@
 		android:scaleType="center"
 		android:background="@color/colorPrimary"
 		android:contentDescription="@string/app_name"
-		android:id="@+id/title"/>
+		android:id="@+id/dialog_title"/>
 
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="Are you sure you would like to delete this question. All of its responses will be lost. This cannot be undone. "/>
+		android:id="@+id/dialog_text"/>
 
 </LinearLayout>

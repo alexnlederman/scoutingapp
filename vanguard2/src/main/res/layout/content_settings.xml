@@ -11,38 +11,52 @@
 	tools:showIn="@layout/activity_settings">
 
 	<com.example.vanguard.CustomUIElements.SettingsView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
 		android:id="@+id/add_event"
-		app:title="Add Event"
-		app:description="Add events that your team is attending in order to be able to scout them. This requires an internet connection, so do this before arriving at the event. "/>
-
-	<com.example.vanguard.CustomUIElements.SettingsView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		app:description="Add events that your team is attending in order to be able to scout them. This requires an internet connection, so do this before arriving at the event. "
+		app:title="Add Event"/>
+
+	<com.example.vanguard.CustomUIElements.SettingsView
 		android:id="@+id/set_event"
-		app:title="Set Current Event"
-		app:description="Set the event you team is attending in order to be able to scout them. This requires you to have added the event first. "/>
-
-	<com.example.vanguard.CustomUIElements.SettingsView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		app:description="Set the event you team is attending in order to be able to scout them. This requires you to have added the event first. "
+		app:title="Set Current Event"/>
+
+	<com.example.vanguard.CustomUIElements.SettingsView
 		android:id="@+id/scout_settings"
-		app:title="Setup Scouting Questions"
-		app:description="Set the current stuff. Yada yada yada. "/>
-
-	<com.example.vanguard.CustomUIElements.SettingsView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		app:description="Set the current stuff. Yada yada yada. "
+		app:title="Setup Scouting Questions"/>
+
+	<com.example.vanguard.CustomUIElements.SettingsView
 		android:id="@+id/graph_settings"
-		app:title="Setup Question Graphs"
-		app:description="Set the current stuff. Yada yada yada. "/>
-
-	<com.example.vanguard.CustomUIElements.SettingsView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		app:description="Set the current stuff. Yada yada yada. "
+		app:title="Setup Question Graphs"/>
+
+	<com.example.vanguard.CustomUIElements.SettingsView
 		android:id="@+id/export_responses"
-		app:title="Save Data To CSV"
-		app:description="Set the current stuff. Yada yada yada. "/>
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:description="Set the current stuff. Yada yada yada. "
+		app:title="Save Data To CSV"/>
+
+	<com.example.vanguard.CustomUIElements.SettingsView
+		android:id="@+id/delete_responses"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:description="Set the current stuff. Yada yada yada. "
+		app:title="Delete Responses"/>
+
+	<com.example.vanguard.CustomUIElements.SettingsView
+		android:id="@+id/set_team_number"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:description="Set the current stuff. Yada yada yada. "
+		app:title="Set Team Number"/>
 
 </LinearLayout>

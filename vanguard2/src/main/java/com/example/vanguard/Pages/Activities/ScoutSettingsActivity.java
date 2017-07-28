@@ -69,7 +69,6 @@ public class ScoutSettingsActivity extends AbstractActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		setupMenu(menu);
-		System.out.println("Menu Created");
 		return super.onCreateOptionsMenu(menu);
 	}
 

@@ -32,13 +32,8 @@ public class MatchFormActivity extends AbstractActivity {
 		if (this.teamNumber == 0 && this.qualNumber == 0)
 			isPracticeMatch = true;
 
-		System.out.println("Team Number: " + this.teamNumber);
-		System.out.println("Qual Number: " + this.qualNumber);
-		System.out.println("Practice Match: " + isPracticeMatch);
-
 		LinearLayout mainLayout = (LinearLayout) findViewById(R.id.linear_layout);
 		QuestionListFormViewer formViewer;
-		System.out.println("P Match: " + isPracticeMatch);
 		if (isPracticeMatch)
 			formViewer = new QuestionListFormViewer(this);
 		else

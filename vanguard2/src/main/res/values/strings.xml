@@ -35,4 +35,13 @@
 	<string name="setting_page_title">Settings</string>
 	<string name="add_question_page_title">Add Question</string>
 	<string name="graph_settings_page_title">Graph Settings</string>
+	<string name="bluetooth_data_transfer_page_title">Sync</string>
+
+
+	<string name="confirm_delete_responses_dialog_text">Are you sure you would like to delete the responses. This cannot be undone. </string>
+	<string name="confirm_delete_responses_dialog_title">Delete Responses</string>
+	<string name="confirm_delete_data_point_title">Delete Data</string>
+	<string name="confirm_delete_data_point_text">Are you sure you would like to delete this response. This cannot be undone.</string>
+	<string name="confirm_delete_question_title">Delete Question</string>
+	<string name="confirm_delete_question_text">Are you sure you would like to delete this question. All of its responses will be lost. This cannot be undone. </string>
 </resources>
