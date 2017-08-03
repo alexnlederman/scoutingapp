@@ -11,15 +11,6 @@ import com.example.vanguard.Responses.Response;
 
 public class MatchTeamNumberQuestion extends IntegerQuestion {
 
-	public MatchTeamNumberQuestion(Context context, String id) {
-		this(context, new AnswerList<Response>(), id);
-	}
-
-	public MatchTeamNumberQuestion(Context context, int startingValue, String id) {
-		this(context, id);
-		this.answerUI.setValue(startingValue);
-	}
-
 	public MatchTeamNumberQuestion(Context context, AnswerList<Response> responses, String id) {
 		super(context, "Team Number", responses, id, null, true);
 		setMinValue(0);

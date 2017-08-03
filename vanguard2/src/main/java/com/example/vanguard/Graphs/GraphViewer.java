@@ -62,7 +62,6 @@ public class GraphViewer extends ListView {
 		@NonNull
 		@Override
 		public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-			System.out.println("Position: " + graphs.get(position));
 			View graph = (View) graphs.get(position);
 //			graph.setMinimumHeight(Math.round(MainActivity.dpToPixels * 200));
 			return graph;

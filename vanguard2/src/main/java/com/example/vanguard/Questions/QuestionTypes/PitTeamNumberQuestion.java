@@ -8,6 +8,9 @@ import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Responses.Response;
 
+import java.util.HashMap;
+import java.util.TreeMap;
+
 /**
  * Created by mbent on 7/9/2017.
  */
@@ -17,23 +20,8 @@ public class PitTeamNumberQuestion extends Question<Integer> {
 	AnswerUITextView answerUI;
 	int teamNumber;
 
-	public PitTeamNumberQuestion(Context context, AnswerList<Response> responses, String id, int teamNumber) {
-		this(context, responses, id);
-		this.teamNumber = teamNumber;
-	}
-
 	public PitTeamNumberQuestion(Context context, AnswerList<Response> responses, String id) {
-		super("Team Number", responses, id, false, ViewStyle.SINGLE_LINE, QuestionType.PIT_TEAM_NUMBER, false, 0);
-		setupUI(context);
-	}
-
-	public PitTeamNumberQuestion(Context context, String id, int teamNumber) {
-		this(context, id);
-		this.teamNumber = teamNumber;
-	}
-
-	public PitTeamNumberQuestion(Context context, String id) {
-		super("Team Number", id, false, ViewStyle.SINGLE_LINE, QuestionType.PIT_TEAM_NUMBER, false, 0);
+		super("Team Number", responses, id, false, ViewStyle.SINGLE_LINE, QuestionType.PIT_TEAM_NUMBER, false, 0, new TreeMap<String, Object>());
 		setupUI(context);
 	}
 

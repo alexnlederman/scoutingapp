@@ -29,11 +29,12 @@ public class SettingsView extends LinearLayout {
 	}
 
 	private void init(Context context, AttributeSet attrs) {
-		int padding = Math.round(23);
-		this.setPadding(padding, padding, padding, padding);
+		int padding = Math.round(20);
+		this.setPadding(padding, padding / 2, padding / 2, padding);
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SettingsView);
 		String description = a.getString(R.styleable.SettingsView_description);
 		String title = a.getString(R.styleable.SettingsView_title);
+		a.recycle();
 		this.setOrientation(VERTICAL);
 		TextView titleTextView = new TextView(context);
 		titleTextView.setTextSize(22);

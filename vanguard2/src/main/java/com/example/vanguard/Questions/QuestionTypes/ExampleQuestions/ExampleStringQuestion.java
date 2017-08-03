@@ -2,6 +2,8 @@ package com.example.vanguard.Questions.QuestionTypes.ExampleQuestions;
 
 import com.example.vanguard.Responses.Response;
 
+import java.util.Random;
+
 /**
  * Created by mbent on 7/25/2017.
  */
@@ -29,5 +31,15 @@ public class ExampleStringQuestion extends ExampleQuestion<String> {
 	@Override
 	public float convertResponseToNumber(Response<String> response) {
 		return 1;
+	}
+
+	@Override
+	public int getMatchNumber() {
+		return Math.round((float) Math.random() * 50f) + 1;
+	}
+
+	@Override
+	public boolean isPracticeMatchQuestion() {
+		return (Math.random() < 0.2);
 	}
 }

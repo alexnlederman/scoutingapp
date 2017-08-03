@@ -9,12 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.vanguard.CustomUIElements.ErrorTextView;
-import com.example.vanguard.Graphs.BarGraph;
 import com.example.vanguard.Graphs.GraphViewer;
-import com.example.vanguard.Graphs.LineGraph;
-import com.example.vanguard.Pages.Activities.MainActivity;
-import com.example.vanguard.Questions.AnswerList;
-import com.example.vanguard.Questions.Question;
 import com.example.vanguard.R;
 
 /**

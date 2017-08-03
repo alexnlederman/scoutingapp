@@ -1,19 +1,19 @@
 package com.example.vanguard;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.vanguard.CustomUIElements.TeamListElement;
 import com.example.vanguard.Pages.Activities.MainActivity;
-import com.example.vanguard.Questions.AnswerList;
-import com.example.vanguard.Questions.Question;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,41 +30,41 @@ public class EventTeamListView extends ListView {
 		super(context);
 		this.listener = listener;
 
-		this.setDividerHeight(0);
 		this.context = context;
-		this.teams = getTeams();
+		this.teams = MainActivity.databaseManager.getCurrentEventTeams();
 		TeamListAdapter teamListAdapter = new TeamListAdapter(this.teams);
 		this.setAdapter(teamListAdapter);
 	}
 
-	protected List<Integer> getTeams() {
-		return MainActivity.databaseManager.getCurrentEventTeams();
-	}
-
-	protected class TeamListAdapter extends ArrayAdapter<Integer> {
+	private class TeamListAdapter extends ArrayAdapter<Integer> {
 
 		List<Integer> values;
+		LayoutInflater inflater;
 
-		public TeamListAdapter(List<Integer> values) {
+		private TeamListAdapter(List<Integer> values) {
 			super(context, -1, values);
 			this.values = values;
+			this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		}
 
 		@NonNull
 		@Override
 		public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-			View element = getViewElement(position);
-			element.setOnClickListener(new OnClickListener() {
+			View layout;
+			if (convertView != null) {
+				layout = convertView;
+			} else {
+				layout = this.inflater.inflate(R.layout.list_element_graph, parent, false);
+			}
+			TextView teamNumberTextView = (TextView) layout.findViewById(R.id.graph_teams_number);
+			teamNumberTextView.setText(String.valueOf(values.get(position)));
+			teamNumberTextView.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					listener.teamSelected(context, values.get(position));
 				}
 			});
-			return element;
-		}
-
-		protected View getViewElement(int position) {
-			return new TeamListElement(context, values.get(position));
+			return layout;
 		}
 	}
 }

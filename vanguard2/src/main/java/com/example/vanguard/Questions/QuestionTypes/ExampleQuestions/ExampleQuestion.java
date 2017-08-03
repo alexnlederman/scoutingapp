@@ -8,8 +8,10 @@ import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Responses.Response;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.TreeMap;
 
 /**
  * Created by mbent on 7/25/2017.
@@ -21,7 +23,7 @@ public abstract class ExampleQuestion<T extends Object> extends Question<T> {
 	int teamCount = 20;
 
 	public ExampleQuestion() {
-		super("Example Question", "", true, ViewStyle.SINGLE_LINE, QuestionType.INTEGER, false, null);
+		super("Example Question", "", true, ViewStyle.SINGLE_LINE, QuestionType.INTEGER, false, null, new TreeMap<String, Object>());
 		this.random = new Random();
 		this.teams = this.generateTeams();
 		this.generateResponses();

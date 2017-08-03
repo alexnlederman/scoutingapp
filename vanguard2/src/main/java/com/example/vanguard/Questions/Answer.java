@@ -8,10 +8,9 @@ public interface Answer<T extends Object> {
 
 	T getValue();
 
+	void setValue(T newValue);
+
 	int getMatchNumber();
 
 	int getTeamNumber();
-
-	void setValue(T newValue);
-
 }

@@ -1,20 +1,15 @@
-package com.example.vanguard.Graphs;
+package com.example.vanguard.Graphs.GraphImplementations;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
 
+import com.example.vanguard.Graphs.Graph;
+import com.example.vanguard.Graphs.GraphDetails.GraphDetails;
+import com.example.vanguard.Graphs.GraphManager;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
-import com.example.vanguard.R;
 import com.github.mikephil.charting.charts.LineChart;
 
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * Created by mbent on 7/3/2017.

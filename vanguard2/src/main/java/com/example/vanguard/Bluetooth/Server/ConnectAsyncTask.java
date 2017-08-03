@@ -1,11 +1,15 @@
 package com.example.vanguard.Bluetooth.Server;
 
+import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
+import com.example.vanguard.Bluetooth.BluetoothManager;
+import com.example.vanguard.Bluetooth.BluetoothTransfer;
 import com.example.vanguard.Bluetooth.Client.AcceptAsyncTask;
 import com.example.vanguard.Pages.Fragments.BluetoothDataTransferFragment;
 
@@ -15,18 +19,22 @@ import java.io.IOException;
  * Created by mbent on 7/21/2017.
  */
 
-public class ConnectAsyncTask extends AsyncTask<Void, Void, Void> {
+public class ConnectAsyncTask extends AsyncTask<Void, Boolean, Void> {
 
 	private final BluetoothDevice device;
 	private BluetoothSocket socket;
 	private final BluetoothAdapter bluetoothAdapter;
+	private final Context context;
+	private ProgressDialog progressDialog;
 
-	public ConnectAsyncTask(BluetoothDevice device, BluetoothAdapter bluetoothAdapter, Context context) {
+	public ConnectAsyncTask(BluetoothDevice device, BluetoothAdapter bluetoothAdapter, Context context, ProgressDialog progressDialog) {
 		this.device = device;
 		this.bluetoothAdapter = bluetoothAdapter;
+		this.context = context;
+		this.progressDialog = progressDialog;
 
 		try {
-			this.socket = device.createRfcommSocketToServiceRecord(BluetoothDataTransferFragment.getUuid(context));
+			this.socket = device.createRfcommSocketToServiceRecord(BluetoothManager.getUuid(context));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -34,18 +42,17 @@ public class ConnectAsyncTask extends AsyncTask<Void, Void, Void> {
 
 	@Override
 	protected void onPreExecute() {
-		// TODO show progress dialog.
-
+		this.progressDialog.setMessage("Connecting");
 	}
 
 	@Override
 	protected Void doInBackground(Void[] params) {
 		this.bluetoothAdapter.cancelDiscovery();
 		try {
-			socket.connect();
+			this.socket.connect();
 		} catch (IOException e) {
 			try {
-				socket.close();
+				this.socket.close();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -53,14 +60,15 @@ public class ConnectAsyncTask extends AsyncTask<Void, Void, Void> {
 			return null;
 		}
 
-		System.out.println("IS CONNECTED: " + socket.isConnected());
-		// TODO do stuff with connected device.
+		publishProgress(true);
+
+		new BluetoothTransfer(socket, this.context, this.bluetoothAdapter, this.progressDialog);
 
 		return null;
 	}
 
 	@Override
-	protected void onPostExecute(Void aVoid) {
-		// TODO hide progress dialog.
+	protected void onProgressUpdate(Boolean... values) {
+		this.progressDialog.setMessage("Transferring Data");
 	}
 }

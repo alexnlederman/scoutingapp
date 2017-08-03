@@ -1,6 +1,7 @@
 package com.example.vanguard.CustomUIElements;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -37,16 +38,26 @@ public class TeamListProgressElement extends TeamListElement {
 		updateQuestions(pitQuestions);
 	}
 
-	public void updateQuestions(AnswerList<Question> pitQuestions) {
-		float i = 0;
+	public void updateQuestions(final AnswerList<Question> pitQuestions) {
 
-		for (Question question : pitQuestions) {
-			i += (question.getTeamResponses(this.team, false).size() > 0) ? 1 : 0;
-		}
+		AsyncTask<Void, Void, Integer> asyncTask = new AsyncTask<Void, Void, Integer>() {
+			@Override
+			protected Integer doInBackground(Void... params) {
+				float i = 0;
 
-		int progress = Math.round((i / pitQuestions.size()) * 100);
+				for (Question question : pitQuestions) {
+					i += (question.getTeamResponses(team, false).size() > 0) ? 1 : 0;
+				}
 
-		this.bar.setProgress(progress);
+				return Math.round((i / pitQuestions.size()) * 100);
+			}
+
+			@Override
+			protected void onPostExecute(Integer integer) {
+				bar.setProgress(integer);
+			}
+		};
+		asyncTask.execute();
 	}
 
 	public int getTeam() {

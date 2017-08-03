@@ -1,12 +1,13 @@
-package com.example.vanguard.Graphs;
+package com.example.vanguard.Graphs.GraphImplementations;
 
 import android.content.Context;
 
+import com.example.vanguard.Graphs.Graph;
+import com.example.vanguard.Graphs.GraphDetails.GraphDetails;
+import com.example.vanguard.Graphs.GraphManager;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.github.mikephil.charting.charts.CandleStickChart;
-import com.github.mikephil.charting.data.CandleData;
-import com.github.mikephil.charting.data.CandleDataSet;
 
 import java.util.Map;
 

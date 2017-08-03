@@ -15,12 +15,14 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.example.vanguard.CustomUIElements.SwitchOption;
-import com.example.vanguard.Graphs.BarGraph;
-import com.example.vanguard.Graphs.CandleStickGraph;
 import com.example.vanguard.Graphs.Graph;
-import com.example.vanguard.Graphs.LineGraph;
-import com.example.vanguard.Graphs.PieGraph;
-import com.example.vanguard.Graphs.ScatterGraph;
+import com.example.vanguard.Graphs.GraphImplementations.BarGraph;
+import com.example.vanguard.Graphs.GraphImplementations.CandleStickGraph;
+import com.example.vanguard.Graphs.GraphImplementations.LineGraph;
+import com.example.vanguard.Graphs.GraphImplementations.PieGraph;
+import com.example.vanguard.Graphs.GraphImplementations.RadarGraph;
+import com.example.vanguard.Graphs.GraphImplementations.ResponseViewerGraph;
+import com.example.vanguard.Graphs.GraphImplementations.ScatterGraph;
 import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.QuestionTypes.ExampleQuestions.DetailedExampleIntegerQuestions;
@@ -32,7 +34,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,10 +41,11 @@ import java.util.Random;
 public class AddGraphFragment extends Fragment {
 
 	View graphView;
-	AnswerList<ExampleIntegerQuestion> detailedIntegerQuestions;
-	AnswerList<ExampleIntegerQuestion> basicIntegerQuestions;
+	AnswerList<ExampleIntegerQuestion> twoBasicIntegerQuestions;
+	AnswerList<ExampleIntegerQuestion> oneBasicIntegerQuestions;
 	AnswerList<DetailedExampleIntegerQuestions> oneDetailedIntegerQuestion;
 	AnswerList<ExampleStringQuestion> oneStringQuestion;
+	AnswerList<ExampleIntegerQuestion> fourIntegerQuestion;
 	boolean firstRun = true;
 
 
@@ -62,18 +64,33 @@ public class AddGraphFragment extends Fragment {
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
+		ExampleStringQuestion exampleString = new ExampleStringQuestion();
+		DetailedExampleIntegerQuestions detailedInteger = new DetailedExampleIntegerQuestions();
+		ExampleIntegerQuestion exampleInteger = new ExampleIntegerQuestion();
+		ExampleIntegerQuestion exampleInteger2 = new ExampleIntegerQuestion();
+		ExampleIntegerQuestion exampleInteger3 = new ExampleIntegerQuestion();
+		ExampleIntegerQuestion exampleInteger4 = new ExampleIntegerQuestion();
+
+		this.twoBasicIntegerQuestions = new AnswerList<>();
+		this.oneBasicIntegerQuestions = new AnswerList<>();
 		this.oneStringQuestion = new AnswerList<>();
-		this.oneStringQuestion.add(new ExampleStringQuestion());
-
 		this.oneDetailedIntegerQuestion = new AnswerList<>();
-		this.oneDetailedIntegerQuestion.add(new DetailedExampleIntegerQuestions());
+		this.fourIntegerQuestion = new AnswerList<>();
 
-		this.detailedIntegerQuestions = new AnswerList<>();
-		this.basicIntegerQuestions = new AnswerList<>();
-		ExampleIntegerQuestion exampleIntegerQuestion = new ExampleIntegerQuestion();
-		this.basicIntegerQuestions.add(exampleIntegerQuestion);
-		this.detailedIntegerQuestions.add(exampleIntegerQuestion);
-		this.detailedIntegerQuestions.add(new ExampleIntegerQuestion());
+
+		this.oneStringQuestion.add(exampleString);
+
+		this.oneDetailedIntegerQuestion.add(detailedInteger);
+
+		this.oneBasicIntegerQuestions.add(exampleInteger);
+		this.twoBasicIntegerQuestions.add(exampleInteger);
+		this.twoBasicIntegerQuestions.add(exampleInteger2);
+
+		this.fourIntegerQuestion.add(exampleInteger);
+		this.fourIntegerQuestion.add(exampleInteger2);
+		this.fourIntegerQuestion.add(exampleInteger3);
+		this.fourIntegerQuestion.add(exampleInteger4);
+
 
 		final Spinner spinner = (Spinner) getActivity().findViewById(R.id.spinner);
 		if (spinner.getAdapter() == null) {
@@ -107,20 +124,26 @@ public class AddGraphFragment extends Fragment {
 		Graph graph = null;
 		switch (type) {
 			case LINE_GRAPH:
-				graph = new LineGraph(getActivity(), this.basicIntegerQuestions, this.basicIntegerQuestions.get(0).getDetailedTeam());
+				graph = new LineGraph(getActivity(), this.oneBasicIntegerQuestions, this.oneBasicIntegerQuestions.get(0).getDetailedTeam());
 				break;
 			case BAR_GRAPH:
-				graph = new BarGraph(getActivity(), this.basicIntegerQuestions, new HashMap<String, Boolean>());
+				graph = new BarGraph(getActivity(), this.oneBasicIntegerQuestions, new HashMap<String, Boolean>());
 				break;
 			case SCATTER_GRAPH:
-				graph = new ScatterGraph(getActivity(), this.detailedIntegerQuestions, new HashMap<String, Boolean>());
+				graph = new ScatterGraph(getActivity(), this.twoBasicIntegerQuestions, new HashMap<String, Boolean>());
 				break;
 			case CANDLE_STICK_GRAPH:
 				graph = new CandleStickGraph(getActivity(), this.oneDetailedIntegerQuestion, new HashMap<String, Boolean>());
 				break;
 			case PIE_GRAPH:
-				graph = new PieGraph(getActivity(), this.oneStringQuestion, this.oneStringQuestion.get(0).getDetailedTeam(), new HashMap<String, Boolean>());
+				graph = new PieGraph(getActivity(), this.oneStringQuestion.get(0), this.oneStringQuestion.get(0).getDetailedTeam(), new HashMap<String, Boolean>());
 				break;
+			case PLAIN_GRAPH:
+				graph = new ResponseViewerGraph(getActivity(), this.oneStringQuestion.get(0), this.oneStringQuestion.get(0).getDetailedTeam());
+				break;
+//			case RADAR_GRAPH:
+//				graph = new RadarGraph(getActivity(), this.fourIntegerQuestion, this.twoBasicIntegerQuestions.get(0).getDetailedTeam(), new HashMap<String, Boolean>());
+//				break;
 		}
 		return graph;
 	}
@@ -129,11 +152,10 @@ public class AddGraphFragment extends Fragment {
 		LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.graph_layout);
 		if (graphView != null) {
 			layout.removeView(graphView);
-			for (int i = 0; i < layout.getChildCount();) {
+			for (int i = 0; i < layout.getChildCount(); ) {
 				if (layout.getChildAt(i) instanceof SwitchOption) {
 					layout.removeViewAt(i);
-				}
-				else {
+				} else {
 					i++;
 				}
 			}
@@ -156,7 +178,6 @@ public class AddGraphFragment extends Fragment {
 						for (SwitchOption toggle : toggles) {
 							optionsMap.put(toggle.getDescription(), toggle.isChecked());
 						}
-						System.out.println("SAVE: " + optionsMap);
 						finalGraph.getGraphDetails().setOptions(optionsMap);
 					}
 				});

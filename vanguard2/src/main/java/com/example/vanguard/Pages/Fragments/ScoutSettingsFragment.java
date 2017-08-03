@@ -1,18 +1,13 @@
 package com.example.vanguard.Pages.Fragments;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.example.vanguard.DatabaseManager;
-import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.Questions.QuestionViewers.QuestionListViewers.QuestionListEditViewer;
 import com.example.vanguard.R;
 

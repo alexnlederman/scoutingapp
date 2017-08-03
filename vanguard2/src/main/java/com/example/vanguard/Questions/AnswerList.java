@@ -1,13 +1,7 @@
 package com.example.vanguard.Questions;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-
-import com.example.vanguard.Responses.Response;
-
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by BertTurtle on 6/11/2017.
@@ -19,24 +13,24 @@ public class AnswerList<T extends Answer> extends ArrayList<T> {
 		super();
 	}
 
-	public AnswerList(ArrayList<T> arrayList) {
+	public AnswerList(List<T> arrayList) {
 		super(arrayList);
 	}
 
-	public AnswerList<T> getAllOfType(Class type) {
+	public AnswerList<T> getAllOfType(Object type) {
 		AnswerList<T> answers = new AnswerList<T>();
 		for (T answer : this) {
-			if (type.isAssignableFrom(answer.getValue().getClass())) {
+			if (answer.getValue().getClass().isInstance(type)) {
 				answers.add(answer);
 			}
 		}
 		return answers;
 	}
 
-	public AnswerList<T> getAllNotOfType(Class type) {
+	public AnswerList<T> getAllNotOfType(Object type) {
 		AnswerList<T> answers = new AnswerList<T>();
 		for (T answer : this) {
-			if (!type.isAssignableFrom(answer.getValue().getClass())) {
+			if (!answer.getValue().getClass().isInstance(type)) {
 				answers.add(answer);
 			}
 		}
@@ -45,7 +39,7 @@ public class AnswerList<T extends Answer> extends ArrayList<T> {
 
 	public boolean hasOfType(Class type) {
 		for (T answer : this) {
-			if (type.isAssignableFrom(type)) {
+			if (answer.getValue().getClass().isInstance(type)) {
 				return true;
 			}
 		}
@@ -57,10 +51,8 @@ public class AnswerList<T extends Answer> extends ArrayList<T> {
 		for (T answer : this) {
 			if (answer.getMatchNumber() == matchNumber) {
 				matchAnswers.add(answer);
-
 			}
 		}
-
 		return matchAnswers;
 	}
 
@@ -72,5 +64,16 @@ public class AnswerList<T extends Answer> extends ArrayList<T> {
 			}
 		}
 		return teamAnswers;
+	}
+
+	public Question getQuestionById(String id) {
+		for (T answer : this) {
+			if (answer instanceof Question) {
+				if (((Question) answer).getID().equals(id)) {
+					return (Question) answer;
+				}
+			}
+		}
+		return null;
 	}
 }

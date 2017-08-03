@@ -72,9 +72,7 @@ public class SetGraphQuestionsFragment extends Fragment {
 				break;
 			case PIE_GRAPH:
 				max = 1;
-				// TODO this could be for both one team match detailedIntegerQuestions and all team detailedIntegerQuestions.
-				// TODO should be divided into all team pie graphView which would include numbers and pit detailedIntegerQuestions. Also should have one just like this.
-				compatibleClasses.add(String.class);
+				compatibleClasses.add(Object.class);
 				includesPitQuestions = graph.getGraphDetails().isAllTeamGraph();
 				break;
 			case SCATTER_GRAPH:
@@ -87,14 +85,19 @@ public class SetGraphQuestionsFragment extends Fragment {
 				max = 1;
 				compatibleClasses.add(Number.class);
 				break;
-			case RADAR_GRAPH:
-				min = 3;
+//			case RADAR_GRAPH:
+//				min = 3;
+//				compatibleClasses.add(Object.class);
+//				incompatibleClasses.add(String.class);
+//				includesPitQuestions = true;
+//				break;
+			case PLAIN_GRAPH:
+				max = 1;
 				compatibleClasses.add(Object.class);
-				compatibleClasses.add(String.class);
 				includesPitQuestions = true;
 				break;
 		}
-//		detailedIntegerQuestions.getAllOfType();
+//		twoBasicIntegerQuestions.getAllOfType();
 
 		if (includesPitQuestions) {
 			questions.addAll(MainActivity.databaseManager.getPitQuestions());

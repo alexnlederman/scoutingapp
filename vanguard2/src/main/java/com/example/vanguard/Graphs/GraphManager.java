@@ -1,27 +1,24 @@
 package com.example.vanguard.Graphs;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.os.Parcel;
 import android.support.annotation.Nullable;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.example.vanguard.Pages.Activities.MainActivity;
-import com.example.vanguard.Pages.Fragments.DialogFragments.ConfirmationDialogFragment;
+import com.example.vanguard.Graphs.GraphImplementations.BarGraph;
+import com.example.vanguard.Graphs.GraphImplementations.CandleStickGraph;
+import com.example.vanguard.Graphs.GraphImplementations.LineGraph;
+import com.example.vanguard.Graphs.GraphImplementations.PieGraph;
+import com.example.vanguard.Graphs.GraphImplementations.RadarGraph;
+import com.example.vanguard.Graphs.GraphImplementations.ScatterGraph;
+import com.example.vanguard.Graphs.Markers.AllTeamGraphMarkerView;
+import com.example.vanguard.Graphs.Markers.SingleResponseGraphMarkerView;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.R;
-import com.example.vanguard.Responses.Response;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
@@ -43,21 +40,24 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.data.RadarData;
+import com.github.mikephil.charting.data.RadarDataSet;
+import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.formatter.IValueFormatter;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ICandleDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IPieDataSet;
+import com.github.mikephil.charting.interfaces.datasets.IRadarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
-import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -128,7 +128,6 @@ public class GraphManager {
 	}
 
 	private static void setBarData(BarChart chart, List<List<Entry>> data, AnswerList<? extends Question> questions) {
-//		List<IBarDataSet> barDataSets = new ArrayList<>();
 		List<List<BarEntry>> barEntries = new ArrayList<>();
 
 		int y = 0;
@@ -153,27 +152,6 @@ public class GraphManager {
 				return new BarData(dataSet);
 			}
 		}));
-
-//		for (int i = 0; i < data.size(); i++) {
-//			BarDataSet dataSet = new BarDataSet(barEntries.get(i), questions.get(i).getQualifiedLabel());
-//			setupDataSetColors(dataSet, i);
-//			dataSet.setValueTextSize(10);
-//			dataSet.setValueFormatter(new IValueFormatter() {
-//
-//				DecimalFormat format = new DecimalFormat("#.#");
-//
-//				@Override
-//				public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-//					return Float.valueOf(format.format(value)).toString().replaceAll("\\.?0*$", "");
-//				}
-//			});
-//			barDataSets.add(dataSet);
-//		}
-
-//		if (barDataSets.size() > 0) {
-//			BarData barData = new BarData(barDataSets);
-//			chart.setData(barData);
-//		}
 	}
 
 	private static void setLineData(LineChart chart, List<List<Entry>> data, AnswerList<? extends Question> questions) {
@@ -187,27 +165,53 @@ public class GraphManager {
 			}
 		}, chart);
 
-//		List<ILineDataSet> lineDataSets = new ArrayList<>();
-//		for (int i = 0; i < data.size(); i++) {
-//			LineDataSet dataSet = new LineDataSet(data.get(i), questions.get(i).getQualifiedLabel());
-//			setupDataSetColors(dataSet, i);
-//
-//			dataSet.setValueTextSize(10);
-//			dataSet.setLineWidth(5);
-//			addPercentileLimitLines(chart, questions.get(i), dataSet);
-//			lineDataSets.add(dataSet);
-//		}
-
 		chart.setData(getGraphData((List<ILineDataSet>) lineDataSets, new GraphDataGetter<LineData, ILineDataSet>() {
 			@Override
 			public LineData getGraphData(List<ILineDataSet> dataSet) {
 				return new LineData(dataSet);
 			}
 		}));
-//		if (lineDataSets.size() > 0) {
-//			LineData lineData = new LineData(lineDataSets);
-//			chart.setData(lineData);
-//		}
+	}
+
+	private static void setRadarData(RadarGraph graph, AnswerList<? extends Question> questions, final int teamNumber) {
+		List<RadarEntry> radarEntries = new ArrayList<>();
+		int i = 1;
+		for (Question question : questions) {
+			List<Float> values = question.getTeamResponseFloatValues(teamNumber, graph.getGraphDetails().getOptions().get(PRACTICE_MATCH_OPTION));
+			Collections.sort(values);
+			Float[] percentiles = getFloatPercentiles(values);
+			radarEntries.add(new RadarEntry(percentiles[1] * i));
+			i++;
+		}
+		List<List<RadarEntry>> entryList = new ArrayList<>();
+		entryList.add(radarEntries);
+
+		List<? extends IRadarDataSet> radarDataSets = getDataSet(entryList, questions, false, new DataSetGetter<RadarDataSet, RadarEntry>() {
+			@Override
+			public RadarDataSet getDataSet(List<RadarEntry> entries, Question question) {
+				RadarDataSet dataSet = new RadarDataSet(entries, "Team " + teamNumber);
+				dataSet.setDrawFilled(true);
+				return dataSet;
+			}
+		}, null);
+
+		final ArrayList<String> labels = new ArrayList<String>();
+		labels.add("Communication");
+		labels.add("Technical Knowledge");
+		labels.add("Team Player");
+		labels.add("Meeting Deadlines");
+
+		graph.setData(getGraphData((List<IRadarDataSet>) radarDataSets, new GraphDataGetter<RadarData, IRadarDataSet>() {
+			@Override
+			public RadarData getGraphData(List<IRadarDataSet> dataSet) {
+				RadarData data = new RadarData(dataSet);
+				data.setLabels(labels);
+				return data;
+			}
+		}));
+
+		graph.invalidate();
+
 	}
 
 	private static void setScatterData(ScatterGraph graph, AnswerList<? extends Question> questions) {
@@ -215,8 +219,6 @@ public class GraphManager {
 
 		List<Float> xValues = questions.get(0).getAllTeamNumberValues();
 		List<Float> yValues = questions.get(1).getAllTeamNumberValues();
-//		AnswerList<Question> firstQuestion = new AnswerList<>();
-//		firstQuestion.add(questions.get(0));
 		List<List<Entry>> teamEntries = getAllTeamGraphEntries(questions, graph.getGraphDetails().getOptions().get(PRACTICE_MATCH_OPTION));
 
 		for (int i = 0; i < xValues.size(); i++) {
@@ -235,7 +237,6 @@ public class GraphManager {
 			@Override
 			public ScatterDataSet getDataSet(List<Entry> entries, Question question) {
 				ScatterDataSet dataSet = new ScatterDataSet(entries, "");
-//				dataSet.setDrawValues(false);
 				dataSet.setValueFormatter(new IValueFormatter() {
 					@Override
 					public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
@@ -303,17 +304,31 @@ public class GraphManager {
 
 	}
 
-	private static void setPieGraphData(PieGraph pieGraph, AnswerList<? extends Question> questions, int teamNumber, boolean includePracticeMatches) {
-
-		Question question = questions.get(0);
-		List responseValues = question.getTeamResponseValues(teamNumber, includePracticeMatches);
-
-		List<PieEntry> entries = convertValuesToPieEntries(responseValues);
+	private static void setPieGraphData(PieGraph pieGraph, List values, AnswerList<? extends Question> questions) {
+		List<PieEntry> entries = convertValuesToPieEntries(values);
 
 		List<IPieDataSet> dataSets = getPieDataSet(entries, questions);
 
-		setupPieGraphData(pieGraph, dataSets);
+		pieGraph.setData(getGraphData(dataSets, new GraphDataGetter<PieData, IPieDataSet>() {
+			@Override
+			public PieData getGraphData(List<IPieDataSet> dataSet) {
+				IPieDataSet pieDataSet = dataSet.get(0);
+				if (pieDataSet.getEntryCount() == 0) {
+					return null;
+				} else
+					return new PieData(pieDataSet);
+			}
+		}));
+	}
 
+	private static List getPieGraphValues(AnswerList<? extends Question> questions, boolean includePracticeMatches) {
+		Question question = questions.get(0);
+		return question.getAllTeamResponseValues(includePracticeMatches);
+	}
+
+	private static List getPieGraphValues(AnswerList<? extends Question> questions, int teamNumber, boolean includePracticeMatches) {
+		Question question = questions.get(0);
+		return question.getTeamResponseValues(teamNumber, includePracticeMatches);
 	}
 
 	private static List<PieEntry> convertValuesToPieEntries(List values) {
@@ -321,11 +336,10 @@ public class GraphManager {
 		int totalSize = values.size();
 
 		while (values.size() > 0) {
-			String value = values.get(0).toString();
+			Object value = values.get(0);
 			int count = Collections.frequency(values, value);
 			while (values.remove(value)) ;
-			System.out.println("Ratio: " + (float) count / totalSize);
-			entries.add(new PieEntry((float) count / totalSize, value));
+			entries.add(new PieEntry((float) count / totalSize, value.toString()));
 		}
 
 		return entries;
@@ -351,30 +365,10 @@ public class GraphManager {
 		return (List<IPieDataSet>) dataSet;
 	}
 
-	private static void setupPieGraphData(PieGraph graph, List<IPieDataSet> dataSet) {
-		graph.setData(getGraphData(dataSet, new GraphDataGetter<PieData, IPieDataSet>() {
-			@Override
-			public PieData getGraphData(List<IPieDataSet> dataSet) {
-				return new PieData(dataSet.get(0));
-			}
-		}));
-	}
-
 	private static void setupPieGraphVisuals(PieGraph pieGraph, AnswerList<? extends Question> questions) {
 		Question question = questions.get(0);
 		pieGraph.setCenterText(question.getLabel());
 		pieGraph.setCenterTextRadiusPercent(80f);
-	}
-
-	private static void setPieGraphData(PieGraph pieGraph, AnswerList<? extends Question> questions, boolean includePracticeMatches) {
-		Question question = questions.get(0);
-		List responseValues = question.getAllTeamResponseValues(includePracticeMatches);
-
-		List<PieEntry> entries = convertValuesToPieEntries(responseValues);
-
-		List<IPieDataSet> dataSet = getPieDataSet(entries, questions);
-
-		setupPieGraphData(pieGraph, dataSet);
 	}
 
 	private static <T extends ChartData, E extends IDataSet> T getGraphData(List<E> dataSet, GraphDataGetter<T, E> graphDataGetter) {
@@ -409,9 +403,9 @@ public class GraphManager {
 		return dataSets;
 	}
 
-	private static void setGraphLayoutParams(Chart graph) {
+	private static void setGraphLayoutParams(Chart graph, Context context) {
 		// TODO make this number better than hard coded.
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Math.round(300 * MainActivity.dpToPixels));
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Math.round(context.getResources().getDimension(R.dimen.graph_height)));
 		graph.setLayoutParams(params);
 	}
 
@@ -513,48 +507,57 @@ public class GraphManager {
 		removeYAxisTruncation(lineGraph);
 		setLineData(lineGraph, getTeamGraphEntries(lineGraph.getGraphDetails().getGraphQuestions(), teamNumber), lineGraph.getGraphDetails().getGraphQuestions());
 		setDescription(lineGraph, "Team " + teamNumber);
-		setGraphLayoutParams(lineGraph);
+		setGraphLayoutParams(lineGraph, context);
 		disableRightAxis(lineGraph);
 		addPracticeMatchDividerLine(lineGraph);
 		setupDataMarker(lineGraph, new SingleResponseGraphMarkerView<>(context, lineGraph));
 	}
 
+	public static void setupRadarGraph(RadarGraph radarGraph, int teamNumber, Context context) {
+		setGraphLayoutParams(radarGraph, context);
+		setDescription(radarGraph, "Team " + teamNumber);
+		radarGraph.getYAxis().setAxisMinimum(0);
+		setRadarData(radarGraph, radarGraph.getGraphDetails().getGraphQuestions(), teamNumber);
+	}
+
 	public static void setupBarGraph(BarGraph barGraph, Context context) {
-		System.out.println("Include Practice Matches: " + barGraph.getGraphDetails().getOptions().get(PRACTICE_MATCH_OPTION));
 		removeYAxisTruncation(barGraph);
 		setBarData(barGraph, getAllTeamGraphEntries(barGraph.getGraphDetails().getGraphQuestions(), barGraph.getGraphDetails().getOptions().get(PRACTICE_MATCH_OPTION)), barGraph.getGraphDetails().getGraphQuestions());
-		setGraphLayoutParams(barGraph);
+		setGraphLayoutParams(barGraph, context);
 		setDescription(barGraph, "");
 		disableRightAxis(barGraph);
 		hideXAxis(barGraph);
-		setupDataMarker(barGraph, new AllTeamGraphMarkerView(context));
+		setupDataMarker(barGraph, new AllTeamGraphMarkerView(barGraph, context));
 	}
 
-	public static void setupScatterGraph(ScatterGraph scatterGraph) {
+	public static void setupScatterGraph(ScatterGraph scatterGraph, Context context) {
 		removeYAxisTruncation(scatterGraph);
 		setScatterData(scatterGraph, scatterGraph.getGraphDetails().getGraphQuestions());
-		setGraphLayoutParams(scatterGraph);
+		setGraphLayoutParams(scatterGraph, context);
 		setDescription(scatterGraph, "");
 	}
 
 	public static void setupCandleStickGraph(CandleStickGraph candleStickGraph, Context context) {
 		removeYAxisTruncation(candleStickGraph);
 		setCandleStickData(candleStickGraph, candleStickGraph.getGraphDetails().getGraphQuestions());
-		setGraphLayoutParams(candleStickGraph);
+		setGraphLayoutParams(candleStickGraph, context);
 		setDescription(candleStickGraph, "");
 		hideXAxis(candleStickGraph);
-		setupDataMarker(candleStickGraph, new AllTeamGraphMarkerView(context));
+		setupDataMarker(candleStickGraph, new AllTeamGraphMarkerView(candleStickGraph, context));
 	}
 
-	public static void setupPieGraph(PieGraph pieGraph, int teamNumber) {
+	public static void setupPieGraph(PieGraph pieGraph, int teamNumber, Context context) {
+
+		List values;
 
 		if (pieGraph.getGraphDetails().isAllTeamGraph()) {
-			setPieGraphData(pieGraph, pieGraph.getGraphDetails().getGraphQuestions(), pieGraph.getGraphDetails().getOptions().get(PRACTICE_MATCH_OPTION));
+			values = getPieGraphValues(pieGraph.getGraphDetails().getGraphQuestions(), pieGraph.getGraphDetails().getOptions().get(PRACTICE_MATCH_OPTION));
 		} else {
-			setPieGraphData(pieGraph, pieGraph.getGraphDetails().getGraphQuestions(), teamNumber, pieGraph.getGraphDetails().getOptions().get(PRACTICE_MATCH_OPTION));
+			values = getPieGraphValues(pieGraph.getGraphDetails().getGraphQuestions(), teamNumber, pieGraph.getGraphDetails().getOptions().get(PRACTICE_MATCH_OPTION));
 		}
+		setPieGraphData(pieGraph, values, pieGraph.getGraphDetails().getGraphQuestions());
 
-		setGraphLayoutParams(pieGraph);
+		setGraphLayoutParams(pieGraph, context);
 
 		setupPieGraphVisuals(pieGraph, pieGraph.getGraphDetails().getGraphQuestions());
 		setDescription(pieGraph, "");
@@ -570,151 +573,5 @@ public class GraphManager {
 
 	private interface DataSetGetter<T extends BaseDataSet, E extends Entry> {
 		T getDataSet(List<E> entries, Question question);
-	}
-
-	private static class AllTeamGraphMarkerView extends MarkerView {
-
-		/**
-		 * Constructor. Sets up the MarkerView with a custom layout resource.
-		 *
-		 * @param context
-		 */
-		public AllTeamGraphMarkerView(Context context) {
-			super(context, R.layout.marker_all_team_graph);
-		}
-
-		@Override
-		public void refreshContent(Entry e, Highlight highlight) {
-			TextView teamNumber = (TextView) this.findViewById(R.id.team_number);
-			String teamText = String.format(Locale.US, "Team %d", (Integer) e.getData());
-			teamNumber.setText(teamText);
-			super.refreshContent(e, highlight);
-		}
-
-		@Override
-		public MPPointF getOffset() {
-			MPPointF mOffset = new MPPointF(-(getWidth() / 2), 0);
-
-			return mOffset;
-		}
-	}
-
-	public static class SingleResponseGraphMarkerView<T extends Chart & Graph> extends MarkerView {
-
-		T graph;
-		Activity context;
-		private Rect deleteButtonRect;
-		private float drawingPosX;
-		private float drawingPosY;
-
-		/**
-		 * Constructor. Sets up the MarkerView with a custom layout resource.
-		 *
-		 * @param context The context
-		 */
-		public SingleResponseGraphMarkerView(Activity context, final T graph) {
-			super(context, R.layout.marker_single_response);
-			this.graph = graph;
-			this.context = context;
-
-			graph.setOnTouchListener(new OnTouchListener() {
-				@Override
-				public boolean onTouch(View v, MotionEvent event) {
-					boolean handled = true;
-
-					// if there is no marker view or drawing marker is disabled
-					if (graph.getGraphDetails().isShowingMarker() && graph.getMarker() instanceof GraphManager.SingleResponseGraphMarkerView && event.getAction() == MotionEvent.ACTION_UP) {
-						GraphManager.SingleResponseGraphMarkerView markerView = (GraphManager.SingleResponseGraphMarkerView) graph.getMarker();
-						Rect rect = markerView.getDeleteButtonRect();
-						if (rect.contains((int) event.getX(), (int) event.getY())) {
-							getButton().performClick();
-						} else {
-							handled = graph.onTouchEvent(event);
-						}
-					} else {
-						handled = graph.onTouchEvent(event);
-					}
-					return handled;
-				}
-			});
-		}
-
-		private Button getButton() {
-			return (Button) findViewById(R.id.delete_data_point_button);
-		}
-
-		@Override
-		public void refreshContent(final Entry e, Highlight highlight) {
-			Button deleteButton = (Button) findViewById(R.id.delete_data_point_button);
-			deleteButton.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					DialogFragment fragment = ConfirmationDialogFragment.newInstance(R.string.confirm_delete_data_point_title, R.string.confirm_delete_data_point_text, new ConfirmationDialogFragment.ConfirmDialogListener() {
-						@Override
-						public void confirm() {
-							Response response = (Response) e.getData();
-							List<? extends IDataSet> dataSets = graph.getData().getDataSets();
-
-							for (int i = 0; i < dataSets.size(); i++) {
-								if (dataSets.get(i).removeEntry(e)) {
-									if (dataSets.get(i).getEntryCount() == 0) {
-										if (graph.getData().getDataSets().size() == 1) {
-											graph.setData(null);
-										} else {
-											graph.getData().removeDataSet(dataSets.get(i));
-										}
-									}
-									graph.getGraphDetails().getGraphQuestions().get(i).deleteResponse(response);
-									AnswerList<Question> question = new AnswerList<>();
-									question.add(graph.getGraphDetails().getGraphQuestions().get(i));
-									MainActivity.databaseManager.saveResponses(question);
-									graph.invalidate();
-								}
-							}
-						}
-
-						@Override
-						public int describeContents() {
-							return 0;
-						}
-
-						@Override
-						public void writeToParcel(Parcel dest, int flags) {
-
-						}
-					});
-					fragment.show(context.getFragmentManager(), "Event Selector");
-				}
-			});
-			deleteButton.setFocusableInTouchMode(true);
-			super.refreshContent(e, highlight);
-		}
-
-		@Override
-		public MPPointF getOffset() {
-			MPPointF mOffset = new MPPointF(-(getWidth() / 2), 0);
-
-			return mOffset;
-		}
-
-		public Rect getDeleteButtonRect() {
-			Button button = getButton();
-
-			int left = (int) this.drawingPosX + button.getLeft() + button.getPaddingLeft();
-			int top = (int) this.drawingPosY + button.getTop() + button.getPaddingTop();
-			int right = left + button.getWidth() - button.getPaddingRight();
-			int bottom = top + button.getHeight() - button.getPaddingBottom();
-
-			this.deleteButtonRect = new Rect(left, top, right, bottom);
-			return deleteButtonRect;
-		}
-
-		@Override
-		public void draw(Canvas canvas, float posX, float posY) {
-			super.draw(canvas, posX, posY);
-			MPPointF offset = getOffsetForDrawingAtPoint(posX, posY);
-			this.drawingPosX = posX + offset.x;
-			this.drawingPosY = posY + offset.y;
-		}
 	}
 }

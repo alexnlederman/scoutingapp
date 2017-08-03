@@ -4,7 +4,7 @@
 	<item android:id="@android:id/background">
 		<shape>
 			<solid android:color="@color/transparent"/>
-			<size android:height="45dp"/>
+			<!--<size android:height="match"/>-->
 		</shape>
 	</item>
 
@@ -12,7 +12,7 @@
 		<clip>
 			<shape>
 				<solid android:color="@color/progressBar"/>
-				<size android:height="45dp"/>
+				<!--<size android:height="45dp"/>-->
 			</shape>
 		</clip>
 	</item>
@@ -21,7 +21,7 @@
 		<clip>
 			<shape>
 				<solid android:color="@color/progressBar"/>
-				<size android:height="45dp"/>
+				<!--<size android:height="45dp"/>-->
 			</shape>
 		</clip>
 	</item>

@@ -1,8 +1,5 @@
 package com.example.vanguard.Responses;
 
-import com.example.vanguard.Questions.Question;
-
-import java.io.Serializable;
 
 /**
  * Created by BertTurtle on 6/5/2017.

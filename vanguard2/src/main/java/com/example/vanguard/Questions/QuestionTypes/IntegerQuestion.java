@@ -7,13 +7,14 @@ import android.view.View;
 
 import com.example.vanguard.CustomUIElements.AnswerUICustomNumberPicker;
 import com.example.vanguard.Questions.AnswerList;
-import com.example.vanguard.Questions.Properties.QuestionProperty;
-import com.example.vanguard.Questions.Properties.SimpleQuestionProperty;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Responses.Response;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * Created by BertTurtle on 6/5/2017.
@@ -21,27 +22,26 @@ import java.util.List;
  */
 public class IntegerQuestion extends Question<Integer> {
 
-	Context context;
-
-	public final int min_value_index = 1;
-	public final int max_value_index = 2;
-	public final int incrementation_index = 3;
+//	private final Map<String, Object> defaultProperties = new HashMap<String, Object>() {{
+//		put(QUESTION_TITLE_PROPERTY_NAME, "Integer");
+//		put(MIN_VALUE, 0);
+//		put(MAX_VALUE, 10);
+//		put(INCREMENTATION, 1);
+//	}};
+	public final static String MAX_VALUE = "Max Value";
+	private final static String MIN_VALUE = "Min Value";
+	private final static String INCREMENTATION = "Incrementation";
 
 	protected AnswerUICustomNumberPicker answerUI;
+	Context context;
 
-	private static final List<QuestionProperty> defaultProperties = new ArrayList<QuestionProperty>() {{
-		add(new SimpleQuestionProperty<>(0, "Min Value"));
-		add(new SimpleQuestionProperty<>(10, "Max Value"));
-		add(new SimpleQuestionProperty<>(1, "Incrementation"));
-	}};
-
-	public IntegerQuestion(Context context, String label, AnswerList<Response> responses, String id, @Nullable List<QuestionProperty> questionProperties, boolean isMatchQuestion) {
-		super(label, responses, id, isMatchQuestion, ViewStyle.SINGLE_LINE, QuestionType.INTEGER, true, null, (QuestionProperty[]) ((questionProperties == null || questionProperties.size() == 0) ? defaultProperties.toArray(new QuestionProperty[defaultProperties.size()]) : questionProperties.toArray(new QuestionProperty[defaultProperties.size()])));
-		setup(context);
-	}
-
-	public IntegerQuestion(Context context, String label, String id, @Nullable List<QuestionProperty> properties, boolean isMatchQuestion) {
-		this(context, label, new AnswerList<Response>(), id, properties, isMatchQuestion);
+	public IntegerQuestion(Context context, String label, AnswerList<Response> responses, String id, @Nullable Map<String, Object> questionProperties, boolean isMatchQuestion) {
+		super(label, responses, id, isMatchQuestion, ViewStyle.SINGLE_LINE, QuestionType.INTEGER, true, null, (questionProperties == null || questionProperties.size() == 0) ? new LinkedHashMap<String, Object>() {{
+			put(QUESTION_TITLE_PROPERTY_NAME, "Integer");
+			put(MIN_VALUE, 0);
+			put(MAX_VALUE, 10);
+			put(INCREMENTATION, 1);
+		}} : questionProperties);
 		setup(context);
 	}
 
@@ -73,27 +73,27 @@ public class IntegerQuestion extends Question<Integer> {
 	}
 
 	private Integer getMinValue() {
-		return (Integer) this.getQuestionProperties().get(min_value_index).getValue();
-	}
-
-	private Integer getMaxValue() {
-		return (Integer) this.getQuestionProperties().get(max_value_index).getValue();
-	}
-
-	private Integer getIncrementation() {
-		return (Integer) this.getQuestionProperties().get(incrementation_index).getValue();
+		return (Integer) this.getQuestionProperties().get(MIN_VALUE);
 	}
 
 	protected void setMinValue(int newValue) {
-		this.getQuestionProperties().get(min_value_index).setValue(newValue);
+		this.getQuestionProperties().put(MIN_VALUE, newValue);
+	}
+
+	private Integer getMaxValue() {
+		return (Integer) this.getQuestionProperties().get(MAX_VALUE);
 	}
 
 	protected void setMaxValue(int newValue) {
-		this.getQuestionProperties().get(max_value_index).setValue(newValue);
+		this.getQuestionProperties().put(MAX_VALUE, newValue);
+	}
+
+	private Integer getIncrementation() {
+		return (Integer) this.getQuestionProperties().get(INCREMENTATION);
 	}
 
 	protected void setIncrementation(int newValue) {
-		this.getQuestionProperties().get(incrementation_index).setValue(newValue);
+		this.getQuestionProperties().put(INCREMENTATION, newValue);
 	}
 
 	@Override

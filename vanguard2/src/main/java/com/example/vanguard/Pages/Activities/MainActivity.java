@@ -51,8 +51,6 @@ public class MainActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		System.out.println("CREATE");
-
 		MainActivity.dpToPixels = this.getResources().getDisplayMetrics().density;
 
 
@@ -208,7 +206,6 @@ public class MainActivity extends AppCompatActivity
 	@Override
 	protected void onResume() {
 		super.onResume();
-		System.out.println("RESUMED");
 		TextView teamNumber = (TextView) this.headerView.findViewById(R.id.team_number_nav_header_text_view);
 		teamNumber.setText(String.valueOf(TeamNumberManager.getTeamNumber(this)));
 	}

@@ -23,6 +23,7 @@ import com.example.vanguard.Responses.Response;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by mbent on 7/13/2017.
@@ -33,7 +34,7 @@ public class AddQuestionActivity extends AbstractActivity {
 	boolean isMatchQuestion;
 	LinearLayout optionsLayout;
 	LinearLayout previewLayout;
-	List<QuestionProperty> properties;
+	Map<String, Object> properties;
 	Question question;
 	SimpleFormQuestionViewer questionPreview;
 
@@ -61,11 +62,6 @@ public class AddQuestionActivity extends AbstractActivity {
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				String text = ((TextView) view).getText().toString();
 				Question.QuestionType question = Question.QuestionType.valueOfName(text);
-
-
-//				List<Map<String, String>> questionOptions = question.getOptionTitles();
-
-//				addOptions(questionOptions);
 
 				addQuestionPreview(question, text);
 
@@ -107,11 +103,11 @@ public class AddQuestionActivity extends AbstractActivity {
 	private void addOptions() {
 		this.optionsLayout.removeAllViews();
 		this.properties = this.question.getQuestionProperties();
-		for (final QuestionProperty property : this.properties) {
+		for (final String propertyName : this.properties.keySet()) {
 			EditText propertyEdit = new EditText(this);
-			propertyEdit.setHint(property.getName());
-			propertyEdit.setText(property.getValue().toString());
-			propertyEdit.setInputType(getPropertyInputType(property));
+			propertyEdit.setHint(propertyName);
+			propertyEdit.setText(this.properties.get(propertyName).toString());
+			propertyEdit.setInputType(getPropertyInputType(this.properties.get(propertyName)));
 
 			propertyEdit.addTextChangedListener(new TextWatcher() {
 				@Override
@@ -122,8 +118,7 @@ public class AddQuestionActivity extends AbstractActivity {
 				@Override
 				public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-					property.setValue(convertValueToType(s, property));
-					List<QuestionProperty> properties = question.getQuestionProperties();
+					properties.put(propertyName, convertValueToType(s, properties.get(propertyName)));
 					questionPreview.refreshView();
 				}
 
@@ -137,23 +132,21 @@ public class AddQuestionActivity extends AbstractActivity {
 		}
 	}
 
-	private Object convertValueToType(CharSequence s, QuestionProperty property) {
-		Class valueClass = property.getValue().getClass();
-		if (Integer.class.isAssignableFrom(valueClass)) {
-			return (s.length() > 0) ? Integer.valueOf(s.toString()) : 0;
+	private Object convertValueToType(CharSequence s, Object propertyValue) {
+		if (propertyValue instanceof Integer) {
+			return (s.length() > 0 && !s.toString().equals("-")) ? Integer.valueOf(s.toString()) : 0;
 		}
-		if (String.class.isAssignableFrom(valueClass)) {
+		if (propertyValue instanceof String) {
 			return s.toString();
 		}
 		return null;
 	}
 
-	private int getPropertyInputType(QuestionProperty property) {
-		Class valueClass = property.getValue().getClass();
-		if (Integer.class.isAssignableFrom(valueClass)) {
+	private int getPropertyInputType(Object propertyValue) {
+		if (propertyValue instanceof Integer) {
 			return InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED;
 		}
-		if (String.class.isAssignableFrom(valueClass)) {
+		if (propertyValue instanceof String) {
 			return InputType.TYPE_CLASS_TEXT;
 		}
 		return 0;

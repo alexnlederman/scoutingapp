@@ -1,5 +1,6 @@
-package com.example.vanguard.Graphs;
+package com.example.vanguard.Graphs.GraphDetails;
 
+import com.example.vanguard.Graphs.Graph;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.github.mikephil.charting.charts.Chart;
@@ -13,7 +14,7 @@ import java.util.Map;
 
 public class GraphDetails {
 
-	private Graph.GraphTypes graphTypes;
+	private Graph.GraphTypes graphType;
 	private AnswerList<? extends Question> questions;
 	private Chart chart;
 	private String[] optionTitles;
@@ -21,10 +22,9 @@ public class GraphDetails {
 	private boolean isAllTeamGraph;
 
 	public GraphDetails(Chart chart, Graph.GraphTypes graphType, AnswerList<? extends Question> questions, String[] optionTitles, Map<String, Boolean> options, boolean isAllTeamGraph) {
-		this.graphTypes = graphType;
+		this.graphType = graphType;
 		this.questions = questions;
 		this.chart = chart;
-		System.out.println("OPTIONS: " + options);
 		this.optionTitles = optionTitles;
 		if (options.size() == 0) {
 			this.options = new HashMap<>();
@@ -38,7 +38,7 @@ public class GraphDetails {
 	}
 
 	public Graph.GraphTypes getGraphType() {
-		return this.graphTypes;
+		return this.graphType;
 	}
 
 	public AnswerList<? extends Question> getGraphQuestions() {

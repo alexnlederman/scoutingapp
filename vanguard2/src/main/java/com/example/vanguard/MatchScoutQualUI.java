@@ -30,16 +30,18 @@ public class MatchScoutQualUI extends LinearLayout {
 		this.context = context;
 		this.onClickListener = onClickListener;
 
-		MaterialLinearLayout mainView = new MaterialLinearLayout(context);
+//		MaterialLinearLayout mainView = new MaterialLinearLayout(context);
 
 		TextView qualIndicator = new TextView(new ContextThemeWrapper(context, R.style.matchQualIndicatorStyle), null, R.style.matchQualIndicatorStyle);
 		qualIndicator.setText("Qual\n" + qualNumber);
 		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 0.27f);
 		qualIndicator.setLayoutParams(layoutParams);
-		mainView.addView(qualIndicator);
+		qualIndicator.setBackgroundColor(ContextCompat.getColor(this.context, R.color.white));
+//		mainView.addView(qualIndicator);
+		this.addView(qualIndicator);
 
 
-		mainView.setPadding(0, mainView.getPaddingTop(), mainView.getPaddingRight(), mainView.getPaddingBottom());
+//		mainView.setPadding(0, mainView.getPaddingTop(), mainView.getPaddingRight(), mainView.getPaddingBottom());
 
 
 		TableLayout tableLayout = new TableLayout(context);
@@ -56,9 +58,10 @@ public class MatchScoutQualUI extends LinearLayout {
 		redRow.setBackgroundColor(ContextCompat.getColor(context, R.color.redTeam));
 		tableLayout.addView(redRow);
 
-		mainView.addView(tableLayout);
+//		mainView.addView(tableLayout);
+		this.addView(tableLayout);
 
-		this.addView(mainView);
+//		this.addView(mainView);
 	}
 
 	private TableRow setupTableRow(List<String> values) {

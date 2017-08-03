@@ -9,6 +9,9 @@ import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Responses.Response;
 
+import java.util.HashMap;
+import java.util.TreeMap;
+
 /**
  * Created by BertTurtle on 6/5/2017.
  */
@@ -18,12 +21,7 @@ public class StringQuestion extends Question<String> {
 	private AnswerUIEditText answerUI;
 
 	public StringQuestion(Context context, String label, AnswerList<Response> responseList, String id, boolean isMatchQuestion) {
-		super(label, responseList, id, isMatchQuestion, ViewStyle.TWO_LINE, QuestionType.STRING, true, "");
-		setup(context);
-	}
-
-	public StringQuestion(Context context, String label, String id, boolean isMatchQuestion) {
-		super(label, id, isMatchQuestion, ViewStyle.TWO_LINE, QuestionType.STRING, true, "");
+		super(label, responseList, id, isMatchQuestion, ViewStyle.TWO_LINE, QuestionType.STRING, true, "", new TreeMap<String, Object>());
 		setup(context);
 	}
 

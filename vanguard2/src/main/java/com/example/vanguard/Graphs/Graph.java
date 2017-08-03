@@ -1,13 +1,9 @@
 package com.example.vanguard.Graphs;
 
-import com.example.vanguard.CustomUIElements.SwitchOption;
 import com.example.vanguard.EnumName;
-import com.example.vanguard.Questions.AnswerList;
-import com.example.vanguard.Questions.Question;
+import com.example.vanguard.Graphs.GraphDetails.GraphDetails;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by mbent on 7/3/2017.
@@ -21,7 +17,8 @@ public interface Graph extends Serializable {
 		PIE_GRAPH("Pie Chart"),
 		SCATTER_GRAPH("Scatter Graph"),
 		CANDLE_STICK_GRAPH("Candle Stick Graph"),
-		RADAR_GRAPH("Radar Chart");
+//		RADAR_GRAPH("Radar Chart"),
+		PLAIN_GRAPH("Plain Response Viewer");
 
 		private final String text;
 

@@ -18,7 +18,6 @@ public class TeamNumberManager {
 	public static int getTeamNumber(Context context) {
 		SharedPreferences preferences = context.getSharedPreferences(MainActivity.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 		int teamNumber = preferences.getInt(TEAM_NUMBER_PREF, 0);
-		System.out.println("TEAM NUMBER: " + teamNumber);
 		return teamNumber;
 	}
 

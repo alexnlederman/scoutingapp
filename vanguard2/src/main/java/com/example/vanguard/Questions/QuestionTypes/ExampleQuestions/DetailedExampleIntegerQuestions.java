@@ -18,7 +18,6 @@ public class DetailedExampleIntegerQuestions extends ExampleIntegerQuestion {
 				prevMatch += 7;
 				this.setTeamNumber(this.teams.get(i));
 				this.setMatchNumber(prevMatch);
-				System.out.println("SAVING");
 				saveResponse();
 			}
 		}
