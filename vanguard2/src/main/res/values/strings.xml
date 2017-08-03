@@ -37,6 +37,10 @@
 	<string name="graph_settings_page_title">Graph Settings</string>
 	<string name="bluetooth_data_transfer_page_title">Sync</string>
 
+	<string name="toast_event_set">Event Set</string>
+	<string name="toast_no_internet">Connect to the Internet</string>
+	<string name="toast_offline_events">No Internet. Displaying Previously Added Events.</string>
+
 
 	<string name="confirm_delete_responses_dialog_text">Are you sure you would like to delete the responses. This cannot be undone. </string>
 	<string name="confirm_delete_responses_dialog_title">Delete Responses</string>

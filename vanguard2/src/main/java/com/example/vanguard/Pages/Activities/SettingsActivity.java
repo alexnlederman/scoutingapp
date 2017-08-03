@@ -1,27 +1,24 @@
 package com.example.vanguard.Pages.Activities;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcel;
-import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.vanguard.Pages.Fragments.DialogFragments.AddEventDialogFragment;
 import com.example.vanguard.CustomUIElements.SettingsView;
 import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.Pages.Fragments.DialogFragments.AddEventDialogFragment;
 import com.example.vanguard.Pages.Fragments.DialogFragments.ConfirmationDialogFragment;
+import com.example.vanguard.Pages.Fragments.DialogFragments.SetEventDialogFragment;
 import com.example.vanguard.Pages.Fragments.DialogFragments.SetTeamNumberDialogFragment;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.R;
 import com.example.vanguard.Responses.Response;
-import com.example.vanguard.Pages.Fragments.DialogFragments.SetEventDialogFragment;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -70,19 +67,18 @@ public class SettingsActivity extends AbstractActivity {
 
 		});
 
-		SettingsView setEvent = (SettingsView) findViewById(R.id.set_event);
-		setEvent.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (MainActivity.databaseManager.getEventNames().size() == 0) {
-					Toast.makeText(that, "Add events first", Toast.LENGTH_LONG).show();
-				}
-				else {
-					DialogFragment fragment = SetEventDialogFragment.newInstance();
-					fragment.show(getFragmentManager(), "Event Selector");
-				}
-			}
-		});
+//		SettingsView setEvent = (SettingsView) findViewById(R.id.set_event);
+//		setEvent.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				if (MainActivity.databaseManager.getEventNames().size() == 0) {
+//					Toast.makeText(that, "Add events first", Toast.LENGTH_LONG).show();
+//				} else {
+//					DialogFragment fragment = SetEventDialogFragment.newInstance();
+//					fragment.show(getFragmentManager(), "Event Selector");
+//				}
+//			}
+//		});
 
 		SettingsView scoutSettings = (SettingsView) findViewById(R.id.scout_settings);
 		scoutSettings.setOnClickListener(new View.OnClickListener() {
@@ -192,8 +188,7 @@ public class SettingsActivity extends AbstractActivity {
 					AnswerList<Response> teamMatchResponse = responses.getTeamAnswers(teamNumber).getMatchAnswers(matchNumber);
 					if (teamMatchResponse.size() > 0) {
 						csv += "\"" + teamMatchResponse.get(0).getValue() + "\",";
-					}
-					else
+					} else
 						csv += "\"\",";
 				}
 				csv = csv.substring(0, csv.length() - 1);

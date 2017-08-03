@@ -31,14 +31,12 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by mbent on 6/29/2017.
  */
 public class AddEventDialogFragment extends DialogFragment {
 
-	HashMap<String, String> eventMaps;
 	Activity context;
 
 	public static AddEventDialogFragment newInstance(DialogOpener dialogOpener) {
@@ -85,59 +83,8 @@ public class AddEventDialogFragment extends DialogFragment {
 		super.onAttach(activity);
 	}
 
-	public class GetEventsAsync extends AsyncTask<URL, Boolean, String> {
-
-		ProgressDialog progressDialog;
-
-		@Override
-		protected void onPreExecute() {
-			progressDialog = new ProgressDialog(getActivity());
-			progressDialog.setMessage("Loading");
-			progressDialog.show();
-			super.onPreExecute();
-		}
-
-		@Override
-		protected String doInBackground(URL... params) {
-			try {
-				return DatabaseManager.getUrlValue(params[0]);
-			} catch (SocketTimeoutException | UnknownHostException e) {
-				e.printStackTrace();
-				return "NO_INTERNET";
-			}
-			catch (IOException e) {
-				e.printStackTrace();
-				return "INVALID_YEAR";
-			}
-		}
-
-		@Override
-		protected void onPostExecute(String s) {
-			progressDialog.dismiss();
-			if (s.equals("INVALID_YEAR")) {
-				Toast.makeText(context, "Please Enter A Valid Year", Toast.LENGTH_LONG).show();
-				return;
-			}
-			else if (s.equals("NO_INTERNET")) {
-				Toast.makeText(context, "Please Connect To The Internet", Toast.LENGTH_LONG).show();
-				return;
-			}
-			HashMap<String, String> eventMapList = new HashMap<>();
-			try {
-				JSONArray events = new JSONArray(s);
-				for (int i = 0; i < events.length(); i++) {
-					JSONObject event = events.getJSONObject(i);
-					eventMapList.put(event.getString("name"), event.getString("key"));
-				}
-				eventMaps = eventMapList;
-
-				DialogOpener opener = getArguments().getParcelable("dialog");
-				opener.openDialog(ChooseEventDialogFragment.newInstance(eventMaps));
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			super.onPostExecute(s);
-		}
+	public interface DialogOpener extends Parcelable {
+		void openDialog(DialogFragment dialog);
 	}
 
 	public static class ChooseEventDialogFragment extends DialogFragment {
@@ -162,16 +109,16 @@ public class AddEventDialogFragment extends DialogFragment {
 			View v = inflater.inflate(R.layout.dialog_event_picker, null);
 			final AutoCompleteTextView textView = (AutoCompleteTextView) v.findViewById(R.id.event_name);
 
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, 	eventMaps.keySet().toArray(new String[eventMaps.keySet().size()]));
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, eventMaps.keySet().toArray(new String[eventMaps.keySet().size()]));
 			textView.setAdapter(adapter);
 
 			builder.setView(v).setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					if (eventMaps.containsKey(textView.getText().toString())) {
-						MainActivity.databaseManager.addEvent(eventMaps.get(textView.getText().toString()), textView.getText().toString(), getActivity());
-					}
-					else Toast.makeText(getActivity(), "Please Select An Event From The Dropdown", Toast.LENGTH_LONG).show();
+						MainActivity.databaseManager.addEvent(eventMaps.get(textView.getText().toString()), textView.getText().toString());
+					} else
+						Toast.makeText(getActivity(), "Please Select An Event From The Dropdown", Toast.LENGTH_LONG).show();
 				}
 			});
 
@@ -180,7 +127,65 @@ public class AddEventDialogFragment extends DialogFragment {
 		}
 	}
 
-	public interface DialogOpener extends Parcelable {
-		void openDialog(DialogFragment dialog);
+	public class GetEventsAsync extends AsyncTask<URL, Boolean, String> {
+
+		ProgressDialog progressDialog;
+
+		@Override
+		protected void onPreExecute() {
+			progressDialog = new ProgressDialog(getActivity());
+			progressDialog.setMessage("Loading");
+			progressDialog.show();
+			super.onPreExecute();
+		}
+
+		@Override
+		protected String doInBackground(URL... params) {
+			try {
+				return DatabaseManager.getUrlValue(params[0]);
+			} catch (SocketTimeoutException | UnknownHostException e) {
+				e.printStackTrace();
+				return "NO_INTERNET";
+			} catch (IOException e) {
+				e.printStackTrace();
+				return "INVALID_YEAR";
+			}
+		}
+
+		@Override
+		protected void onPostExecute(String s) {
+
+			HashMap<String, String> eventMapList;
+			progressDialog.dismiss();
+			switch (s) {
+				case "INVALID_YEAR":
+					Toast.makeText(context, "Please Enter A Valid Year", Toast.LENGTH_LONG).show();
+					return;
+				case "NO_INTERNET":
+					eventMapList = MainActivity.databaseManager.getEventNameKeyMaps();
+					if (eventMapList.size() == 0) {
+						Toast.makeText(context, context.getString(R.string.toast_no_internet), Toast.LENGTH_LONG).show();
+						return;
+					}
+					else {
+						Toast.makeText(context, context.getString(R.string.toast_offline_events), Toast.LENGTH_LONG).show();
+					}
+					break;
+				default:
+					eventMapList = new HashMap<>();
+					try {
+						JSONArray events = new JSONArray(s);
+						for (int i = 0; i < events.length(); i++) {
+							JSONObject event = events.getJSONObject(i);
+							eventMapList.put(event.getString("name"), event.getString("key"));
+						}
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+					break;
+			}
+			DialogOpener opener = getArguments().getParcelable("dialog");
+			opener.openDialog(ChooseEventDialogFragment.newInstance(eventMapList));
+		}
 	}
 }

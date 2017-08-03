@@ -11,18 +11,18 @@
 	tools:showIn="@layout/activity_settings">
 
 	<com.example.vanguard.CustomUIElements.SettingsView
+		android:id="@+id/set_team_number"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:description="Set the current stuff. Yada yada yada. "
+		app:title="Set Team Number"/>
+
+	<com.example.vanguard.CustomUIElements.SettingsView
 		android:id="@+id/add_event"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:description="Add events that your team is attending in order to be able to scout them. This requires an internet connection, so do this before arriving at the event. "
-		app:title="Add Event"/>
-
-	<com.example.vanguard.CustomUIElements.SettingsView
-		android:id="@+id/set_event"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:description="Set the event you team is attending in order to be able to scout them. This requires you to have added the event first. "
-		app:title="Set Current Event"/>
+		app:title="Set Event"/>
 
 	<com.example.vanguard.CustomUIElements.SettingsView
 		android:id="@+id/scout_settings"
@@ -51,12 +51,5 @@
 		android:layout_height="wrap_content"
 		app:description="Set the current stuff. Yada yada yada. "
 		app:title="Delete Responses"/>
-
-	<com.example.vanguard.CustomUIElements.SettingsView
-		android:id="@+id/set_team_number"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:description="Set the current stuff. Yada yada yada. "
-		app:title="Set Team Number"/>
 
 </LinearLayout>

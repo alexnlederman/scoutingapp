@@ -641,7 +641,7 @@ public class DatabaseManager {
 	}
 
 	public List<String> getEventNames() {
-		Query query = eventInfoView.createQuery();
+		Query query = this.eventInfoView.createQuery();
 
 		QueryEnumerator result = null;
 		try {
@@ -657,8 +657,25 @@ public class DatabaseManager {
 		return names;
 	}
 
+	public HashMap<String, String> getEventNameKeyMaps() {
+		Query query = this.eventInfoView.createQuery();
+
+		QueryEnumerator result = null;
+		try {
+			result = query.run();
+		} catch (CouchbaseLiteException e) {
+			e.printStackTrace();
+		}
+		HashMap<String, String> nameKeyMap = new HashMap<>();
+		for (Iterator<QueryRow> it = result; it.hasNext(); ) {
+			QueryRow row = it.next();
+			nameKeyMap.put((String) ((List) row.getValue()).get(1), (String) ((List) row.getValue()).get(0));
+		}
+		return nameKeyMap;
+	}
+
 	private String getEventInfoDocId(String eventName) {
-		Query query = eventInfoView.createQuery();
+		Query query = this.eventInfoView.createQuery();
 
 		QueryEnumerator result = null;
 		try {
@@ -676,11 +693,13 @@ public class DatabaseManager {
 		return null;
 	}
 
-	public void addEvent(String eventKey, String eventName, Context context) {
+	public void addEvent(String eventKey, String eventName) {
 		if (getEventTeams(eventKey).size() != 0) {
+			setCurrentEvent(eventName);
+			Toast.makeText(this.context, this.context.getResources().getString(R.string.toast_event_set), Toast.LENGTH_LONG).show();
 			return;
 		}
-		AddEventDocuments asyncTask = new AddEventDocuments(context);
+		AddEventDocuments asyncTask = new AddEventDocuments();
 		asyncTask.execute(eventKey, eventName);
 	}
 
@@ -944,11 +963,8 @@ public class DatabaseManager {
 	private class AddEventDocuments extends AsyncTask<String, Boolean, Boolean> {
 
 		ProgressDialog progressDialog;
-		Context context;
-
-		public AddEventDocuments(Context context) {
-			this.context = context;
-		}
+		String eventKey;
+		String eventName;
 
 		@Override
 		protected void onPreExecute() {
@@ -960,8 +976,10 @@ public class DatabaseManager {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
+			this.eventKey = params[0];
+			this.eventName = params[1];
 			try {
-				String matchScheduleJson = getUrlValue(new URL("https://www.thebluealliance.com/api/v3/event/" + params[0] + "/matches/simple?X-TBA-Auth-Key=vVc9R5KHLDG2zkDgqFzRQRAFWBIPSSdyesezDG0m44p5yAiUBAz7qMasclG4Ua7a"));
+				String matchScheduleJson = getUrlValue(new URL("https://www.thebluealliance.com/api/v3/event/" + this.eventKey + "/matches/simple?X-TBA-Auth-Key=vVc9R5KHLDG2zkDgqFzRQRAFWBIPSSdyesezDG0m44p5yAiUBAz7qMasclG4Ua7a"));
 
 				JSONArray eventJSONArray = new JSONArray(matchScheduleJson);
 				for (int i = 0; i < eventJSONArray.length(); i++) {
@@ -972,20 +990,20 @@ public class DatabaseManager {
 						String[] blueTeams = getAllianceTeams(matchTeamsJson.getJSONObject("blue"));
 						String[] redTeams = getAllianceTeams(matchTeamsJson.getJSONObject("red"));
 						Document matchDocument = database.createDocument();
-						matchDocument.update(new EventMatchDocumentUpdater(qualNumber, params[0], redTeams, blueTeams, params[1]));
+						matchDocument.update(new EventMatchDocumentUpdater(qualNumber, this.eventKey, redTeams, blueTeams, this.eventName));
 					}
 				}
-				String eventTeamsJson = getUrlValue(new URL("https://www.thebluealliance.com/api/v3/event/" + params[0] + "/teams/keys?X-TBA-Auth-Key=vVc9R5KHLDG2zkDgqFzRQRAFWBIPSSdyesezDG0m44p5yAiUBAz7qMasclG4Ua7a"));
+				String eventTeamsJson = getUrlValue(new URL("https://www.thebluealliance.com/api/v3/event/" + this.eventKey + "/teams/keys?X-TBA-Auth-Key=vVc9R5KHLDG2zkDgqFzRQRAFWBIPSSdyesezDG0m44p5yAiUBAz7qMasclG4Ua7a"));
 				JSONArray array = new JSONArray(eventTeamsJson);
 				List<Integer> eventTeams = new ArrayList<>();
 				for (int i = 0; i < array.length(); i++) {
 					eventTeams.add(Integer.valueOf(array.getString(i).substring(3)));
 				}
-				Document documument = database.createDocument();
-				documument.update(new EventTeamsDocumentUpdater(params[0], params[1], eventTeams));
+				Document eventTeamsDocument = database.createDocument();
+				eventTeamsDocument.update(new EventTeamsDocumentUpdater(this.eventKey, this.eventName, eventTeams));
 
-				Document document = database.createDocument();
-				document.update(new EventInformationDocumentUpdater(params[0], params[1]));
+				Document eventInfoDocument = database.createDocument();
+				eventInfoDocument.update(new EventInformationDocumentUpdater(this.eventKey, this.eventName));
 			} catch (Exception e) {
 				e.printStackTrace();
 				return false;
@@ -999,10 +1017,11 @@ public class DatabaseManager {
 			super.onPostExecute(aBoolean);
 			progressDialog.dismiss();
 			if (aBoolean) {
-				Toast.makeText(context, "Successfully Added", Toast.LENGTH_LONG).show();
+				Toast.makeText(context, context.getResources().getString(R.string.toast_event_set), Toast.LENGTH_LONG).show();
 			} else {
 				Toast.makeText(context, "Make Sure You Have a Wireless Connections", Toast.LENGTH_LONG).show();
 			}
+			setCurrentEvent(this.eventName);
 		}
 	}
 

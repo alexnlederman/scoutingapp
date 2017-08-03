@@ -11,7 +11,10 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:contentDescription="Sync"
+		android:elevation="2dp"
 		android:background="@color/white"
+		android:layout_margin="8dp"
+		android:layout_marginBottom="4dp"
 		android:src="@drawable/ic_sync_large"/>
 
 	<com.example.vanguard.CustomUIElements.SwitchOption

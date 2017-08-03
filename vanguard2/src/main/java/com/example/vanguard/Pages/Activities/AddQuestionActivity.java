@@ -9,13 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.vanguard.CustomUIElements.HintEditText;
 import com.example.vanguard.Questions.AnswerList;
-import com.example.vanguard.Questions.Properties.QuestionProperty;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Questions.QuestionViewers.SimpleFormQuestionViewer;
 import com.example.vanguard.R;
@@ -31,16 +30,15 @@ import java.util.Map;
 
 public class AddQuestionActivity extends AbstractActivity {
 
+	public static final String is_match_question = "is_match_question";
 	boolean isMatchQuestion;
 	LinearLayout optionsLayout;
 	LinearLayout previewLayout;
 	Map<String, Object> properties;
 	Question question;
-	SimpleFormQuestionViewer questionPreview;
 
 //	List<EditText> optionValues;
-
-	public static final String is_match_question = "is_match_question";
+	SimpleFormQuestionViewer questionPreview;
 
 	public AddQuestionActivity() {
 		super(R.layout.activity_add_question, R.string.add_question_page_title);
@@ -104,12 +102,11 @@ public class AddQuestionActivity extends AbstractActivity {
 		this.optionsLayout.removeAllViews();
 		this.properties = this.question.getQuestionProperties();
 		for (final String propertyName : this.properties.keySet()) {
-			EditText propertyEdit = new EditText(this);
-			propertyEdit.setHint(propertyName);
-			propertyEdit.setText(this.properties.get(propertyName).toString());
-			propertyEdit.setInputType(getPropertyInputType(this.properties.get(propertyName)));
+			HintEditText propertyEdit = new HintEditText(this, propertyName);
+			propertyEdit.getEditText().setText(this.properties.get(propertyName).toString());
+			propertyEdit.getEditText().setInputType(getPropertyInputType(this.properties.get(propertyName)));
 
-			propertyEdit.addTextChangedListener(new TextWatcher() {
+			propertyEdit.getEditText().addTextChangedListener(new TextWatcher() {
 				@Override
 				public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -144,7 +141,7 @@ public class AddQuestionActivity extends AbstractActivity {
 
 	private int getPropertyInputType(Object propertyValue) {
 		if (propertyValue instanceof Integer) {
-			return InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED;
+			return InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED;
 		}
 		if (propertyValue instanceof String) {
 			return InputType.TYPE_CLASS_TEXT;
