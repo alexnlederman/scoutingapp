@@ -1,6 +1,7 @@
 package com.example.vanguard.Pages.Activities;
 
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.InputType;
@@ -13,7 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.vanguard.Bluetooth.BluetoothManager;
 import com.example.vanguard.CustomUIElements.HintEditText;
+import com.example.vanguard.Pages.Fragments.DialogFragments.ConfirmationDialogFragment;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Questions.QuestionViewers.SimpleFormQuestionViewer;
@@ -37,7 +40,7 @@ public class AddQuestionActivity extends AbstractActivity {
 	Map<String, Object> properties;
 	Question question;
 
-//	List<EditText> optionValues;
+	//	List<EditText> optionValues;
 	SimpleFormQuestionViewer questionPreview;
 
 	public AddQuestionActivity() {
@@ -52,6 +55,16 @@ public class AddQuestionActivity extends AbstractActivity {
 
 		this.optionsLayout = (LinearLayout) findViewById(R.id.options_layout);
 		this.previewLayout = (LinearLayout) findViewById(R.id.preview_layout);
+
+		if (!BluetoothManager.isServer(this)) {
+			ConfirmationDialogFragment warning = ConfirmationDialogFragment.newInstance(R.string.confirm_not_server_add_question_title, R.string.confirm_not_server_add_question_text, new ConfirmationDialogFragment.ConfirmDialogListener() {
+				@Override
+				public void decline() {
+					finish();
+				}
+			});
+			warning.show(getFragmentManager(), "Confirm Add Question");
+		}
 
 		Spinner spinner = (Spinner) this.findViewById(R.id.spinner);
 		spinner.setAdapter(new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, getQuestionTypeNames()));
@@ -114,7 +127,6 @@ public class AddQuestionActivity extends AbstractActivity {
 
 				@Override
 				public void onTextChanged(CharSequence s, int start, int before, int count) {
-
 					properties.put(propertyName, convertValueToType(s, properties.get(propertyName)));
 					questionPreview.refreshView();
 				}

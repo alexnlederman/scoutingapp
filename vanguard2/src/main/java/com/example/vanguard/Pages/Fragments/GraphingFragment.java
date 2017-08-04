@@ -38,7 +38,7 @@ public class GraphingFragment extends Fragment implements NavDrawerFragment{
 	}
 
 	@Override
-	public int getNavDrawerPosition() {
+	public int getNavDrawerIconId() {
 		return R.id.nav_data;
 	}
 

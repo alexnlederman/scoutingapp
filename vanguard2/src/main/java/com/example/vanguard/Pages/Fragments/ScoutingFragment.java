@@ -56,7 +56,7 @@ public class ScoutingFragment extends Fragment implements NavDrawerFragment {
 	}
 
 	@Override
-	public int getNavDrawerPosition() {
+	public int getNavDrawerIconId() {
 		return R.id.nav_scout;
 	}
 

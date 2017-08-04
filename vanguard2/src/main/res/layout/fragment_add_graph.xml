@@ -5,10 +5,10 @@
 			 tools:context="com.example.vanguard.Pages.Fragments.AddGraphFragment">
 
 	<LinearLayout
+		android:id="@+id/graph_layout"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical"
-		android:id="@+id/graph_layout">
+		android:orientation="vertical">
 
 
 		<Spinner
@@ -17,10 +17,22 @@
 			android:layout_height="wrap_content"/>
 
 		<Button
+			android:id="@+id/submit"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:id="@+id/submit"
 			android:text="Submit"/>
+
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<LinearLayout
+				android:id="@+id/graph_details"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"/>
+
+		</ScrollView>
 
 	</LinearLayout>
 

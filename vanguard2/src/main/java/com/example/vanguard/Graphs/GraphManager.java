@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -57,7 +58,6 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -71,7 +71,7 @@ import static com.example.vanguard.Graphs.Graph.PRACTICE_MATCH_OPTION;
 
 public class GraphManager {
 
-	private static final int[] colors = {Color.rgb(63, 82, 181), Color.rgb(48, 135, 168), Color.rgb(101, 59, 181)};
+	private static final int[] colors = {Color.rgb(63, 82, 181), Color.rgb(48, 135, 168), Color.rgb(101, 59, 181), Color.rgb(165, 179, 255), Color.rgb(114, 120, 153)};
 
 	private static void removeYAxisTruncation(BarLineChartBase graph) {
 		graph.getAxisLeft().setAxisMinimum(0);
@@ -217,12 +217,16 @@ public class GraphManager {
 	private static void setScatterData(ScatterGraph graph, AnswerList<? extends Question> questions) {
 		List<Entry> entries = new ArrayList<>();
 
-		List<Float> xValues = questions.get(0).getAllTeamNumberValues();
-		List<Float> yValues = questions.get(1).getAllTeamNumberValues();
+
+		final Question xQuestion = questions.get(0);
+		final Question yQuestion = questions.get(1);
+
+		List<Float> xValues = xQuestion.getAllTeamNumberValues();
+		List<Float> yValues = yQuestion.getAllTeamNumberValues();
 		List<List<Entry>> teamEntries = getAllTeamGraphEntries(questions, graph.getGraphDetails().getOptions().get(PRACTICE_MATCH_OPTION));
 
 		for (int i = 0; i < xValues.size(); i++) {
-			entries.add(new Entry(yValues.get(i), xValues.get(i), teamEntries.get(0).get(i).getData()));
+			entries.add(new Entry(xValues.get(i), yValues.get(i), teamEntries.get(0).get(i).getData()));
 		}
 
 		Collections.sort(entries, new EntryXAndYComparator());
@@ -231,12 +235,12 @@ public class GraphManager {
 		List<List<Entry>> data = new ArrayList<>();
 		data.add(entries);
 
-		graph.getLegend().setEnabled(false);
+//		graph.getLegend().setEnabled(false);
 
 		List<? extends IScatterDataSet> scatterDataSets = getDataSet(data, questions, false, new DataSetGetter<ScatterDataSet, Entry>() {
 			@Override
 			public ScatterDataSet getDataSet(List<Entry> entries, Question question) {
-				ScatterDataSet dataSet = new ScatterDataSet(entries, "");
+				ScatterDataSet dataSet = new ScatterDataSet(entries, "X: " + xQuestion.getLabel() + " Vs Y: " + yQuestion.getLabel());
 				dataSet.setValueFormatter(new IValueFormatter() {
 					@Override
 					public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
@@ -304,7 +308,7 @@ public class GraphManager {
 
 	}
 
-	private static void setPieGraphData(PieGraph pieGraph, List values, AnswerList<? extends Question> questions) {
+	private static void setPieGraphData(PieGraph pieGraph, List values, AnswerList<? extends Question> questions, Context context) {
 		List<PieEntry> entries = convertValuesToPieEntries(values);
 
 		List<IPieDataSet> dataSets = getPieDataSet(entries, questions);
@@ -319,6 +323,8 @@ public class GraphManager {
 					return new PieData(pieDataSet);
 			}
 		}));
+
+		pieGraph.setEntryLabelColor(ContextCompat.getColor(context, R.color.textColor));
 	}
 
 	private static List getPieGraphValues(AnswerList<? extends Question> questions, boolean includePracticeMatches) {
@@ -555,7 +561,7 @@ public class GraphManager {
 		} else {
 			values = getPieGraphValues(pieGraph.getGraphDetails().getGraphQuestions(), teamNumber, pieGraph.getGraphDetails().getOptions().get(PRACTICE_MATCH_OPTION));
 		}
-		setPieGraphData(pieGraph, values, pieGraph.getGraphDetails().getGraphQuestions());
+		setPieGraphData(pieGraph, values, pieGraph.getGraphDetails().getGraphQuestions(), context);
 
 		setGraphLayoutParams(pieGraph, context);
 

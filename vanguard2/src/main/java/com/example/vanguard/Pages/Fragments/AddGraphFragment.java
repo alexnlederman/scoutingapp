@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.vanguard.CustomUIElements.SwitchOption;
 import com.example.vanguard.Graphs.Graph;
@@ -20,7 +21,6 @@ import com.example.vanguard.Graphs.GraphImplementations.BarGraph;
 import com.example.vanguard.Graphs.GraphImplementations.CandleStickGraph;
 import com.example.vanguard.Graphs.GraphImplementations.LineGraph;
 import com.example.vanguard.Graphs.GraphImplementations.PieGraph;
-import com.example.vanguard.Graphs.GraphImplementations.RadarGraph;
 import com.example.vanguard.Graphs.GraphImplementations.ResponseViewerGraph;
 import com.example.vanguard.Graphs.GraphImplementations.ScatterGraph;
 import com.example.vanguard.Pages.Activities.MainActivity;
@@ -46,12 +46,6 @@ public class AddGraphFragment extends Fragment {
 	AnswerList<DetailedExampleIntegerQuestions> oneDetailedIntegerQuestion;
 	AnswerList<ExampleStringQuestion> oneStringQuestion;
 	AnswerList<ExampleIntegerQuestion> fourIntegerQuestion;
-	boolean firstRun = true;
-
-
-	public AddGraphFragment() {
-		// Required empty public constructor
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -149,21 +143,21 @@ public class AddGraphFragment extends Fragment {
 	}
 
 	private void setupGraph(Graph.GraphTypes type) {
-		LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.graph_layout);
-		if (graphView != null) {
-			layout.removeView(graphView);
-			for (int i = 0; i < layout.getChildCount(); ) {
-				if (layout.getChildAt(i) instanceof SwitchOption) {
-					layout.removeViewAt(i);
-				} else {
-					i++;
-				}
-			}
-		}
+		LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.graph_details);
+//		if (graphView != null) {
+		layout.removeAllViews();
+//			for (int i = 0; i < layout.getChildCount(); ) {
+//				if (layout.getChildAt(i) instanceof SwitchOption) {
+//					layout.removeViewAt(i);
+//				} else {
+//					i++;
+//				}
+//			}
+//		}
 		Graph graph = getGraphByType(type);
 		this.graphView = (View) graph;
 		if (graph != null) {
-			layout.addView(graphView);
+			layout.addView(this.graphView);
 			String[] options = graph.getGraphDetails().getOptionTitles();
 			final List<SwitchOption> toggles = new ArrayList<>();
 			for (String option : options) {
@@ -182,6 +176,10 @@ public class AddGraphFragment extends Fragment {
 					}
 				});
 			}
+
+			TextView description = new TextView(this.getActivity());
+			description.setText(graph.getGraphDescription());
+			layout.addView(description);
 		}
 	}
 
@@ -192,18 +190,5 @@ public class AddGraphFragment extends Fragment {
 			names[i] = types[i].getName();
 		}
 		return names;
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		final Spinner spinner = (Spinner) getActivity().findViewById(R.id.spinner);
-//		Graph.GraphTypes[] types = Graph.GraphTypes.values();
-//		Random random = new Random();
-		if (!this.firstRun) {
-//			int rng = random.nextInt(types.length - 1) + 1;
-			spinner.setSelection(1);
-		}
-		this.firstRun = false;
 	}
 }

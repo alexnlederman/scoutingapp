@@ -67,19 +67,6 @@ public class SettingsActivity extends AbstractActivity {
 
 		});
 
-//		SettingsView setEvent = (SettingsView) findViewById(R.id.set_event);
-//		setEvent.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				if (MainActivity.databaseManager.getEventNames().size() == 0) {
-//					Toast.makeText(that, "Add events first", Toast.LENGTH_LONG).show();
-//				} else {
-//					DialogFragment fragment = SetEventDialogFragment.newInstance();
-//					fragment.show(getFragmentManager(), "Event Selector");
-//				}
-//			}
-//		});
-
 		SettingsView scoutSettings = (SettingsView) findViewById(R.id.scout_settings);
 		scoutSettings.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -113,16 +100,6 @@ public class SettingsActivity extends AbstractActivity {
 						MainActivity.databaseManager.saveResponses(questions);
 						Toast.makeText(that, "Responses Successfully Deleted", Toast.LENGTH_LONG).show();
 					}
-
-					@Override
-					public int describeContents() {
-						return 0;
-					}
-
-					@Override
-					public void writeToParcel(Parcel dest, int flags) {
-
-					}
 				});
 				fragment.show(getFragmentManager(), "Question Responses Delete");
 			}
@@ -132,7 +109,7 @@ public class SettingsActivity extends AbstractActivity {
 		setTeamNumber.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				SetTeamNumberDialogFragment teamNumberDialogFragment = new SetTeamNumberDialogFragment();
+				SetTeamNumberDialogFragment teamNumberDialogFragment = SetTeamNumberDialogFragment.newInstance(null);
 				teamNumberDialogFragment.show(getFragmentManager(), "Set Team Number");
 			}
 		});

@@ -31,4 +31,9 @@ public class ScatterGraph extends ScatterChart implements Graph {
 	public GraphDetails getGraphDetails() {
 		return this.details;
 	}
+
+	@Override
+	public String getGraphDescription() {
+		return "This displays X vs Y of how teams for a question. The X value is the median value from one question and the Y value is the median value from another question. ";
+	}
 }

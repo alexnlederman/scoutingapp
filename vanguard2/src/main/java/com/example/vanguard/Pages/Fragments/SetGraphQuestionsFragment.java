@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import com.example.vanguard.CustomUIElements.ErrorTextView;
 import com.example.vanguard.Graphs.Graph;
 import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.Questions.AnswerList;
@@ -20,7 +20,6 @@ import com.example.vanguard.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by mbent on 7/6/2017.
@@ -97,44 +96,54 @@ public class SetGraphQuestionsFragment extends Fragment {
 				includesPitQuestions = true;
 				break;
 		}
-//		twoBasicIntegerQuestions.getAllOfType();
 
 		if (includesPitQuestions) {
 			questions.addAll(MainActivity.databaseManager.getPitQuestions());
 		}
+		System.out.println("Question Size0: " + questions.size());
 
 		for (Class type : compatibleClasses) {
 			questions = questions.getAllOfType(type);
+			System.out.println("Question Size1: " + questions.size());
+
 		}
 		for (Class type : incompatibleClasses) {
 			questions = questions.getAllNotOfType(type);
-		}
-		final QuestionSelectorViewer selectorViewer = new QuestionSelectorViewer(getActivity(), questions);
-		layout.addView(selectorViewer);
+			System.out.println("Question Size2: " + questions.size());
 
-		Button submitButton = new Button(getActivity());
-		submitButton.setText("Submit");
-		final int finalMin = min;
-		final int finalMax = max;
-		submitButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				int selectedAmount = selectorViewer.getAmountSelected();
-				if ((selectedAmount <= finalMax || finalMax == -1) && selectedAmount >= finalMin) {
-					graph.getGraphDetails().setQuestions(selectorViewer.getSelectedQuestions());
-					MainActivity.databaseManager.addGraph(graph);
-					getActivity().finish();
-				} else {
-					String text = "";
-					if (selectedAmount > finalMax && finalMax != -1) {
-						text = "Too many questions selected";
-					} else if (selectedAmount < finalMin) {
-						text = "Too few questions selected";
+		}
+		System.out.println("Question Size: " + questions.size());
+		System.out.println("Min: " + min);
+		if (questions.size() >= min) {
+			final QuestionSelectorViewer selectorViewer = new QuestionSelectorViewer(getActivity(), questions);
+			layout.addView(selectorViewer);
+
+			Button submitButton = new Button(getActivity());
+			submitButton.setText("Submit");
+			final int finalMin = min;
+			final int finalMax = max;
+			submitButton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					int selectedAmount = selectorViewer.getAmountSelected();
+					if ((selectedAmount <= finalMax || finalMax == -1) && selectedAmount >= finalMin) {
+						graph.getGraphDetails().setQuestions(selectorViewer.getSelectedQuestions());
+						MainActivity.databaseManager.addGraph(graph);
+						getActivity().finish();
+					} else {
+						String text = "";
+						if (selectedAmount > finalMax && finalMax != -1) {
+							text = "Too many questions selected";
+						} else if (selectedAmount < finalMin) {
+							text = "Too few questions selected";
+						}
+						Toast.makeText(getActivity(), text, Toast.LENGTH_LONG).show();
 					}
-					Toast.makeText(getActivity(), text, Toast.LENGTH_LONG).show();
 				}
-			}
-		});
-		layout.addView(submitButton);
+			});
+			layout.addView(submitButton);
+		} else {
+			layout.addView(new ErrorTextView(this.getActivity(), R.string.compatible_questions_error));
+		}
 	}
 }

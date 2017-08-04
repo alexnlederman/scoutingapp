@@ -4,11 +4,11 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.vanguard.R;
 import com.example.vanguard.TeamNumberManager;
@@ -18,6 +18,21 @@ import com.example.vanguard.TeamNumberManager;
  */
 
 public class SetTeamNumberDialogFragment extends DialogFragment {
+
+	private SetTeamNumberDialogFragment() {
+
+	}
+
+	public static SetTeamNumberDialogFragment newInstance(@Nullable ConfirmationDialogFragment.ConfirmDialogListener confirmDialogListener) {
+
+		Bundle args = new Bundle();
+
+		args.putParcelable("listener", confirmDialogListener);
+
+		SetTeamNumberDialogFragment fragment = new SetTeamNumberDialogFragment();
+		fragment.setArguments(args);
+		return fragment;
+	}
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -30,7 +45,15 @@ public class SetTeamNumberDialogFragment extends DialogFragment {
 		builder.setView(v).setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				TeamNumberManager.setTeamNumber(Integer.valueOf(teamNumber.getText().toString()), getActivity());
+				String text = teamNumber.getText().toString();
+
+				if (text.length() > 0 && !text.equals("-")) {
+					TeamNumberManager.setTeamNumber(Integer.valueOf(teamNumber.getText().toString()), getActivity());
+					ConfirmationDialogFragment.ConfirmDialogListener confirm = getArguments().getParcelable("listener");
+					if (confirm != null) {
+						confirm.confirm();
+					}
+				}
 			}
 		});
 

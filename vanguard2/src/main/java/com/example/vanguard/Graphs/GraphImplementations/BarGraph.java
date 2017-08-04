@@ -31,4 +31,9 @@ public class BarGraph extends BarChart implements Graph {
 	public GraphDetails getGraphDetails() {
 		return this.details;
 	}
+
+	@Override
+	public String getGraphDescription() {
+		return "The median value for the question. Click on bar for team number. ";
+	}
 }

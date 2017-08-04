@@ -71,8 +71,6 @@ public class AcceptAsyncTask extends AsyncTask<Void, Boolean, Void> {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-
-				// TODO test if device is connecting properly.
 				break;
 			}
 		}

@@ -6,6 +6,6 @@ package com.example.vanguard.Pages.Activities;
 
 public interface NavDrawerFragment {
 
-	int getNavDrawerPosition();
+	int getNavDrawerIconId();
 
 }

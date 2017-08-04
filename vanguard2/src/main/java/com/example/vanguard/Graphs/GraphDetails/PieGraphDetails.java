@@ -17,7 +17,7 @@ import static com.example.vanguard.Graphs.Graph.PRACTICE_MATCH_OPTION;
 
 public class PieGraphDetails extends GraphDetails {
 
-	private static String ACROSS_TEAM_OPTION = "Graph Across Teams";
+	public static String ACROSS_TEAM_OPTION = "Graph Across Teams";
 
 	public PieGraphDetails(Chart chart, Question question, Map<String, Boolean> options) {
 		super(chart, Graph.GraphTypes.PIE_GRAPH, new AnswerList<Question>(Collections.singletonList(question)), new String[]{PRACTICE_MATCH_OPTION, ACROSS_TEAM_OPTION}, options, true);

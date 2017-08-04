@@ -31,4 +31,9 @@ public class RadarGraph extends RadarChart implements Graph {
 	public GraphDetails getGraphDetails() {
 		return this.details;
 	}
+
+	@Override
+	public String getGraphDescription() {
+		return "This doesn't work";
+	}
 }

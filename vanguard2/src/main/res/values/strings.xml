@@ -10,6 +10,7 @@
 	<string name="data_title">Data</string>
 	<string name="schedule_title">Schedule</string>
 	<string name="settings_title">Settings</string>
+	<string name="graph_settings_title">Graph Settings</string>
 	<string name="sync_title">Sync</string>
 	<string name="preferences">Shared_Preferences</string>
 	<string name="question_count">question_count</string>
@@ -26,6 +27,7 @@
 	<string name="add_graph_error">Add Graphs in the Settings Page</string>
 	<string name="set_event_error">Add and Set the Current Event in the Setting Page</string>
 	<string name="add_graph_page_error">Add graphs in the top right</string>
+	<string name="compatible_questions_error">Not Enough Compatible Questions</string>
 
 	<string name="graph_page_title">Graphing</string>
 	<string name="match_scouting_page_title">Match Scouting</string>
@@ -48,4 +50,7 @@
 	<string name="confirm_delete_data_point_text">Are you sure you would like to delete this response. This cannot be undone.</string>
 	<string name="confirm_delete_question_title">Delete Question</string>
 	<string name="confirm_delete_question_text">Are you sure you would like to delete this question. All of its responses will be lost. This cannot be undone. </string>
+	<string name="confirm_not_server_add_question_title">Warning</string>
+	<string name="confirm_not_server_add_question_text">Are you sure you would like to add a question. When this device is synced with the server this question will be lost. </string>
+
 </resources>

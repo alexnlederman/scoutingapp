@@ -32,4 +32,9 @@ public class LineGraph extends LineChart implements Graph {
 	public GraphDetails getGraphDetails() {
 		return this.details;
 	}
+
+	@Override
+	public String getGraphDescription() {
+		return "Displays the qual number vs response value. Click on plot point to delete the entry completely. 25th percentile, median, and 75th percentile is across all teams. Data points before the practice match divider line are for practice matches. Their x value is in the proper order but it is not the actual practice match. ";
+	}
 }

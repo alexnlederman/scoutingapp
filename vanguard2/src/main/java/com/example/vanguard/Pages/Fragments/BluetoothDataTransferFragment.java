@@ -96,7 +96,7 @@ public class BluetoothDataTransferFragment extends Fragment implements NavDrawer
 	}
 
 	@Override
-	public int getNavDrawerPosition() {
+	public int getNavDrawerIconId() {
 		return R.id.nav_sync;
 	}
 

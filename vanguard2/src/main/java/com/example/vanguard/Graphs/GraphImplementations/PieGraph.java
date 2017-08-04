@@ -34,4 +34,9 @@ public class PieGraph extends PieChart implements Graph {
 	public GraphDetails getGraphDetails() {
 		return this.details;
 	}
+
+	@Override
+	public String getGraphDescription() {
+		return "Displays the percent of responses that are of different values. Displays it for either individual teams or across all teams depending on the " + PieGraphDetails.ACROSS_TEAM_OPTION + " setting. This can also show number values. If this is for a number question and it is being graphed across teams then it uses the median for each team. ";
+	}
 }

@@ -41,4 +41,6 @@ public interface Graph extends Serializable {
 	String PRACTICE_MATCH_OPTION = "Include Practice Matches";
 
 	GraphDetails getGraphDetails();
+
+	String getGraphDescription();
 }

@@ -31,4 +31,9 @@ public class CandleStickGraph extends CandleStickChart implements Graph {
 	public GraphDetails getGraphDetails() {
 		return this.details;
 	}
+
+	@Override
+	public String getGraphDescription() {
+		return "Top of line shows max value. Bottom of line shows min value. Top of box is 25th percentile and bottom is 75th percentile. Click on data point for team number. ";
+	}
 }

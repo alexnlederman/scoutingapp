@@ -17,20 +17,20 @@ public class AnswerList<T extends Answer> extends ArrayList<T> {
 		super(arrayList);
 	}
 
-	public AnswerList<T> getAllOfType(Object type) {
+	public AnswerList<T> getAllOfType(Class type) {
 		AnswerList<T> answers = new AnswerList<T>();
 		for (T answer : this) {
-			if (answer.getValue().getClass().isInstance(type)) {
+			if (type.isInstance(answer.getValue())) {
 				answers.add(answer);
 			}
 		}
 		return answers;
 	}
 
-	public AnswerList<T> getAllNotOfType(Object type) {
+	public AnswerList<T> getAllNotOfType(Class type) {
 		AnswerList<T> answers = new AnswerList<T>();
 		for (T answer : this) {
-			if (!answer.getValue().getClass().isInstance(type)) {
+			if (!type.isInstance(answer.getValue())) {
 				answers.add(answer);
 			}
 		}

@@ -1,7 +1,6 @@
 package com.example.vanguard.Graphs;
 
 import android.content.Context;
-import android.support.annotation.IntDef;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -23,7 +22,6 @@ public class GraphEditor extends LinearLayout {
 
 		LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 		this.setLayoutParams(params);
-
 	}
 
 	private void updateGraphs() {

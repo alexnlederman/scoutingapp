@@ -51,11 +51,6 @@
 			android:windowSoftInputMode="stateHidden">
 		</activity>
 		<activity
-			android:name=".Pages.Activities.GraphSettingsActivity"
-			android:label="GraphSettingsActivity"
-			android:theme="@style/AppTheme.NoActionBar">
-		</activity>
-		<activity
 			android:name=".Pages.Activities.AddGraphActivity"
 			android:label="AddGraphActivity"
 			android:theme="@style/AppTheme.NoActionBar">

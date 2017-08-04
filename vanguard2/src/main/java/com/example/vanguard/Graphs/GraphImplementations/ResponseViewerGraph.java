@@ -97,6 +97,11 @@ public class ResponseViewerGraph extends MaterialLinearLayout implements Graph {
 		return this.details;
 	}
 
+	@Override
+	public String getGraphDescription() {
+		return "This views all the responses from a question in plain text for an individual team. ";
+	}
+
 	private class ResponseSorter implements Comparator<Response> {
 
 		@Override
