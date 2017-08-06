@@ -2,13 +2,9 @@ package com.example.vanguard.Questions.QuestionTypes.ExampleQuestions;
 
 import android.view.View;
 
-import com.example.vanguard.Questions.AnswerList;
-import com.example.vanguard.Questions.Properties.QuestionProperty;
 import com.example.vanguard.Questions.Question;
-import com.example.vanguard.Responses.Response;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.TreeMap;
@@ -22,11 +18,12 @@ public abstract class ExampleQuestion<T extends Object> extends Question<T> {
 	List<Integer> teams;
 	int teamCount = 20;
 
-	public ExampleQuestion() {
+	public ExampleQuestion(boolean generateResponses) {
 		super("Example Question", "", true, ViewStyle.SINGLE_LINE, QuestionType.INTEGER, false, null, new TreeMap<String, Object>());
 		this.random = new Random();
 		this.teams = this.generateTeams();
-		this.generateResponses();
+		if (generateResponses)
+			this.generateResponses();
 	}
 
 	private List<Integer> generateTeams() {
@@ -34,7 +31,7 @@ public abstract class ExampleQuestion<T extends Object> extends Question<T> {
 		teams.add(50);
 		for (int i = 1; i < teamCount; i++) {
 			int prevValue = teams.get(i - 1);
-			teams.add(prevValue + this.random.nextInt(100) + 1);
+			teams.add(prevValue + 53);
 		}
 		return teams;
 	}

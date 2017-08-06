@@ -1,7 +1,6 @@
 package com.example.vanguard.Questions.QuestionViewers;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 import com.example.vanguard.AnswerUI;
 import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.Questions.Question;
-import com.example.vanguard.R;
 
 /**
  * Created by BertTurtle on 6/5/2017.
@@ -18,13 +16,16 @@ import com.example.vanguard.R;
 public abstract class SimpleFormQuestionViewer extends LinearLayoutQuestionViewer {
 
 	protected TextView labelTextView;
+	Question.ViewStyle viewStyle;
 
-	public SimpleFormQuestionViewer(Context context, Question question) {
+	public SimpleFormQuestionViewer(Context context, Question question, Question.ViewStyle viewStyle) {
 		super(context, question);
+		this.viewStyle = viewStyle;
 	}
 
-	public SimpleFormQuestionViewer(Context context, Question question, Object initialValue) {
+	public SimpleFormQuestionViewer(Context context, Question question, Object initialValue, Question.ViewStyle viewStyle) {
 		super(context, question, initialValue);
+		this.viewStyle = viewStyle;
 	}
 
 	@Override
@@ -46,12 +47,12 @@ public abstract class SimpleFormQuestionViewer extends LinearLayoutQuestionViewe
 
 	protected abstract void setupLabelLayoutParams();
 
-	public void setValue(Object value) {
-		((AnswerUI) this.answerUI).setValue(value);
-	}
-
 	public Object getValue() {
 		return ((AnswerUI) this.answerUI).getValue();
+	}
+
+	public void setValue(Object value) {
+		((AnswerUI) this.answerUI).setValue(value);
 	}
 
 	public void refreshView() {
@@ -62,5 +63,9 @@ public abstract class SimpleFormQuestionViewer extends LinearLayoutQuestionViewe
 
 		this.answerUI = this.question.getAnswerUI();
 		this.addView(this.answerUI, index);
+	}
+
+	public Question.ViewStyle getViewStyle() {
+		return this.viewStyle;
 	}
 }

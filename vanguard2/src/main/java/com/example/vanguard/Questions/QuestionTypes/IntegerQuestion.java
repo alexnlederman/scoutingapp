@@ -6,15 +6,14 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.example.vanguard.CustomUIElements.AnswerUICustomNumberPicker;
+import com.example.vanguard.CustomUIElements.AnswerUIInteger;
+import com.example.vanguard.CustomUIElements.AnswerUISeekbar;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Responses.Response;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 /**
  * Created by BertTurtle on 6/5/2017.
@@ -22,22 +21,18 @@ import java.util.TreeMap;
  */
 public class IntegerQuestion extends Question<Integer> {
 
-//	private final Map<String, Object> defaultProperties = new HashMap<String, Object>() {{
-//		put(QUESTION_TITLE_PROPERTY_NAME, "Integer");
-//		put(MIN_VALUE, 0);
-//		put(MAX_VALUE, 10);
-//		put(INCREMENTATION, 1);
-//	}};
-	public final static String MAX_VALUE = "Max Value";
+	private final static String MAX_VALUE = "Max Value";
 	private final static String MIN_VALUE = "Min Value";
 	private final static String INCREMENTATION = "Incrementation";
-
-	protected AnswerUICustomNumberPicker answerUI;
-	Context context;
+	private final static String ANSWER_UI_TYPE = "Input Type";
+	AnswerUIInteger answerUI;
+	IntegerInputType prevInputType;
+	private Context context;
 
 	public IntegerQuestion(Context context, String label, AnswerList<Response> responses, String id, @Nullable Map<String, Object> questionProperties, boolean isMatchQuestion) {
 		super(label, responses, id, isMatchQuestion, ViewStyle.SINGLE_LINE, QuestionType.INTEGER, true, null, (questionProperties == null || questionProperties.size() == 0) ? new LinkedHashMap<String, Object>() {{
 			put(QUESTION_TITLE_PROPERTY_NAME, "Integer");
+			put(ANSWER_UI_TYPE, IntegerInputType.COUNTER);
 			put(MIN_VALUE, 0);
 			put(MAX_VALUE, 10);
 			put(INCREMENTATION, 1);
@@ -47,7 +42,26 @@ public class IntegerQuestion extends Question<Integer> {
 
 	private void setup(Context context) {
 		this.context = context;
-		this.answerUI = new AnswerUICustomNumberPicker(this.context, getMinValue(), getMaxValue(), getIncrementation());
+		setInputType(getInputType());
+	}
+
+	private IntegerInputType getInputType() {
+		System.out.println("INPUT TYPE: " + this.getQuestionProperties().get(ANSWER_UI_TYPE).getClass());
+		return (IntegerInputType) IntegerInputType.valueOf(String.valueOf(this.getQuestionProperties().get(ANSWER_UI_TYPE)));
+	}
+
+	public void setInputType(IntegerInputType inputType) {
+		if (prevInputType != inputType) {
+			switch (inputType) {
+				case COUNTER:
+					this.answerUI = new AnswerUICustomNumberPicker(this.context, this.getMinValue(), this.getMaxValue(), this.getIncrementation());
+					break;
+				case SEEKBAR:
+					this.answerUI = new AnswerUISeekbar(this.context, this.getMinValue(), this.getMaxValue(), this.getIncrementation());
+					break;
+			}
+		}
+		this.prevInputType = inputType;
 	}
 
 	@Override
@@ -68,8 +82,9 @@ public class IntegerQuestion extends Question<Integer> {
 	public View getAnswerUI() {
 		this.answerUI.setMinValue(getMinValue());
 		this.answerUI.setMaxValue(getMaxValue());
-		this.answerUI.setIncremenation(getIncrementation());
-		return this.answerUI;
+		this.answerUI.setIncrementation(getIncrementation());
+		setInputType(getInputType());
+		return (View) this.answerUI;
 	}
 
 	private Integer getMinValue() {
@@ -97,7 +112,24 @@ public class IntegerQuestion extends Question<Integer> {
 	}
 
 	@Override
+	public ViewStyle getViewStyle() {
+
+		switch (getInputType()) {
+			case COUNTER:
+				return ViewStyle.SINGLE_LINE;
+			case SEEKBAR:
+				return ViewStyle.TWO_LINE;
+		}
+		return null;
+	}
+
+	@Override
 	public float convertResponseToNumber(Response<Integer> response) {
 		return response.getValue().floatValue();
+	}
+
+	public enum IntegerInputType {
+		COUNTER,
+		SEEKBAR
 	}
 }

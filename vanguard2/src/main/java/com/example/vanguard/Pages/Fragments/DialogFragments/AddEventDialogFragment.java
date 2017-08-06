@@ -116,7 +116,7 @@ public class AddEventDialogFragment extends DialogFragment {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					if (eventMaps.containsKey(textView.getText().toString())) {
-						MainActivity.databaseManager.addEvent(eventMaps.get(textView.getText().toString()), textView.getText().toString());
+						MainActivity.databaseManager.addEvent(eventMaps.get(textView.getText().toString()), textView.getText().toString(), getActivity());
 					} else
 						Toast.makeText(getActivity(), "Please Select An Event From The Dropdown", Toast.LENGTH_LONG).show();
 				}

@@ -45,7 +45,7 @@ public class ScoutSettingsFragment extends Fragment {
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		LinearLayout layout = (LinearLayout) getView().findViewById(R.id.linear_layout);
-		selector = new QuestionListEditViewer(getActivity(), getArguments().getBoolean("match_form"));
+		this.selector = new QuestionListEditViewer(getActivity(), getArguments().getBoolean("match_form"));
 		layout.addView(selector);
 	}
 

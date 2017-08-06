@@ -1,7 +1,6 @@
 package com.example.vanguard.Pages.Activities;
 
 import android.os.Bundle;
-import android.os.Parcel;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.InputType;
@@ -24,6 +23,7 @@ import com.example.vanguard.R;
 import com.example.vanguard.Responses.Response;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -43,8 +43,11 @@ public class AddQuestionActivity extends AbstractActivity {
 	//	List<EditText> optionValues;
 	SimpleFormQuestionViewer questionPreview;
 
+	AddQuestionActivity that;
+
 	public AddQuestionActivity() {
 		super(R.layout.activity_add_question, R.string.add_question_page_title);
+		this.that = this;
 	}
 
 	@Override
@@ -115,29 +118,54 @@ public class AddQuestionActivity extends AbstractActivity {
 		this.optionsLayout.removeAllViews();
 		this.properties = this.question.getQuestionProperties();
 		for (final String propertyName : this.properties.keySet()) {
-			HintEditText propertyEdit = new HintEditText(this, propertyName);
-			propertyEdit.getEditText().setText(this.properties.get(propertyName).toString());
-			propertyEdit.getEditText().setInputType(getPropertyInputType(this.properties.get(propertyName)));
+			Object value = this.properties.get(propertyName);
+			if (value instanceof Enum<?>) {
+				System.out.println("ENUM: " + value);
+				Spinner spinner = new Spinner(this);
+				System.out.println("ENUM: " + Arrays.toString(((Enum) value).getDeclaringClass().getEnumConstants()));
+				spinner.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, ((Enum) value).getDeclaringClass().getEnumConstants()));
+				spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+					@Override
+					public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+						properties.put(propertyName, parent.getItemAtPosition(position));
+						if (questionPreview.getViewStyle() != question.getViewStyle()) {
+							System.out.println("CHANGE");
+							addQuestionPreview(question);
+						}
+						System.out.println("Preview Style: " + questionPreview.getViewStyle());
+						questionPreview.refreshView();
+					}
 
-			propertyEdit.getEditText().addTextChangedListener(new TextWatcher() {
-				@Override
-				public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+					@Override
+					public void onNothingSelected(AdapterView<?> parent) {
 
-				}
+					}
+				});
+				this.optionsLayout.addView(spinner);
+			} else {
+				HintEditText propertyEdit = new HintEditText(this, propertyName);
+				propertyEdit.getEditText().setText(this.properties.get(propertyName).toString());
+				propertyEdit.getEditText().setInputType(getPropertyInputType(this.properties.get(propertyName)));
 
-				@Override
-				public void onTextChanged(CharSequence s, int start, int before, int count) {
-					properties.put(propertyName, convertValueToType(s, properties.get(propertyName)));
-					questionPreview.refreshView();
-				}
+				propertyEdit.getEditText().addTextChangedListener(new TextWatcher() {
+					@Override
+					public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-				@Override
-				public void afterTextChanged(Editable s) {
+					}
 
-				}
-			});
+					@Override
+					public void onTextChanged(CharSequence s, int start, int before, int count) {
+						properties.put(propertyName, convertValueToType(s, properties.get(propertyName)));
+						questionPreview.refreshView();
+					}
 
-			this.optionsLayout.addView(propertyEdit);
+					@Override
+					public void afterTextChanged(Editable s) {
+
+					}
+				});
+				this.optionsLayout.addView(propertyEdit);
+			}
 		}
 	}
 
@@ -164,6 +192,13 @@ public class AddQuestionActivity extends AbstractActivity {
 	private void addQuestionPreview(Question.QuestionType questionType, String spinnerValue) {
 		this.previewLayout.removeAllViews();
 		this.question = Question.createQuestionByType(questionType, spinnerValue, new AnswerList<Response>(), this.isMatchQuestion, "", this, null);
+		this.questionPreview = question.getQuestionViewer(this);
+		this.previewLayout.addView(this.questionPreview);
+	}
+
+	private void addQuestionPreview(Question question) {
+		this.previewLayout.removeAllViews();
+		this.question = question;
 		this.questionPreview = question.getQuestionViewer(this);
 		this.previewLayout.addView(this.questionPreview);
 	}

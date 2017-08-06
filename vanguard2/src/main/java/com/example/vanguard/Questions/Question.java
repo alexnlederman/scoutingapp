@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.example.vanguard.EnumName;
 import com.example.vanguard.Pages.Activities.MainActivity;
+import com.example.vanguard.Questions.QuestionTypes.BooleanQuestion;
 import com.example.vanguard.Questions.QuestionTypes.IntegerQuestion;
 import com.example.vanguard.Questions.QuestionTypes.MatchNumberQuestion;
 import com.example.vanguard.Questions.QuestionTypes.MatchTeamNumberQuestion;
@@ -72,6 +73,9 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 				break;
 			case STRING:
 				question = new StringQuestion(context, label, previousResponses, id, isMatchQuestion);
+				break;
+			case BOOLEAN:
+				question = new BooleanQuestion(context, label, previousResponses, id, isMatchQuestion);
 				break;
 			case MATCH_NUMBER:
 				question = new MatchNumberQuestion(context, previousResponses, id);
@@ -389,11 +393,13 @@ public abstract class Question<T extends Object> implements Label, Answer<T> {
 	public enum QuestionType implements EnumName {
 		INTEGER("Integer"),
 		STRING("String"),
+		BOOLEAN("Boolean"),
 		MATCH_NUMBER("Match Number"),
 		MATCH_TEAM_NUMBER("Match Team Number"),
 		PIT_TEAM_NUMBER("Pit Team Number");
-		private final String label;
 
+
+		private final String label;
 
 		QuestionType(final String label) {
 			this.label = label;

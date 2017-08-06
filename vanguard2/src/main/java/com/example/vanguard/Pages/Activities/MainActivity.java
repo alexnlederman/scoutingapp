@@ -7,8 +7,6 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
@@ -26,6 +24,7 @@ import com.example.vanguard.DatabaseManager;
 import com.example.vanguard.Pages.Fragments.BluetoothDataTransferFragment;
 import com.example.vanguard.Pages.Fragments.DialogFragments.ConfirmationDialogFragment;
 import com.example.vanguard.Pages.Fragments.DialogFragments.SetTeamNumberDialogFragment;
+import com.example.vanguard.Pages.Fragments.GraphSettingsFragment;
 import com.example.vanguard.Pages.Fragments.GraphingFragment;
 import com.example.vanguard.Pages.Fragments.ScoutingFragment;
 import com.example.vanguard.R;
@@ -161,7 +160,7 @@ public class MainActivity extends AppCompatActivity
 		} else if (id == R.id.nav_scout) {
 			setView(new ScoutingFragment());
 		} else if (id == R.id.nav_graph_setting) {
-			this.setView(new GraphSettingsActivity());
+			this.setView(new GraphSettingsFragment());
 		} else if (id == R.id.nav_settings) {
 			Intent intent = new Intent(this, SettingsActivity.class);
 			this.startActivity(intent);

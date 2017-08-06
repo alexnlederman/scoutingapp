@@ -1,5 +1,6 @@
 package com.example.vanguard.Graphs.GraphImplementations;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.example.vanguard.Graphs.Graph;
@@ -20,7 +21,7 @@ public class PieGraph extends PieChart implements Graph {
 
 	PieGraphDetails details;
 
-	public PieGraph(Context context, Question question, int teamNumber, Map<String, Boolean> options) {
+	public PieGraph(Activity context, Question question, int teamNumber, Map<String, Boolean> options) {
 		super(context);
 		setup(question, options);
 		GraphManager.setupPieGraph(this, teamNumber, context);

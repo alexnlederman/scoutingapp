@@ -1,5 +1,6 @@
 package com.example.vanguard.Graphs.GraphImplementations;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -15,6 +16,7 @@ import com.example.vanguard.CustomUIElements.MaxHeightScrollView;
 import com.example.vanguard.Graphs.Graph;
 import com.example.vanguard.Graphs.GraphDetails.GraphDetails;
 import com.example.vanguard.Graphs.GraphDetails.ResponseViewerGraphDetails;
+import com.example.vanguard.Graphs.GraphManager;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.R;
@@ -36,7 +38,7 @@ public class ResponseViewerGraph extends MaterialLinearLayout implements Graph {
 	boolean practiceMatchDividerAdded = false;
 	boolean qualMatchDividerAdded = false;
 
-	public ResponseViewerGraph(Context context, Question question, int teamNumber) {
+	public ResponseViewerGraph(Activity context, Question question, int teamNumber) {
 		super(context);
 		this.context = context;
 		this.details = new ResponseViewerGraphDetails(question);
@@ -51,7 +53,7 @@ public class ResponseViewerGraph extends MaterialLinearLayout implements Graph {
 		this.setLayoutParams(new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 		this.setOrientation(VERTICAL);
 
-		MaxHeightScrollView responsesScrollView = new MaxHeightScrollView(context, Math.round(context.getResources().getDimension(R.dimen.graph_height)));
+		MaxHeightScrollView responsesScrollView = new MaxHeightScrollView(context, GraphManager.getGraphHeight(context));
 		this.responsesView = new LinearLayout(context);
 		this.responsesView.setOrientation(VERTICAL);
 

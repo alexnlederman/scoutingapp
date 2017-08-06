@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="couchbase-lite-android-sqlite-custom-1.4.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/7c34c8c7f3fa15009ef578d63e96ff319ea2b08d/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/7c34c8c7f3fa15009ef578d63e96ff319ea2b08d/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/1d13b97b6a68daf892941545e82cdc48f59e736a/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/1d13b97b6a68daf892941545e82cdc48f59e736a/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

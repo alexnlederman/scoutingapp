@@ -1,5 +1,6 @@
 package com.example.vanguard.Graphs.GraphImplementations;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.example.vanguard.Graphs.Graph;
@@ -19,7 +20,7 @@ public class ScatterGraph extends ScatterChart implements Graph {
 
 	GraphDetails details;
 
-	public ScatterGraph(Context context, AnswerList<? extends Question> questions, Map<String, Boolean> options) {
+	public ScatterGraph(Activity context, AnswerList<? extends Question> questions, Map<String, Boolean> options) {
 		super(context);
 
 		this.details = new GraphDetails(this, GraphTypes.SCATTER_GRAPH, questions, new String[]{PRACTICE_MATCH_OPTION}, options, true);

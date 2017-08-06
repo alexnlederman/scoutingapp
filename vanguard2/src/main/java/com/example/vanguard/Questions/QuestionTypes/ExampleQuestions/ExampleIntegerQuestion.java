@@ -1,6 +1,5 @@
 package com.example.vanguard.Questions.QuestionTypes.ExampleQuestions;
 
-import com.example.vanguard.Questions.QuestionTypes.ExampleQuestions.ExampleQuestion;
 import com.example.vanguard.Responses.Response;
 
 /**
@@ -9,11 +8,11 @@ import com.example.vanguard.Responses.Response;
 
 public class ExampleIntegerQuestion extends ExampleQuestion<Integer> {
 
-	public ExampleIntegerQuestion() {
-		super();
+	public ExampleIntegerQuestion(boolean generateResponses) {
+		super(generateResponses);
 	}
 
-	protected void generateResponses() {
+	public void generateResponses() {
 		int prevMatch = 0;
 		for (int i = 0; i < 7; i++) {
 			int newMatch = prevMatch + 7;

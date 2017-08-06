@@ -28,6 +28,7 @@ public abstract class AbstractActivity extends AppCompatActivity {
 		setContentView(this.contentView);
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		System.out.println("TOOL: " + toolbar);
 		setSupportActionBar(toolbar);
 
 		this.setTitle(this.title);

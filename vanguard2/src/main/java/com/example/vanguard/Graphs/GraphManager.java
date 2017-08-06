@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -24,6 +26,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.components.YAxis;
@@ -241,6 +244,8 @@ public class GraphManager {
 			@Override
 			public ScatterDataSet getDataSet(List<Entry> entries, Question question) {
 				ScatterDataSet dataSet = new ScatterDataSet(entries, "X: " + xQuestion.getLabel() + " Vs Y: " + yQuestion.getLabel());
+				dataSet.setScatterShapeSize(10);
+				dataSet.setScatterShape(ScatterChart.ScatterShape.TRIANGLE);
 				dataSet.setValueFormatter(new IValueFormatter() {
 					@Override
 					public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
@@ -409,10 +414,20 @@ public class GraphManager {
 		return dataSets;
 	}
 
-	private static void setGraphLayoutParams(Chart graph, Context context) {
-		// TODO make this number better than hard coded.
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Math.round(context.getResources().getDimension(R.dimen.graph_height)));
+	private static void setGraphLayoutParams(View graph, Activity context) {
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getGraphHeight(context));
 		graph.setLayoutParams(params);
+	}
+
+	public static int getGraphHeight(Activity context) {
+		int height = context.getResources().getDisplayMetrics().heightPixels;
+		int width = context.getResources().getDisplayMetrics().widthPixels;
+
+		int trueHeight = (width > height) ? width : height;
+
+//		Point size = new Point();
+//		context.getWindowManager().getDefaultDisplay().getSize(size);
+		return Math.round((float) trueHeight / 3);
 	}
 
 	private static void addPercentileLimitLines(BarLineChartBase graph, Question question, BaseDataSet dataSet) {
@@ -519,14 +534,14 @@ public class GraphManager {
 		setupDataMarker(lineGraph, new SingleResponseGraphMarkerView<>(context, lineGraph));
 	}
 
-	public static void setupRadarGraph(RadarGraph radarGraph, int teamNumber, Context context) {
+	public static void setupRadarGraph(RadarGraph radarGraph, int teamNumber, Activity context) {
 		setGraphLayoutParams(radarGraph, context);
 		setDescription(radarGraph, "Team " + teamNumber);
 		radarGraph.getYAxis().setAxisMinimum(0);
 		setRadarData(radarGraph, radarGraph.getGraphDetails().getGraphQuestions(), teamNumber);
 	}
 
-	public static void setupBarGraph(BarGraph barGraph, Context context) {
+	public static void setupBarGraph(BarGraph barGraph, Activity context) {
 		removeYAxisTruncation(barGraph);
 		setBarData(barGraph, getAllTeamGraphEntries(barGraph.getGraphDetails().getGraphQuestions(), barGraph.getGraphDetails().getOptions().get(PRACTICE_MATCH_OPTION)), barGraph.getGraphDetails().getGraphQuestions());
 		setGraphLayoutParams(barGraph, context);
@@ -536,14 +551,14 @@ public class GraphManager {
 		setupDataMarker(barGraph, new AllTeamGraphMarkerView(barGraph, context));
 	}
 
-	public static void setupScatterGraph(ScatterGraph scatterGraph, Context context) {
+	public static void setupScatterGraph(ScatterGraph scatterGraph, Activity context) {
 		removeYAxisTruncation(scatterGraph);
 		setScatterData(scatterGraph, scatterGraph.getGraphDetails().getGraphQuestions());
 		setGraphLayoutParams(scatterGraph, context);
 		setDescription(scatterGraph, "");
 	}
 
-	public static void setupCandleStickGraph(CandleStickGraph candleStickGraph, Context context) {
+	public static void setupCandleStickGraph(CandleStickGraph candleStickGraph, Activity context) {
 		removeYAxisTruncation(candleStickGraph);
 		setCandleStickData(candleStickGraph, candleStickGraph.getGraphDetails().getGraphQuestions());
 		setGraphLayoutParams(candleStickGraph, context);
@@ -552,7 +567,7 @@ public class GraphManager {
 		setupDataMarker(candleStickGraph, new AllTeamGraphMarkerView(candleStickGraph, context));
 	}
 
-	public static void setupPieGraph(PieGraph pieGraph, int teamNumber, Context context) {
+	public static void setupPieGraph(PieGraph pieGraph, int teamNumber, Activity context) {
 
 		List values;
 

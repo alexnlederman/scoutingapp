@@ -6,7 +6,7 @@
 	android:layout_height="match_parent"
 	tools:context="com.example.vanguard.Pages.Activities.MatchFormActivity">
 
-	<!--<include layout="@layout/toolbar"/>-->
+	<include layout="@layout/toolbar"/>
 
 	<include layout="@layout/scroll_linearlayout_fragment"/>
 

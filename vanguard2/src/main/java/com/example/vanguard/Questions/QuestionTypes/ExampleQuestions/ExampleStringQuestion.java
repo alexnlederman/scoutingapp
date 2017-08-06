@@ -2,16 +2,14 @@ package com.example.vanguard.Questions.QuestionTypes.ExampleQuestions;
 
 import com.example.vanguard.Responses.Response;
 
-import java.util.Random;
-
 /**
  * Created by mbent on 7/25/2017.
  */
 
 public class ExampleStringQuestion extends ExampleQuestion<String> {
 
-	public ExampleStringQuestion() {
-		super();
+	public ExampleStringQuestion(boolean generateResponses) {
+		super(generateResponses);
 	}
 
 	@Override
@@ -21,7 +19,7 @@ public class ExampleStringQuestion extends ExampleQuestion<String> {
 	}
 
 	@Override
-	protected void generateResponses() {
+	public void generateResponses() {
 		for (int i = 0; i < 8; i++) {
 			this.setTeamNumber(this.getDetailedTeam());
 			this.saveResponse();

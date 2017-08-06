@@ -2,6 +2,7 @@ package com.example.vanguard.Pages.Fragments;
 
 
 import android.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -58,12 +59,28 @@ public class AddGraphFragment extends Fragment {
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		ExampleStringQuestion exampleString = new ExampleStringQuestion();
-		DetailedExampleIntegerQuestions detailedInteger = new DetailedExampleIntegerQuestions();
-		ExampleIntegerQuestion exampleInteger = new ExampleIntegerQuestion();
-		ExampleIntegerQuestion exampleInteger2 = new ExampleIntegerQuestion();
-		ExampleIntegerQuestion exampleInteger3 = new ExampleIntegerQuestion();
-		ExampleIntegerQuestion exampleInteger4 = new ExampleIntegerQuestion();
+		final ExampleIntegerQuestion exampleInteger = new ExampleIntegerQuestion(true);
+		final ExampleStringQuestion exampleString = new ExampleStringQuestion(false);
+		final DetailedExampleIntegerQuestions detailedInteger = new DetailedExampleIntegerQuestions(false);
+		final ExampleIntegerQuestion exampleInteger2 = new ExampleIntegerQuestion(false);
+		final ExampleIntegerQuestion exampleInteger3 = new ExampleIntegerQuestion(false);
+		final ExampleIntegerQuestion exampleInteger4 = new ExampleIntegerQuestion(false);
+
+		new AsyncTask<Void, Void, Void>() {
+			@Override
+			protected Void doInBackground(Void... params) {
+				exampleString.generateResponses();
+				detailedInteger.generateResponses();
+				exampleInteger3.generateResponses();
+				exampleInteger4.generateResponses();
+				exampleInteger2.generateResponses();
+				System.out.println("RESPONSES Size: " + exampleInteger.getResponses().size());
+				return null;
+			}
+		}.execute();
+
+
+
 
 		this.twoBasicIntegerQuestions = new AnswerList<>();
 		this.oneBasicIntegerQuestions = new AnswerList<>();
@@ -190,5 +207,12 @@ public class AddGraphFragment extends Fragment {
 			names[i] = types[i].getName();
 		}
 		return names;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		Spinner spinner = (Spinner) getActivity().findViewById(R.id.spinner);
+		spinner.setSelection(0);
 	}
 }

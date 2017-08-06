@@ -1,11 +1,7 @@
 package com.example.vanguard.Questions.QuestionViewers.FormQuestionViewers;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.view.Gravity;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.Questions.QuestionViewers.SimpleFormQuestionViewer;
@@ -18,12 +14,12 @@ public class SingleLineFormQuestionViewer extends SimpleFormQuestionViewer {
 
 
 	public SingleLineFormQuestionViewer(Context context, Question question) {
-		super(context, question);
+		super(context, question, Question.ViewStyle.SINGLE_LINE);
 		this.setOrientation(LinearLayout.HORIZONTAL);
 	}
 
 	public SingleLineFormQuestionViewer(Context context, Question question, Object initialValue) {
-		super(context, question, initialValue);
+		super(context, question, initialValue, Question.ViewStyle.SINGLE_LINE);
 		this.setOrientation(LinearLayout.HORIZONTAL);
 	}
 
@@ -33,6 +29,4 @@ public class SingleLineFormQuestionViewer extends SimpleFormQuestionViewer {
 		p.weight = 0.8f;
 		this.labelTextView.setLayoutParams(p);
 	}
-
-
 }

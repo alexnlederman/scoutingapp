@@ -17,7 +17,7 @@
 		android:layout_height="match_parent"
 		android:layout_gravity="center"
 		android:gravity="center"
-		android:textSize="50dp"
+		android:textSize="50sp"
 		android:textColor="@color/white"
 		android:textStyle="bold"
 		android:paddingTop="@dimen/nav_header_vertical_spacing"/>

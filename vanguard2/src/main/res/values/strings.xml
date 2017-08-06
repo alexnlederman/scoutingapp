@@ -7,7 +7,7 @@
 	<string name="action_settings">Settings</string>
 
 	<string name="scout_title">Scout</string>
-	<string name="data_title">Data</string>
+	<string name="data_title">Graph</string>
 	<string name="schedule_title">Schedule</string>
 	<string name="settings_title">Settings</string>
 	<string name="graph_settings_title">Graph Settings</string>

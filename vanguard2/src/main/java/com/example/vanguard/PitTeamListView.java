@@ -35,7 +35,6 @@ public class PitTeamListView extends ListView {
 
 	public PitTeamListView(Activity context, TeamListElement.TeamSelectedListener listener) {
 		super(context);
-		this.pitQuestions = MainActivity.databaseManager.getPitQuestions();
 		this.context = context;
 		this.listener = listener;
 		this.teams = MainActivity.databaseManager.getCurrentEventTeams();

@@ -13,8 +13,8 @@ import com.example.vanguard.CustomUIElements.SettingsView;
 import com.example.vanguard.DatabaseManager;
 import com.example.vanguard.Pages.Fragments.DialogFragments.AddEventDialogFragment;
 import com.example.vanguard.Pages.Fragments.DialogFragments.ConfirmationDialogFragment;
-import com.example.vanguard.Pages.Fragments.DialogFragments.SetEventDialogFragment;
 import com.example.vanguard.Pages.Fragments.DialogFragments.SetTeamNumberDialogFragment;
+import com.example.vanguard.Pages.Fragments.GraphSettingsFragment;
 import com.example.vanguard.Questions.AnswerList;
 import com.example.vanguard.Questions.Question;
 import com.example.vanguard.R;
@@ -72,15 +72,6 @@ public class SettingsActivity extends AbstractActivity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(that, ScoutSettingsActivity.class);
-				startActivity(intent);
-			}
-		});
-
-		SettingsView graphSettings = (SettingsView) findViewById(R.id.graph_settings);
-		graphSettings.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(that, GraphSettingsActivity.class);
 				startActivity(intent);
 			}
 		});

@@ -1,5 +1,6 @@
 package com.example.vanguard.Graphs.GraphImplementations;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.example.vanguard.Graphs.Graph;
@@ -19,7 +20,7 @@ public class RadarGraph extends RadarChart implements Graph {
 
 	GraphDetails details;
 
-	public RadarGraph(Context context, AnswerList<? extends Question> questions, int teamNumber, Map<String, Boolean> options) {
+	public RadarGraph(Activity context, AnswerList<? extends Question> questions, int teamNumber, Map<String, Boolean> options) {
 		super(context);
 
 //		this.details = new GraphDetails(this, GraphTypes.RADAR_GRAPH, questions, new String[]{PRACTICE_MATCH_OPTION}, options, false);

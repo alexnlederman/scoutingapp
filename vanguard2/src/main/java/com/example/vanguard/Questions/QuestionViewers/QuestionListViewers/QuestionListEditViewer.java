@@ -39,11 +39,13 @@ public class QuestionListEditViewer extends DragLinearLayout {
 	private void setupQuestions() {
 		this.removeAllViews();
 		final AnswerList<Question> questions;
-		if (isMatchForm)
+		if (isMatchForm) {
+			System.out.println("DB M: " + MainActivity.databaseManager);
 			questions = MainActivity.databaseManager.getMatchQuestions();
+		}
 		else
 			questions = MainActivity.databaseManager.getPitQuestions();
-		for (final Question<?> question : questions) {
+		for (final Question question : questions) {
 			if (question.isEditable()) {
 				SimpleQuestionEditViewer questionViewer = question.getQuestionEditViewer(this.context);
 				questionViewer.getDeleteButton().setOnClickListener(new OnDeleteClickListener(question));
@@ -102,7 +104,8 @@ public class QuestionListEditViewer extends DragLinearLayout {
 
 	@Override
 	protected void onAttachedToWindow() {
-		setupQuestions();
+
+//		setupQuestions();
 		super.onAttachedToWindow();
 	}
 

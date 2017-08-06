@@ -42,7 +42,7 @@ public class StringQuestion extends Question<String> {
 	}
 
 	@Override
-	public View getAnswerUI() {
+	public AnswerUIEditText getAnswerUI() {
 		return this.answerUI;
 	}
 

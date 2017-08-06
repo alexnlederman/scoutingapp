@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.example.vanguard.AnswerUI;
 import com.example.vanguard.Pages.Activities.MainActivity;
 import com.example.vanguard.R;
 
@@ -18,7 +17,7 @@ import com.example.vanguard.R;
  * A integer number text box with plus and minus buttons.
  * Created by BertTurtle on 4/23/2017.
  */
-public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI<Integer>{
+public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUIInteger {
 
 	private final EditText numberPicker;
 
@@ -34,8 +33,9 @@ public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI
 
 	/**
 	 * Creates a new CustomNumberPicker
+	 *
 	 * @param context Application context
-	 * {@inheritDoc}
+	 *                {@inheritDoc}
 	 */
 	public AnswerUICustomNumberPicker(Context context, int minValue, int maxValue, int incrementation) {
 		super(context);
@@ -123,12 +123,25 @@ public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI
 		this.addView(this.buttonLayout);
 	}
 
+	/**
+	 * Get value of number picker.
+	 *
+	 * @return The value of the number picker.
+	 */
+	@Override
+	public Integer getValue() {
+		if (!this.numberPicker.getText().toString().equals("")) {
+			return Integer.parseInt(this.numberPicker.getText().toString());
+		} else {
+			return null;
+		}
+	}
+
 	@Override
 	public void setValue(Integer value) {
 		if (value == null) {
 			this.numberPicker.setText("");
-		}
-		else {
+		} else {
 			if (value > this.maxValue)
 				this.numberPicker.setText(String.valueOf(maxValue));
 			else if (value < this.minValue)
@@ -139,36 +152,25 @@ public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI
 		}
 	}
 
-	/**
-	 * Get value of number picker.
-	 * @return The value of the number picker.
-	 */
-	@Override
-	public Integer getValue() {
-		if (!this.numberPicker.getText().toString().equals("")) {
-			return Integer.parseInt(this.numberPicker.getText().toString());
-		}
-		else {
-			return null;
-		}
-	}
-
 	private void setupLayout() {
 		LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(125 * (int) MainActivity.dpToPixels, LayoutParams.WRAP_CONTENT);
 		this.setLayoutParams(p);
 	}
 
+	@Override
 	public void setMinValue(int minValue) {
 		this.minValue = minValue;
 		this.setValue(getValue());
 	}
 
+	@Override
 	public void setMaxValue(int maxValue) {
 		this.maxValue = maxValue;
 		this.setValue(getValue());
 	}
 
-	public void setIncremenation(int incremenation) {
-		this.incremenation = incremenation;
+	@Override
+	public void setIncrementation(int incrementation) {
+		this.incremenation = incrementation;
 	}
 }

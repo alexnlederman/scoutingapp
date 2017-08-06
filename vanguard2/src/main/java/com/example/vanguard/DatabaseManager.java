@@ -111,25 +111,25 @@ public class DatabaseManager {
 	// Views to help find specific documents.
 
 	// Finds all of the match questions.
-	View matchQuestionView;
+	private View matchQuestionView;
 	// Finds all of the pit questions.
-	View pitQuestionView;
+	private View pitQuestionView;
 	// Finds all of the responses for the pit questions and compiles them into a more accesible state.
 	// Hashmap of team numbers which go to a hashmap of their responses sorted by qual number, with the key being the response's question's id.
-	View matchResponseView;
+	private View matchResponseView;
 
 	// Finds the events the person is scouting.
-	View eventMatchesView;
+	private View eventMatchesView;
 
-	View eventTeamsView;
+	private View eventTeamsView;
 
-	View eventInfoView;
+	private View eventInfoView;
 
-	View graphView;
+	private View graphView;
 
-	Database database;
+	private Database database;
 
-	Activity context;
+	private Activity context;
 
 	/**
 	 * Creates a new DatabaseManager. This sets up the whole database.
@@ -143,7 +143,7 @@ public class DatabaseManager {
 			// Finds the database.
 			manager = new Manager(new AndroidContext(this.context.getApplicationContext()), Manager.DEFAULT_OPTIONS);
 			// Can change string below to reset the database.
-			this.database = manager.getDatabase("app37");
+			this.database = manager.getDatabase("app38");
 
 			// Creates database views.
 			matchQuestionView = this.database.getView(match_questions_view);
@@ -189,7 +189,7 @@ public class DatabaseManager {
 	 * @param label           The text for the question.
 	 * @param questionType    The type of question. Should be a {@link Question.QuestionType} enum.
 	 * @param isMatchQuestion Whether the question is used for match or pit scouting.
-	 * @return The {@link Question} object that was created.
+	 * @return The {@link Question} object that was firstRun.
 	 */
 	public Question createQuestion(String label, String questionType, boolean isMatchQuestion, Map<String, Object> questionProperties) {
 		return createQuestion(label, questionType, isMatchQuestion, questionProperties, UUID.randomUUID().toString(), new ArrayList<Map<String, Object>>());
@@ -693,13 +693,13 @@ public class DatabaseManager {
 		return null;
 	}
 
-	public void addEvent(String eventKey, String eventName) {
+	public void addEvent(String eventKey, String eventName, Context context) {
 		if (getEventTeams(eventKey).size() != 0) {
 			setCurrentEvent(eventName);
 			Toast.makeText(this.context, this.context.getResources().getString(R.string.toast_event_set), Toast.LENGTH_LONG).show();
 			return;
 		}
-		AddEventDocuments asyncTask = new AddEventDocuments();
+		AddEventDocuments asyncTask = new AddEventDocuments(context);
 		asyncTask.execute(eventKey, eventName);
 	}
 
@@ -965,6 +965,11 @@ public class DatabaseManager {
 		ProgressDialog progressDialog;
 		String eventKey;
 		String eventName;
+		Context context;
+
+		public AddEventDocuments(Context context) {
+			this.context = context;
+		}
 
 		@Override
 		protected void onPreExecute() {

@@ -6,12 +6,12 @@ package com.example.vanguard.Questions.QuestionTypes.ExampleQuestions;
 
 public class DetailedExampleIntegerQuestions extends ExampleIntegerQuestion {
 
-	public DetailedExampleIntegerQuestions() {
-		super();
+	public DetailedExampleIntegerQuestions(boolean generateResponses) {
+		super(generateResponses);
 	}
 
 	@Override
-	protected void generateResponses() {
+	public void generateResponses() {
 		for (int i = 0; i < this.teamCount; i++) {
 			int prevMatch = 0;
 			for (int x = 0; x < 7; x++) {

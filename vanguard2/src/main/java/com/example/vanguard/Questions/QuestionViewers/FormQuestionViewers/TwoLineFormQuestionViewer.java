@@ -16,12 +16,12 @@ public class TwoLineFormQuestionViewer extends SimpleFormQuestionViewer {
 
 
 	public TwoLineFormQuestionViewer(Context context, Question question) {
-		super(context, question);
+		super(context, question, Question.ViewStyle.TWO_LINE);
 		this.setOrientation(LinearLayout.VERTICAL);
 	}
 
 	public TwoLineFormQuestionViewer(Context context, Question question, Object initialValue) {
-		super(context, question, initialValue);
+		super(context, question, initialValue, Question.ViewStyle.TWO_LINE);
 		this.setOrientation(LinearLayout.VERTICAL);
 	}
 
