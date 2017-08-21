@@ -47,7 +47,6 @@ public abstract class LinearLayoutQuestionViewer extends MaterialLinearLayout {
 		}
 		this.addView(this.answerUI);
 		LayoutParams params = (LayoutParams) this.answerUI.getLayoutParams();
-		System.out.println("HOPE NOT NULL: " + params);
 		params.gravity = Gravity.CENTER_VERTICAL;
 	}
 

@@ -7,6 +7,7 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.vanguard.R;
 import com.example.vanguard.bluetooth.BluetoothManager;
 import com.example.vanguard.custom_ui_elements.HintEditText;
 import com.example.vanguard.custom_ui_elements.HintSpinner;
@@ -21,11 +23,9 @@ import com.example.vanguard.pages.fragments.dialog_fragments.ConfirmationDialogF
 import com.example.vanguard.questions.AnswerList;
 import com.example.vanguard.questions.Question;
 import com.example.vanguard.questions.question_viewers.SimpleFormQuestionViewer;
-import com.example.vanguard.R;
 import com.example.vanguard.responses.Response;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -95,6 +95,11 @@ public class AddQuestionActivity extends AbstractActivity {
 			@Override
 			public void onClick(View v) {
 				MainActivity.databaseManager.createQuestion(question.getLabel(), question.getQuestionType().toString(), isMatchQuestion, question.getQuestionProperties());
+				View focus = getCurrentFocus();
+				if (focus != null) {
+					InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+					manager.hideSoftInputFromWindow(focus.getWindowToken(), 0);
+				}
 				finish();
 			}
 		});
