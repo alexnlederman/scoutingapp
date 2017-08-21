@@ -11,8 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.vanguard.CustomUIElements.TeamListElement;
-import com.example.vanguard.Pages.Activities.MainActivity;
+import com.example.vanguard.custom_ui_elements.TeamListElement;
+import com.example.vanguard.pages.activities.MainActivity;
 
 import java.util.List;
 

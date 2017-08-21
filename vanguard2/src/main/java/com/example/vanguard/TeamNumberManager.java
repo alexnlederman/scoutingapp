@@ -3,7 +3,7 @@ package com.example.vanguard;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.vanguard.Pages.Activities.MainActivity;
+import com.example.vanguard.pages.activities.MainActivity;
 
 import java.util.Locale;
 

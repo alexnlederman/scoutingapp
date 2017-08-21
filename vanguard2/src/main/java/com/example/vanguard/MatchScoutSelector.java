@@ -14,8 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.vanguard.Pages.Activities.MainActivity;
-import com.example.vanguard.Pages.Activities.MatchFormActivity;
+import com.example.vanguard.pages.activities.MainActivity;
+import com.example.vanguard.pages.activities.MatchFormActivity;
 
 import java.util.List;
 import java.util.Locale;

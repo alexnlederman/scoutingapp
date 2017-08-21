@@ -20,20 +20,18 @@ import com.couchbase.lite.UnsavedRevision;
 import com.couchbase.lite.View;
 import com.couchbase.lite.android.AndroidContext;
 import com.couchbase.lite.support.LazyJsonArray;
-import com.example.vanguard.Graphs.Graph;
-import com.example.vanguard.Graphs.GraphDescriber;
-import com.example.vanguard.Graphs.GraphImplementations.BarGraph;
-import com.example.vanguard.Graphs.GraphImplementations.CandleStickGraph;
-import com.example.vanguard.Graphs.GraphImplementations.LineGraph;
-import com.example.vanguard.Graphs.GraphImplementations.PieGraph;
-import com.example.vanguard.Graphs.GraphImplementations.ResponseViewerGraph;
-import com.example.vanguard.Graphs.GraphImplementations.ScatterGraph;
-import com.example.vanguard.Questions.AnswerList;
-import com.example.vanguard.Questions.Properties.QuestionProperty;
-import com.example.vanguard.Questions.Properties.SimpleQuestionProperty;
-import com.example.vanguard.Questions.Question;
-import com.example.vanguard.Responses.Response;
-import com.example.vanguard.Responses.SimpleResponse;
+import com.example.vanguard.responses.Response;
+import com.example.vanguard.responses.SimpleResponse;
+import com.example.vanguard.graphs.Graph;
+import com.example.vanguard.graphs.GraphDescriber;
+import com.example.vanguard.graphs.graph_implementations.BarGraph;
+import com.example.vanguard.graphs.graph_implementations.CandleStickGraph;
+import com.example.vanguard.graphs.graph_implementations.LineGraph;
+import com.example.vanguard.graphs.graph_implementations.PieGraph;
+import com.example.vanguard.graphs.graph_implementations.ResponseViewerGraph;
+import com.example.vanguard.graphs.graph_implementations.ScatterGraph;
+import com.example.vanguard.questions.AnswerList;
+import com.example.vanguard.questions.Question;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -143,7 +141,7 @@ public class DatabaseManager {
 			// Finds the database.
 			manager = new Manager(new AndroidContext(this.context.getApplicationContext()), Manager.DEFAULT_OPTIONS);
 			// Can change string below to reset the database.
-			this.database = manager.getDatabase("app38");
+			this.database = manager.getDatabase("app44");
 
 			// Creates database views.
 			matchQuestionView = this.database.getView(match_questions_view);
@@ -492,15 +490,6 @@ public class DatabaseManager {
 		Map<String, Object> properties = (Map<String, Object>) map.get(question_properties_key);
 
 		return Question.createQuestionByType(Question.QuestionType.valueOf((String) map.get(question_type_key)), (String) map.get(question_label_key), getQuestionMapResponses(map), isMatchQuestion, (String) map.get("_id"), this.context, properties);
-	}
-
-	private List<QuestionProperty> getQuestionPropertiesFromMap(List<Map<String, Object>> propertyMaps) {
-		List<QuestionProperty> properties = new ArrayList<>();
-		for (Map<String, Object> map : propertyMaps) {
-			QuestionProperty property = new SimpleQuestionProperty(map.get(question_property_value_key), (String) map.get(question_property_name_key));
-			properties.add(property);
-		}
-		return properties;
 	}
 
 	/**

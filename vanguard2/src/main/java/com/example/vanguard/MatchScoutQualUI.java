@@ -10,9 +10,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.example.vanguard.CustomUIElements.MaterialLinearLayout;
-import com.example.vanguard.Pages.Activities.MainActivity;
-
 import java.util.List;
 
 /**

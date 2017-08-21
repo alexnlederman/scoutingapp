@@ -13,62 +13,142 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a56f61f0-db3f-4be6-8d02-64220dbc025a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUIBooleanRadioButtons.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUIInteger.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUISeekbar.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/BooleanQuestion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/drawable/ic_graph_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_graph_settings.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/GraphSettingsActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphSettingsFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/HintSpinner.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUICheckboxes.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUISpinner.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUITimer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/ArrayQuestionUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/CheckboxQuestion.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/SpinnerQuestion.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/TimerQuestion.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/drawable/ic_pause_logo.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/drawable/ic_play_arrow.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/drawable/ic_reset.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Properties/QuestionProperty.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Properties/SimpleQuestionProperty.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Bluetooth/BluetoothManager.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/bluetooth/BluetoothManager.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Bluetooth/BluetoothTransfer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/bluetooth/BluetoothTransfer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Bluetooth/Client/AcceptAsyncTask.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/bluetooth/client/AcceptAsyncTask.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Bluetooth/Server/ConnectAsyncTask.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/bluetooth/server/ConnectAsyncTask.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Bluetooth/Server/ServerBroadcastReceiver.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/bluetooth/server/ServerBroadcastReceiver.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUIBooleanRadioButtons.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUIBooleanRadioButtons.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUICustomNumberPicker.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUICustomNumberPicker.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUIEditText.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUIEditText.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUIInteger.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUIInteger.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUISeekbar.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUISeekbar.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUITextView.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUITextView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/DividerTextView.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/DividerTextView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/ErrorTextView.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/ErrorTextView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/GenericTextView.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/GenericTextView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/HintEditText.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/HintEditText.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/MaterialLinearLayout.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/MaterialLinearLayout.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/MaxHeightScrollView.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/MaxHeightScrollView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/PracticeMatchScoutButton.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/PracticeMatchScoutButton.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/SettingsView.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/SettingsView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/SwitchOption.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/SwitchOption.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/TeamListElement.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/TeamListElement.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/TeamListProgressElement.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/TeamListProgressElement.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/EntryXAndYComparator.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/EntryXAndYComparator.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/Graph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/Graph.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphDescriber.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/GraphDescriber.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphDetails/GraphDetails.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/graph_details/GraphDetails.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphDetails/PieGraphDetails.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/graph_details/PieGraphDetails.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphDetails/ResponseViewerGraphDetails.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/graph_details/ResponseViewerGraphDetails.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphEditor.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/GraphEditor.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/BarGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/graph_implementations/BarGraph.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/CandleStickGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/graph_implementations/CandleStickGraph.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/LineGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/graph_implementations/LineGraph.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/PieGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/graph_implementations/PieGraph.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/RadarGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/graph_implementations/RadarGraph.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/ResponseViewerGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/graph_implementations/ResponseViewerGraph.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/ScatterGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/graph_implementations/ScatterGraph.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphManager.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/GraphManager.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/GraphViewer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/Markers/AbstractMarkerView.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/markers/AbstractMarkerView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/Markers/AllTeamGraphMarkerView.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/markers/AllTeamGraphMarkerView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/Markers/SingleResponseGraphMarkerView.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/graphs/markers/SingleResponseGraphMarkerView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AbstractActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/activities/AbstractActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AddGraphActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/activities/AddGraphActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AddQuestionActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/activities/AddQuestionActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/MainActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/activities/MainActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/MatchFormActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/activities/MatchFormActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/NavDrawerFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/activities/NavDrawerFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/PitFormActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/activities/PitFormActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/ScoutSettingsActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/activities/ScoutSettingsActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/SettingsActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/activities/SettingsActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/AddGraphFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/AddGraphFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/AllTeamGraphFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/AllTeamGraphFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/BluetoothDataTransferFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/BluetoothDataTransferFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/DialogFragments/AddEventDialogFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/dialog_fragments/AddEventDialogFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/DialogFragments/ConfirmationDialogFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/dialog_fragments/ConfirmationDialogFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/DialogFragments/SetEventDialogFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/dialog_fragments/SetEventDialogFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/DialogFragments/SetTeamNumberDialogFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/dialog_fragments/SetTeamNumberDialogFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphSettingsFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/GraphSettingsFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphTeamSelectorFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/GraphTeamSelectorFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphingFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/GraphingFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/MatchScoutSelectorFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/MatchScoutSelectorFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/PitScoutFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/PitScoutFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/ScoutSettingsFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/ScoutSettingsFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/ScoutingFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/ScoutingFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/SetGraphQuestionsFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/SetGraphQuestionsFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/TeamGraphFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/TeamGraphFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/TeamGraphViewerFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/TeamGraphViewerFragment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Answer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/Answer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/AnswerList.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/AnswerList.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Label.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/Label.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Question.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/Question.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionSelectorViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/QuestionSelectorViewer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/BooleanQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/BooleanQuestion.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/DetailedExampleIntegerQuestions.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/example_questions/DetailedExampleIntegerQuestions.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleIntegerQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/example_questions/ExampleIntegerQuestion.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/example_questions/ExampleQuestion.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleStringQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/example_questions/ExampleStringQuestion.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/IntegerQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/IntegerQuestion.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/MatchNumberQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/required_questions/MatchNumberQuestion.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/MatchTeamNumberQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/required_questions/MatchTeamNumberQuestion.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/PitTeamNumberQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/required_questions/PitTeamNumberQuestion.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/StringQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/StringQuestion.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/CheckBoxQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/CheckBoxQuestionViewer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/FormQuestionViewers/SingleLineFormQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/form_question_viewers/SingleLineFormQuestionViewer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/FormQuestionViewers/TwoLineFormQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/form_question_viewers/TwoLineFormQuestionViewer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/LinearLayoutQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/LinearLayoutQuestionViewer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionEditorViewers/SingleLineEditQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/question_editor_viewers/SingleLineEditQuestionViewer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionEditorViewers/TwoLineEditQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/question_editor_viewers/TwoLineEditQuestionViewer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListEditViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/question_list_viewers/QuestionListEditViewer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListFormViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/question_list_viewers/QuestionListFormViewer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/SimpleFormQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/SimpleFormQuestionViewer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/SimpleQuestionEditViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/SimpleQuestionEditViewer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Responses/Response.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/responses/Response.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Responses/SimpleResponse.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/responses/SimpleResponse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/fileContent/fileContent.lock" afterPath="$PROJECT_DIR$/.gradle/3.4/fileContent/fileContent.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/classAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/javaCompile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/taskHistory.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/javaCompile/taskJars.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/javaCompile/taskJars.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/3.4/taskHistory/taskHistory.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/couchbase_lite_android_1_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/couchbase_lite_android_1_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/couchbase_lite_android_sqlite_custom_1_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/couchbase_lite_android_sqlite_custom_1_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/draglinearlayout_1_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/draglinearlayout_1_1_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUICustomNumberPicker.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUICustomNumberPicker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/DatabaseManager.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/DatabaseManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/BarGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/BarGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/CandleStickGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/CandleStickGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/PieGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/PieGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/RadarGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/RadarGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/ResponseViewerGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/ResponseViewerGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/ScatterGraph.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/ScatterGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphManager.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AbstractActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AbstractActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AddQuestionActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AddQuestionActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/MainActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/SettingsActivity.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/SettingsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/AddGraphFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/AddGraphFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/DialogFragments/AddEventDialogFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/DialogFragments/AddEventDialogFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/ScoutSettingsFragment.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/ScoutSettingsFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/EnumName.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/EnumName.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/EventTeamListView.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/EventTeamListView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MatchScoutQualUI.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MatchScoutQualUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MatchScoutSelector.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/MatchScoutSelector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/PitTeamListView.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/PitTeamListView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Question.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Question.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/DetailedExampleIntegerQuestions.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/DetailedExampleIntegerQuestions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleIntegerQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleIntegerQuestion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleQuestion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleStringQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleStringQuestion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/IntegerQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/IntegerQuestion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/StringQuestion.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/StringQuestion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/FormQuestionViewers/SingleLineFormQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/FormQuestionViewers/SingleLineFormQuestionViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/FormQuestionViewers/TwoLineFormQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/FormQuestionViewers/TwoLineFormQuestionViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListEditViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListEditViewer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/SimpleFormQuestionViewer.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/SimpleFormQuestionViewer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/TeamNumberManager.java" afterPath="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/TeamNumberManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_match_form.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_match_form.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_pit_form.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_pit_form.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_scout_settings.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_scout_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_settings.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/content_settings.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/content_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/nav_header_main.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/nav_header_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/scroll_linearlayout_fragment.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/scroll_linearlayout_fragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/menu/activity_main_drawer.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/menu/activity_main_drawer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/menu/empty_menu.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/menu/empty_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_add_graph.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_add_graph.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_bluetooth_data_transfer.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_bluetooth_data_transfer.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_view_pager.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_view_pager.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vanguard2/src/main/res/layout/list_element_graph.xml" afterPath="$PROJECT_DIR$/vanguard2/src/main/res/layout/list_element_graph.xml" />
     </list>
     <ignored path="Vanguard.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -104,79 +184,163 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="AnswerUISeekbar.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUISeekbar.java">
+      <file leaf-file-name="Question.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/Question.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
+            <state relative-caret-position="500">
+              <caret line="374" column="0" selection-start-line="374" selection-start-column="0" selection-end-line="374" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#12988#12989#0" expanded="true" />
+                <element signature="e#13025#13026#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatabaseManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/DatabaseManager.java">
+      <file leaf-file-name="PitTeamNumberQuestion.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/required_questions/PitTeamNumberQuestion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="424" column="0" selection-start-line="424" selection-start-column="0" selection-end-line="424" selection-end-column="0" />
+            <state relative-caret-position="450">
+              <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
               <folding>
-                <element signature="e#33525#33526#0" expanded="true" />
-                <element signature="e#33556#33557#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#855#856#0" expanded="false" />
+                <element signature="e#907#908#0" expanded="false" />
+                <element signature="e#948#949#0" expanded="false" />
+                <element signature="e#975#976#0" expanded="false" />
+                <element signature="e#1183#1184#0" expanded="false" />
+                <element signature="e#1216#1217#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Question.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Question.java">
+      <file leaf-file-name="TimerQuestion.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/TimerQuestion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#871#872#0" expanded="false" />
+                <element signature="e#898#899#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MatchTeamNumberQuestion.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/MatchTeamNumberQuestion.java">
+      <file leaf-file-name="ExampleIntegerQuestion.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/example_questions/ExampleIntegerQuestion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-              <folding />
+            <state relative-caret-position="725">
+              <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+              <folding>
+                <element signature="e#296#297#0" expanded="false" />
+                <element signature="e#327#328#0" expanded="false" />
+                <element signature="e#894#895#0" expanded="false" />
+                <element signature="e#927#928#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddEventDialogFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/DialogFragments/AddEventDialogFragment.java">
+      <file leaf-file-name="ExampleStringQuestion.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/example_questions/ExampleStringQuestion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="118" column="152" selection-start-line="118" selection-start-column="152" selection-end-line="118" selection-end-column="152" />
-              <folding />
+            <state relative-caret-position="575">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding>
+                <element signature="e#293#294#0" expanded="false" />
+                <element signature="e#324#325#0" expanded="false" />
+                <element signature="e#717#718#0" expanded="false" />
+                <element signature="e#732#733#0" expanded="false" />
+                <element signature="e#775#776#0" expanded="false" />
+                <element signature="e#832#833#0" expanded="false" />
+                <element signature="e#888#889#0" expanded="false" />
+                <element signature="e#923#924#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BooleanQuestion.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/BooleanQuestion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+              <folding>
+                <element signature="e#949#950#0" expanded="false" />
+                <element signature="e#976#977#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckboxQuestion.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/CheckboxQuestion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1584#1585#0" expanded="false" />
+                <element signature="e#1599#1600#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="IntegerQuestion.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/IntegerQuestion.java">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/IntegerQuestion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="1625">
+              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2976#2977#0" expanded="false" />
+                <element signature="e#3043#3044#0" expanded="false" />
+                <element signature="e#3088#3089#0" expanded="false" />
+                <element signature="e#3148#3149#0" expanded="false" />
+                <element signature="e#3182#3183#0" expanded="false" />
+                <element signature="e#3249#3250#0" expanded="false" />
+                <element signature="e#3294#3295#0" expanded="false" />
+                <element signature="e#3354#3355#0" expanded="false" />
+                <element signature="e#4052#4053#0" expanded="false" />
+                <element signature="e#4077#4078#0" expanded="false" />
+                <element signature="e#4452#4453#0" expanded="false" />
+                <element signature="e#4477#4478#0" expanded="false" />
+                <element signature="e#4519#4520#0" expanded="false" />
+                <element signature="e#4544#4545#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MatchNumberQuestion.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/MatchNumberQuestion.java">
+      <file leaf-file-name="SpinnerQuestion.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/SpinnerQuestion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-              <folding />
+            <state relative-caret-position="450">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1300#1301#0" expanded="false" />
+                <element signature="e#1315#1316#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StringQuestion.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/StringQuestion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="550">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1119#1120#0" expanded="false" />
+                <element signature="e#1146#1147#0" expanded="false" />
+                <element signature="e#1225#1226#0" expanded="false" />
+                <element signature="e#1240#1241#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -188,10 +352,10 @@
       <list>
         <option value="valueResourceFile" />
         <option value="layoutResourceFile" />
-        <option value="resourceFile" />
         <option value="layoutResourceFile_vertical" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -1976,44 +2140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/BluetoothDataTransferFragment.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/toolbar.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/tabbed_toolbar.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/GraphSettingsActivity.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/MainActivity.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/GraphSettingsFragment.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleQuestion.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/DetailedExampleIntegerQuestions.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleStringQuestion.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleIntegerQuestion.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/AddGraphFragment.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/menu/empty_menu.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/menu/activity_main_drawer.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/ResponseViewerGraph.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/values/dimens.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/BarGraph.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/CandleStickGraph.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/PieGraph.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/RadarGraph.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/ScatterGraph.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphManager.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_match_form.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AbstractActivity.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/scroll_linearlayout_fragment.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_graph_settings.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/nav_header_main.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphSettingsFragment.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/StringQuestion.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/content_settings.xml" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/SettingsActivity.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/ScoutSettingsFragment.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListEditViewer.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/PitTeamListView.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/BooleanQuestion.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUIBooleanRadioButtons.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_fragment_holder.xml" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUICustomNumberPicker.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUIView.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUIInteger.java" />
@@ -2021,12 +2147,50 @@
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/SimpleFormQuestionViewer.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/FormQuestionViewers/SingleLineFormQuestionViewer.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/FormQuestionViewers/TwoLineFormQuestionViewer.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AddQuestionActivity.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/DatabaseManager.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/DialogFragments/AddEventDialogFragment.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Question.java" />
-        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/IntegerQuestion.java" />
         <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUISeekbar.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphViewer.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/EnumName.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/SpinnerHint.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/HintSpinner.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AddQuestionActivity.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/SpinnerQuestion.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/RequiredQuestions/PitTeamNumberQuestion.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/IntegerQuestion.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/DatabaseManager.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/activities/AddQuestionActivity.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/list_element_graph.xml" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/form_question_viewers/SingleLineFormQuestionViewer.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/ArrayQuestionUtils.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/SimpleFormQuestionViewer.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/AnswerUITextView.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/AnswerUISpinner.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/AnswerUICheckboxes.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/res/drawable/ic_pause.xml" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/res/layout/dialog_set_team_number.xml" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/AnswerUITimer.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/SimpleQuestionEditViewer.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/LinearLayoutQuestionViewer.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/question_editor_viewers/TwoLineEditQuestionViewer.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/AnswerUISeekbar.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/GraphSettingsFragment.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUICustomNumberPicker.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUISeekbar.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUICheckboxes.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/question_editor_viewers/SingleLineEditQuestionViewer.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUISpinner.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUITimer.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/example_questions/ExampleStringQuestion.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/BooleanQuestion.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/CheckboxQuestion.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/IntegerQuestion.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/required_questions/PitTeamNumberQuestion.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/SpinnerQuestion.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/StringQuestion.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/TimerQuestion.java" />
+        <option value="$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/Question.java" />
       </list>
     </option>
   </component>
@@ -2089,11 +2253,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane />
       </pane>
-      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2102,99 +2265,10 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scoutingapp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard2" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scoutingapp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard2" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scoutingapp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard2" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scoutingapp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard2" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Questions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scoutingapp" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard2" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vanguard" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Questions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuestionTypes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2203,11 +2277,11 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="device.picker.selection" value="G0W0H4046536030U" />
+    <property name="device.picker.selection" value="Nexus_5X_API_26_x86" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/vanguard2/build/generated" />
-    <property name="VectorAssetImportPath" value="D:\" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/vanguard2/src/main/res/drawable-v21" />
     <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="VectorAssetImportPath" value="D:\" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -2674,67 +2748,37 @@
     <frame x="-11" y="-11" width="2582" height="1562" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32804233" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31292516" sideWeight="0.48995984" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32804233" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31292516" sideWeight="0.48995984" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36885867" sideWeight="0.51325303" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3696145" sideWeight="0.4795181" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32728648" sideWeight="0.49678716" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879817" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32804233" sideWeight="0.49668875" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37263796" sideWeight="0.5253012" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37414965" sideWeight="0.47469878" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32728648" sideWeight="0.49678716" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879817" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32804233" sideWeight="0.49668875" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951945" sideWeight="0.5033113" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951945" sideWeight="0.5033113" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15702811" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32728648" sideWeight="0.48875502" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.49196786" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6647351" sideWeight="0.5026697" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3696145" sideWeight="0.52048194" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37112623" sideWeight="0.52208835" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32955405" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6581126" sideWeight="0.49733028" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32728648" sideWeight="0.48875502" order="2" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36583522" sideWeight="0.51124495" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3696145" sideWeight="0.48353413" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6647351" sideWeight="0.5026697" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3696145" sideWeight="0.51646584" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32804233" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31746033" sideWeight="0.48995984" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6581126" sideWeight="0.49733028" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32728648" sideWeight="0.49839357" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879817" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32804233" sideWeight="0.49668875" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951945" sideWeight="0.5033113" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14453125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32728648" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -2749,436 +2793,449 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="58" />
+      <option name="time" value="59" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphManager.java">
+    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/android/widget/AbsSpinner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="429" column="44" selection-start-line="429" selection-start-column="44" selection-end-line="429" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="428">
+          <caret line="276" column="16" selection-start-line="276" selection-start-column="16" selection-end-line="276" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/AddGraphFragment.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/build/intermediates/res/merged/debug/layout/dialog_set_team_number.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1974">
-          <caret line="214" column="42" selection-start-line="214" selection-start-column="42" selection-end-line="214" selection-end-column="42" />
+        <state relative-caret-position="325">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AbstractActivity.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/test/java/com/example/vanguard/ExampleUnitTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
-          <folding />
+        <state relative-caret-position="225">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/values/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_match_form.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
+    <entry file="file://$USER_HOME$/.android/build-cache/897f43697ac5cda40553b9980451f2a6a7704e0e/output/res/layout/support_simple_spinner_dropdown_item.xml">
+      <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Graphs/GraphImplementations/ResponseViewerGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/layout/scroll_linearlayout_fragment.xml">
-      <provider selected="true" editor-type-id="text-editor">
+      <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/layout/fragment_graph_settings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/layout/nav_header_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/layout/scout_selector_ui.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2500">
-          <caret line="100" column="40" selection-start-line="100" selection-start-column="40" selection-end-line="100" selection-end-column="40" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.android/build-cache/897f43697ac5cda40553b9980451f2a6a7704e0e/output/res/values-v21/values-v21.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="167" column="112" selection-start-line="167" selection-start-column="112" selection-end-line="167" selection-end-column="112" />
-          <folding />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/platforms/android-23/data/res/values/styles_material.xml">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/HintEditText.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="488" column="17" selection-start-line="488" selection-start-column="17" selection-end-line="488" selection-end-column="17" />
+        <state relative-caret-position="300">
+          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.android/build-cache/897f43697ac5cda40553b9980451f2a6a7704e0e/output/res/values/values.xml">
+    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/android/widget/ArrayAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="1436" column="111" selection-start-line="1436" selection-start-column="111" selection-end-line="1436" selection-end-column="111" />
-          <folding />
+        <state relative-caret-position="265">
+          <caret line="367" column="16" selection-start-line="367" selection-start-column="16" selection-end-line="367" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/values/styles.xml">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/activities/AddQuestionActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="20" column="80" selection-start-line="20" selection-start-column="80" selection-end-line="20" selection-end-column="80" />
-          <folding />
+        <state relative-caret-position="3425">
+          <caret line="166" column="62" selection-start-line="166" selection-start-column="62" selection-end-line="166" selection-end-column="62" />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/android/widget/Button.java">
+    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="80" column="31" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
+        <state relative-caret-position="595">
+          <caret line="356" column="19" selection-start-line="356" selection-start-column="19" selection-end-line="356" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/GraphSettingsFragment.java">
+    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/android/widget/CheckBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUIEditText.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/StringQuestion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/layout/content_settings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/ScoutSettingsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="207" column="34" selection-start-line="207" selection-start-column="29" selection-end-line="207" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="74" column="38" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1153#1154#0" expanded="false" />
-            <element signature="e#1222#1223#0" expanded="false" />
-            <element signature="e#1809#1810#0" expanded="false" />
-            <element signature="e#1832#1833#0" expanded="false" />
-            <element signature="e#3843#3844#0" expanded="false" />
-            <element signature="e#3871#3872#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/android/app/FragmentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="907" column="0" selection-start-line="907" selection-start-column="0" selection-end-line="907" selection-end-column="0" />
+        <state relative-caret-position="239">
+          <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/android/widget/CompoundButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2500">
-          <caret line="141" column="16" selection-start-line="141" selection-start-column="16" selection-end-line="141" selection-end-column="16" />
+        <state relative-caret-position="264">
+          <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/android/widget/RadioButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/layout/activity_fragment_holder.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/layout/list_element_graph.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUIBooleanRadioButtons.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+        <state relative-caret-position="275">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/PitScoutFragment.java">
+    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        <state relative-caret-position="400">
+          <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/BooleanQuestion.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/ArrayQuestionUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="331">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/form_question_viewers/SingleLineFormQuestionViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/PitTeamListView.java">
+    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/android/os/CountDownTimer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="1328">
+          <caret line="69" column="11" selection-start-line="69" selection-start-column="11" selection-end-line="69" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListFormViewer.java">
+    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/java/lang/Runnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/drawable-v21/ic_menu_sync.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
+          <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/ExampleQuestions/ExampleQuestion.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/drawable/ic_pause_logo.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-          <folding />
+        <state relative-caret-position="175">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUICustomNumberPicker.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/layout/dialog_set_team_number.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/SimpleFormQuestionViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="60" column="52" selection-start-line="60" selection-start-column="52" selection-end-line="60" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/SimpleQuestionEditViewer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding />
+          <caret line="19" column="65" selection-start-line="19" selection-start-column="65" selection-end-line="19" selection-end-column="65" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUIView.java" />
-    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/java/lang/Enum.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/MaterialLinearLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/LinearLayoutQuestionViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUIBooleanRadioButtons.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-12">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/ScoutingFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-375">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/android/app/Activity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
-          <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
-          <folding>
-            <element signature="e#3088#3089#0" expanded="false" />
-            <element signature="e#3115#3116#0" expanded="false" />
-          </folding>
+          <caret line="5286" column="16" selection-start-line="5286" selection-start-column="16" selection-end-line="5286" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUIInteger.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/BluetoothDataTransferFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
+        <state relative-caret-position="1005">
+          <caret line="69" column="31" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/SeekbarIntegerQuestion.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="665">
+          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Activities/AddQuestionActivity.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/pages/fragments/GraphSettingsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="37" column="54" selection-start-line="37" selection-start-column="54" selection-end-line="37" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/example_questions/ExampleQuestion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUIInteger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUICustomNumberPicker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="142" column="5" selection-start-line="142" selection-start-column="5" selection-end-line="142" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUISeekbar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="549">
-          <caret line="132" column="55" selection-start-line="132" selection-start-column="55" selection-end-line="132" selection-end-column="55" />
-          <folding />
+          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/FormQuestionViewers/SingleLineFormQuestionViewer.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUICheckboxes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="56" column="45" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/question_editor_viewers/TwoLineEditQuestionViewer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
-          <caret line="21" column="77" selection-start-line="21" selection-start-column="77" selection-end-line="21" selection-end-column="77" />
+          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="24" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/FormQuestionViewers/TwoLineFormQuestionViewer.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUISpinner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_viewers/question_editor_viewers/SingleLineEditQuestionViewer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
-          <caret line="23" column="74" selection-start-line="23" selection-start-column="74" selection-end-line="23" selection-end-column="74" />
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/SimpleFormQuestionViewer.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUITimer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+        <state relative-caret-position="152">
+          <caret line="104" column="48" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/Answer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/BooleanQuestion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding>
-            <element signature="e#1990#1991#0" expanded="true" />
-            <element signature="e#2018#2019#0" expanded="true" />
+            <element signature="e#949#950#0" expanded="false" />
+            <element signature="e#976#977#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/MatchNumberQuestion.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/CheckboxQuestion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/MatchTeamNumberQuestion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Pages/Fragments/DialogFragments/AddEventDialogFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="118" column="152" selection-start-line="118" selection-start-column="152" selection-end-line="118" selection-end-column="152" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/Question.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1584#1585#0" expanded="false" />
+            <element signature="e#1599#1600#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionTypes/IntegerQuestion.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/IntegerQuestion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/Questions/QuestionViewers/QuestionListViewers/QuestionListEditViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1850">
-          <caret line="93" column="9" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/DatabaseManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="424" column="0" selection-start-line="424" selection-start-column="0" selection-end-line="424" selection-end-column="0" />
+        <state relative-caret-position="1625">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
           <folding>
-            <element signature="e#33525#33526#0" expanded="true" />
-            <element signature="e#33556#33557#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2976#2977#0" expanded="false" />
+            <element signature="e#3043#3044#0" expanded="false" />
+            <element signature="e#3088#3089#0" expanded="false" />
+            <element signature="e#3148#3149#0" expanded="false" />
+            <element signature="e#3182#3183#0" expanded="false" />
+            <element signature="e#3249#3250#0" expanded="false" />
+            <element signature="e#3294#3295#0" expanded="false" />
+            <element signature="e#3354#3355#0" expanded="false" />
+            <element signature="e#4052#4053#0" expanded="false" />
+            <element signature="e#4077#4078#0" expanded="false" />
+            <element signature="e#4452#4453#0" expanded="false" />
+            <element signature="e#4477#4478#0" expanded="false" />
+            <element signature="e#4519#4520#0" expanded="false" />
+            <element signature="e#4544#4545#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/android/view/View.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUITextView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="12377" column="16" selection-start-line="12377" selection-start-column="16" selection-end-line="12377" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="225">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Windows_Applications/Android_Studio/SDK/sources/android-23/android/view/ViewGroup.java">
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/SpinnerQuestion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="111" column="22" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/CustomUIElements/AnswerUISeekbar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
+        <state relative-caret-position="450">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1300#1301#0" expanded="false" />
+            <element signature="e#1315#1316#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/custom_ui_elements/answer_ui_elements/AnswerUIEditText.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/StringQuestion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1119#1120#0" expanded="false" />
+            <element signature="e#1146#1147#0" expanded="false" />
+            <element signature="e#1225#1226#0" expanded="false" />
+            <element signature="e#1240#1241#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/TimerQuestion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding>
+            <element signature="e#871#872#0" expanded="false" />
+            <element signature="e#898#899#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/example_questions/ExampleIntegerQuestion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="725">
+          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding>
+            <element signature="e#296#297#0" expanded="false" />
+            <element signature="e#327#328#0" expanded="false" />
+            <element signature="e#894#895#0" expanded="false" />
+            <element signature="e#927#928#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/example_questions/ExampleStringQuestion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="e#293#294#0" expanded="false" />
+            <element signature="e#324#325#0" expanded="false" />
+            <element signature="e#717#718#0" expanded="false" />
+            <element signature="e#732#733#0" expanded="false" />
+            <element signature="e#775#776#0" expanded="false" />
+            <element signature="e#832#833#0" expanded="false" />
+            <element signature="e#888#889#0" expanded="false" />
+            <element signature="e#923#924#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/question_types/required_questions/PitTeamNumberQuestion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#855#856#0" expanded="false" />
+            <element signature="e#907#908#0" expanded="false" />
+            <element signature="e#948#949#0" expanded="false" />
+            <element signature="e#975#976#0" expanded="false" />
+            <element signature="e#1183#1184#0" expanded="false" />
+            <element signature="e#1216#1217#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vanguard2/src/main/java/com/example/vanguard/questions/Question.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="374" column="0" selection-start-line="374" selection-start-column="0" selection-end-line="374" selection-end-column="0" />
+          <folding>
+            <element signature="e#12988#12989#0" expanded="true" />
+            <element signature="e#13025#13026#0" expanded="true" />
           </folding>
         </state>
       </provider>

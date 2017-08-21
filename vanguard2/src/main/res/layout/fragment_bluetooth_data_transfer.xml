@@ -17,7 +17,7 @@
 		android:layout_marginBottom="4dp"
 		android:src="@drawable/ic_sync_large"/>
 
-	<com.example.vanguard.CustomUIElements.SwitchOption
+	<com.example.vanguard.custom_ui_elements.SwitchOption
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/is_server_switch"
