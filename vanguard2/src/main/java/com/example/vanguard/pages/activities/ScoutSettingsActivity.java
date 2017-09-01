@@ -13,7 +13,6 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.vanguard.custom_ui_elements.CustomViewPager;
 import com.example.vanguard.pages.fragments.ScoutSettingsFragment;
 import com.example.vanguard.R;
 
@@ -24,7 +23,7 @@ import com.example.vanguard.R;
 public class ScoutSettingsActivity extends AbstractActivity {
 
 	FragmentStatePagerAdapter adapter;
-	CustomViewPager viewPager;
+	ViewPager viewPager;
 	Activity context;
 
 	public ScoutSettingsActivity() {
@@ -36,10 +35,9 @@ public class ScoutSettingsActivity extends AbstractActivity {
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		viewPager = (CustomViewPager) findViewById(R.id.view_pager);
+		viewPager = (ViewPager) findViewById(R.id.view_pager);
 		adapter = new ScoutSettingsPageAdapter(getFragmentManager());
 		viewPager.setAdapter(adapter);
-
 		TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 		tabLayout.setupWithViewPager(viewPager);
 	}
@@ -66,10 +64,6 @@ public class ScoutSettingsActivity extends AbstractActivity {
 //				return false;
 //			}
 //		});
-	}
-
-	public CustomViewPager getViewPager() {
-		return this.viewPager;
 	}
 
 	@Override
