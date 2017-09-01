@@ -128,6 +128,7 @@
     <orderEntry type="library" exported="" name="MPAndroidChart-v3.0.2" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="javax.inject-1" level="project" />
     <orderEntry type="library" exported="" name="jackson-core-2.5.0" level="project" />
+    <orderEntry type="library" exported="" name="draglistview-1.4.7" level="project" />
     <orderEntry type="library" exported="" name="draglinearlayout-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="jackson-databind-2.5.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="javawriter-2.1.1" level="project" />
