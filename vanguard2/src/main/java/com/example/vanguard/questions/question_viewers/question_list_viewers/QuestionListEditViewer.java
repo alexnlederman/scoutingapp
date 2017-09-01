@@ -65,6 +65,7 @@ public class QuestionListEditViewer extends DragLinearLayout {
 					}
 				});
 				this.addDragView(questionViewer, questionViewer);
+
 			}
 			else {
 				this.addView(question.getQuestionViewer(this.context));
