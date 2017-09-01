@@ -16,6 +16,9 @@
 bin/
 gen/
 
+# Log files
+*.log
+
 # Ignore gradle files
 .gradle/
 build/
