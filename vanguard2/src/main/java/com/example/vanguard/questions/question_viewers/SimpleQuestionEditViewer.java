@@ -3,7 +3,10 @@ package com.example.vanguard.questions.question_viewers;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.text.TextWatcher;
+import android.view.DragEvent;
 import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +25,7 @@ public abstract class SimpleQuestionEditViewer extends LinearLayoutQuestionViewe
 	protected final Button deleteButton;
 	protected EditText labelEditText;
 	protected LinearLayout commentLinearLayout;
+	public final static int LABEL_ID = View.generateViewId();
 
 
 	public SimpleQuestionEditViewer(Context context, Question<?> question) {
@@ -55,6 +59,7 @@ public abstract class SimpleQuestionEditViewer extends LinearLayoutQuestionViewe
 
 
 		this.labelEditText.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
+		this.labelEditText.setId(LABEL_ID);
 
 		int margin = Math.round(MainActivity.dpToPixels * 15);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);

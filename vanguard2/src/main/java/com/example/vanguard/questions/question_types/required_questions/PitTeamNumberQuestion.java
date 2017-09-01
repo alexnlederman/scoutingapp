@@ -42,4 +42,9 @@ public class PitTeamNumberQuestion extends Question<Integer> {
 	public float convertResponseToNumber(Response<Integer> response) {
 		return response.getValue();
 	}
+
+	@Override
+	public Integer getGenericValue() {
+		return 0;
+	}
 }

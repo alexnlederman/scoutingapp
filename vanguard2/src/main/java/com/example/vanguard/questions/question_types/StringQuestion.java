@@ -38,4 +38,9 @@ public class StringQuestion extends Question<String> {
 	public float convertResponseToNumber(Response<String> response) {
 		return 1;
 	}
+
+	@Override
+	public String getGenericValue() {
+		return "HI";
+	}
 }

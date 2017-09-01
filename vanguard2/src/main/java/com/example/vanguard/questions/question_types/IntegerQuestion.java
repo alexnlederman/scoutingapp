@@ -78,6 +78,11 @@ public class IntegerQuestion extends Question<Integer> {
 	}
 
 	@Override
+	public Integer getGenericValue() {
+		return 0;
+	}
+
+	@Override
 	public View getAnswerUI() {
 		this.answerUI.setMinValue(getMinValue());
 		this.answerUI.setMaxValue(getMaxValue());

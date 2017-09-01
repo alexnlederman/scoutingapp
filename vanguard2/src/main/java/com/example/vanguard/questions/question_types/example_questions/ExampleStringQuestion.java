@@ -19,6 +19,11 @@ public class ExampleStringQuestion extends ExampleQuestion<String> {
 	}
 
 	@Override
+	public String getGenericValue() {
+		return "HI";
+	}
+
+	@Override
 	public void generateResponses() {
 		for (int i = 0; i < 8; i++) {
 			this.setTeamNumber(this.getDetailedTeam());

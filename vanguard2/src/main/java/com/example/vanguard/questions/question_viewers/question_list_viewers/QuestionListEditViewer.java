@@ -47,6 +47,7 @@ public class QuestionListEditViewer extends DragLinearLayout {
 			if (question.isEditable()) {
 				SimpleQuestionEditViewer questionViewer = question.getQuestionEditViewer(this.context);
 				questionViewer.getDeleteButton().setOnClickListener(new OnDeleteClickListener(question));
+
 				questionViewer.setEditTextWatcher(new TextWatcher() {
 					@Override
 					public void beforeTextChanged(CharSequence s, int start, int count, int after) {

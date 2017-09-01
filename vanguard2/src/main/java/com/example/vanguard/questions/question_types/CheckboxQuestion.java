@@ -54,4 +54,9 @@ public class CheckboxQuestion extends Question<String> {
 		props.put(CHECKBOX_VALUE_PROPERTY_NAME, new String[0]);
 		return props;
 	}
+
+	@Override
+	public String getGenericValue() {
+		return "HI";
+	}
 }

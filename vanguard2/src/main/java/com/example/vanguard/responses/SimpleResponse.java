@@ -27,6 +27,11 @@ public class SimpleResponse<T> implements Response<T> {
 	}
 
 	@Override
+	public T getGenericValue() {
+		return this.responseValue;
+	}
+
+	@Override
 	public int getMatchNumber() {
 		return this.matchNumber;
 	}

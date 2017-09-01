@@ -34,6 +34,11 @@ public class ExampleIntegerQuestion extends ExampleQuestion<Integer> {
 	}
 
 	@Override
+	public Integer getGenericValue() {
+		return 0;
+	}
+
+	@Override
 	public float convertResponseToNumber(Response<Integer> response) {
 		return response.getValue();
 	}

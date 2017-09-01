@@ -21,14 +21,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.vanguard.DatabaseManager;
+import com.example.vanguard.R;
+import com.example.vanguard.TeamNumberManager;
 import com.example.vanguard.pages.fragments.BluetoothDataTransferFragment;
-import com.example.vanguard.pages.fragments.dialog_fragments.ConfirmationDialogFragment;
-import com.example.vanguard.pages.fragments.dialog_fragments.SetTeamNumberDialogFragment;
 import com.example.vanguard.pages.fragments.GraphSettingsFragment;
 import com.example.vanguard.pages.fragments.GraphingFragment;
 import com.example.vanguard.pages.fragments.ScoutingFragment;
-import com.example.vanguard.R;
-import com.example.vanguard.TeamNumberManager;
+import com.example.vanguard.pages.fragments.dialog_fragments.ConfirmationDialogFragment;
+import com.example.vanguard.pages.fragments.dialog_fragments.SetTeamNumberDialogFragment;
 
 public class MainActivity extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
 	Menu menu;
 	DrawerLayout drawer;
 	View headerView;
+	boolean setFragment;
 
 	public static void setFragment(Fragment fragment, int fragmentHolder, Activity activity) {
 		MainActivity.setFragmentSave(fragment, fragmentHolder, activity, true);
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity
 	}
 
 	public static void setFragmentSave(Fragment fragment, int fragmentHolder, Activity activity, boolean saveFragment) {
+		System.out.println("SET FRAGMENT");
 		FragmentManager fragmentManager = activity.getFragmentManager();
 		if (saveFragment)
 			fragmentManager.beginTransaction().replace(fragmentHolder, fragment).addToBackStack("fragment" + fragment.toString()).commit();
@@ -65,11 +67,10 @@ public class MainActivity extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		MainActivity.dpToPixels = this.getResources().getDisplayMetrics().density;
 
-
 		databaseManager = new DatabaseManager(this);
+		this.setFragment = (savedInstanceState == null);
 
 
 		if (firstRun && TeamNumberManager.getTeamNumber(this) == 0) {
@@ -132,8 +133,9 @@ public class MainActivity extends AppCompatActivity
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.empty_menu, menu);
 		this.menu = menu;
-		setFragmentSave(new ScoutingFragment(), R.id.fragment_holder, this, false);
-		getSupportActionBar().setTitle("Scouting");
+		if (this.setFragment) {
+			setFragmentSave(new ScoutingFragment(), R.id.fragment_holder, this, false);
+		}
 		return true;
 	}
 

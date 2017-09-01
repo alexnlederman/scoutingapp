@@ -35,6 +35,11 @@ public class SpinnerQuestion extends Question<String> {
 	}
 
 	@Override
+	public String getValue() {
+		return this.answerUI.getValue();
+	}
+
+	@Override
 	public float convertResponseToNumber(Response<String> response) {
 		return 1;
 	}
@@ -53,5 +58,10 @@ public class SpinnerQuestion extends Question<String> {
 		LinkedHashMap<String, Object> map = super.getDefaultProperties();
 		map.put(DROPDOWN_PROPERTY_NAME, new String[0]);
 		return map;
+	}
+
+	@Override
+	public String getGenericValue() {
+		return "HI";
 	}
 }

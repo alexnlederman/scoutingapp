@@ -19,7 +19,8 @@ public class AnswerUITextView extends AppCompatTextView implements AnswerUI<Inte
 	public AnswerUITextView(Context context) {
 		super(context);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-		params.weight = 2.5f;
+		params.weight = 2.2f;
+		// TODO make sure the weight works with more devices.
 		int margin = Math.round(MainActivity.dpToPixels * 20);
 		params.setMargins(margin, margin, margin, margin);
 		this.setLayoutParams(params);

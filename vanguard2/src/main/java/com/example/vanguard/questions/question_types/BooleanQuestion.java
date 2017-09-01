@@ -38,4 +38,9 @@ public class BooleanQuestion extends Question<Boolean> {
 		}
 		return 0;
 	}
+
+	@Override
+	public Boolean getGenericValue() {
+		return true;
+	}
 }

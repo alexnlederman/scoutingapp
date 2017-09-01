@@ -37,7 +37,7 @@ import java.util.SortedMap;
  * Created by BertTurtle on 6/1/2017.
  */
 
-public abstract class Question<T extends Object> implements Label, Answer<T> {
+public abstract class Question<T> implements Label, Answer<T> {
 
 	protected final static String QUESTION_TITLE_PROPERTY_NAME = "Question Title";
 	private final QuestionType questionType;

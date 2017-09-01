@@ -141,8 +141,7 @@ public class DatabaseManager {
 			// Finds the database.
 			manager = new Manager(new AndroidContext(this.context.getApplicationContext()), Manager.DEFAULT_OPTIONS);
 			// Can change string below to reset the database.
-			this.database = manager.getDatabase("app44");
-
+			this.database = manager.getDatabase("app46");
 			// Creates database views.
 			matchQuestionView = this.database.getView(match_questions_view);
 			matchQuestionView.setMap(new MatchQuestionMap(), "1");
@@ -372,7 +371,7 @@ public class DatabaseManager {
 			query = matchQuestionView.createQuery();
 		else
 			query = pitQuestionView.createQuery();
-		query.setStartKey(index + 1);
+		query.setStartKey(index);
 		try {
 			QueryEnumerator result = query.run();
 			for (Iterator<QueryRow> it = result; it.hasNext(); ) {

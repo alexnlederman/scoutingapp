@@ -8,6 +8,8 @@ public interface Answer<T extends Object> {
 
 	T getValue();
 
+	T getGenericValue();
+
 	void setValue(T newValue);
 
 	int getMatchNumber();

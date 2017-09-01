@@ -101,7 +101,7 @@ public class AnswerUITimer extends LinearLayout implements AnswerUI<Double> {
 		if (this.paused) {
 			this.resetButton.setVisibility(GONE);
 		}
-//		this.clockTimer.resetStartTime();
+		this.clockTimer.resetTime();
 		this.timerTextView.setText(RESET_VALUE);
 	}
 
@@ -140,8 +140,12 @@ public class AnswerUITimer extends LinearLayout implements AnswerUI<Double> {
 			handler.postDelayed(this, DELAY);
 		}
 
-		public void updatePrevTime() {
+		private void updatePrevTime() {
 			this.previousTime = System.currentTimeMillis();
+		}
+
+		private void resetTime() {
+			this.time = 0d;
 		}
 	}
 }

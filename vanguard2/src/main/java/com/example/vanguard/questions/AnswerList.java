@@ -20,7 +20,7 @@ public class AnswerList<T extends Answer> extends ArrayList<T> {
 	public AnswerList<T> getAllOfType(Class type) {
 		AnswerList<T> answers = new AnswerList<T>();
 		for (T answer : this) {
-			if (type.isInstance(answer.getValue())) {
+			if (type.isInstance(answer.getGenericValue())) {
 				answers.add(answer);
 			}
 		}
@@ -30,7 +30,7 @@ public class AnswerList<T extends Answer> extends ArrayList<T> {
 	public AnswerList<T> getAllNotOfType(Class type) {
 		AnswerList<T> answers = new AnswerList<T>();
 		for (T answer : this) {
-			if (!type.isInstance(answer.getValue())) {
+			if (!type.isInstance(answer.getGenericValue())) {
 				answers.add(answer);
 			}
 		}

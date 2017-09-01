@@ -32,4 +32,9 @@ public class TimerQuestion extends Question<Double> {
 	public float convertResponseToNumber(Response<Double> response) {
 		return response.getValue().floatValue();
 	}
+
+	@Override
+	public Double getGenericValue() {
+		return 4d;
+	}
 }
