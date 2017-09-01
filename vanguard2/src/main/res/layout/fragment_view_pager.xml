@@ -4,11 +4,11 @@
 			 android:layout_height="match_parent"
 			 tools:context="com.example.vanguard.pages.fragments.ScoutingFragment">
 
-	<android.support.v4.view.ViewPager
+	<com.example.vanguard.custom_ui_elements.CustomViewPager
 		android:id="@+id/view_pager"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 
-	</android.support.v4.view.ViewPager>
+	</com.example.vanguard.custom_ui_elements.CustomViewPager>
 
 </FrameLayout>
