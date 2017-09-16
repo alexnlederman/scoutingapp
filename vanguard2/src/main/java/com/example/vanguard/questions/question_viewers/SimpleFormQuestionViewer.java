@@ -68,4 +68,8 @@ public abstract class SimpleFormQuestionViewer extends LinearLayoutQuestionViewe
 	public Question.ViewStyle getViewStyle() {
 		return this.viewStyle;
 	}
+
+	public void updateLabel() {
+		this.labelTextView.setText(this.question.getLabel());
+	}
 }

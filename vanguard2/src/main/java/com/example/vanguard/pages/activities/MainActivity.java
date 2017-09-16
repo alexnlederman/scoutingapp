@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity
 	}
 
 	public static void setFragmentSave(Fragment fragment, int fragmentHolder, Activity activity, boolean saveFragment) {
-		System.out.println("SET FRAGMENT");
 		FragmentManager fragmentManager = activity.getFragmentManager();
 		if (saveFragment)
 			fragmentManager.beginTransaction().replace(fragmentHolder, fragment).addToBackStack("fragment" + fragment.toString()).commit();

@@ -36,6 +36,7 @@
 	<string name="scout_setting_page_title">Scout Settings</string>
 	<string name="setting_page_title">Settings</string>
 	<string name="add_question_page_title">Add Question</string>
+	<string name="edit_question_page_title">Edit Question</string>
 	<string name="graph_settings_page_title">Graph Settings</string>
 	<string name="bluetooth_data_transfer_page_title">Sync</string>
 

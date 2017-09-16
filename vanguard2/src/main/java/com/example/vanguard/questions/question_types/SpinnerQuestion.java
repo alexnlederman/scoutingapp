@@ -21,9 +21,7 @@ public class SpinnerQuestion extends Question<String> {
 
 	private AnswerUISpinner answerUI;
 
-	private static final String DROPDOWN_PROPERTY_NAME = "Comma Separated Values";
-
-	public SpinnerQuestion(Context context, String label, AnswerList<Response> responses, String id, boolean isMatchQuestion, Map<String, Object> properties) {
+	public SpinnerQuestion(Context context, String label, AnswerList<Response> responses, String id, boolean isMatchQuestion, Map<QuestionPropertyDescription, Object> properties) {
 		super(label, responses, id, isMatchQuestion, ViewStyle.TWO_LINE, QuestionType.SPINNER, true, null, properties);
 		this.answerUI = new AnswerUISpinner(context, Arrays.asList(this.getPossibleValues()), this.isMatchQuestion());
 	}
@@ -45,18 +43,18 @@ public class SpinnerQuestion extends Question<String> {
 	}
 
 	private String[] getPossibleValues() {
-		Object values = this.getQuestionProperties().get(DROPDOWN_PROPERTY_NAME);
+		Object values = this.getPropertyValue(QuestionPropertyDescription.CSV);
 		return ArrayQuestionUtils.getStringArrayFromProperty(values);
 	}
 
 	private void setPossibleValues(String[] options) {
-		this.getQuestionProperties().put(DROPDOWN_PROPERTY_NAME, options);
+		this.setPropertyValue(QuestionPropertyDescription.CSV, options);
 	}
 
 	@Override
-	public LinkedHashMap<String, Object> getDefaultProperties() {
-		LinkedHashMap<String, Object> map = super.getDefaultProperties();
-		map.put(DROPDOWN_PROPERTY_NAME, new String[0]);
+	public LinkedHashMap<QuestionPropertyDescription, Object> getDefaultProperties() {
+		LinkedHashMap<QuestionPropertyDescription, Object> map = super.getDefaultProperties();
+		map.put(QuestionPropertyDescription.CSV, new String[0]);
 		return map;
 	}
 

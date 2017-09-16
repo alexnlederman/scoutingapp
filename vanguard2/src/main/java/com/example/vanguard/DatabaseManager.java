@@ -20,8 +20,6 @@ import com.couchbase.lite.UnsavedRevision;
 import com.couchbase.lite.View;
 import com.couchbase.lite.android.AndroidContext;
 import com.couchbase.lite.support.LazyJsonArray;
-import com.example.vanguard.responses.Response;
-import com.example.vanguard.responses.SimpleResponse;
 import com.example.vanguard.graphs.Graph;
 import com.example.vanguard.graphs.GraphDescriber;
 import com.example.vanguard.graphs.graph_implementations.BarGraph;
@@ -32,6 +30,8 @@ import com.example.vanguard.graphs.graph_implementations.ResponseViewerGraph;
 import com.example.vanguard.graphs.graph_implementations.ScatterGraph;
 import com.example.vanguard.questions.AnswerList;
 import com.example.vanguard.questions.Question;
+import com.example.vanguard.responses.Response;
+import com.example.vanguard.responses.SimpleResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -141,7 +141,7 @@ public class DatabaseManager {
 			// Finds the database.
 			manager = new Manager(new AndroidContext(this.context.getApplicationContext()), Manager.DEFAULT_OPTIONS);
 			// Can change string below to reset the database.
-			this.database = manager.getDatabase("app46");
+			this.database = manager.getDatabase("app57");
 			// Creates database views.
 			matchQuestionView = this.database.getView(match_questions_view);
 			matchQuestionView.setMap(new MatchQuestionMap(), "1");
@@ -188,11 +188,11 @@ public class DatabaseManager {
 	 * @param isMatchQuestion Whether the question is used for match or pit scouting.
 	 * @return The {@link Question} object that was firstRun.
 	 */
-	public Question createQuestion(String label, String questionType, boolean isMatchQuestion, Map<String, Object> questionProperties) {
+	public Question createQuestion(String label, String questionType, boolean isMatchQuestion, Map<Question.QuestionPropertyDescription, Object> questionProperties) {
 		return createQuestion(label, questionType, isMatchQuestion, questionProperties, UUID.randomUUID().toString(), new ArrayList<Map<String, Object>>());
 	}
 
-	public Question createQuestion(String label, String questionType, boolean isMatchQuestion, Map<String, Object> questionProperties, String id) {
+	public Question createQuestion(String label, String questionType, boolean isMatchQuestion, Map<Question.QuestionPropertyDescription, Object> questionProperties, String id) {
 		return createQuestion(label, questionType, isMatchQuestion, questionProperties, id, new ArrayList<Map<String, Object>>());
 	}
 
@@ -200,7 +200,7 @@ public class DatabaseManager {
 		return createQuestion(question.getLabel(), question.getQuestionType().toString(), question.isMatchQuestion(), question.getQuestionProperties(), question.getID(), getQuestionResponseHashmaps(question));
 	}
 
-	public Question createQuestion(String label, String questionType, boolean isMatchQuestion, Map<String, Object> questionProperties, String questionID, List<Map<String, Object>> responses) {
+	public Question createQuestion(String label, String questionType, boolean isMatchQuestion, Map<Question.QuestionPropertyDescription, Object> questionProperties, String questionID, List<Map<String, Object>> responses) {
 		// Finds the index of the question.
 		int index;
 		if (isMatchQuestion) {
@@ -242,6 +242,28 @@ public class DatabaseManager {
 				public boolean update(UnsavedRevision newRevision) {
 					Map<String, Object> properties = newRevision.getProperties();
 					properties.put(question_label_key, newLabel);
+					newRevision.setProperties(properties);
+					return true;
+				}
+			});
+		} catch (CouchbaseLiteException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void setQuestionProperties(Question question, final Map<Question.QuestionPropertyDescription, Object> newProperties) {
+		setQuestionLabel(question, (String) newProperties.get(Question.QuestionPropertyDescription.NAME));
+
+		// Gets the question.
+		Document document = this.database.getDocument(question.getID());
+
+		// Updates the label.
+		try {
+			document.update(new Document.DocumentUpdater() {
+				@Override
+				public boolean update(UnsavedRevision newRevision) {
+					Map<String, Object> properties = newRevision.getProperties();
+					properties.put(question_properties_key, newProperties);
 					newRevision.setProperties(properties);
 					return true;
 				}
@@ -410,7 +432,7 @@ public class DatabaseManager {
 	public AnswerList<Question> getPitQuestions() {
 		AnswerList<Question> questions = createQuestionListFromQuery(this.pitQuestionView.createQuery());
 		if (questions.size() == 0) {
-			questions.add(createQuestion("Team Number", Question.QuestionType.PIT_TEAM_NUMBER.toString(), false, new HashMap<String, Object>(), this.pit_team_number_question_id));
+			questions.add(createQuestion("Team Number", Question.QuestionType.PIT_TEAM_NUMBER.toString(), false, new HashMap<Question.QuestionPropertyDescription, Object>(), this.pit_team_number_question_id));
 		}
 		return questions;
 	}
@@ -421,8 +443,8 @@ public class DatabaseManager {
 	public AnswerList<Question> getMatchQuestions() {
 		AnswerList<Question> questions = createQuestionListFromQuery(this.matchQuestionView.createQuery());
 		if (questions.size() == 0) {
-			questions.add(createQuestion("Match Number", Question.QuestionType.MATCH_NUMBER.toString(), true, new HashMap<String, Object>(), this.match_number_question_id));
-			questions.add(createQuestion("Team Number", Question.QuestionType.MATCH_TEAM_NUMBER.toString(), true, new HashMap<String, Object>(), this.match_team_number_question_id));
+			questions.add(createQuestion("Match Number", Question.QuestionType.MATCH_NUMBER.toString(), true, new HashMap<Question.QuestionPropertyDescription, Object>(), this.match_number_question_id));
+			questions.add(createQuestion("Team Number", Question.QuestionType.MATCH_TEAM_NUMBER.toString(), true, new HashMap<Question.QuestionPropertyDescription, Object>(), this.match_team_number_question_id));
 		}
 		return questions;
 	}
@@ -486,8 +508,7 @@ public class DatabaseManager {
 		}
 		boolean isMatchQuestion = map.get(document_type_key).equals(match_question_type);
 
-		Map<String, Object> properties = (Map<String, Object>) map.get(question_properties_key);
-
+		Map<Question.QuestionPropertyDescription, Object> properties = (Map<Question.QuestionPropertyDescription, Object>) map.get(question_properties_key);
 		return Question.createQuestionByType(Question.QuestionType.valueOf((String) map.get(question_type_key)), (String) map.get(question_label_key), getQuestionMapResponses(map), isMatchQuestion, (String) map.get("_id"), this.context, properties);
 	}
 
@@ -728,9 +749,9 @@ public class DatabaseManager {
 			List<String> graphQuestionIds = (List<String>) ((List) row.getValue()).get(1);
 			Map<String, Boolean> options = (Map<String, Boolean>) ((List) row.getValue()).get(3);
 
-			AnswerList<Question> questions = getQuestionsFromIds(graphQuestionIds);
+			AnswerList<Question> questions = getQuestionsFromIds((String[]) graphQuestionIds.toArray());
 			if (questions.size() > 0) {
-				graphs.add(createGraph(graphType, getQuestionsFromIds(graphQuestionIds), options, teamNumber));
+				graphs.add(createGraph(graphType, getQuestionsFromIds((String[]) graphQuestionIds.toArray()), options, teamNumber));
 			} else {
 				try {
 					row.getDocument().delete();
@@ -756,7 +777,7 @@ public class DatabaseManager {
 			Graph.GraphTypes graphType = Graph.GraphTypes.valueOf((String) ((List) row.getValue()).get(0));
 			List<String> graphQuestionIds = (List<String>) ((List) row.getValue()).get(1);
 			String id = (String) ((List) row.getValue()).get(2);
-			AnswerList<Question> questions = getQuestionsFromIds(graphQuestionIds);
+			AnswerList<Question> questions = getQuestionsFromIds((String[]) graphQuestionIds.toArray());
 			if (questions.size() > 0) {
 				graphDescribers.add(new GraphDescriber(context, questions, graphType, id));
 			}
@@ -773,7 +794,7 @@ public class DatabaseManager {
 		}
 	}
 
-	private AnswerList<Question> getQuestionsFromIds(List<String> ids) {
+	public AnswerList<Question> getQuestionsFromIds(String... ids) {
 		AnswerList<Question> questions = new AnswerList<>();
 		for (String id : ids) {
 			Question question = getQuestionVariableFromMap(this.database.getDocument(id).getProperties());
@@ -912,10 +933,10 @@ public class DatabaseManager {
 		int index;
 		String questionType;
 		boolean isMatchQuestion;
-		Map<String, Object> propertyMap;
+		Map<Question.QuestionPropertyDescription, Object> propertyMap;
 		List<Map<String, Object>> responses;
 
-		public QuestionCreator(String label, int index, String questionType, boolean isMatchQuestion, Map<String, Object> propertyMap, List<Map<String, Object>> responses) {
+		public QuestionCreator(String label, int index, String questionType, boolean isMatchQuestion, Map<Question.QuestionPropertyDescription, Object> propertyMap, List<Map<String, Object>> responses) {
 			this.label = label;
 			this.index = index;
 			this.questionType = questionType;

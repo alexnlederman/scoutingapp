@@ -1,5 +1,6 @@
 package com.example.vanguard.pages.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.vanguard.R;
 import com.example.vanguard.bluetooth.BluetoothManager;
 import com.example.vanguard.custom_ui_elements.HintEditText;
 import com.example.vanguard.custom_ui_elements.HintSpinner;
@@ -21,13 +23,13 @@ import com.example.vanguard.pages.fragments.dialog_fragments.ConfirmationDialogF
 import com.example.vanguard.questions.AnswerList;
 import com.example.vanguard.questions.Question;
 import com.example.vanguard.questions.question_viewers.SimpleFormQuestionViewer;
-import com.example.vanguard.R;
 import com.example.vanguard.responses.Response;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import static com.example.vanguard.pages.activities.ScoutSettingsActivity.QUESTION_ADDED;
 
 /**
  * Created by mbent on 7/13/2017.
@@ -35,12 +37,15 @@ import java.util.Map;
 
 public class AddQuestionActivity extends AbstractActivity {
 
-	public static final String is_match_question = "is_match_question";
+	public static final String IS_MATCH_QUESTION = "IS_MATCH_QUESTION";
+	public static final String EDIT_QUESTION = "EDIT_QUESTION";
 	boolean isMatchQuestion;
 	LinearLayout optionsLayout;
 	LinearLayout previewLayout;
-	Map<String, Object> properties;
+	Map<Question.QuestionPropertyDescription, Object> properties;
 	Question question;
+	boolean editQuestion;
+
 
 	//	List<EditText> optionValues;
 	SimpleFormQuestionViewer questionPreview;
@@ -56,12 +61,43 @@ public class AddQuestionActivity extends AbstractActivity {
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		this.isMatchQuestion = getIntent().getExtras().getBoolean(is_match_question);
+		this.isMatchQuestion = getIntent().getExtras().getBoolean(IS_MATCH_QUESTION);
+		final String questionID = getIntent().getExtras().getString(EDIT_QUESTION);
+		Spinner spinner = (Spinner) this.findViewById(R.id.spinner);
 
 		this.optionsLayout = (LinearLayout) findViewById(R.id.options_layout);
 		this.previewLayout = (LinearLayout) findViewById(R.id.preview_layout);
 
+		if (questionID != null) {
+			this.question = MainActivity.databaseManager.getQuestionsFromIds(questionID).get(0);
+			spinner.setVisibility(View.GONE);
+			this.editQuestion = true;
+			addQuestionPreview(this.question);
+			addOptions();
+		} else {
+			this.editQuestion = false;
+			spinner.setAdapter(new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, getQuestionTypeNames()));
+			spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+				@Override
+				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+					String text = ((TextView) view).getText().toString();
+					Question.QuestionType questionType = Question.QuestionType.valueOfName(text);
+
+					addQuestionPreview(questionType, text);
+
+					// TODO this is missing.
+					addOptions();
+				}
+
+				@Override
+				public void onNothingSelected(AdapterView<?> parent) {
+
+				}
+			});
+		}
+
 		if (!BluetoothManager.isServer(this)) {
+			// TODO change warning texts.
 			ConfirmationDialogFragment warning = ConfirmationDialogFragment.newInstance(R.string.confirm_not_server_add_question_title, R.string.confirm_not_server_add_question_text, new ConfirmationDialogFragment.ConfirmDialogListener() {
 				@Override
 				public void decline() {
@@ -71,30 +107,16 @@ public class AddQuestionActivity extends AbstractActivity {
 			warning.show(getFragmentManager(), "Confirm Add Question");
 		}
 
-		Spinner spinner = (Spinner) this.findViewById(R.id.spinner);
-		spinner.setAdapter(new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, getQuestionTypeNames()));
-		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				String text = ((TextView) view).getText().toString();
-				Question.QuestionType question = Question.QuestionType.valueOfName(text);
-
-				addQuestionPreview(question, text);
-
-				addOptions();
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
-
-			}
-		});
-
 		Button submit = (Button) this.findViewById(R.id.submit_button);
 		submit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				MainActivity.databaseManager.createQuestion(question.getLabel(), question.getQuestionType().toString(), isMatchQuestion, question.getQuestionProperties());
+				System.out.println("EDIT: " + editQuestion);
+				if (editQuestion) {
+					MainActivity.databaseManager.setQuestionProperties(question, question.getQuestionProperties());
+				} else
+					MainActivity.databaseManager.createQuestion(question.getLabel(), question.getQuestionType().toString(), isMatchQuestion, question.getQuestionProperties());
+				setResult(QUESTION_ADDED);
 				finish();
 			}
 		});
@@ -118,74 +140,102 @@ public class AddQuestionActivity extends AbstractActivity {
 
 	private void addOptions() {
 		this.optionsLayout.removeAllViews();
+		// TODO this may crash when question edited.
 		this.properties = this.question.getQuestionProperties();
-		for (final String propertyName : this.properties.keySet()) {
-			Object value = this.properties.get(propertyName);
-			if (value instanceof Enum<?>) {
-				HintSpinner spinner = new HintSpinner(this, ((Enum) value).getDeclaringClass().getEnumConstants(), propertyName);
-				spinner.setSelectedListener(new AdapterView.OnItemSelectedListener() {
-					@Override
-					public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-						properties.put(propertyName, parent.getItemAtPosition(position));
-						if (questionPreview.getViewStyle() != question.getViewStyle()) {
-							addQuestionPreview(question);
+		for (final Question.QuestionPropertyDescription propertyDescription : this.properties.keySet()) {
+			Object value = this.properties.get(propertyDescription);
+			switch (propertyDescription.type) {
+				case ARRAY:
+					HintEditText propertyEdit = new HintEditText(this, propertyDescription.title);
+					propertyEdit.getEditText().setText(TextUtils.join(",", (Object[]) value));
+					propertyEdit.getEditText().setInputType(getPropertyInputType(value));
+
+					propertyEdit.getEditText().addTextChangedListener(new TextWatcher() {
+						@Override
+						public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
 						}
-						questionPreview.refreshView();
-					}
 
-					@Override
-					public void onNothingSelected(AdapterView<?> parent) {
+						@Override
+						public void onTextChanged(CharSequence s, int start, int before, int count) {
+							String[] values = s.toString().split(",");
+							properties.put(propertyDescription, values);
+							questionPreview.refreshView();
+						}
 
-					}
-				});
-				this.optionsLayout.addView(spinner);
-			} else if (value instanceof Object[]) {
-				HintEditText propertyEdit = new HintEditText(this, propertyName);
-				propertyEdit.getEditText().setText(TextUtils.join(",", (Object[]) value));
-				propertyEdit.getEditText().setInputType(getPropertyInputType(value));
+						@Override
+						public void afterTextChanged(Editable s) {
 
-				propertyEdit.getEditText().addTextChangedListener(new TextWatcher() {
-					@Override
-					public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+						}
+					});
+					this.optionsLayout.addView(propertyEdit);
+					break;
+				case NUMBER:
+					HintEditText propertyEditText = new HintEditText(this, propertyDescription.title);
+					propertyEditText.getEditText().setText(String.valueOf(value));
+					propertyEditText.getEditText().setInputType(getNumberInputType());
 
-					}
+					propertyEditText.getEditText().addTextChangedListener(new TextWatcher() {
+						@Override
+						public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-					@Override
-					public void onTextChanged(CharSequence s, int start, int before, int count) {
-						String[] values = s.toString().split(",");
-						properties.put(propertyName, values);
-						questionPreview.refreshView();
-					}
+						}
 
-					@Override
-					public void afterTextChanged(Editable s) {
+						@Override
+						public void onTextChanged(CharSequence s, int start, int before, int count) {
+							properties.put(propertyDescription, convertStringToInt(s.toString()));
+							questionPreview.refreshView();
+						}
 
-					}
-				});
-				this.optionsLayout.addView(propertyEdit);
-			} else {
-				HintEditText propertyEdit = new HintEditText(this, propertyName);
-				propertyEdit.getEditText().setText(value.toString());
-				propertyEdit.getEditText().setInputType(getPropertyInputType(value));
+						@Override
+						public void afterTextChanged(Editable s) {
 
-				propertyEdit.getEditText().addTextChangedListener(new TextWatcher() {
-					@Override
-					public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+						}
+					});
+					this.optionsLayout.addView(propertyEditText);
+					break;
+				case STRING:
+					HintEditText propertyTextEdit = new HintEditText(this, propertyDescription.title);
+					propertyTextEdit.getEditText().setText(String.valueOf(value));
 
-					}
+					propertyTextEdit.getEditText().addTextChangedListener(new TextWatcher() {
+						@Override
+						public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-					@Override
-					public void onTextChanged(CharSequence s, int start, int before, int count) {
-						properties.put(propertyName, convertValueToType(s, properties.get(propertyName)));
-						questionPreview.refreshView();
-					}
+						}
 
-					@Override
-					public void afterTextChanged(Editable s) {
+						@Override
+						public void onTextChanged(CharSequence s, int start, int before, int count) {
+							properties.put(propertyDescription, s.toString());
+							questionPreview.refreshView();
+						}
 
-					}
-				});
-				this.optionsLayout.addView(propertyEdit);
+						@Override
+						public void afterTextChanged(Editable s) {
+
+						}
+					});
+					this.optionsLayout.addView(propertyTextEdit);
+					break;
+				case ENUM:
+					HintSpinner spinner = new HintSpinner(this, ((Enum) value).getDeclaringClass().getEnumConstants(), propertyDescription.title);
+					spinner.setSelectedListener(new AdapterView.OnItemSelectedListener() {
+						@Override
+						public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+							properties.put(propertyDescription, parent.getItemAtPosition(position));
+							if (questionPreview.getViewStyle() != question.getViewStyle()) {
+								addQuestionPreview(question);
+							}
+							questionPreview.refreshView();
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> parent) {
+
+						}
+					});
+					this.optionsLayout.addView(spinner);
+					break;
 			}
 		}
 	}
@@ -200,6 +250,10 @@ public class AddQuestionActivity extends AbstractActivity {
 		return null;
 	}
 
+	public Integer convertStringToInt(String string) {
+		return (string.length() > 0 && !string.equals("-")) ? Integer.valueOf(string) : 0;
+	}
+
 	private int getPropertyInputType(Object propertyValue) {
 		if (propertyValue instanceof Integer || propertyValue instanceof Integer[]) {
 			return InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED;
@@ -208,6 +262,10 @@ public class AddQuestionActivity extends AbstractActivity {
 			return InputType.TYPE_CLASS_TEXT;
 		}
 		return 0;
+	}
+
+	private int getNumberInputType() {
+		return InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED;
 	}
 
 	private void addQuestionPreview(Question.QuestionType questionType, String spinnerValue) {

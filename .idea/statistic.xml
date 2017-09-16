@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/build/generated" />
         <option value="$PROJECT_DIR$/vanguard2/build/generated" />
+        <option value="$PROJECT_DIR$/libraries" />
       </list>
     </option>
   </component>

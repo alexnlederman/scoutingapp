@@ -19,7 +19,7 @@ public class TimerQuestion extends Question<Double> {
 	private AnswerUITimer answerUI;
 
 	public TimerQuestion(Context context, String label, AnswerList<Response> responses, String id, boolean isMatchQuestion) {
-		super(label, responses, id, isMatchQuestion, ViewStyle.SINGLE_LINE, QuestionType.TIMER, true, null, new TreeMap<String, Object>());
+		super(label, responses, id, isMatchQuestion, ViewStyle.SINGLE_LINE, QuestionType.TIMER, true, null, new TreeMap<QuestionPropertyDescription, Object>());
 		this.answerUI = new AnswerUITimer(context, this.isMatchQuestion());
 	}
 

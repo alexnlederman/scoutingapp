@@ -20,7 +20,7 @@ public class PitTeamNumberQuestion extends Question<Integer> {
 	private int teamNumber;
 
 	public PitTeamNumberQuestion(Context context, AnswerList<Response> responses, String id) {
-		super("Team Number", responses, id, false, ViewStyle.SINGLE_LINE, QuestionType.PIT_TEAM_NUMBER, false, 0, new TreeMap<String, Object>());
+		super("Team Number", responses, id, false, ViewStyle.SINGLE_LINE, QuestionType.PIT_TEAM_NUMBER, false, 0, new TreeMap<QuestionPropertyDescription, Object>());
 		setupUI(context);
 	}
 

@@ -20,10 +20,10 @@ import java.util.List;
 public class AnswerUICheckboxes extends LinearLayout implements AnswerUI<String> {
 
 	private final static String SEPARATOR = ", ";
+	private final boolean isMatchQuestion;
 	private CheckBox[] checkBoxes;
 	private Context context;
 	private boolean changed = true;
-	private final boolean isMatchQuestion;
 
 	public AnswerUICheckboxes(Context context, String[] values, boolean isMatchQuestion) {
 		super(context);
@@ -35,20 +35,22 @@ public class AnswerUICheckboxes extends LinearLayout implements AnswerUI<String>
 	}
 
 	public void setCheckboxes(String[] values) {
-		List<String> strings = ArrayQuestionUtils.trimList(Arrays.asList(values));
-		this.checkBoxes = new CheckBox[strings.size()];
-		this.removeAllViews();
-		for (int i = 0; i < strings.size(); i++) {
-			CheckBox checkBox = new CheckBox(context);
-			checkBox.setText(strings.get(i));
-			checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-				@Override
-				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-					changed = true;
-				}
-			});
-			this.checkBoxes[i] = checkBox;
-			this.addView(checkBox);
+		if (values != null) {
+			List<String> strings = ArrayQuestionUtils.trimList(Arrays.asList(values));
+			this.checkBoxes = new CheckBox[strings.size()];
+			this.removeAllViews();
+			for (int i = 0; i < strings.size(); i++) {
+				CheckBox checkBox = new CheckBox(context);
+				checkBox.setText(strings.get(i));
+				checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+						changed = true;
+					}
+				});
+				this.checkBoxes[i] = checkBox;
+				this.addView(checkBox);
+			}
 		}
 	}
 

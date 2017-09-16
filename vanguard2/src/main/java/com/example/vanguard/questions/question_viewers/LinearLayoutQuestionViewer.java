@@ -50,5 +50,11 @@ public abstract class LinearLayoutQuestionViewer extends MaterialLinearLayout {
 		params.gravity = Gravity.CENTER_VERTICAL;
 	}
 
+	public Question getQuestion() {
+		return this.question;
+	}
+
 	protected abstract void setupLabelView();
+
+	public abstract void updateLabel();
 }

@@ -33,18 +33,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 
+import static com.example.vanguard.questions.Question.QuestionPropertyTypes.ARRAY;
+import static com.example.vanguard.questions.Question.QuestionPropertyTypes.ENUM;
+import static com.example.vanguard.questions.Question.QuestionPropertyTypes.NUMBER;
+import static com.example.vanguard.questions.Question.QuestionPropertyTypes.STRING;
+
+
 /**
  * Created by BertTurtle on 6/1/2017.
  */
 
 public abstract class Question<T> implements Label, Answer<T> {
 
-	protected final static String QUESTION_TITLE_PROPERTY_NAME = "Question Title";
 	private final QuestionType questionType;
 	private final boolean isEditable;
 	private final T defaultValue;
 	private final ViewStyle viewStyle;
-	private final Map<String, Object> questionProperties;
+	private final Map<QuestionPropertyDescription, Object> questionProperties;
 	private final boolean isMatchQuestion;
 	protected int teamNumber;
 	protected AnswerList<Response> responses;
@@ -52,7 +57,7 @@ public abstract class Question<T> implements Label, Answer<T> {
 	private int matchNumber;
 	private boolean isPracticeMatchQuestion;
 
-	public Question(String label, AnswerList<Response> responses, String id, boolean isMatchQuestion, ViewStyle viewStyle, QuestionType questionType, boolean isEditable, T defaultValue, Map<String, Object> properties) {
+	public Question(String label, AnswerList<Response> responses, String id, boolean isMatchQuestion, ViewStyle viewStyle, QuestionType questionType, boolean isEditable, T defaultValue, Map<QuestionPropertyDescription, Object> properties) {
 		this.matchNumber = 0;
 		this.id = id;
 		this.responses = responses;
@@ -63,15 +68,18 @@ public abstract class Question<T> implements Label, Answer<T> {
 		this.defaultValue = defaultValue;
 		this.questionProperties = checkProperties(properties, getDefaultProperties());
 
-		this.questionProperties.put(QUESTION_TITLE_PROPERTY_NAME, label);
+//		if (!this.questionProperties.containsKey(QuestionPropertyDescription.NAME))
+			this.questionProperties.put(QuestionPropertyDescription.NAME, label);
+//		System.out.println("LABEL: " + label);
 	}
 
-	public Question(String label, String id, boolean isMatchQuestion, ViewStyle viewStyle, QuestionType questionType, boolean isEditable, T defaultValue, SortedMap<String, Object> properties) {
+	public Question(String label, String id, boolean isMatchQuestion, ViewStyle viewStyle, QuestionType questionType, boolean isEditable, T defaultValue, SortedMap<QuestionPropertyDescription, Object> properties) {
 		this(label, new AnswerList<Response>(), id, isMatchQuestion, viewStyle, questionType, isEditable, defaultValue, properties);
 	}
 
-	public static Question createQuestionByType(QuestionType type, String label, AnswerList<Response> previousResponses, boolean isMatchQuestion, String id, Context context, Map<String, Object> questionProperties) {
+	public static Question createQuestionByType(QuestionType type, String label, AnswerList<Response> previousResponses, boolean isMatchQuestion, String id, Context context, Map<QuestionPropertyDescription, Object> questionProperties) {
 		Question question = null;
+		System.out.println("LABL: " + label);
 		switch (type) {
 			case INTEGER:
 				question = new IntegerQuestion(context, label, previousResponses, id, questionProperties, isMatchQuestion);
@@ -104,8 +112,16 @@ public abstract class Question<T> implements Label, Answer<T> {
 		return question;
 	}
 
-	private static Map<String, Object> checkProperties(Map<String, Object> currentProperties, LinkedHashMap<String, Object> defaultProperties) {
-		return (currentProperties == null || currentProperties.size() == 0) ? defaultProperties : currentProperties;
+	private static Map<QuestionPropertyDescription, Object> checkProperties(Map<QuestionPropertyDescription, Object> currentProperties, LinkedHashMap<QuestionPropertyDescription, Object> defaultProperties) {
+		Map<QuestionPropertyDescription, Object> properties = (currentProperties == null || currentProperties.size() == 0) ? defaultProperties : currentProperties;
+		Map<QuestionPropertyDescription, Object> copy = new LinkedHashMap<>(properties);
+		for (Object key : copy.keySet()) {
+			if (key instanceof String) {
+				properties.put(QuestionPropertyDescription.getEnumByName((String) key), properties.get(key));
+				properties.remove(key);
+			}
+		}
+		return properties;
 	}
 
 	public String getID() {
@@ -114,14 +130,16 @@ public abstract class Question<T> implements Label, Answer<T> {
 
 	@Override
 	public String getLabel() {
-		return (String) this.getQuestionProperties().get(QUESTION_TITLE_PROPERTY_NAME);
+		System.out.println("LABEL: " + this.getPropertyValue(QuestionPropertyDescription.NAME));
+		return (String) this.getPropertyValue(QuestionPropertyDescription.NAME);
 	}
 
 	@Override
 	public void setLabel(String label) {
-		this.getQuestionProperties().get(QUESTION_TITLE_PROPERTY_NAME);
+		this.setPropertyValue(QuestionPropertyDescription.NAME, label);
 	}
 
+	// TODO remove x button from question editors. 
 	public String getQualifiedLabel() {
 		if (this.isMatchQuestion) {
 			return "Match Question: " + this.getLabel();
@@ -411,10 +429,9 @@ public abstract class Question<T> implements Label, Answer<T> {
 		return questionViewer;
 	}
 
-
-	public LinkedHashMap<String, Object> getDefaultProperties() {
-		LinkedHashMap<String, Object> map = new LinkedHashMap<>();
-		map.put(QUESTION_TITLE_PROPERTY_NAME, this.getDefaultTitle());
+	public LinkedHashMap<QuestionPropertyDescription, Object> getDefaultProperties() {
+		LinkedHashMap<QuestionPropertyDescription, Object> map = new LinkedHashMap<>();
+		map.put(QuestionPropertyDescription.NAME, this.getDefaultTitle());
 		return map;
 	}
 
@@ -422,8 +439,60 @@ public abstract class Question<T> implements Label, Answer<T> {
 		return this.getQuestionType().getName();
 	}
 
-	public Map<String, Object> getQuestionProperties() {
+	public Map<QuestionPropertyDescription, Object> getQuestionProperties() {
 		return this.questionProperties;
+	}
+
+	public Object getPropertyValue(QuestionPropertyDescription propertyDescription) {
+		return this.getQuestionProperties().get(propertyDescription);
+	}
+
+	public void setPropertyValue(QuestionPropertyDescription propertyDescription, Object value) {
+		this.getQuestionProperties().put(propertyDescription, value);
+	}
+
+	public enum QuestionPropertyDescription {
+		// TODO
+		NAME("Title", STRING),
+		CSV("Comma Separated List", ARRAY),
+		MIN_VALUE("Min Value", NUMBER),
+		MAX_VALUE("Max Value", NUMBER),
+		INCREMENTATION("Incrementation", NUMBER),
+		UI_TYPE("Answer UI Type", ENUM);
+
+
+		public final String title;
+		public final QuestionPropertyTypes type;
+
+		QuestionPropertyDescription(String title, QuestionPropertyTypes type) {
+			this.title = title;
+			this.type = type;
+		}
+
+		public static QuestionPropertyDescription getEnumByTitle(String title) {
+			for (QuestionPropertyDescription propertyDescription : QuestionPropertyDescription.values()) {
+				if (propertyDescription.title.equals(title)) {
+					return propertyDescription;
+				}
+			}
+			return null;
+		}
+
+		public static QuestionPropertyDescription getEnumByName(String name) {
+			for (QuestionPropertyDescription propertyDescription : QuestionPropertyDescription.values()) {
+				if (propertyDescription.toString().equals(name)) {
+					return propertyDescription;
+				}
+			}
+			return null;
+		}
+	}
+
+	public enum QuestionPropertyTypes {
+		ARRAY,
+		STRING,
+		NUMBER,
+		ENUM;
 	}
 
 	/**

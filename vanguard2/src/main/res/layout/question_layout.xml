@@ -1,64 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.woxthebox.draglistview.swipe.ListSwipeItem
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/swipe_layout"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="vertical"
-	app:leftViewId="@+id/item_left"
-	app:rightViewId="@+id/item_right"
-	app:swipeViewId="@+id/handle">
-
+	android:layout_height="wrap_content">
 
 	<TextView
-		android:id="@+id/item_left"
+		android:id="@+id/title_text_view"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_alignBottom="@+id/question_layout"
-		android:layout_alignTop="@+id/question_layout"
-		android:background="#ff0000"
-		android:gravity="start|center_vertical"
-		android:padding="16dp"
-		android:text="Red"
-		android:textColor="@android:color/white"
-		android:textSize="20sp"/>
+		android:layout_margin="16dp"
+		android:gravity="center_vertical"
+		android:textSize="16sp"
+		android:textStyle="bold"/>
 
-	<TextView
-		android:id="@+id/item_right"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_alignBottom="@+id/question_layout"
-		android:layout_alignTop="@+id/question_layout"
-		android:background="#0000ff"
-		android:gravity="end|center_vertical"
-		android:padding="16dp"
-		android:text="Blue"
-		android:textColor="@android:color/white"
-		android:textSize="20sp"/>
-
-	<RelativeLayout
+	<LinearLayout
 		android:id="@+id/question_layout"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:orientation="vertical"/>
 
-		<Button
-			android:id="@+id/handle"
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:text="hand"/>
-		<Button
-			android:id="@+id/handle2"
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:layout_below="@id/handle"
-			android:text="3"/>
-	</RelativeLayout>
+	<Button
+		android:id="@+id/undo_button"
+		style="@style/Base.Widget.AppCompat.Button.Borderless"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="end|center_vertical"
+		android:text="Undo"
+		android:textAllCaps="true"
+		android:textColor="@android:color/white"/>
 
-	<!--<TextView-->
-	<!--android:layout_width="match_parent"-->
-	<!--android:layout_height="match_parent"-->
-	<!--android:text="HELLO"-->
-	<!--android:textSize="400sp"/>-->
-
-</com.woxthebox.draglistview.swipe.ListSwipeItem>
+</FrameLayout>

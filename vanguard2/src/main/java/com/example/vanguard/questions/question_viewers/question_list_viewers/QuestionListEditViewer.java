@@ -61,6 +61,7 @@ public class QuestionListEditViewer extends DragLinearLayout {
 
 					@Override
 					public void afterTextChanged(Editable s) {
+						System.out.println("TEXT CHANGED");
 						MainActivity.databaseManager.setQuestionLabel(question, s.toString());
 					}
 				});

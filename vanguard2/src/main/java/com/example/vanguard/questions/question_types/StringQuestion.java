@@ -19,7 +19,7 @@ public class StringQuestion extends Question<String> {
 	private AnswerUIEditText answerUI;
 
 	public StringQuestion(Context context, String label, AnswerList<Response> responseList, String id, boolean isMatchQuestion) {
-		super(label, responseList, id, isMatchQuestion, ViewStyle.TWO_LINE, QuestionType.STRING, true, "", new TreeMap<String, Object>());
+		super(label, responseList, id, isMatchQuestion, ViewStyle.TWO_LINE, QuestionType.STRING, true, "", new TreeMap<QuestionPropertyDescription, Object>());
 		setup(context);
 	}
 

@@ -22,26 +22,25 @@ import java.util.Map;
  */
 public class IntegerQuestion extends Question<Integer> {
 
-	private final static String MAX_VALUE = "Max Value";
-	private final static String MIN_VALUE = "Min Value";
-	private final static String INCREMENTATION = "Incrementation";
-	private final static String ANSWER_UI_TYPE = "Input Type";
 	protected AnswerUIInteger answerUI;
 	IntegerInputType prevInputType;
 	private Context context;
 
-	public IntegerQuestion(Context context, String label, AnswerList<Response> responses, String id, @Nullable Map<String, Object> questionProperties, boolean isMatchQuestion) {
+	public IntegerQuestion(Context context, String label, AnswerList<Response> responses, String id, @Nullable Map<QuestionPropertyDescription, Object> questionProperties, boolean isMatchQuestion) {
 		super(label, responses, id, isMatchQuestion, ViewStyle.SINGLE_LINE, QuestionType.INTEGER, true, null, questionProperties);
 		setup(context);
 	}
 
 	private void setup(Context context) {
 		this.context = context;
+		if (this.getQuestionProperties().get(QuestionPropertyDescription.UI_TYPE) instanceof String) {
+			this.getQuestionProperties().put(QuestionPropertyDescription.UI_TYPE, IntegerInputType.value(this.getQuestionProperties().get(QuestionPropertyDescription.UI_TYPE)));
+		}
 		setInputType(getInputType());
 	}
 
 	private IntegerInputType getInputType() {
-		return IntegerInputType.value(this.getQuestionProperties().get(ANSWER_UI_TYPE));
+		return IntegerInputType.value(this.getPropertyValue(QuestionPropertyDescription.UI_TYPE));
 	}
 
 	private void setInputType(IntegerInputType inputType) {
@@ -59,12 +58,12 @@ public class IntegerQuestion extends Question<Integer> {
 	}
 
 	@Override
-	public LinkedHashMap<String, Object> getDefaultProperties() {
-		LinkedHashMap<String, Object> map = super.getDefaultProperties();
-		map.put(MIN_VALUE, 0);
-		map.put(MAX_VALUE, 10);
-		map.put(INCREMENTATION, 1);
-		map.put(ANSWER_UI_TYPE, IntegerInputType.COUNTER);
+	public LinkedHashMap<QuestionPropertyDescription, Object> getDefaultProperties() {
+		LinkedHashMap<QuestionPropertyDescription, Object> map = super.getDefaultProperties();
+		map.put(QuestionPropertyDescription.MIN_VALUE, 0);
+		map.put(QuestionPropertyDescription.MAX_VALUE, 10);
+		map.put(QuestionPropertyDescription.INCREMENTATION, 1);
+		map.put(QuestionPropertyDescription.UI_TYPE, IntegerInputType.COUNTER);
 		return map;
 	}
 
@@ -92,27 +91,27 @@ public class IntegerQuestion extends Question<Integer> {
 	}
 
 	private Integer getMinValue() {
-		return (Integer) this.getQuestionProperties().get(MIN_VALUE);
+		return (Integer) this.getPropertyValue(QuestionPropertyDescription.MIN_VALUE);
 	}
 
 	protected void setMinValue(int newValue) {
-		this.getQuestionProperties().put(MIN_VALUE, newValue);
+		this.setPropertyValue(QuestionPropertyDescription.MIN_VALUE, newValue);
 	}
 
 	private Integer getMaxValue() {
-		return (Integer) this.getQuestionProperties().get(MAX_VALUE);
+		return (Integer) this.getPropertyValue(QuestionPropertyDescription.MAX_VALUE);
 	}
 
 	protected void setMaxValue(int newValue) {
-		this.getQuestionProperties().put(MAX_VALUE, newValue);
+		this.setPropertyValue(QuestionPropertyDescription.MAX_VALUE, newValue);
 	}
 
 	private Integer getIncrementation() {
-		return (Integer) this.getQuestionProperties().get(INCREMENTATION);
+		return (Integer) this.getPropertyValue(QuestionPropertyDescription.INCREMENTATION);
 	}
 
 	protected void setIncrementation(int newValue) {
-		this.getQuestionProperties().put(INCREMENTATION, newValue);
+		this.setPropertyValue(QuestionPropertyDescription.INCREMENTATION, newValue);
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public class BooleanQuestion extends Question<Boolean> {
 	private AnswerUIBooleanRadioButtons answerUI;
 
 	public BooleanQuestion(Context context, String label, AnswerList<Response> responses, String id, boolean isMatchQuestion) {
-		super(label, responses, id, isMatchQuestion, ViewStyle.SINGLE_LINE, QuestionType.BOOLEAN, true, null, new TreeMap<String, Object>());
+		super(label, responses, id, isMatchQuestion, ViewStyle.SINGLE_LINE, QuestionType.BOOLEAN, true, null, new TreeMap<QuestionPropertyDescription, Object>());
 		this.answerUI = new AnswerUIBooleanRadioButtons(context);
 		if (isMatchQuestion) {
 			this.setValue(false);

@@ -18,23 +18,21 @@ import java.util.Map;
 
 public class CheckboxQuestion extends Question<String> {
 
-	private static final String CHECKBOX_VALUE_PROPERTY_NAME = "Comma Separated Values";
-
 	private AnswerUICheckboxes answerUI;
 
-	public CheckboxQuestion(Context context, String label, AnswerList<Response> responses, String id, boolean isMatchQuestion, Map<String, Object> properties) {
+	public CheckboxQuestion(Context context, String label, AnswerList<Response> responses, String id, boolean isMatchQuestion, Map<QuestionPropertyDescription, Object> properties) {
 		super(label, responses, id, isMatchQuestion, ViewStyle.SINGLE_LINE, QuestionType.CHECKBOXES, true, null, properties);
 
 		this.answerUI = new AnswerUICheckboxes(context, getCheckboxValues(), this.isMatchQuestion());
 	}
 
 	private String[] getCheckboxValues() {
-		Object value = this.getQuestionProperties().get(CHECKBOX_VALUE_PROPERTY_NAME);
+		Object value = this.getPropertyValue(QuestionPropertyDescription.CSV);
 		return ArrayQuestionUtils.getStringArrayFromProperty(value);
 	}
 
 	public void setCheckboxValues(String[] values) {
-		this.getQuestionProperties().put(CHECKBOX_VALUE_PROPERTY_NAME, values);
+		this.setPropertyValue(QuestionPropertyDescription.CSV, values);
 	}
 
 	@Override
@@ -49,9 +47,9 @@ public class CheckboxQuestion extends Question<String> {
 	}
 
 	@Override
-	public LinkedHashMap<String, Object> getDefaultProperties() {
-		LinkedHashMap<String, Object> props = super.getDefaultProperties();
-		props.put(CHECKBOX_VALUE_PROPERTY_NAME, new String[0]);
+	public LinkedHashMap<QuestionPropertyDescription, Object> getDefaultProperties() {
+		LinkedHashMap<QuestionPropertyDescription, Object> props = super.getDefaultProperties();
+		props.put(QuestionPropertyDescription.CSV, new String[0]);
 		return props;
 	}
 

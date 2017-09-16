@@ -19,7 +19,7 @@ public abstract class ExampleQuestion<T extends Object> extends Question<T> {
 	int teamCount = 20;
 
 	public ExampleQuestion(boolean generateResponses) {
-		super("Example Question", "", true, ViewStyle.SINGLE_LINE, QuestionType.INTEGER, false, null, new TreeMap<String, Object>());
+		super("Example Question", "", true, ViewStyle.SINGLE_LINE, QuestionType.INTEGER, false, null, new TreeMap<QuestionPropertyDescription, Object>());
 		this.random = new Random();
 		this.teams = this.generateTeams();
 		if (generateResponses)
