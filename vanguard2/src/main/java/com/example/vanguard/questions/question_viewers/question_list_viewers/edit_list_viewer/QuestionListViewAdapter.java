@@ -19,6 +19,7 @@ import java.util.List;
 
 public class QuestionListViewAdapter extends RecyclerView.Adapter<QuestionViewHolder> {
 
+	private static final int UNDO_DELAY_MILLIS = 3000;
 	private Context context;
 	private List<Question> questions;
 	private List<Question> questionsPendingRemoval;
@@ -103,7 +104,7 @@ public class QuestionListViewAdapter extends RecyclerView.Adapter<QuestionViewHo
 				}
 			};
 
-			handler.postDelayed(pendingRemovalRunnable, 2000);
+			handler.postDelayed(pendingRemovalRunnable, UNDO_DELAY_MILLIS);
 			this.pendingRunnables.put(question, pendingRemovalRunnable);
 
 			notifyItemChanged(position);

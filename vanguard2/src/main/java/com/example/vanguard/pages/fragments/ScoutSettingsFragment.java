@@ -52,6 +52,7 @@ public class ScoutSettingsFragment extends Fragment {
 
 
 		this.selector.addItemDecoration(new QuestionDecoration());
+		this.selector.setHasFixedSize(true);
 	}
 
 	// TODO editing label doesn't work.

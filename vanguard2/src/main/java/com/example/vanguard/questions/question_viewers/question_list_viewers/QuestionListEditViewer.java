@@ -46,7 +46,6 @@ public class QuestionListEditViewer extends DragLinearLayout {
 		for (final Question question : questions) {
 			if (question.isEditable()) {
 				SimpleQuestionEditViewer questionViewer = question.getQuestionEditViewer(this.context);
-				questionViewer.getDeleteButton().setOnClickListener(new OnDeleteClickListener(question));
 
 				questionViewer.setEditTextWatcher(new TextWatcher() {
 					@Override
@@ -70,27 +69,6 @@ public class QuestionListEditViewer extends DragLinearLayout {
 			else {
 				this.addView(question.getQuestionViewer(this.context));
 			}
-		}
-	}
-
-	private class OnDeleteClickListener implements OnClickListener {
-
-		Question question;
-
-		public OnDeleteClickListener(Question question) {
-			this.question = question;
-		}
-
-		@Override
-		public void onClick(View v) {
-			DialogFragment fragment = ConfirmationDialogFragment.newInstance(R.string.confirm_delete_question_title, R.string.confirm_delete_question_text, new ConfirmationDialogFragment.ConfirmDialogListener() {
-				@Override
-				public void confirm() {
-					MainActivity.databaseManager.deleteQuestion(question);
-					setupQuestions();
-				}
-			});
-			fragment.show(context.getFragmentManager(), "Event Selector");
 		}
 	}
 

@@ -147,8 +147,11 @@ public class AddQuestionActivity extends AbstractActivity {
 			switch (propertyDescription.type) {
 				case ARRAY:
 					HintEditText propertyEdit = new HintEditText(this, propertyDescription.title);
+					if (value instanceof List) {
+						value = ((List) value).toArray();
+					}
 					propertyEdit.getEditText().setText(TextUtils.join(",", (Object[]) value));
-					propertyEdit.getEditText().setInputType(getPropertyInputType(value));
+//					propertyEdit.getEditText().setInputType(getPropertyInputType(value));
 
 					propertyEdit.getEditText().addTextChangedListener(new TextWatcher() {
 						@Override

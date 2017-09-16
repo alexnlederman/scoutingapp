@@ -25,7 +25,8 @@ public class QuestionViewHolder extends RecyclerView.ViewHolder {
 
 	public void setQuestion(Context context, Question question) {
 		LinearLayout layout = (LinearLayout) itemView.findViewById(R.id.question_layout);
-		if (layout.getChildCount() == 0 || (this.questionViewer != null && !this.questionViewer.getQuestion().getID().equals(question.getID()))) {
+//		if (layout.getChildCount() == 0 || (this.questionViewer != null && !this.questionViewer.getQuestion().getID().equals(question.getID()))) {
+//		if (layout.getChildCount() == 0) {
 			System.out.println("UPDATE Question: " + question.getLabel());
 			layout.removeAllViews();
 			if (question.isEditable())
@@ -33,11 +34,11 @@ public class QuestionViewHolder extends RecyclerView.ViewHolder {
 			else
 				this.questionViewer = question.getQuestionViewer(context);
 			layout.addView(this.questionViewer);
-		}
-		else {
-			this.questionViewer.getQuestion().setLabel(question.getLabel());
-			this.questionViewer.updateLabel();
-		}
+//		}
+//		else {
+//			this.questionViewer.getQuestion().setLabel(question.getLabel());
+//			this.questionViewer.updateLabel();
+//		}
 	}
 
 	public boolean isEnabled() {

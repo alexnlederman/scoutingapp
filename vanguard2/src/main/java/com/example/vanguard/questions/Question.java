@@ -114,10 +114,12 @@ public abstract class Question<T> implements Label, Answer<T> {
 
 	private static Map<QuestionPropertyDescription, Object> checkProperties(Map<QuestionPropertyDescription, Object> currentProperties, LinkedHashMap<QuestionPropertyDescription, Object> defaultProperties) {
 		Map<QuestionPropertyDescription, Object> properties = (currentProperties == null || currentProperties.size() == 0) ? defaultProperties : currentProperties;
-		Map<QuestionPropertyDescription, Object> copy = new LinkedHashMap<>(properties);
+		Map<?, Object> copy = new LinkedHashMap<>(properties);
 		for (Object key : copy.keySet()) {
 			if (key instanceof String) {
-				properties.put(QuestionPropertyDescription.getEnumByName((String) key), properties.get(key));
+				Object value = properties.get(key);
+				QuestionPropertyDescription enumKey = QuestionPropertyDescription.getEnumByName((String) key);
+				properties.put(enumKey, value);
 				properties.remove(key);
 			}
 		}
@@ -139,7 +141,7 @@ public abstract class Question<T> implements Label, Answer<T> {
 		this.setPropertyValue(QuestionPropertyDescription.NAME, label);
 	}
 
-	// TODO remove x button from question editors. 
+	// TODO remove x button from question editors.
 	public String getQualifiedLabel() {
 		if (this.isMatchQuestion) {
 			return "Match Question: " + this.getLabel();

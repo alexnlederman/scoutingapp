@@ -1,6 +1,7 @@
 package com.example.vanguard.custom_ui_elements;
 
 import android.content.Context;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.util.AttributeSet;
 import android.widget.EditText;
@@ -11,7 +12,7 @@ import android.widget.EditText;
 
 public class HintEditText extends TextInputLayout {
 
-	EditText editText;
+	TextInputEditText editText;
 
 	public HintEditText(Context context, String hint) {
 		super(context);
@@ -29,12 +30,12 @@ public class HintEditText extends TextInputLayout {
 	}
 
 	private void setup(Context context, String hint) {
-		this.editText = new EditText(context);
+		this.editText = new TextInputEditText(context);
 		this.editText.setHint(hint);
 		this.addView(this.editText);
 	}
 
-	public EditText getEditText() {
+	public TextInputEditText getEditText() {
 		return this.editText;
 	}
 }

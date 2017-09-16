@@ -20,15 +20,12 @@ import com.example.vanguard.questions.Question;
 public abstract class SimpleQuestionEditViewer extends LinearLayoutQuestionViewer {
 
 	public final static int LABEL_ID = View.generateViewId();
-	protected final Button deleteButton;
 	protected EditText labelEditText;
 	protected LinearLayout commentLinearLayout;
 
 
 	public SimpleQuestionEditViewer(Context context, Question<?> question) {
 		super(context, question);
-		this.deleteButton = new Button(context);
-		setupDeleteButton();
 	}
 
 	private void setupCommentLinearLayout() {
@@ -38,14 +35,6 @@ public abstract class SimpleQuestionEditViewer extends LinearLayoutQuestionViewe
 		this.commentLinearLayout.setLayoutParams(p);
 		int padding = Math.round(MainActivity.dpToPixels * 20);
 		this.commentLinearLayout.setPadding(padding, padding, padding, padding);
-	}
-
-	protected void setupDeleteButton() {
-		this.deleteButton.setText("X");
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Math.round(40 * MainActivity.dpToPixels), ViewGroup.LayoutParams.MATCH_PARENT);
-		params.gravity = Gravity.CENTER;
-		this.deleteButton.setLayoutParams(params);
-		this.commentLinearLayout.addView(this.deleteButton, 0);
 	}
 
 	@Override
@@ -73,10 +62,6 @@ public abstract class SimpleQuestionEditViewer extends LinearLayoutQuestionViewe
 		setupCommentLinearLayout();
 
 		setupLabelLayoutParams();
-	}
-
-	public Button getDeleteButton() {
-		return this.deleteButton;
 	}
 
 	public void setEditTextWatcher(TextWatcher watcher) {
