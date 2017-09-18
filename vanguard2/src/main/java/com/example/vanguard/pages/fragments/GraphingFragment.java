@@ -11,15 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.vanguard.R;
 import com.example.vanguard.pages.activities.MainActivity;
 import com.example.vanguard.pages.activities.NavDrawerFragment;
-import com.example.vanguard.R;
 
 /**
  * Created by mbent on 7/5/2017.
  */
 
-public class GraphingFragment extends Fragment implements NavDrawerFragment{
+public class GraphingFragment extends Fragment implements NavDrawerFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
@@ -41,15 +41,6 @@ public class GraphingFragment extends Fragment implements NavDrawerFragment{
 	public int getNavDrawerIconId() {
 		return R.id.nav_data;
 	}
-
-//	@Override
-//	public void onResume() {
-//		super.onResume();
-//		ViewPager viewPager = (ViewPager) getView().findViewById(R.id.view_pager);
-//		viewPager.setAdapter(new GraphPagerAdapter(getFragmentManager()));
-//		TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tab_layout);
-//		tabLayout.setupWithViewPager(viewPager);
-//	}
 
 	private class GraphPagerAdapter extends FragmentStatePagerAdapter {
 

@@ -22,17 +22,6 @@ public class AllTeamGraphFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.scroll_linearlayout_fragment, container, false);
-	}
-
-	@Override
-	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-		LinearLayout layout = (LinearLayout) getView().findViewById(R.id.linear_layout);
-
-		GraphViewer viewer = new GraphViewer(getActivity());
-		if (viewer.getGraphCount() == 0)
-			layout.addView(new ErrorTextView(getActivity(), R.string.add_graph_error));
-		else
-			layout.addView(viewer);
+		return inflater.inflate(R.layout.fragment_phony_all_team_graphs, container, false);
 	}
 }

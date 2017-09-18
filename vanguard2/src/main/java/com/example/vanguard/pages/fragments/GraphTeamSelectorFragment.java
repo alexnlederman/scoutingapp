@@ -2,6 +2,7 @@ package com.example.vanguard.pages.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import com.example.vanguard.EventTeamListView;
 import com.example.vanguard.pages.activities.MainActivity;
 import com.example.vanguard.R;
 import com.example.vanguard.custom_ui_elements.TeamListElement;
+
+import static com.example.vanguard.pages.fragments.TeamGraphViewerFragment.TEAM_NUMBER;
 
 /**
  * Created by mbent on 7/7/2017.
@@ -33,7 +36,9 @@ public class GraphTeamSelectorFragment extends Fragment {
 			layout.addView(new EventTeamListView(getActivity(), new TeamListElement.TeamSelectedListener() {
 				@Override
 				public void teamSelected(Context context, int team) {
-					MainActivity.setFragment(TeamGraphViewerFragment.newInstance(team), R.id.fragment_fragment_holders, getActivity());
+					Intent intent = new Intent(getActivity(), TeamGraphViewerFragment.class);
+					intent.putExtra(TEAM_NUMBER, team);
+					getActivity().startActivity(intent);
 				}
 			}));
 		}

@@ -60,6 +60,11 @@
 			android:label="AddQuestionActivity"
 			android:theme="@style/AppTheme.NoActionBar">
 		</activity>
+		<activity
+			android:name=".pages.fragments.TeamGraphViewerFragment"
+			android:label="ViewTeamGraphActivity"
+			android:theme="@style/AppTheme.NoActionBar">
+		</activity>
 	</application>
 
 </manifest>

@@ -11,34 +11,24 @@ import android.widget.LinearLayout;
 import com.example.vanguard.custom_ui_elements.ErrorTextView;
 import com.example.vanguard.graphs.GraphViewer;
 import com.example.vanguard.R;
+import com.example.vanguard.pages.activities.AbstractActivity;
 
 /**
  * Created by mbent on 7/7/2017.
  */
 
-public class TeamGraphViewerFragment extends Fragment {
+public class TeamGraphViewerFragment extends AbstractActivity {
 
-	public static TeamGraphViewerFragment newInstance(int teamNumber) {
+	public final static String TEAM_NUMBER = "team_number";
 
-		Bundle args = new Bundle();
-		args.putInt("team_number", teamNumber);
-		TeamGraphViewerFragment fragment = new TeamGraphViewerFragment();
-		fragment.setArguments(args);
-		return fragment;
+	public TeamGraphViewerFragment() {
+		super(R.layout.fragment_phony_single_team_graphs, R.string.graph_page_title);
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_team_graph_viewer, container, false);
-	}
-
-	@Override
-	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-		LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.fragment_graph_layout);
-		GraphViewer graphViewer = new GraphViewer(getActivity(), getArguments().getInt("team_number"));
-		if (graphViewer.getGraphCount() == 0)
-			layout.addView(new ErrorTextView(getActivity(), R.string.add_graph_error));
-		else
-			layout.addView(graphViewer);
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		int teamNumber = getIntent().getExtras().getInt(TEAM_NUMBER);
+		this.setTitle("Team " + teamNumber);
 	}
 }
