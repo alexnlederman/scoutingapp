@@ -3,38 +3,11 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\ee9706591db079fd45e200c358d095145cdf6220\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="69e99eb9b7097cde10fdeba2ac14cf9f19af3010">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_159a4da1758e8f67e49435c486468a799463aa8b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\67e9330058feaf599f3d2562c1546a71f18db460\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3effa1c0fa4fa07ae571a1a0a65cfa1bc6b8e279">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_118ad150b0b37948d71511c37febfb2182df6af0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\f485bf4c8302a76d90712c7c57b74acaf2ab04de\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6a96bb86cc46935b2ca9afc83b230db00e857c5d">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3fc29154a498a5002c0d296e5a265c695dc57f5a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="0f5bd26bcc7fed138a8cc95e6f9e75ec92074a21">
+        sha1="d95fa74206f33c7b70aa3d2154fcf5819e89027b">
         <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_d8c50b2e140f7a122fb8ccc412171304b9301d82\classes.dex" />
     </item>
     <item

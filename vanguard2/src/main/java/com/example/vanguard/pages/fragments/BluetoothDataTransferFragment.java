@@ -139,7 +139,11 @@ public class BluetoothDataTransferFragment extends Fragment implements NavDrawer
 	public void onDestroy() {
 		super.onDestroy();
 
-		this.getActivity().unregisterReceiver(this.receiver);
+		try {
+			this.getActivity().unregisterReceiver(this.receiver);
+		} catch (Exception ignored) {
+
+		}
 	}
 
 	private void unpairDevice(BluetoothDevice device) {

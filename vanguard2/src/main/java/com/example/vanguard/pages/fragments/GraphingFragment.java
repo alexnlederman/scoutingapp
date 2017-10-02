@@ -54,7 +54,7 @@ public class GraphingFragment extends Fragment implements NavDrawerFragment {
 				case 0:
 					return new AllTeamGraphFragment();
 				case 1:
-					return new TeamGraphFragment();
+					return new GraphTeamSelectorFragment();
 			}
 			return null;
 		}

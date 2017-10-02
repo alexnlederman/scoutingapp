@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity
 
 		int id = item.getItemId();
 
-		Fragment fragment = null;
+		System.out.println("Nav Item Selected!!!!");
 
 		if (id == R.id.nav_data) {
 			setView(new GraphingFragment());

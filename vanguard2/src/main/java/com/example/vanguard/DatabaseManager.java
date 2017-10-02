@@ -749,7 +749,7 @@ public class DatabaseManager {
 			List<String> graphQuestionIds = (List<String>) ((List) row.getValue()).get(1);
 			Map<String, Boolean> options = (Map<String, Boolean>) ((List) row.getValue()).get(3);
 
-			AnswerList<Question> questions = getQuestionsFromIds((String[]) graphQuestionIds.toArray());
+			AnswerList<Question> questions = getQuestionsFromIds(graphQuestionIds.toArray(new String[graphQuestionIds.size()]));
 			if (questions.size() > 0) {
 				graphs.add(createGraph(graphType, getQuestionsFromIds((String[]) graphQuestionIds.toArray()), options, teamNumber));
 			} else {
@@ -777,7 +777,7 @@ public class DatabaseManager {
 			Graph.GraphTypes graphType = Graph.GraphTypes.valueOf((String) ((List) row.getValue()).get(0));
 			List<String> graphQuestionIds = (List<String>) ((List) row.getValue()).get(1);
 			String id = (String) ((List) row.getValue()).get(2);
-			AnswerList<Question> questions = getQuestionsFromIds((String[]) graphQuestionIds.toArray());
+			AnswerList<Question> questions = getQuestionsFromIds(graphQuestionIds.toArray(new String[graphQuestionIds.size()]));
 			if (questions.size() > 0) {
 				graphDescribers.add(new GraphDescriber(context, questions, graphType, id));
 			}

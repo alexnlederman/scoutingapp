@@ -32,6 +32,7 @@ public class GraphTeamSelectorFragment extends Fragment {
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		LinearLayout layout = (LinearLayout) getActivity().findViewById(R.id.layout);
+		System.out.println("LAYOUT: " + layout);
 		if (MainActivity.databaseManager.isCurrentEventSet()) {
 			layout.addView(new EventTeamListView(getActivity(), new TeamListElement.TeamSelectedListener() {
 				@Override
