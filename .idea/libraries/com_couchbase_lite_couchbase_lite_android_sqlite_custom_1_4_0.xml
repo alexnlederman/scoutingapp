@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="com.couchbase.lite:couchbase-lite-android-sqlite-custom-1.4.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/couchbase-lite-android-sqlite-custom-1.4.0.aar/729089467e441b09b2d3882fe5b807c8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/couchbase-lite-android-sqlite-custom-1.4.0.aar/729089467e441b09b2d3882fe5b807c8/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
