@@ -10,8 +10,12 @@
 	<color name="black">#000000</color>
 	<color name="navMenuButtons">#090909</color>
 	<color name="transparent">#00000000</color>
+	<color name="button_selected">#BBDEFA</color>
+	<color name="button_not_selected">#FFFFFF</color>
 	<color name="lightGrey">#999999</color>
 	<color name="progressBar">#30646464</color>
+	<color name="failed_cube_delivery_button_color">#78ff0000</color>
+	<color name="success_cube_delivery_button_color">#7800ff00</color>
 	<!--A5B3FF-->
 	<!--727899-->
 	<!--161D40-->

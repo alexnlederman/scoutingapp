@@ -1,6 +1,10 @@
 package com.example.vanguard.responses;
 
 
+import android.util.Log;
+
+import java.util.Objects;
+
 /**
  * Created by BertTurtle on 6/5/2017.
  */
@@ -54,5 +58,28 @@ public class SimpleResponse<T> implements Response<T> {
 	@Override
 	public String getEventKey() {
 		return eventKey;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Response) {
+			// This is overly complicated but it works so I ain't changing it.
+			if (((Response) obj).getValue().equals(this.getValue())) {
+				if (((Response) obj).getTeamNumber() == this.getTeamNumber()) {
+					if (((Response) obj).getMatchNumber() == this.getMatchNumber()) {
+						if (((Response) obj).getEventKey().equals(this.getEventKey())) {
+							return true;
+						}
+					}
+				}
+			}
+			return false;
+		}
+		return super.equals(obj);
+	}
+
+	@Override
+	public String toString() {
+		return this.getEventKey() + " " + this.getValue() + " " + this.getMatchNumber() + " " + this.getTeamNumber();
 	}
 }

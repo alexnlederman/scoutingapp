@@ -31,7 +31,7 @@ public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI
 
 	private int minValue;
 	private int maxValue;
-	private int incremenation;
+	private int incrementation;
 
 	/**
 	 * Creates a new CustomNumberPicker
@@ -47,7 +47,7 @@ public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI
 
 		this.minValue = minValue;
 		this.maxValue = maxValue;
-		this.incremenation = incrementation;
+		this.incrementation = incrementation;
 
 		this.numberPicker = new EditText(context);
 
@@ -100,7 +100,7 @@ public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI
 			public void onClick(View v) {
 				Integer value = getValue();
 				value = (value == null) ? getDefaultValue() : value;
-				setValue(value - incremenation);
+				setValue(value - incrementation);
 			}
 		});
 	}
@@ -116,7 +116,7 @@ public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI
 			public void onClick(View v) {
 				Integer value = getValue();
 				value = (value == null) ? getDefaultValue() : value;
-				setValue(value + incremenation);
+				setValue(value + incrementation);
 			}
 		});
 	}
@@ -176,6 +176,6 @@ public class AnswerUICustomNumberPicker extends LinearLayout implements AnswerUI
 
 	@Override
 	public void setIncrementation(int incrementation) {
-		this.incremenation = incrementation;
+		this.incrementation = incrementation;
 	}
 }

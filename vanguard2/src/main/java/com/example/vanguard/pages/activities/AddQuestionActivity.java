@@ -85,7 +85,6 @@ public class AddQuestionActivity extends AbstractActivity {
 
 					addQuestionPreview(questionType, text);
 
-					// TODO this is missing.
 					addOptions();
 				}
 

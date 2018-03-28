@@ -4,7 +4,7 @@
 		android:layout_height="wrap_content"
 		android:background="@color/white"
 		android:padding="15dp"
-		android:text="Scout Practice Match"
+		android:text="Scout Playoff Match"
 		android:textColor="@color/textColor">
 
 </Button>

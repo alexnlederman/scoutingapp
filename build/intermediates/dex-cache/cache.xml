@@ -2,175 +2,283 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\f4180acd421fb9e7f32831ce42652e87d4ff34b5\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\mbent\AppData\Local\Android\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="95519720620b553f63afc789beba9ad582807f7c">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_79cd3710f0acd6691eb682deb4ec5f13541e6268\classes.dex" />
+        revision="26.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_3f8e510882e6515fa5cde9105c8acd56b4178fcc.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\c3266c69db6c402d545519ddfc6ed5604d652638\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\mbent\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.5.0\a2a55a3375bc1cef830ca426d68d2ea22961190e\jackson-annotations-2.5.0.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_61b9e5ec20588ba9a702407e9a649455f30c0a63\classes.dex" />
+        revision="26.0.2"
+        sha1="a2a55a3375bc1cef830ca426d68d2ea22961190e">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\jackson-annotations-2.5.0_d0b6700fae700bb6e452cf7e7a892abc02b667d0.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\df6de43c7cfb0f8c8b974e91558156b4b2e124c9\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\mbent\.gradle\caches\modules-2\files-2.1\com.github.oxo42\stateless4j\2.4.0\128aca4ace585f0b42faa739d0b968a154debb7a\stateless4j-2.4.0.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f318d28318575c8e14b6e7ad48c0a81f9ee94d95\classes.dex" />
+        revision="26.0.2"
+        sha1="128aca4ace585f0b42faa739d0b968a154debb7a">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\stateless4j-2.4.0_db677595464fcd5a7cd2c765742f4a571bfa020c.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\4cf36fbeb22be3fff66a1b04b4b0f41e338cc88c\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\mbent\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.8.0\5ea7af56cc7c567ed9856d99efb30740e9b17ff\okio-1.8.0.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="69e99eb9b7097cde10fdeba2ac14cf9f19af3010">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3752162faa379877d5aa7e7826d98f3db0882ee2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\8bba8ea20c9c3bbbd3c02607e98999f48f442e18\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a1b14a4bbab61973ea35c41e3cee4bcfe609877d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\15357672f9f68408495ae30334506890183069ab\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ec3f00a7b652dc47e58e5a22ff98389ffbe3d679\classes.dex" />
+        revision="26.0.2"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\okio-1.8.0_1da80ed84ab9d26ba88231e42b31aae409bb1402.jar" />
     </item>
     <item
         is-multidex="true"
         jar="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.2"
+        revision="26.0.2"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_44bbab3115c92144376950c3efb98e00113d8376\classes.dex" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\17b13f9e1c76eef63f6e829edbfd5ca3941eeb5c\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\mbent\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.5.0\b2ece1bd57ac7b4c315b7505b65ac79cb1da4270\jackson-core-2.5.0.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e3d8dea8dfddf37b62ffe7fb9d55bdd4e72025cf\classes.dex" />
+        revision="26.0.2"
+        sha1="b2ece1bd57ac7b4c315b7505b65ac79cb1da4270">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\jackson-core-2.5.0_9fb443f1839830d355c07047570adf65e3f53e38.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\8026b9952581ad5aa23c716605dcfc1131707f3f\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\mbent\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.5.0\489b7552dd3322b63f694122d16ce62c21c303b5\jackson-databind-2.5.0.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9c10e0c17398ddb214c367e11fa64fc65dbb08fa\classes.dex" />
+        revision="26.0.2"
+        sha1="489b7552dd3322b63f694122d16ce62c21c303b5">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\jackson-databind-2.5.0_44629d1dd7b4d4424ca4e3ece88c80ece999f97f.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\b3b5051c015bb6646b14889062bcaf8df0390912\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\868260c6f14c2ec55fc0fb1a2f420408b684adf8\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="6a96bb86cc46935b2ca9afc83b230db00e857c5d">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0b79b34e19cb6b3e75f209bb5d5d46869cff4579\classes.dex" />
+        revision="26.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_8028a2969d02d4a2baa7780a71b5e48546619a37.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\a513c969d7e156a971bb680ce04deb5e936501c1\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\5b614ff84c7f45da0b9df71c61ab7013cb6227c9\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
+        revision="26.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_4e1e038e28f54d9e1de65bb2a4d684a585aae999.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\9dbf4989912487af7fce391e47fe10bcff439668\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_82b2a2b33d88f389ec997197f62ed8d917503849.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\a4128ba3a0a881bbfd8ead881c7a943e49b818de\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
         sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d52253fe9aee6df406f043887da459ff4b18360f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\c48dca7f842a4e48042d2428d63fdfdb020afe00\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e59bb32689c8b3c51440520599cbc7871c949937\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\a6700d1d8b9a8f3eaea4d4c4615b5cc16bf817fc\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8531f2d46b35de75e6130f25830e0c2c0d6bb98c">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_54538cb3b0d7fa2c39b5c02ab845e14892f5444e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\82eb5ef2930c3e68b555fb5921373e42cc3a948d\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ec520ae69fb7da40239cc27cc9e490b372dc2ebf\classes.dex" />
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_e3070ea0cc97f33252610b8feca8b769f744fb73.jar" />
     </item>
     <item
         is-multidex="true"
         jar="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.2"
-        sha1="fc810942c81badab00453846102bc8ba12f69199">
+        revision="26.0.2"
+        sha1="f3ce484d66a35b81b6b26a63a90556b9c348bddc">
         <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_d8c50b2e140f7a122fb8ccc412171304b9301d82\classes.dex" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\720eb290e0f4cf9fba2c992627b1e7dff769884a\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\mbent\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.3.1\19047bdb6a4fc00a44124f64ca98e88fc204e7e3\okhttp-3.3.1.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0288340c54cc04287f8715237ebd3bb492f788a9\classes.dex" />
+        revision="26.0.2"
+        sha1="19047bdb6a4fc00a44124f64ca98e88fc204e7e3">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\okhttp-3.3.1_85ba59d218214d6939a61da02fce615615e6c25c.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\e8e82b41303f716ea54e0d4dbcee5962a416e996\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\0b8b311207029e2f61c1cb041c8795cc3a5f69bc\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
-        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_eb1de2447b944f2d4bb478aac1f83dbdd1ae9195\classes.dex" />
+        revision="26.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_a485221e6820f0e7ee1106c66bb821087d976689.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\15f8bc34b2fc6067917887bddb15ab74b76ab349\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\mbent\AppData\Local\Android\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
+        revision="26.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\support-annotations-25.3.1_ba64e708121b8566c26fadbae00b2d99c4580a60.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\206271f3e6a3658d21e80883b250306ae476746b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_282819ff6acd6361f93c953f4d8c18895cc23079.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\74f554c1b0c05549d4e72aca7622fc180c45d86f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_6ea1e7f9d673033a947081bf63b59654f8ed2ada.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\03fc078cb91edf227e953473ade7af8a586fe885\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_2542b069071bfb2759a0f2a5e17881f996ca14c0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\c5213758710355c9eb61a6844d1118cdfe26e994\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8531f2d46b35de75e6130f25830e0c2c0d6bb98c">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_950e54e1c83c5f602f36dbc4f8c8add0d8d30f31.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\d56784621640276f0136edb0a39f4aaa48804c40\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="69e99eb9b7097cde10fdeba2ac14cf9f19af3010">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_9022c54a1b16c13faa9aabd9fc1272fc023a0d46.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\776b0dbc615c0c6464e37739e1c07f75b94b4a08\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6a96bb86cc46935b2ca9afc83b230db00e857c5d">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_d1a54c17dc328b445395243c19039d65a9effe1d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\c07278e71e729533441942b08852730307fd7d4b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_b6daf5d795688d7bb51bac8e32e5d01a356e79af.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\8c5541d13e4d5c8f18a9503579a9a579b4641b9c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_6bc15060bdbc21d6c9059a5be00bdc39941b4f97.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\cbaec4ab6ec2b939f46232f3f1eb74e10e53bb4c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
         sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_34f41946ddeaaf7147750bcf7f3be839350e0d41\classes.dex" />
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_c890fb2e1ccd7bd97622d08a4e6278e1f8e4ddbc.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\mbent\.android\build-cache\877bfc506da748dc95548ec56c4e062f066152da\output\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\mbent\.gradle\caches\modules-2\files-2.1\com.newtronlabs.easybluetooth\easybluetooth\2.0.0\4da477c1c1917842d5a1f3ac4812cc737ee066d6\easybluetooth-2.0.0.jar"
+        jumboMode="false"
         optimize="true"
-        revision="25.0.2"
+        revision="26.0.2"
+        sha1="4da477c1c1917842d5a1f3ac4812cc737ee066d6">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\easybluetooth-2.0.0_4c439ecad11a4bc255fb191709f757edac304725.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\9c199427a4e89e896f82029fe69d49ac8f88a692\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fa4b4e8839f5d1524819f33a680f4a8999270714">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_f9ad0c92e8e6039da96338cfb3f187134f8ff60d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.gradle\caches\modules-2\files-2.1\com.couchbase.lite\couchbase-lite-java-core\1.4.0\a882f9d3f84074599d1f951d3f390893b7863599\couchbase-lite-java-core-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a882f9d3f84074599d1f951d3f390893b7863599">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\couchbase-lite-java-core-1.4.0_2129b881a185097311966c4af442d41d8c0061a9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\c514617f90d5f602a1b999e3340f201add6e4be5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_bdb54be42041833a2faf075e4a6aa90cadb37e3b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v3.0.2\5d4eb08a326bdbd7fbbddc769666898c9936b282\MPAndroidChart-v3.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5d4eb08a326bdbd7fbbddc769666898c9936b282">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\MPAndroidChart-v3.0.2_ff6dea8c3e9c2b6ca364808fcaec1e39440a3410.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\d1f140dd2e44269428ecd7386c22935162515d14\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
         sha1="3effa1c0fa4fa07ae571a1a0a65cfa1bc6b8e279">
-        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4e4cf0584a1bc44fb8d8aa94e5a75631c1cc82cf\classes.dex" />
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_953b8b9fcd782a6f54d0ba721c6dc13f54f882bb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\mbent\.android\build-cache\226c7c0e0fa56d79b6315a68b8daa8d9a473e1a2\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="C:\Users\mbent\Documents\GitHub\scoutingapp\vanguard2\build\intermediates\pre-dexed\debug\classes_fe43858dc92653832580686558084f8d7e3cd3a2.jar" />
     </item>
 
 </items>

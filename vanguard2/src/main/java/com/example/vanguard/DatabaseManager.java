@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.couchbase.lite.CouchbaseLiteException;
@@ -749,7 +750,7 @@ public class DatabaseManager {
 			List<String> graphQuestionIds = (List<String>) ((List) row.getValue()).get(1);
 			Map<String, Boolean> options = (Map<String, Boolean>) ((List) row.getValue()).get(3);
 
-			AnswerList<Question> questions = getQuestionsFromIds((String[]) graphQuestionIds.toArray());
+			AnswerList<Question> questions = getQuestionsFromIds(graphQuestionIds.toArray(new String[graphQuestionIds.size()]));
 			if (questions.size() > 0) {
 				graphs.add(createGraph(graphType, getQuestionsFromIds((String[]) graphQuestionIds.toArray()), options, teamNumber));
 			} else {
@@ -848,6 +849,7 @@ public class DatabaseManager {
 			QueryEnumerator result = query.run();
 			for (Iterator<QueryRow> it = result; it.hasNext(); ) {
 				QueryRow row = it.next();
+				Log.d("EVENT NAME", ((List) row.getValue()).get(2).toString());
 				if (((List) row.getValue()).get(2).equals(event)) {
 					Map<String, Object> matchMap = new HashMap<>();
 					List<Object> values = (List<Object>) row.getValue();

@@ -154,8 +154,6 @@ public class MainActivity extends AppCompatActivity
 
 		int id = item.getItemId();
 
-		Fragment fragment = null;
-
 		if (id == R.id.nav_data) {
 			setView(new GraphingFragment());
 		} else if (id == R.id.nav_scout) {

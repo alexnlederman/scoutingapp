@@ -1,6 +1,7 @@
 package com.example.vanguard.questions;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import com.example.vanguard.AnswerUI;
@@ -8,6 +9,7 @@ import com.example.vanguard.EnumName;
 import com.example.vanguard.pages.activities.MainActivity;
 import com.example.vanguard.questions.question_types.BooleanQuestion;
 import com.example.vanguard.questions.question_types.CheckboxQuestion;
+import com.example.vanguard.questions.question_types.CubeDeliveryQuestion;
 import com.example.vanguard.questions.question_types.IntegerQuestion;
 import com.example.vanguard.questions.question_types.SpinnerQuestion;
 import com.example.vanguard.questions.question_types.StringQuestion;
@@ -108,6 +110,9 @@ public abstract class Question<T> implements Label, Answer<T> {
 			case PIT_TEAM_NUMBER:
 				question = new PitTeamNumberQuestion(context, previousResponses, id);
 				break;
+			case CUBE_DELIVERY:
+				question = new CubeDeliveryQuestion(context, label, previousResponses, id, isMatchQuestion);
+				break;
 		}
 		return question;
 	}
@@ -185,6 +190,10 @@ public abstract class Question<T> implements Label, Answer<T> {
 
 	public void addResponses(AnswerList<Response> responses) {
 		this.responses.addAll(responses);
+	}
+
+	public void addResponse(Response<T> response) {
+		this.responses.add(response);
 	}
 
 	public void removeResponses(AnswerList<Response> responses) {
@@ -508,6 +517,7 @@ public abstract class Question<T> implements Label, Answer<T> {
 		CHECKBOXES("Checkbox"),
 		TIMER("Timer"),
 		MATCH_NUMBER("Match Number"),
+		CUBE_DELIVERY("Cube Delivery"),
 		MATCH_TEAM_NUMBER("Match Team Number"),
 		PIT_TEAM_NUMBER("Pit Team Number");
 

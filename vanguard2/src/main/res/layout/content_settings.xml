@@ -32,11 +32,25 @@
 		app:title="Setup Scouting Questions"/>
 
 	<com.example.vanguard.custom_ui_elements.SettingsView
-		android:id="@+id/export_responses"
+		android:id="@+id/setup_bluetooth"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:description="Set the current stuff. Yada yada yada. "
-		app:title="Save Data To CSV"/>
+		app:title="Setup Bluetooth"/>
+
+	<com.example.vanguard.custom_ui_elements.SettingsView
+		android:id="@+id/export_match_responses"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:description="Set the current stuff. Yada yada yada. "
+		app:title="Save Match Data To CSV"/>
+
+	<com.example.vanguard.custom_ui_elements.SettingsView
+		android:id="@+id/export_pit_responses"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:description="Set the current stuff. Yada yada yada. "
+		app:title="Save Pit Data To CSV"/>
 
 	<com.example.vanguard.custom_ui_elements.SettingsView
 		android:id="@+id/delete_responses"

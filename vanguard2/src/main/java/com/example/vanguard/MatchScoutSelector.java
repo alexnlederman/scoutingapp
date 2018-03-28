@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 import com.example.vanguard.pages.activities.MainActivity;
 import com.example.vanguard.pages.activities.MatchFormActivity;
 
+import java.io.Console;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -48,6 +51,7 @@ public class MatchScoutSelector extends ListView {
 		private ListAdapter(List<Map<String, Object>> values) {
 			super(context, R.layout.scout_selector_ui, values);
 			this.values = values;
+			Log.d("VALUES", this.values.toString());
 			this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		}
 

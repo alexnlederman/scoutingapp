@@ -1,13 +1,11 @@
 package com.example.vanguard.pages.fragments;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +13,14 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.vanguard.bluetooth.AcceptThread;
 import com.example.vanguard.bluetooth.BluetoothManager;
-import com.example.vanguard.bluetooth.client.AcceptAsyncTask;
-import com.example.vanguard.bluetooth.server.ServerBroadcastReceiver;
+import com.example.vanguard.bluetooth.ConnectThread;
 import com.example.vanguard.custom_ui_elements.SwitchOption;
 import com.example.vanguard.pages.activities.MainActivity;
 import com.example.vanguard.pages.activities.NavDrawerFragment;
 import com.example.vanguard.R;
 
-import java.lang.reflect.Method;
 import java.util.Set;
 
 /**
@@ -31,12 +28,6 @@ import java.util.Set;
  */
 
 public class BluetoothDataTransferFragment extends Fragment implements NavDrawerFragment {
-
-	private final static int REQUEST_ENABLE_BT = 1;
-
-	private final int DISCOVERABLE_DURATION = 60;
-	BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-	ServerBroadcastReceiver receiver;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,12 +49,7 @@ public class BluetoothDataTransferFragment extends Fragment implements NavDrawer
 			}
 		});
 
-		IntentFilter bluetoothDeviceFilter = new IntentFilter();
-		bluetoothDeviceFilter.addAction(BluetoothDevice.ACTION_FOUND);
-		bluetoothDeviceFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
-		bluetoothDeviceFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-		this.receiver = new ServerBroadcastReceiver(this.bluetoothAdapter, getActivity());
-		this.getActivity().registerReceiver(receiver, bluetoothDeviceFilter);
+
 
 		((MainActivity) getActivity()).setupToolbar(MainActivity.ToolbarStyles.STANDARD);
 
@@ -74,19 +60,24 @@ public class BluetoothDataTransferFragment extends Fragment implements NavDrawer
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 				if (bluetoothAdapter == null) {
-					Toast.makeText(getActivity(), "Bluetooth Not Supported On Device", Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), "Bluetooth Not Supported", Toast.LENGTH_LONG).show();
 				} else {
-					if (bluetoothAdapter.isEnabled()) {
-						setupPairing();
-//						Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-//						startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+					Log.d("BPressed", BluetoothManager.getServerAddress(getActivity()));
+					if (isServer()) {
+						AcceptThread acceptThread = new AcceptThread(getActivity(), bluetoothAdapter);
+						acceptThread.start();
 					} else {
-						if (isServer()) {
-							Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-							startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-						} else {
-							setupPairing();
+						Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+						Log.d("Paired Devices", pairedDevices.toString());
+						for (BluetoothDevice bluetoothDevice : pairedDevices) {
+							Log.d("Device Name", bluetoothDevice.getName());
+							Log.d("Device Name", bluetoothDevice.getAddress());
+							if (bluetoothDevice.getAddress().equals(BluetoothManager.getServerAddress(getActivity()))) {
+								ConnectThread connectThread = new ConnectThread(getActivity(), bluetoothAdapter, bluetoothDevice);
+								connectThread.start();
+							}
 						}
 					}
 				}
@@ -99,55 +90,7 @@ public class BluetoothDataTransferFragment extends Fragment implements NavDrawer
 		return R.id.nav_sync;
 	}
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == REQUEST_ENABLE_BT) {
-			if (resultCode == Activity.RESULT_OK) {
-				setupPairing();
-			} else if (resultCode == Activity.RESULT_CANCELED) {
-				Toast.makeText(this.getActivity(), "Bluetooth Not Enabled", Toast.LENGTH_LONG).show();
-			}
-		} else if (requestCode == DISCOVERABLE_DURATION && resultCode == DISCOVERABLE_DURATION) {
-			BluetoothManager.setBluetoothDeviceName(getActivity(), this.bluetoothAdapter);
-			AcceptAsyncTask acceptAsyncTask = new AcceptAsyncTask(this.bluetoothAdapter, getActivity());
-			acceptAsyncTask.execute();
-		}
-	}
-
-	private void setupPairing() {
-		if (this.isServer()) {
-			Set<BluetoothDevice> pairedDevices = this.bluetoothAdapter.getBondedDevices();
-
-//			 There are paired devices. Get the name and address of each paired device.
-			for (BluetoothDevice device : pairedDevices) {
-				this.unpairDevice(device);
-			}
-			this.receiver.reset();
-			this.bluetoothAdapter.startDiscovery();
-		} else {
-			Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-			discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, DISCOVERABLE_DURATION);
-			startActivityForResult(discoverableIntent, DISCOVERABLE_DURATION);
-		}
-	}
-
 	private boolean isServer() {
 		return BluetoothManager.isServer(getActivity());
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-
-		this.getActivity().unregisterReceiver(this.receiver);
-	}
-
-	private void unpairDevice(BluetoothDevice device) {
-		try {
-			Method m = device.getClass().getMethod("removeBond", (Class[]) null);
-			m.invoke(device, (Object[]) null);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }

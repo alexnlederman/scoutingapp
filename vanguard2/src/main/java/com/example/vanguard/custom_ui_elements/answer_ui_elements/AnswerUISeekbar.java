@@ -111,9 +111,7 @@ public class AnswerUISeekbar extends LinearLayout implements AnswerUIInteger {
 
 	@Override
 	public void setValue(Integer value) {
-		if (value == null) {
-			this.seekBar.setProgress(this.minValue);
-		} else {
+		if (value != null) {
 			this.seekBar.setProgress(value - this.minValue);
 		}
 	}
